@@ -6,7 +6,8 @@
 
 body {
     font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    background: url('../img/bg.jpg') no-repeat center center fixed;
+    /*background: url('../img/bg.jpg') no-repeat center center fixed;*/
+    background-color: green;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -50,7 +51,6 @@ hr {
 .navbar-nav {
     text-transform: uppercase;
     font-weight: 400;
-    letter-spacing: 3px;
 }
 
 .img-full {
@@ -78,6 +78,7 @@ hr {
 }
 
 .box {
+		/*margin: 10px;*/
     margin-bottom: 20px;
     padding: 30px 15px;
     background: #fff;
@@ -167,7 +168,7 @@ footer p {
     }
 
     .nav>li>a {
-        padding: 35px;
+        padding: 20px;
     }
 
     .navbar-nav>li>a {
@@ -189,4 +190,10 @@ footer p {
         display: table;
         clear: both;
     }
+}
+
+#header {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
