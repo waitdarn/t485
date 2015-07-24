@@ -208,3 +208,17 @@ footer p {
 ul.nav li.dropdown:hover ul.dropdown-menu {
     display: block;
 }
+
+.navbar {
+    margin-bottom: 0px;
+}
+
+.alert {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    margin-bottom: 0px;
+}
+
+.container {
+    margin-top: 20px;
+}
