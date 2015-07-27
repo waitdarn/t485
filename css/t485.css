@@ -221,3 +221,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .container {
     margin-top: 20px;
 }
+
+input {
+    margin-bottom: 15px;
+}
