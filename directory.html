@@ -100,20 +100,20 @@
 
         <div class="row">
             <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Work in Progress</h2>
-                    <hr>
+                <div class="form-group input-append">
+                    <label for="password">Enter the password (same as current t485.org password):</label>
+                    <input type="password" class="form-control" id="password">
+                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <span id="inputError2Status" class="sr-only">(error)</span>
                 </div>
-                <div class="col-md-12">
-                    <p>This page is work-in-progress. Please wait patiently for this to be finished!</p>
-                </div>
-                <div class="clearfix"></div>
             </div>
         </div>
 
         <!-- Uncomment this once there is a password system -->
-        <!--<iframe src="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false" width="100%" height="600px;"></iframe>-->
+        <div id="spreadsheet">
+            <iframe src="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false" width="100%" height="600px;"></iframe>
+        </div>
 
     </div>
     <!-- /.container -->
@@ -135,6 +135,23 @@
 
    <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#spreadsheet').hide("fast");
+            $('#submit').click(checkPassword);
+        });
+
+        function checkPassword() {
+            var password = $('#password').val();
+            if (password == 'hoc5') {
+                $('.row').hide('slow');
+                $('#spreadsheet').show('slow');
+            } else {
+                $('.form-group').addClass('has-error has-feedback');
+            }
+        }
+    </script>
 
 </body>
 
