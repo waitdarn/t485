@@ -93,7 +93,7 @@
 
     <div class="alert alert-info">
         <a class="close" data-dismiss="info">×</a>
-        <span class="glyphicon glyphicon-info-sign"></span>  <strong>Notice!</strong> Contents are for beta testing and may not be accurate!
+        <span class="glyphicon glyphicon-info-sign"></span>  <strong>Notice!</strong> This site is in beta testing and some things may not work!
     </div>
 
     <div class="container">
@@ -102,11 +102,30 @@
           <div class="box">
               <div class="col-lg-12">
                   <hr>
-                  <h2 class="intro-text text-center">Work in Progress</h2>
+                  <h2 class="intro-text text-center">Troop Directory</h2>
                   <hr>
               </div>
+              <p style="color: darkred">* Required</p>
               <div class="col-md-12">
-                  <p>This page is work-in-progress. Please wait patiently for this to be finished!</p>
+                  <form role="form">
+                      <div class="row">
+                              <label>Scout's Full Name<span style="color: darkred">*</span>:</label>
+                              <input type="text" class="form-control">
+                              <label>Scout's Email<span style="color: darkred">*</span>:</label>
+                              <input type="email" class="form-control">
+                              <label>Scout's Home Phone</label>
+                              <input type="number" class="form-control">
+                              <label>Scout's Cell Phone:</label>
+                              <input type="number" class="form-control">
+                              <label>Date Joined Troop 485:</label>
+                              <input type="date" class="form-control">
+                              <label>School Attending</label>
+                              <input type="text" class="form-control">
+                              <input type="hidden" name="save" value="contact">
+                              <button type="submit" class="btn btn-default">Submit</button>
+                          </div>
+                      </div>
+                  </form>
               </div>
               <div class="clearfix"></div>
           </div>
