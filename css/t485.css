@@ -213,7 +213,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     margin-bottom: 0px;
 }
 
-.alert {
+.alert-info {
     color: #00529B;
     background-color: #BDE5F8;
 }
