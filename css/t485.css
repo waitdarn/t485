@@ -228,3 +228,20 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 input {
     margin-bottom: 15px;
 }
+
+#toTop {
+    width: 37px;
+    height: 39px;
+    background: url(../img/back2top.png) bottom center no-repeat;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    display: none;
+    z-index: 9999;
+    transition: background .2s;
+}
+
+#toTop:hover {
+	background-position: top center;
+}
