@@ -141,10 +141,13 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        // TODO: FIND A WAY TO HIDE SPREADSHEET WITH NOSCRIPT
         $(document).ready(function() {
-            //$("#spreadsheet").hide("fast");
             $('#submit').click(checkPassword);
+            $('#password').keypress(function(e){
+                if(e.keyCode==13) {
+                    $('#submit').click();
+                }
+            });
         });
 
         function checkPassword() {
