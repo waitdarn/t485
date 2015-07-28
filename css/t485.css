@@ -203,6 +203,9 @@ footer p {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* For ie8 compatibility */
 }
 
 ul.nav li.dropdown:hover ul.dropdown-menu {

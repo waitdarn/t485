@@ -1,3 +1,7 @@
-/***************************************************************
- * Currently empty, but this file might be needed in the future*
- ***************************************************************/
+/*$(function() {
+    while (true) {
+        if ($(window).width() < 600) {
+
+        }
+    }
+});*/
