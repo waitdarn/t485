@@ -1,2 +1,2 @@
 # Stuff
-For more information, visit my website at: http://bit.ly/1FoSCWj
+For more information, visit my website [here](http://bit.ly/1FoSCWj)
