@@ -105,7 +105,9 @@
 
     <div class="container">
 
-        <div class="row">
+        <div class="row" id="enter-contact-link"></div>
+
+        <div class="row" id="password-form">
             <div class="box">
                 <div class="form-group input-append">
                     <label for="password">Enter the password (same as current t485.org password):</label>
@@ -155,8 +157,9 @@
             var hash = hashCode(password);
             console.log(hash);
             if (hash == 3208057) {
-                $('.row').hide('slow');
-                $("#spreadsheet").append("<iframe src=\"https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false\" width=\"100%\" height=\"600px;\"></iframe>");
+                $('#password-form').hide('fast');
+                $('#spreadsheet').append('<iframe src="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false" width="100%" height="600px;"></iframe>');
+                $('#enter-contact-link').append('<div class="box"><p>Would you like to share your contact information? Go to <a href="contact.html">Enter Contact Information</a></p></div>');
             } else {
                 $('.form-group').addClass('has-error has-feedback');
             }
