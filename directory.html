@@ -155,7 +155,6 @@
         function checkPassword() {
             var password = $('#password').val();
             var hash = hashCode(password);
-            console.log(hash);
             if (hash == 3208057) {
                 $('#password-form').hide('fast');
                 $('#spreadsheet').append('<iframe src="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false" width="100%" height="600px;"></iframe>');

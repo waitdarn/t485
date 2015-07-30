@@ -9,7 +9,7 @@
     <meta name="description" content="If you are 11 years old, or have completed the 5th grade but not yet 18 years old, you are welcome to join us!">
     <meta name="author" content="Richard Liu">
 
-    <title>Contact - Troop 485</title>
+    <title>My Game</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -78,10 +78,10 @@
                     <li>
                         <a href="resource.html">Resource</a>
                     </li>
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a href="directory.html">Directory <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="active"><a href="contact.html">Enter Contact Information</a></li>
+                            <li><a href="contact.html">Enter Contact Information</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -91,47 +91,20 @@
         <!-- /.container -->
     </nav>
 
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <a class="close" data-dismiss="alert">×</a>
-        <span class="glyphicon glyphicon-info-sign"></span>  <strong>Notice!</strong> This site is in beta testing! If you see something missing or not working, email me at richy.liu.2002@gmail.com
-    </div>
-
-    <div id="toTop"></div>
-
     <div class="container">
 
-      <div class="row">
-          <div class="box">
-              <div class="col-lg-12">
-                  <hr>
-                  <h2 class="intro-text text-center">Troop <strong>Directory</strong></h2>
-                  <hr>
-              </div>
-              <p style="color: darkred">* Required</p>
-              <p>Warning! This form does not actually send a email and is for demonstration purposes only!</p>
-              <div class="col-md-12">
-                  <div class="row">
-                      <form role="form">
-                          <label>Scout's Full Name<span style="color: darkred">*</span>:</label>
-                          <input type="text" class="form-control">
-                          <label>Scout's Email<span style="color: darkred">*</span>:</label>
-                          <input type="email" class="form-control">
-                          <label>Scout's Home Phone</label>
-                          <input type="number" class="form-control">
-                          <label>Scout's Cell Phone:</label>
-                          <input type="number" class="form-control">
-                          <label>Date Joined Troop 485:</label>
-                          <input type="date" class="form-control">
-                          <label>School Attending</label>
-                          <input type="text" class="form-control">
-                          <input type="hidden" name="save" value="contact">
-                          <button type="submit" class="btn btn-default">Submit</button>
-                      </form>
-                  </div>
-              </div>
-              <div class="clearfix"></div>
-          </div>
-      </div>
+        <div class="row">
+            <div class="box">
+                <p>This section is password protected!</p>
+                <div class="form-group input-append">
+                    <label for="password">Enter the password:</label>
+                    <input type="password" class="form-control" id="password">
+                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <span id="inputError2Status" class="sr-only">(error)</span>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- /.container -->
@@ -153,6 +126,38 @@
 
    <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#submit').click(checkPassword);
+            $('#password').keypress(function(e){
+                if(e.keyCode==13) {
+                    $('#submit').click();
+                }
+            });
+        });
+
+        function checkPassword() {
+            var password = $('#password').val();
+            var hash = hashCode(password);
+            if (hash == -792095580) {
+                window.location.replace("game.html");
+            } else {
+                $('.form-group').addClass('has-error has-feedback');
+            }
+        }
+
+        hashCode = function(str){
+            var hash = 0;
+            if (str.length == 0) return hash;
+            for (i = 0; i < str.length; i++) {
+                char = str.charCodeAt(i);
+                hash = ((hash<<5) - hash) + char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
+        }
+    </script>
 
 </body>
 
