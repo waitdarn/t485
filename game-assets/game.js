@@ -1,59 +1,42 @@
-// Define canvas
-var canvas;
+// Define stage
 var stage;
 
 // Background
 var bgSrc = new Image();
 var bg;
 
-// Button
-var btnSrc = new Image();
-var btn;
-
 // Variables
 var CENTER_X = 240;
 var CENTER_Y = 170;
-var gfxLoaded = 0; // preloader flag
 
 function main() {
     // Link canvas and enable mouse
-    canvas = document.getElementById('game');
-    stage = new Stage(canvas);
+    stage = new createjs.Stage('game');
     stage.mouseEventsEnabled = true;
 
+    var circle = new createjs.Shape();
+    circle.graphics.beginFill("green").drawCircle(0, 0, 50);
+    circle.x = CENTER_X - 25;
+    circle.y = CENTER_Y - 25;
+    stage.addChild(circle);
+    stage.update();
+/*
     // Load images
     bgSrc.src = 'game-assets/bg.png';
     bgSrc.name = 'bg';
     bgSrc.onload = loadGfx;
 
-    btnSrc.src = 'game-assets/button.png';
-    btnSrc.name = 'button';
-    btnSrc.onload = loadGfx;
-
     // Ticker
-    Ticker.setFPS(30);
-    Ticker.addListener(stage);
+    createjs.Ticker.setFPS(30);
+    createjs.Ticker.addEventListener('tick', stage);
 
-    console.log('end of main');
+    console.log('end of main');*/
 }
 
-function loadGfx(e) {
-    switch (e.target.name) {
-        case 'bg':
-            bg = new Bitmap(bgSrc);
-            break;
-        case 'button':
-            btn = new Bitmap(btnSrc);
-            break;
-    }
-
-    gfxLoaded++;
-
-    // Display graphics until all images are loaded
-    if (gfxLoaded == 2) {
-        buildInterface();
-    }
-    console.log('loaded all graphics');
+function loadImage() {
+    var preload = new createjs.LoadQueue();
+    preload.addEventListener("fileload", function(e){stage.addChild(e.result);});
+    preload.loadFile("game-assets/bg.png");
 }
 
 function buildInterface() {
@@ -61,7 +44,6 @@ function buildInterface() {
     btn.y = CENTER_Y - 64;
 
     stage.addChild(bg, btn);
-    stage.update();
 
     // Add buttoon listener
     btn.onPress = showText;
@@ -84,6 +66,7 @@ function showText() {
     msg.alpha = 0;
 
     // Animation
-    Tween.get(btn).todo({y: CENTER_Y + 50}, 300);
-    Tween.get(btn).wait(400).to({alpha: 1}, 400);
+    createjs.Tween.get(btn).todo({y: CENTER_Y + 50}, 300);
+    createjs.Tween.get(msg).wait(400).to({alpha: 1}, 400);
+    console.log('finished showing text');
 }
