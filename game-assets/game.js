@@ -39,7 +39,7 @@ function main() {
 function loadImage() {
     var preload = new createjs.LoadQueue();
     preload.addEventListener('fileload', function(e) {
-        stage.addChild(e.result);
+        document.body.appendChild(e.result);
     });
     preload.loadFile('game-assets/bg.png');
 }
