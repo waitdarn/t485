@@ -1,10 +1,6 @@
 // Define stage
 var stage;
 
-// Background
-var bgSrc = new Image();
-var bg;
-
 // Variables
 var CENTER_X = 240;
 var CENTER_Y = 170;
@@ -12,14 +8,21 @@ var CENTER_Y = 170;
 function main() {
     // Link canvas and enable mouse
     stage = new createjs.Stage('game');
-    stage.mouseEventsEnabled = true;
+    //stage.mouseEventsEnabled = true;
 
     var circle = new createjs.Shape();
-    circle.graphics.beginFill("green").drawCircle(0, 0, 50);
+    circle.graphics.beginFill('green').drawCircle(0, 0, 50);
     circle.x = CENTER_X - 25;
     circle.y = CENTER_Y - 25;
+    circle.addEventListener('click', function (e) {
+        createjs.Tween.get(circle).to({y: circle.y + 10}, 400);
+        console.log('clicked');
+    });
+
     stage.addChild(circle);
-    stage.update();
+
+    createjs.Ticker.setFPS(60);
+    createjs.Ticker.addEventListener('tick', stage);
 /*
     // Load images
     bgSrc.src = 'game-assets/bg.png';
@@ -35,8 +38,10 @@ function main() {
 
 function loadImage() {
     var preload = new createjs.LoadQueue();
-    preload.addEventListener("fileload", function(e){stage.addChild(e.result);});
-    preload.loadFile("game-assets/bg.png");
+    preload.addEventListener('fileload', function(e) {
+        stage.addChild(e.result);
+    });
+    preload.loadFile('game-assets/bg.png');
 }
 
 function buildInterface() {

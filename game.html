@@ -5,26 +5,37 @@
     <meta charset="utf-8">
     <title>My Javascript Game</title>
 
-    <style>/* Removes Mobile Highlight */ *{-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}</style>
+    <style>
+        /* Removes highlight on mobile devices when canvas tapped*/
+        * {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
 </head>
 
 <body onload="main();">
-
     <noscript>
-        <p style="color:red">You need javascript enabled for this game to work!</p>
+        <p style="color: red;">You need javascript enabled for this game to work!</p>
     </noscript>
 
     <h1>My Javascript Game</h1>
-    <canvas id="game" width="480" height="320">Your browser doesn't support canvas. Please download <a href="http://ie.microsoft.com">IE9+</a></canvas>
+    <canvas id="game" class="noselect" width="480" height="320">Your browser doesn't support canvas. Please download <a href="http://ie.microsoft.com">IE9+</a></canvas>
+    <br>
     <button onclick="loadImage();" class="load-image">Click Me!</button>
 
     <!-- Required libraries -->
-    <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+    <script src="https://code.createjs.com/easeljs-0.7.0.min.js"></script>
     <script src="https://code.createjs.com/tweenjs-0.6.1.min.js"></script>
     <script src="https://code.createjs.com/preloadjs-0.6.1.min.js"></script>
     <script src="game-assets/game.js"></script>
-
-
 </body>
 
 </html>
