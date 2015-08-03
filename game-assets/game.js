@@ -6,6 +6,7 @@ function main() {
     // Link canvas and background and enable mouse
     var stage = new createjs.Stage('game');
     var image = new createjs.Bitmap('game-assets/bg.png');
+    stage.addChild(image);
     //stage.mouseEventsEnabled = true;
 
     var circle = new createjs.Shape();
@@ -17,7 +18,6 @@ function main() {
         console.log('clicked circle');
     });
 
-    stage.addChild(image);
     stage.addChild(circle);
 
     createjs.Ticker.setFPS(60);
