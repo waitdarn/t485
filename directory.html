@@ -105,7 +105,11 @@
 
     <div class="container">
 
-        <div class="row" id="enter-contact-link"></div>
+        <div class="row" id="enter-contact-link" style="display:none;">
+            <div class="box">
+                <p>Would you like to share your contact information? Go to <a href="contact.html">Enter Contact Information</a></p>
+            </div>
+        </div>
 
         <div class="row" id="password-form">
             <div class="box">
@@ -119,7 +123,35 @@
             </div>
         </div>
 
-        <div id="spreadsheet"></div>
+        <div class="row" id="spreadsheet" style="display:none;">
+            <div class="box">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#cacti">Cacti</a></li>
+                    <li><a data-toggle="tab" href="#wildcats">Wildcats</a></li>
+                    <li><a data-toggle="tab" href="#hawks">Hawks</a></li>
+                    <li><a data-toggle="tab" href="#serpents">Serpents</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="cacti" class="tab-pane fade in active">
+                        <h3>Cacti</h3>
+                        <iframe src="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false" width="100%" height="600px;"></iframe>
+                    </div>
+                    <div id="wildcats" class="tab-pane fade">
+                        <h3>Wildcats</h3>
+                        <iframe src="https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/pubhtml?widget=true&amp;headers=false" width="100%" height="600px;"></iframe>
+                    </div>
+                    <div id="hawks" class="tab-pane fade">
+                        <h3>Hawks</h3>
+                        <iframe src="https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/pubhtml?widget=true&amp;headers=false" width="100%" height="600px;"></iframe>
+                    </div>
+                    <div id="serpents" class="tab-pane fade">
+                        <h3>Serpents</h3>
+                        <iframe src="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/pubhtml?widget=true&amp;headers=false" width="100%" height="600px;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- /.container -->
@@ -156,9 +188,9 @@
             var password = $('#password').val();
             var hash = hashCode(password);
             if (hash == 3208057) {
-                $('#password-form').hide('fast');
-                $('#spreadsheet').append('<iframe src="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false" width="100%" height="600px;"></iframe>');
-                $('#enter-contact-link').append('<div class="box"><p>Would you like to share your contact information? Go to <a href="contact.html">Enter Contact Information</a></p></div>');
+                $('#password-form').css('display', 'none');
+                $('#spreadsheet').css('display', 'block');
+                $('#enter-contact-link').css('display', 'block');
             } else {
                 $('.form-group').addClass('has-error has-feedback');
                 $('#password').val('');
