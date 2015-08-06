@@ -7,10 +7,16 @@
     <title>My Javascript Game</title>
 
     <style>
-        /* Removes highlight on mobile devices when canvas tapped*/
         * {
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
+        body {
+            margin-left: 20px;
+        }
+        canvas {
+            border: 1px solid #0099FF;
+        }
+        /* Removes highlight on mobile devices when canvas tapped */
         .noselect {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -22,13 +28,13 @@
     </style>
 </head>
 
-<body onload="main();">
+<body>
     <noscript>
         <p style="color: red;">You need javascript enabled for this game to work!</p>
     </noscript>
 
     <h1>My Javascript Game</h1>
-    <canvas id="game" class="noselect" width="550" height="300">Your browser doesn't support canvas. Please download <a href="http://ie.microsoft.com">IE9+</a></canvas>
+    <canvas id="game" class="noselect" width="740" height="380">Your browser doesn't support canvas. Please download <a href="http://ie.microsoft.com">IE9+</a></canvas>
 
     <!-- Required libraries -->
     <script src="https://code.createjs.com/easeljs-0.7.0.min.js"></script>
