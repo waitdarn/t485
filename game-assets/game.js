@@ -1,32 +1,12 @@
-/*// Constants
-var CENTER_X = 550 / 2;
-var CENTER_Y = 300 / 2;
-
-function main() {
-    // Link canvas and background and enable mouse
-    var stage = new createjs.Stage('game');
-    var image = new createjs.Bitmap('game-assets/bg.png');
-    stage.addChild(image);
-    //stage.mouseEventsEnabled = true;
-
-    var circle = new createjs.Shape();
-    circle.graphics.beginFill('green').drawCircle(0, 0, 50);
-    circle.x = CENTER_X - 25;
-    circle.y = CENTER_Y - 25;
-    circle.addEventListener('click', function (e) {
-        createjs.Tween.get(circle).to({y: circle.y + 10}, 400);
-        console.log('clicked circle');
-    });
-
-    stage.addChild(circle);
-
-    createjs.Ticker.setFPS(60);
-    createjs.Ticker.addEventListener('tick', stage);
-}
-
+/*
+  _|_|_|            _|    _|      _|            _|  _|            _|
+    _|    _|_|_|        _|_|_|_|        _|_|_|  _|      _|_|_|_|      _|_|_|      _|_|_|
+    _|    _|    _|  _|    _|      _|  _|    _|  _|  _|      _|    _|  _|    _|  _|    _|
+    _|    _|    _|  _|    _|      _|  _|    _|  _|  _|    _|      _|  _|    _|  _|    _|
+  _|_|_|  _|    _|  _|      _|_|  _|    _|_|_|  _|  _|  _|_|_|_|  _|  _|    _|    _|_|_|
+                                                                                      _|
+                                                                                  _|_|
 */
-/* -------------------------------------------------------------------------- */
-
 /*(function () {/()*/
 
     // Init some useful stuff for easier access (don't need them all)
@@ -57,6 +37,8 @@ function main() {
     })();
 
     var SCALE,
+        WIDTH,
+        HEIGHT,
         canvas,
         ctx,
         world,
@@ -76,14 +58,15 @@ function main() {
             this.surroundings.leftWall();
             this.surroundings.rightWall();
             this.surroundings.ground();
+            this.surroundings.post();
 
             this.callbacks();
 
-            setTimeout(function() { add.random(); }, 0);
-            setTimeout(function() { add.random(); }, 100);
-            setTimeout(function() { add.random(); }, 500);
-            setTimeout(function() { add.random(); }, 700);
-            setTimeout(function() { add.random(); }, 1000);
+            setTimeout(function() { add.box({width: 2, height: 2, x: 5, y: 0}); }, 0);
+            //setTimeout(function() { add.random(); }, 100);
+            //setTimeout(function() { add.random(); }, 500);
+            //setTimeout(function() { add.random(); }, 700);
+            //setTimeout(function() { add.random(); }, 1000);
 
             // On my signal: Unleash hell.
             (function hell() {
@@ -98,36 +81,47 @@ function main() {
         },
         defaultProperties: function() {
             SCALE = 30;
+            WIDTH = 900;
+            HEIGHT = 540;
         },
         canvas: function(id) {
             canvas = document.getElementById(id);
             ctx = canvas.getContext("2d");
         },
         surroundings: {
+            post: function() {
+                add.box({
+                    x: WIDTH / SCALE / 2,
+                    y: HEIGHT / SCALE / 2,
+                    height: 6,
+                    width: 2,
+                    isStatic: true
+                });
+            },
             rightWall: function() {
                 add.box({
-                    x: 25.7,        // 740 / 30 + 1.1
-                    y:  6.3,        // 380px / 30 / 2
-                    height: 12.6,   // 380px / 30
-                    width:2,
+                    x: WIDTH / SCALE + 1.1,        // 740 / 30 + 1.1
+                    y: HEIGHT / SCALE / 2,        // 380px / 30 / 2
+                    height: HEIGHT / SCALE,   // 380px / 30
+                    width: 2,
                     isStatic: true
                 });
             },
             ground: function() {
                 add.box({
-                    x: 12.3,        // 740 / 30 / 2
-                    y:  13.7,
+                    x: WIDTH / SCALE / 2,        // 740 / 30 / 2
+                    y: HEIGHT / SCALE + 1.1,
                     height: 2,
-                    width:24.6,     // 740 / 30
+                    width: WIDTH / SCALE,     // 740 / 30
                     isStatic: true
                 });
             },
             leftWall: function() {
                 add.box({
                     x: -1,
-                    y:  6.3,        // 380px / 30 / 2
-                    height: 12.6,   // 380px / 30
-                    width:2,
+                    y: HEIGHT / SCALE / 2,        // 380px / 30 / 2
+                    height: HEIGHT / SCALE,   // 380px / 30
+                    width: 2,
                     isStatic: true
                 });
             }
@@ -268,14 +262,24 @@ function main() {
         }
     };
 
-    /* Shapes down here */
+/*
+  _|_|_|  _|
+_|        _|_|_|      _|_|_|  _|_|_|      _|_|      _|_|_|
+  _|_|    _|    _|  _|    _|  _|    _|  _|_|_|_|  _|_|
+      _|  _|    _|  _|    _|  _|    _|  _|            _|_|
+_|_|_|    _|    _|    _|_|_|  _|_|_|      _|_|_|  _|_|_|
+                              _|
+                              _|
+*/
 
     var Shape = function(v) {
         this.id = Math.round(Math.random() * 1000000);
-        this.x = v.x || Math.random()*23 + 1;
-        this.y = v.y || 0;
+        //this.x = v.x || Math.random()*23 + 1;
+        this.x = v.x /*|| Math.random()*23 + 1*/;
+        this.y = v.y /*|| 0*/;
         this.angle = 0;
-        this.color = helpers.randomColor();
+        //this.color = helpers.randomColor();
+        this.color = '#33CC00';
         this.center = { x: null, y: null };
         this.isStatic = v.isStatic || false;
 
