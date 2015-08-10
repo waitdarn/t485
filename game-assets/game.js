@@ -61,16 +61,35 @@ var init = {
         this.loadStaticElements();
         this.callbacks();
         add.box({x: 15, y: 9, height: 1, width: 1, color: 'lightgreen', fixedRotation: true, id: 'player'});
-        console.log(level);
+        add.box({
+            x: 25,
+            y: 17,
+            height: 2,
+            width: 4,
+            color: 'forestgreen',
+            type: types.KINEMATIC,
+            angle: 0,
+            id: 'moving_01'
+        });
+        add.box({
+            x: 3,
+            y: 8.5,
+            height: 2,
+            width: 4,
+            color: 'turquoise',
+            type: types.KINEMATIC,
+            angle: 0,
+            id: 'moving_02'
+        });
 
         var i = 0;
         window.setInterval(function() {
             if (i % 2 === 0) {
-                helpers.setLinearVelocity('platform_05', 180, 2);
-                helpers.setLinearVelocity('platform_06', 0, 2);
+                helpers.setLinearVelocity('moving_01', 180, 2);
+                helpers.setLinearVelocity('moving_02', 0, 2);
             } else {
-                helpers.setLinearVelocity('platform_05', 0, 2);
-                helpers.setLinearVelocity('platform_06', 180, 2);
+                helpers.setLinearVelocity('moving_01', 0, 2);
+                helpers.setLinearVelocity('moving_02', 180, 2);
             }
             i++;
         }, 2000);
@@ -338,9 +357,11 @@ var loop = {
             helpers.setLinearVelocity('player', 180, 4);
         }
         //console.log(helpers.getBody('player').GetLinearVelocity().y);
-        if (helpers.getBody('player').GetLinearVelocity().y < 0.01 &&
-            helpers.getBody('player').GetLinearVelocity().y > -0.01) {
+        if (helpers.getBody('player').GetLinearVelocity().y < 1 &&
+            helpers.getBody('player').GetLinearVelocity().y > -1) {
             isJumping = false;
+        } else {
+            isJumping = true;
         }
         //console.log(isJumping);
     }
