@@ -13,7 +13,7 @@
         b2CircleShape = Box2D.Collision.Shapes.b2CircleShape            ,
         b2DebugDraw = Box2D.Dynamics.b2DebugDraw                        ,
         b2RevoluteJointDef = Box2D.Dynamics.Joints.b2RevoluteJointDef   ,
-        b2MouseJointDef =  Box2D.Dynamics.Joints.b2MouseJointDef;
+        b2MouseJointDef =  Box2D.Dynamics.Joints.b2MouseJointDef        ;
 
     // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
     window.requestAnimFrame = (function(){
@@ -32,10 +32,12 @@
         ctx,
         world,
         fixDef,
+        types,
         shapes = {},
-        images = [];
-
-    var debug = false;
+        images = [],
+        keydown_flag = -1,
+        isJumping = false,
+        debug = false;
 /*
   _|_|_|            _|    _|      _|            _|  _|            _|
     _|    _|_|_|        _|_|_|_|        _|_|_|  _|      _|_|_|_|      _|_|_|      _|_|_|
@@ -50,15 +52,14 @@
             this.defaultProperties();
             this.canvas(id);
             this.loadImages();
-            canvas.addEventListener('mousemove', function(e) {
-                console.log(mouseEvents.mouseCoords(e));
-            });
+            this.attachListeners();
 
             box2d.create.world();
             box2d.create.defaultFixture();
 
             this.loadStaticElements();
             this.callbacks();
+            add.box({x: 15, y: 9, height: 1, width: 1, color: 'lightgreen', fixedRotation: true, id: 'player'});
 
             var i = 0;
             window.setInterval(function() {
@@ -80,11 +81,17 @@
                     world.DrawDebugData();
                 }
                 loop.draw();
+                loop.updatePlayer();
                 requestAnimFrame(gameLoop);
             })();
         },
         defaultProperties: function() {
             SCALE = 30;
+            types = {
+                STATIC: b2Body.b2_staticBody,
+                DYNAMIC: b2Body.b2_dynamicBody,
+                KINEMATIC: b2Body.b2_kinematicBody,
+            };
         },
         canvas: function(id) {
             canvas = document.getElementById(id);
@@ -94,6 +101,13 @@
             var imageObj = new Image();
             imageObj.src = 'game-assets/grid.gif';
             images[0] = imageObj;
+        },
+        attachListeners: function() {
+            canvas.addEventListener('mousemove', function(e) {
+                //console.log(mouseEvents.mouseCoords(e));
+            });
+            window.addEventListener('keydown', keyboardEvents.keyDown, false);
+            window.addEventListener('keyup', keyboardEvents.keyUp, false);
         },
 /*
     _|_|_|    _|                  _|      _|                  _|_|_|  _|
@@ -112,7 +126,7 @@
                 height: 1,
                 width: 20,
                 color: 'skyblue',
-                isStatic: true,
+                type: types.STATIC,
                 id: 'platform_01'
             });
             /*add.box({
@@ -121,7 +135,7 @@
                 height: 1,
                 width: 20,
                 color: 'darkblue',
-                isStatic: true,
+                type: types.STATIC,
                 id: 'platform_02'
             });*/
             add.box({
@@ -130,7 +144,7 @@
                 height: 1,
                 width: 8,
                 color: 'pink',
-                isStatic: true,
+                type: types.STATIC,
                 angle: -0.7,
                 id: 'platform_03'
             });
@@ -140,7 +154,7 @@
                 height: 1,
                 width: 5,
                 color: 'gold',
-                isStatic: true,
+                type: types.STATIC,
                 angle: 0.6,
                 id: 'platform_04'
             });
@@ -150,8 +164,7 @@
                 height: 2,
                 width: 4,
                 color: 'forestgreen',
-                isStatic: false,
-                isKinematic: true,
+                type: types.KINEMATIC,
                 id: 'platform_05'
             });
             add.box({
@@ -160,8 +173,7 @@
                 height: 2,
                 width: 4,
                 color: 'turquoise',
-                isStatic: false,
-                isKinematic: true,
+                type: types.KINEMATIC,
                 id: 'platform_06'
             });
             // Right wall
@@ -170,7 +182,7 @@
                 y: canvas.height / SCALE / 2,
                 height: canvas.height / SCALE,
                 width: 2,
-                isStatic: true,
+                type: types.STATIC,
                 id: 'wall_1'
             });
             // Floor
@@ -179,7 +191,7 @@
                 y: canvas.height / SCALE + 1.1,
                 height: 2,
                 width: canvas.width / SCALE,
-                isStatic: true,
+                type: types.STATIC,
                 color: 'purple',
                 id: 'wall_2'
             });
@@ -189,7 +201,7 @@
                 y: canvas.height / SCALE / 2,
                 height: canvas.height / SCALE,
                 width: 2,
-                isStatic: true,
+                type: types.STATIC,
                 id: 'wall_3'
             });
         },
@@ -247,7 +259,13 @@
             box2d.addToWorld(shape);
         }
     };
-
+/*
+  _|      _|                                              _|_|_|_|                                    _|
+  _|_|  _|_|    _|_|    _|    _|    _|_|_|    _|_|        _|        _|      _|    _|_|    _|_|_|    _|_|_|_|    _|_|_|
+  _|  _|  _|  _|    _|  _|    _|  _|_|      _|_|_|_|      _|_|_|    _|      _|  _|_|_|_|  _|    _|    _|      _|_|
+  _|      _|  _|    _|  _|    _|      _|_|  _|            _|          _|  _|    _|        _|    _|    _|          _|_|
+  _|      _|    _|_|      _|_|_|  _|_|_|      _|_|_|      _|_|_|_|      _|        _|_|_|  _|    _|      _|_|  _|_|_|
+*/
     var mouseEvents = {
         mouseCoords: function(e) {
             var rect = canvas.getBoundingClientRect();
@@ -257,10 +275,36 @@
             };
         },
         mouseDown: function(e) {
-
+            // Handle mouse down
         },
         mouseUp: function(e) {
-
+            // Handle mouse up
+        }
+    };
+/*
+  _|    _|                      _|                                            _|      _|_|_|_|                _|
+  _|  _|      _|_|    _|    _|  _|_|_|      _|_|      _|_|_|  _|  _|_|    _|_|_|      _|        _|      _|  _|_|_|_|    _|_|_|
+  _|_|      _|_|_|_|  _|    _|  _|    _|  _|    _|  _|    _|  _|_|      _|    _|      _|_|_|    _|      _|    _|      _|_|
+  _|  _|    _|        _|    _|  _|    _|  _|    _|  _|    _|  _|        _|    _|      _|          _|  _|      _|          _|_|
+  _|    _|    _|_|_|    _|_|_|  _|_|_|      _|_|      _|_|_|  _|          _|_|_|      _|_|_|_|      _|          _|_|  _|_|_|
+                            _|
+                        _|_|
+*/
+    var keyboardEvents = {
+        keyDown: function (e) {
+            var key = e.which || e.keyCode;
+            //console.log(key + 'down');
+            if (key === 38 && !isJumping) {
+                helpers.applyImpulse('player', 270, 10);
+                isJumping = true;
+            } else {
+                keydown_flag = key;
+            }
+        },
+        keyUp: function(e) {
+            var key = e.which || e.keyCode;
+            //console.log(key + 'up');
+            keydown_flag = -1;
         }
     };
 
@@ -302,17 +346,12 @@
             bodyDef: function(shape) {
                 var bodyDef = new b2BodyDef();
 
-                if (shape.isStatic) {
-                    bodyDef.type = b2Body.b2_staticBody;
-                } else if (shape.isKinematic) {
-                    bodyDef.type = b2Body.b2_kinematicBody;
-                } else {
-                    bodyDef.type = b2Body.b2_dynamicBody;
-                }
+                bodyDef.type = shape.type;
                 bodyDef.position.x = shape.x;
                 bodyDef.position.y = shape.y;
                 bodyDef.userData = shape.id;
                 bodyDef.angle = shape.angle;
+                bodyDef.fixedRotation = shape.fixedRotation;
 
                 return bodyDef;
             }
@@ -364,6 +403,20 @@
             for (var i in shapes) {
                 shapes[i].draw();
             }
+        },
+        updatePlayer: function() {
+            if (keydown_flag === 39) {
+                helpers.setLinearVelocity('player', 0, 4);
+            }
+            if (keydown_flag === 37) {
+                helpers.setLinearVelocity('player', 180, 4);
+            }
+            //console.log(helpers.getBody('player').GetLinearVelocity().y);
+            if (helpers.getBody('player').GetLinearVelocity().y < 0.01 &&
+                helpers.getBody('player').GetLinearVelocity().y > -0.01) {
+                isJumping = false;
+            }
+            //console.log(isJumping);
         }
     };
 /*
@@ -385,42 +438,32 @@
             return color;
         },
         applyImpulse: function(id, degrees, power) {
-            var body = null;
-            // Search body list for body with given id (GetUserData returns id)
-            for (var b = world.GetBodyList(); b; b = b.m_next) {
-                if (b.GetUserData() == id) {
-                    body = b;
-                }
-            }
+            var body = helpers.getBody(id);
             body.ApplyImpulse(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power,
                                   Math.sin(degrees * (Math.PI / 180)) * power),
                                   body.GetWorldCenter());
         },
         applyForce: function(id, degrees, power) {
-            var body = null;
-            // Search body list for body with given id (GetUserData returns id)
-            for (var b = world.GetBodyList(); b; b = b.m_next) {
-                if (b.GetUserData() == id) {
-                    body = b;
-                }
-            }
+            var body = helpers.getBody(id);
             body.ApplyForce(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power,
                                 Math.sin(degrees * (Math.PI / 180)) * power),
                                 body.GetWorldCenter());
         },
+        // This will only set velocity on the x axis
         setLinearVelocity: function(id, degrees, power) {
-            var body = null;
-            // Search body list for body with given id (GetUserData returns id)
-            for (var b = world.GetBodyList(); b; b = b.m_next) {
-                if (b.GetUserData() == id) {
-                    body = b;
-                }
+            var body = helpers.getBody(id);
+            if (degrees === 0) {
+                body.SetLinearVelocity(new b2Vec2(power, 0), body.GetWorldCenter());
+            } else if (degrees === 180) {
+                body.SetLinearVelocity(new b2Vec2(-power, 0), body.GetWorldCenter());
             }
-            body.SetLinearVelocity(new b2Vec2(Math.cos(degrees * (Math.PI / 180)) * power,
-                                       Math.sin(degrees * (Math.PI / 180)) * power),
-                                       body.GetWorldCenter());
         },
         setMass: function(id, mass) {
+            helpers.getBody(id);
+            // TODO: Center should be set to body center, not 1, 1
+            body.SetMassData({center: {x: 1, y: 1}, I: 0, mass: mass});
+        },
+        getBody: function(id) {
             var body = null;
             // Search body list for body with given id (GetUserData returns id)
             for (var b = world.GetBodyList(); b; b = b.m_next) {
@@ -428,8 +471,7 @@
                     body = b;
                 }
             }
-            // TODO: Center should be set to body center, not 1, 1
-            body.SetMassData({center: {x: 1, y: 1}, I: 0, mass: mass});
+            return body;
         }
     };
 
@@ -450,8 +492,8 @@ _|_|_|    _|    _|    _|_|_|  _|_|_|      _|_|_|  _|_|_|
         this.angle = v.angle || 0;
         this.color =  v.color || helpers.randomColor();
         this.center = { x: null, y: null };
-        this.isStatic = v.isStatic || false;
-        this.isKinematic = v.isKinematic || false;
+        this.type = (v.type != null) || types.DYNAMIC;
+        this.fixedRotation = v.fixedRotation || false;
 
         this.update = function(options) {
             this.angle = options.angle;
