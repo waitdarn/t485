@@ -36,7 +36,7 @@ var SCALE,
     types,
     shapes = {},
     images = [],
-    keydown_flag = -1,
+    key_flag = -1,
     isJumping = false,
     debug = false;
 /*
@@ -241,15 +241,15 @@ var keyboardEvents = {
         //console.log(key + 'down');
         if (key === 38 && !isJumping) {
             helpers.applyImpulse('player', 270, 7);
-            //isJumping = true;
+            isJumping = true;
         } else {
-            keydown_flag = key;
+            key_flag = key;
         }
     },
     keyUp: function(e) {
         var key = e.which || e.keyCode;
         //console.log(key + 'up');
-        keydown_flag = -1;
+        key_flag = -1;
     }
 };
 
@@ -350,15 +350,15 @@ var loop = {
         }
     },
     updatePlayer: function() {
-        if (keydown_flag === 39) {
+        if (key_flag === 39) {
             helpers.setLinearVelocity('player', 0, 4);
         }
-        if (keydown_flag === 37) {
+        if (key_flag === 37) {
             helpers.setLinearVelocity('player', 180, 4);
         }
         //console.log(helpers.getBody('player').GetLinearVelocity().y);
-        if (helpers.getBody('player').GetLinearVelocity().y < 1 &&
-            helpers.getBody('player').GetLinearVelocity().y > -1) {
+        if (helpers.getBody('player').GetLinearVelocity().y < 0.1 &&
+            helpers.getBody('player').GetLinearVelocity().y > -0.1) {
             isJumping = false;
         } else {
             isJumping = true;
