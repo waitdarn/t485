@@ -106,7 +106,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>This page is work-in-progress. Please wait patiently for this to be finished!</p>
+                    <p>Features on this page are <b>experimental</b>!</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -115,11 +115,15 @@
         <div class="row">
             <div class="box">
                 <div class="addbullet">
-                    <button type="button" id="add-bullet" onclick="addBullet()">Add</button>
                     <label for="add-name">Name: </label>
+                    <br>
                     <input type="text" id="add-name"></input>
+                    <br>
                     <label for="add-value">Text: </label>
-                    <input type="text" id="add-value"></input>
+                    <br>
+                    <textarea id="add-value" rows="4" cols="40"></textarea>
+                    <br>
+                    <button type="submit" id="add-bullet" onclick="addBullet()">Add</button>
                 </div>
                 <div class="bulletinboard">
 
@@ -155,15 +159,10 @@
         var firebase = new Firebase('https://t485.firebaseio.com/');
         firebase.remove();
 
-        firebase.on('value', function(snapshot) {
-            if (snapshot.exists()) {
-                var bullets = snapshot.val();
-                var key = snapshot.child('stuff').val();
-                console.log('Name: ' + bullets.name);
-                console.log('Text: ' + bullets.text);
-                console.log(bullets);
-                console.log(key);
-            }
+        firebase.on('child_added', function(snapshot) {
+            var bullets = snapshot.val();
+            console.log('Name: ' + bullets.name);
+            console.log('Text: ' + bullets.text);
         }, function(errorObj) {
             console.log('Read failed: ' + errorObj.code);
         });
@@ -171,6 +170,8 @@
         function addBullet() {
             var addName = $('#add-name').val();
             var addValue = $('#add-value').val();
+            $('#add-name').val('');
+            $('#add-value').val('');
             firebase.push({'name': addName, 'text': addValue});
         }
     </script>

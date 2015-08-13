@@ -232,6 +232,10 @@ input {
     margin-bottom: 15px;
 }
 
+textarea {
+    margin-top: 10px;
+}
+
 #toTop {
     width: 37px;
     height: 39px;
