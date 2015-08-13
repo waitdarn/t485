@@ -5,14 +5,14 @@ $(function() {
         var ver = getInternetExplorerVersion();
         // no fade animation (transparency) if IE8 or below
         if ( ver > -1 && ver <= 8 ) {
-            if(x != 0) {
+            if(x !== 0) {
                 $('#toTop').show();
             } else {
                 $('#toTop').hide();
             }
         // fade animation if not IE8 or below
         } else {
-            if(x != 0) {
+            if(x !== 0) {
                 $('#toTop').fadeIn(3000);
             } else {
                 $('#toTop').fadeOut();
@@ -31,7 +31,7 @@ function getInternetExplorerVersion() {
     if (navigator.appName == 'Microsoft Internet Explorer') {
         var ua = navigator.userAgent;
         var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-        if (re.exec(ua) != null) {
+        if (re.exec(ua) !== null) {
             rv = parseFloat( RegExp.$1 );
         }
     }

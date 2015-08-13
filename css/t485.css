@@ -175,7 +175,10 @@ footer p {
     }
 
     .nav>li>a {
-        padding: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-right: 17px;
+        padding-left: 17px;
     }
 
     .navbar-nav>li>a {
