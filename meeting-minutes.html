@@ -9,7 +9,7 @@
     <meta name="description" content="If you are 11 years old, or have completed the 5th grade but not yet 18 years old, you are welcome to join us!">
     <meta name="author" content="Richard Liu">
 
-    <title>Bulletin Board - Troop 485</title>
+    <title>Meeting Minutes - Troop 485</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -103,32 +103,17 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Work in Progress</h2>
+                    <h2 class="intro-text text-center">Meeting Minutes</h2>
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>Features on this page are <b>experimental</b>!</p>
+                    <ul>
+                        <li><a href="https://docs.google.com/document/d/1WLFYI2ZLgYDZ76KSa8R35HY7292OBiggzw_nKQjYWxM/edit?usp=drive_web" target="_blank">Troop Meeting Minutes 8/17/2015</a></li>
+                        <li><a href="https://docs.google.com/document/d/1BdxViFiegKgPdl6kr3kN8vpJCUD0cEjRTQ57e4QNN6g/edit?usp=drive_web" target="_blank">PLC Meeting Minutes 8/17/2015</a></li>
+                        <li><a href="https://docs.google.com/document/d/17IBnuZjP8kfWh7LPWECvtD8XFW4KkWATu-pN4hDa2WU/edit?usp=drive_web" target="_blank">Mini TLT Minutes 8/8/2015</a></li>
+                    </ul>
                 </div>
                 <div class="clearfix"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="box">
-                <div class="addbullet">
-                    <label for="add-name">Name: </label>
-                    <br>
-                    <input type="text" id="add-name"></input>
-                    <br>
-                    <label for="add-value">Text: </label>
-                    <br>
-                    <textarea id="add-value" rows="4" cols="40"></textarea>
-                    <br>
-                    <button type="submit" id="add-bullet" onclick="addBullet()">Add</button>
-                </div>
-                <div class="bulletinboard">
-
-                </div>
             </div>
         </div>
 
@@ -150,38 +135,14 @@
 
     <script src="js/t485.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
+     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-    <!-- Firebase -->
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
     <!-- Clicky Web Analytics -->
     <a title="Web Statistics" href="http://clicky.com/100869133"><img alt="Web Statistics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
     <script src="//static.getclicky.com/js" type="text/javascript"></script>
     <script type="text/javascript">try{ clicky.init(100869133); }catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100869133ns.gif" /></p></noscript>
-
-    <script type="text/javascript">
-        var firebase = new Firebase('https://t485.firebaseio.com/');
-        firebase.remove();
-
-        firebase.on('child_added', function(snapshot) {
-            var bullets = snapshot.val();
-            console.log('Name: ' + bullets.name);
-            console.log('Text: ' + bullets.text);
-        }, function(errorObj) {
-            console.log('Read failed: ' + errorObj.code);
-        });
-
-        function addBullet() {
-            var addName = $('#add-name').val();
-            var addValue = $('#add-value').val();
-            $('#add-name').val('');
-            $('#add-value').val('');
-            firebase.push({'name': addName, 'text': addValue});
-        }
-    </script>
 
 </body>
 
