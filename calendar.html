@@ -104,54 +104,65 @@
 
     <div class="container" style="overflow: none;">
 
-      <iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=9bof5sc7t5kdkps26pk4udq0ro%40group.calendar.google.com&amp;color=%238C500B&amp;ctz=America%2FLos_Angeles" style="border-width: 0; height: 600px; width: 100%;"></iframe>
+        <iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=9bof5sc7t5kdkps26pk4udq0ro%40group.calendar.google.com&amp;color=%238C500B&amp;ctz=America%2FLos_Angeles" style="border-width: 0; height: 600px; width: 100%;"></iframe>
 
-      <div class="row" style="display:none;">
-          <div class="box">
-              <div class="col-lg-12">
-                  <hr>
-                  <h2 class="intro-text text-center">Experimental Features</h2>
-                  <hr>
-              </div>
-              <div class="col-mg-12">
-                  <form class="event-form">
-                      Name:
-                      <br>
-                      <input type="text" id="event-name">
-                      <br>
-                      Description:
-                      <br>
-                      <textarea id="event-desc" rows="4" cols="40"></textarea>
-                      <br>
-                      Date:
-                      <br>
-                      <input type="date" id="event-date">
-                      <br>
-                      Time:
-                      <br>
-                      <input type="time" id="event-time">
-                      <br>
-                      Location:
-                      <br>
-                      <input type="text" id="event-location">
-                      <br>
-                      Who's Going?
-                      <br>
-                      <input type="radio" id="event-troop" name="event-who"> Entire Troop
-                      <br>
-                      <input type="radio" id="event-cacti" name="event-who"> Cacti
-                      <br>
-                      <input type="radio" id="event-hawks" name="event-who"> Hawks
-                      <br>
-                      <input type="radio" id="event-serpents" name="event-who"> Serpents
-                      <br>
-                      <input type="radio" id="event-wildcats" name="event-who"> Wildcats
-                      <br>
-                      <button type="submit" id="event-submit">Add Event</button>
-                  </form>
-              </div>
-          </div>
-      </div>
+        <div class="row" style="display:block;">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Add Event <b>(Experimental Feature)</b></h2>
+                    <hr>
+                </div>
+                <div class="col-mg-12">
+                    <form class="event-form form-horizontal" style="margin-left: 20px; width: 50%;" role="form">
+                        <div class="input-group">
+                            <label class="control-label" for="event-name">Name:</label>
+                            <input type="text" id="event-name" class="form-control">
+                        </div>
+                        <div class="input-group">
+                            <label class="control-label" for="event-desc">Description:</label>
+                            <textarea id="event-desc" rows="4" cols="40" class="form-control" style="resize: vertical;"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label class="control-label" for="event-date">Date:</label>
+                            <input type="date" id="event-date" class="form-control">
+                        </div>
+                        <div class="input-group">
+                            <label class="control-label" for="event-time">Time:</label>
+                            <input type="time" id="event-time" class="form-control">
+                        </div>
+                        <div class="input-group">
+                            <label class="control-label" for="event-location">Location:</label>
+                            <input type="text" id="event-location" class="form-control">
+                        </div>
+                        <div class="input-group">
+                            <label class="control-label" for="event-who-radio">Who's going:</label>
+                            <br>
+                            <div class="btn-group" data-toggle="buttons" id="event-who-radio">
+                                <label class="btn btn-default active">
+                                <input type="radio" id="event-troop" name="event-who" checked="checked" value="troop" /> Entire Troop
+                                </label>
+                                <label class="btn btn-default">
+                                <input type="radio" id="event-cacti" name="event-who" value="cacti" /> Cacti
+                                </label>
+                                <label class="btn btn-default">
+                                <input type="radio" id="event-hawks" name="event-who" value="hawks" /> Hawks
+                                </label>
+                                <label class="btn btn-default">
+                                <input type="radio" id="event-serpents" name="event-who" value="serpents" /> Serpents
+                                </label>
+                                <label class="btn btn-default">
+                                <input type="radio" id="event-wildcats" name="event-who" value="wildcats" /> Wildcats
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" id="event-submit" class="btn btn-default">Add Event</button>
+                    </form>
+                    <button type="button" id="clear" onclick="clearFB();" style="margin-top: 10px;">Remove Ref</button>
+                </div>
+            </div>
+        </div>
 
     </div>
     <!-- /.container -->
@@ -175,7 +186,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Firebase -->
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 
     <!-- Clicky Web Analytics -->
     <a title="Web Statistics" href="https://clicky.com/100869133"><img alt="Web Statistics" src="https://static.getclicky.com/media/links/badge.gif" border="0" /></a>
@@ -184,7 +195,28 @@
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
     <script type="text/javascript">
+        var fireRef = new Firebase("https://t485.firebaseio.com/events");
 
+        $("form").submit(function() {
+            console.log("Name: " + $("#event-name").val());
+            console.log("Description: " + $("#event-desc").val());
+            console.log("Date: " + $("#event-date").val());
+            console.log("Time: " + $("#event-time").val());
+            console.log("Location: " + $("#event-location").val());
+            console.log("Who: " + $(this).serializeArray()[0].value);
+            addEvent($("#event-name").val(), $("#event-desc").val(), $("#event-date").val(), $("#event-time").val(), $("#event-location").val(), $(this).serializeArray()[0].value);
+            return false;
+        });
+
+        function addEvent(name, desc, date, time, location, who) {
+            fireRef.push({"name": name, "desc": desc, "date": date,
+                         "time": time, "location": location, "who": who});
+        }
+
+        function clearFB() {
+            fireRef.remove();
+            console.log("removed firebase ref");
+        }
     </script>
 
 </body>
