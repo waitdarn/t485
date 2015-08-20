@@ -106,7 +106,19 @@
 
         <iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=9bof5sc7t5kdkps26pk4udq0ro%40group.calendar.google.com&amp;color=%238C500B&amp;ctz=America%2FLos_Angeles" style="border-width: 0; height: 600px; width: 100%;"></iframe>
 
-        <div class="row" style="display:block;">
+        <div class="row" id="password-form">
+            <div class="box">
+                <div class="form-group input-append">
+                    <label for="password">You must enter the password in order to add an event:</label>
+                    <input type="password" class="form-control" id="password">
+                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                    <span id="inputError2Status" class="sr-only">(error)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row add-event" style="display:none;">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
@@ -196,6 +208,12 @@
 
     <script type="text/javascript">
         var fireRef = new Firebase("https://t485.firebaseio.com/events");
+        $('#submit').click(checkPassword);
+        $('#password').keypress(function(e){
+            if(e.keyCode==13) {
+                $('#submit').click();
+            }
+        });
 
         $("form").submit(function() {
             console.log("Name: " + $("#event-name").val());
@@ -216,6 +234,29 @@
         function clearFB() {
             fireRef.remove();
             console.log("removed firebase ref");
+        }
+
+        function checkPassword() {
+            var password = $('#password').val();
+            var hash = hashCode(password);
+            if (hash == 3208057) {
+                $('#password-form').css('display', 'none');
+                $('.add-event').css('display', 'block');
+            } else {
+                $('.form-group').addClass('has-error has-feedback');
+                $('#password').val('');
+            }
+        }
+
+        hashCode = function(str){
+            var hash = 0;
+            if (str.length == 0) return hash;
+            for (i = 0; i < str.length; i++) {
+                char = str.charCodeAt(i);
+                hash = ((hash<<5) - hash) + char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
         }
     </script>
 
