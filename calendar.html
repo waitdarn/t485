@@ -106,73 +106,34 @@
 
         <iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=9bof5sc7t5kdkps26pk4udq0ro%40group.calendar.google.com&amp;color=%238C500B&amp;ctz=America%2FLos_Angeles" style="border-width: 0; height: 600px; width: 100%;"></iframe>
 
-        <div class="row" id="password-form">
-            <div class="box">
-                <div class="form-group input-append">
-                    <label for="password">You must enter the password in order to add an event:</label>
-                    <input type="password" class="form-control" id="password">
-                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
-                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                    <span id="inputError2Status" class="sr-only">(error)</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="row add-event" style="display:none;">
+        <div class="row add-headcount">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Add Event <b>(Experimental Feature)</b></h2>
+                    <h2 class="intro-text text-center">Headcounts <b>(Experimental Feature)</b></h2>
                     <hr>
                 </div>
-                <a href="mailto:richy.liu.2002@gmail.com">test mailto</a>
                 <div class="col-mg-12">
-                    <form class="event-form form-horizontal" style="margin-left: 20px; width: 50%;" role="form">
+                    <form class="headcount-form form-horizontal" style="margin-left: 20px; width: 50%;" role="form">
                         <div class="input-group">
-                            <label class="control-label" for="event-name">Name:</label>
-                            <input type="text" id="event-name" class="form-control">
+                            <label class="control-label" for="headcount-name">Name:</label>
+                            <input type="text" id="headcount-name" class="form-control">
                         </div>
                         <div class="input-group">
-                            <label class="control-label" for="event-desc">Description:</label>
-                            <textarea id="event-desc" rows="4" cols="40" class="form-control" style="resize: vertical;"></textarea>
+                            <label class="control-label" for="headcount-children">Children: </label>
+                            <input type="number" id="headcount-children" class="form-control" min="0" max="10">
                         </div>
                         <div class="input-group">
-                            <label class="control-label" for="event-date">Date:</label>
-                            <input type="date" id="event-date" class="form-control">
-                        </div>
-                        <div class="input-group">
-                            <label class="control-label" for="event-time">Time:</label>
-                            <input type="time" id="event-time" class="form-control">
-                        </div>
-                        <div class="input-group">
-                            <label class="control-label" for="event-location">Location:</label>
-                            <input type="text" id="event-location" class="form-control">
-                        </div>
-                        <div class="input-group">
-                            <label class="control-label" for="event-who-radio">Who's going:</label>
-                            <br>
-                            <div class="btn-group" data-toggle="buttons" id="event-who-radio">
-                                <label class="btn btn-default active">
-                                <input type="radio" id="event-troop" name="event-who" checked="checked" value="troop" /> Entire Troop
-                                </label>
-                                <label class="btn btn-default">
-                                <input type="radio" id="event-cacti" name="event-who" value="cacti" /> Cacti
-                                </label>
-                                <label class="btn btn-default">
-                                <input type="radio" id="event-hawks" name="event-who" value="hawks" /> Hawks
-                                </label>
-                                <label class="btn btn-default">
-                                <input type="radio" id="event-serpents" name="event-who" value="serpents" /> Serpents
-                                </label>
-                                <label class="btn btn-default">
-                                <input type="radio" id="event-wildcats" name="event-who" value="wildcats" /> Wildcats
-                                </label>
-                            </div>
+                            <label class="control-label" for="headcount-adults">Adults: </label>
+                            <input type="number" id="headcount-adults" class="form-control" min="0" max="10">
                         </div>
                         <br>
-                        <button type="submit" id="event-submit" class="btn btn-default">Add Event</button>
+                        <button type="submit" id="headcount-submit" class="btn btn-default">Submit</button>
+                        <button type="button" id="clear" onclick="clearFB();" style="margin-top: 10px;">Remove Ref</button>
                     </form>
-                    <button type="button" id="clear" onclick="clearFB();" style="margin-top: 10px;">Remove Ref</button>
+                    <div class="thank-you" style="display: none;">
+                        <p>Thank you. Your reponse has been recieved.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -208,57 +169,25 @@
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
     <script type="text/javascript">
-        $('#submit').click(checkPassword);
-        $('#password').keypress(function(e){
-            if(e.keyCode==13) {
-                $('#submit').click();
-            }
-        });
-
-        var fireRef = new Firebase("https://t485.firebaseio.com/events");
+        var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
 
         $("form").submit(function() {
-            console.log("Name: " + $("#event-name").val());
-            console.log("Description: " + $("#event-desc").val());
-            console.log("Date: " + $("#event-date").val());
-            console.log("Time: " + $("#event-time").val());
-            console.log("Location: " + $("#event-location").val());
-            console.log("Who: " + $(this).serializeArray()[0].value);
-            addEvent($("#event-name").val(), $("#event-desc").val(), $("#event-date").val(), $("#event-time").val(), $("#event-location").val(), $(this).serializeArray()[0].value);
+            console.log("Name: " + $("#headcount-name").val());
+            console.log("Children: " + $("#headcount-children").val());
+            console.log("Adults: " + $("#headcount-adults").val());
+            addHeadcount($("#headcount-name").val(), $("#headcount-children").val(), $("#headcount-adults").val());
             return false;
         });
 
-        function addEvent(name, desc, date, time, location, who) {
-            fireRef.push({"name": name, "desc": desc, "date": date,
-                         "time": time, "location": location, "who": who});
+        function addHeadcount(name, children, adults) {
+            fireRef.push({"name": name, "children": children, "adults": adults});
+            $(".headcounts-form").style("display", "none");
+            $(".thank-you").style("display", "block");
         }
 
         function clearFB() {
             fireRef.remove();
             console.log("removed firebase ref");
-        }
-
-        function checkPassword() {
-            var password = $('#password').val();
-            var hash = hashCode(password);
-            if (hash == 3208057) {
-                $('#password-form').css('display', 'none');
-                $('.add-event').css('display', 'block');
-            } else {
-                $('.form-group').addClass('has-error has-feedback');
-                $('#password').val('');
-            }
-        }
-
-        hashCode = function(str){
-            var hash = 0;
-            if (str.length == 0) return hash;
-            for (i = 0; i < str.length; i++) {
-                char = str.charCodeAt(i);
-                hash = ((hash<<5) - hash) + char;
-                hash = hash & hash; // Convert to 32bit integer
-            }
-            return hash;
         }
     </script>
 
