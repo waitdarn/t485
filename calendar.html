@@ -114,14 +114,22 @@
                     <hr>
                 </div>
                 <div class="col-mg-12">
-                    <form class="headcount-form form-horizontal" style="margin-left: 20px; width: 50%;" role="form">
+                    <form class="headcount-form form-horizontal" style="margin-left: 20px;" role="form">
                         <div class="input-group">
                             <label class="control-label" for="headcount-name">Name:</label>
                             <input type="text" id="headcount-name" class="form-control">
                         </div>
                         <div class="input-group">
-                            <label class="control-label" for="headcount-children">Children: </label>
-                            <input type="number" id="headcount-children" class="form-control" min="0" max="10">
+                            <label class="control-label" for="headcount-coming">Are you coming?</label>
+                            <br>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default active">
+                                    <input type="radio" name="headcount-coming" checked="checked" value="yes" /> Yes
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="headcount-coming" value="no" /> No
+                                </label>
+                            </div>
                         </div>
                         <div class="input-group">
                             <label class="control-label" for="headcount-adults">Adults: </label>
@@ -129,7 +137,7 @@
                         </div>
                         <br>
                         <button type="submit" id="headcount-submit" class="btn btn-default">Submit</button>
-                        <button type="button" id="clear" onclick="clearFB();" style="margin-top: 10px;">Remove Ref</button>
+                        <button type="button" onclick="clearFB();" style="margin-top: 10px;">Remove Ref</button>
                     </form>
                     <div class="thank-you" style="display: none;">
                         <p>Thank you. Your reponse has been recieved.</p>
@@ -171,23 +179,27 @@
     <script type="text/javascript">
         var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
 
-        $("form").submit(function() {
+        $("form").submit(function(){
             console.log("Name: " + $("#headcount-name").val());
-            console.log("Children: " + $("#headcount-children").val());
+            console.log("Coming: " + $("form").serializeArray()[0].value);
             console.log("Adults: " + $("#headcount-adults").val());
-            addHeadcount($("#headcount-name").val(), $("#headcount-children").val(), $("#headcount-adults").val());
+            addHeadcount($("#headcount-name").val(), $(this).serializeArray()[0].value, $("#headcount-adults").val());
             return false;
         });
 
-        function addHeadcount(name, children, adults) {
-            fireRef.push({"name": name, "children": children, "adults": adults});
-            $(".headcounts-form").style("display", "none");
-            $(".thank-you").style("display", "block");
+        function addHeadcount(name, coming, adults) {
+            if (coming === "yes") {
+                fireRef.push({"name": name, "coming": true, "adults": adults});
+            } else {
+                fireRef.push({"name": name, "coming": false, "adults": adults});
+            }
+            $(".headcount-form").css("display", "none");
+            $(".thank-you").css("display", "block");
         }
 
         function clearFB() {
             fireRef.remove();
-            console.log("removed firebase ref");
+            console.log("removed firebase reference");
         }
     </script>
 
