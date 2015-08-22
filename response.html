@@ -9,7 +9,7 @@
     <meta name="description" content="If you are 11 years old, or have completed the 5th grade but not yet 18 years old, you are welcome to join us!">
     <meta name="author" content="Richard Liu">
 
-    <title>Calendar - Troop 485</title>
+    <title>Headcount Responses - Troop 485</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@
                     <li>
                         <a href="about.html">About</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="calendar.html">Calendar</a>
                     </li>
                     <li>
@@ -95,50 +95,29 @@
         <!-- /.container -->
     </nav>
 
-    <noscript>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <a class="close" data-dismiss="alert">×</a>
-            <span class="glyphicon glyphicon-alert"></span>  <strong>Error!</strong> You need to enable javascript in order for this page to work!
-        </div>
-    </noscript>
+    <div id="toTop"></div>
 
-    <div class="container" style="overflow: none;">
+    <div class="container">
 
-        <iframe src="https://www.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=9bof5sc7t5kdkps26pk4udq0ro%40group.calendar.google.com&amp;color=%238C500B&amp;ctz=America%2FLos_Angeles" style="border-width: 0; height: 600px; width: 100%;"></iframe>
-
-        <div class="row add-headcount">
+        <div class="row">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Create New Headcounts <b>(Experimental Feature)</b></h2>
+                    <h2 class="intro-text text-center">Work in Progress</h2>
                     <hr>
                 </div>
-                <div class="col-mg-12">
-                    <form class="headcount-form form-horizontal" style="margin-left: 20px;" role="form">
-                        <div class="input-group">
-                            <label class="control-label" for="headcount-email">Email <i class="glyphicon glyphicon-question-sign" rel="tooltip" title="We need your email as a way of contacting you."></i>:</label>
-                            <input type="email" id="headcount-email" class="form-control">
-                        </div>
-                        <div class="input-group">
-                            <label class="control-label" for="headcount-troop">Is this a troop event?</label>
-                            <br>
-                            <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-default active">
-                                    <input type="radio" name="headcount-troop" checked="checked" value="yes" /> Yes
-                                </label>
-                                <label class="btn btn-default">
-                                    <input type="radio" name="headcount-troop" value="no" /> No
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <button type="submit" id="headcount-submit" class="btn btn-default">Submit</button>
-                        <button type="button" onclick="clearFB();" style="margin-top: 10px;">Remove Ref</button>
-                    </form>
-                    <div class="thank-you" style="display: none;">
-                        <p id="link"></p>
-                    </div>
+                <div class="col-md-12">
+                    <table id="response-table" class="table">
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>Coming</td>
+                                <td>Adults</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </div>
 
@@ -172,34 +151,39 @@
     <script type="text/javascript">try{ clicky.init(100869133); }catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
+    <!-- Send headcounts to firebase -->
     <script type="text/javascript">
-        var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
-
-        $("form").submit(function(){
-            console.log("Name: " + $("#headcount-email").val());
-            console.log("Troop event: " + $("form").serializeArray()[0].value);
-            addHeadcount($("#headcount-email").val(), $("form").serializeArray()[0].value);
-            return false;
-        });
-
-        function addHeadcount(email, troop) {
-            var d = new Date();
-            var pushRef;
-            var date = d.getMonth() + "/" + d.getDay() + "/" + d.getYear();
-            if (troop === "yes") {
-                pushRef = fireRef.push({"email": email, "troop": true, "date": date});
-            } else {
-                pushRef = fireRef.push({"email": email, "troop": false, "date": date});
-            }
-            $(".headcount-form").css("display", "none");
-            $(".thank-you").css("display", "block");
-            document.getElementById("link").innerHTML = "Thank you. Your reponse has been recieved. Distribute this link to people you want to collect headcounts from: <a href=\"http://t485.org/headcount.html?id=" + pushRef.key() + "\">http://t485.org/headcount.html?id=" + pushRef.key() + "</a>. Use this link to see the headcounts: <a href=\"http://t485.org/response.html?id=" + pushRef.key() + "\">http://t485.org/response.html?id=" + pushRef.key() + "</a>";
-            console.log(pushRef.key());
+        var id = getUrlVars()["id"];
+        if (id === undefined) {
+            alert("Please use the url given by your SiC!")
+        } else {
+            var fireRef = new Firebase("https://t485.firebaseio.com/headcount/" + id + "/responses");
         }
 
-        function clearFB() {
-            fireRef.remove();
-            console.log("removed firebase reference");
+        var table = document.getElementById("response-table");
+
+        fireRef.on("child_added", function(snapshot) {
+            var response = snapshot.val();
+            console.log("Name: " + response.name);
+            console.log("Coming: " + response.coming);
+            console.log("Adults: " + response.adults);
+
+            var row = table.insertRow(-1);
+            row.insertCell(0).innerHTML = response.name;
+            if (response.coming === true) {
+                row.insertCell(1).innerHTML = "Yes";
+            } else {
+                row.insertCell(1).innerHTML = "No";
+            }
+            row.insertCell(2).innerHTML = response.adults;
+        });
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
         }
     </script>
 
