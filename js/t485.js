@@ -22,6 +22,11 @@ $(function() {
     $('#toTop').click(function() {
         $('body,html').animate({ scrollTop: 0 }, 800);
     });
+
+    // Set LESS async to true to prevent warning on Chrome
+    less = {
+        async: true
+    };
 });
 
 // Returns the version of Internet Explorer or a -1
