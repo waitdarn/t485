@@ -173,6 +173,7 @@
 
     <script type="text/javascript">
         var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
+        var pushRef;
 
         $("form").submit(function(){
             console.log("Name: " + $("#headcount-email").val());
@@ -183,7 +184,6 @@
 
         function addHeadcount(email, troop) {
             var d = new Date();
-            var pushRef;
             var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
             if (troop === "yes") {
                 pushRef = fireRef.push({"email": email, "troop": true, "date": date});
@@ -192,8 +192,13 @@
             }
             $(".headcount-form").css("display", "none");
             $(".thank-you").css("display", "block");
-            document.getElementById("link").innerHTML = "Thank you. Your reponse has been recieved. Distribute this link to people you want to collect headcounts from: <a href=\"http://t485.org/headcount.html?id=" + pushRef.key() + "\">http://t485.org/headcount.html?id=" + pushRef.key() + "</a>. Use this link to see the headcounts: <a href=\"http://t485.org/response.html?id=" + pushRef.key() + "\">http://t485.org/response.html?id=" + pushRef.key() + "</a>";
+            document.getElementById("link").innerHTML = "Thank you. A new headcount recorder has been created. Distribute this link to people you want to collect headcounts from: <a href=\"http://t485.org/headcount.html?id=" + pushRef.key() + "\">http://t485.org/headcount.html?id=" + pushRef.key() + "</a>. Use this link to see the headcount responses: <a href=\"http://t485.org/response.html?id=" + pushRef.key() + "\">http://t485.org/response.html?id=" + pushRef.key() + "</a>. Clicked \"submit\" by accident? Click <button onclick=\"undo();\">here</button> to undo.";
             console.log(pushRef.key());
+        }
+
+        function undo() {
+            fireRef.child(pushRef.key()).remove();
+            location.reload();
         }
     </script>
 

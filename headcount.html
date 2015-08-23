@@ -106,11 +106,18 @@
                     <h2 class="intro-text text-center">Headcounts</h2>
                     <hr>
                 </div>
-                <div class="col-mg-12">
+                <div class="col-md-12">
+                    <table id="response-table" class="table">
+                        <tbody>
+                            <tr>
+                                <td><b>If your name is here then you already filled this form.</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <form class="headcount-form form-horizontal" style="margin-left: 20px;" role="form">
                         <div class="input-group">
                             <label class="control-label" for="headcount-name">Name:</label>
-                            <input type="text" id="headcount-name" class="form-control">
+                            <input type="text" id="headcount-name" class="form-control" maxlength="30">
                         </div>
                         <div class="input-group">
                             <label class="control-label" for="headcount-coming">Are you coming?</label>
@@ -125,7 +132,7 @@
                             </div>
                         </div>
                         <div class="input-group">
-                            <label class="control-label" for="headcount-adults">Adults: </label>
+                            <label class="control-label" for="headcount-adults">Adults coming: </label>
                             <input type="number" id="headcount-adults" class="form-control" min="0" max="10" value="0">
                         </div>
                         <br>
@@ -173,9 +180,20 @@
         var id = getUrlVars()["id"];
         if (id === undefined) {
             console.log("id undefined!");
+            alert("Please use the url given by your SiC!");
         } else {
             var fireRef = new Firebase("https://t485.firebaseio.com/headcount/" + id + "/responses");
         }
+
+        var table = document.getElementById("response-table");
+
+        fireRef.on("child_added", function(snapshot) {
+            var response = snapshot.val();
+            console.log("Name: " + response.name);
+
+            var row = table.insertRow(-1);
+            row.insertCell(0).innerHTML = response.name;
+        });
 
         $("form").submit(function(){
             console.log("Name: " + $("#headcount-name").val());

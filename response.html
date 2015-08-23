@@ -112,7 +112,7 @@
                             <tr>
                                 <td><b>Name</b></td>
                                 <td><b>Coming</b></td>
-                                <td><b>Adults</b></td>
+                                <td><b>Adults coming</b></td>
                             </tr>
                         </tbody>
                     </table>
@@ -155,7 +155,8 @@
     <script type="text/javascript">
         var id = getUrlVars()["id"];
         if (id === undefined) {
-            alert("Please use the url given by your SiC!")
+            console.log("id undefined!");
+            alert("Please use the url that was given to you when you created the event.");
         } else {
             var fireRef = new Firebase("https://t485.firebaseio.com/headcount/" + id + "/responses");
         }
