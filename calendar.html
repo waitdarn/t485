@@ -186,7 +186,8 @@
             var d = new Date();
             var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
 
-            if (email === "") {
+            // Shortest possible email: a@b.co
+            if (email === "" || email.length <= 6) {
                 $("#headcount-email-group").attr("class", "has-error has-feedback");
             } else {
                 if (troop === "yes") {

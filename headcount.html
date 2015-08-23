@@ -208,7 +208,8 @@
         });
 
         function addHeadcount(name, coming, adults, notes) {
-            if (name === "") {
+            // Shortest "realistic" name: Hi Li
+            if (name === "" || name <= 5) {
                 $("#headcount-name-group").attr("class", "has-error has-feedback")
                 console.log(name);
             } else {
