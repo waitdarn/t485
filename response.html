@@ -113,6 +113,7 @@
                                 <td><b>Name</b></td>
                                 <td><b>Coming</b></td>
                                 <td><b>Adults coming</b></td>
+                                <td><b>Notes</b></td>
                             </tr>
                         </tbody>
                     </table>
@@ -165,18 +166,24 @@
 
         fireRef.on("child_added", function(snapshot) {
             var response = snapshot.val();
-            console.log("Name: " + response.name);
-            console.log("Coming: " + response.coming);
-            console.log("Adults: " + response.adults);
 
             var row = table.insertRow(-1);
-            row.insertCell(0).innerHTML = response.name;
+            if (response.name === undefined) {
+                row.insertCell(0).innerHTML = "";
+            } else {
+                row.insertCell(0).innerHTML = response.name;
+            }
             if (response.coming === true) {
                 row.insertCell(1).innerHTML = "Yes";
             } else {
                 row.insertCell(1).innerHTML = "No";
             }
             row.insertCell(2).innerHTML = response.adults;
+            if (response.notes === undefined) {
+                row.insertCell(3).innerHTML = "";
+            } else {
+                row.insertCell(3).innerHTML = response.notes;
+            }
         });
 
         function getUrlVars() {
