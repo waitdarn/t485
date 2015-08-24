@@ -9,7 +9,7 @@
     <meta name="description" content="If you are 11 years old, or have completed the 5th grade but not yet 18 years old, you are welcome to join us!">
     <meta name="author" content="Richard Liu">
 
-    <title>Bulletin Board - Troop 485</title>
+    <title>Pictures - Troop 485</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -67,7 +67,7 @@
                         <a href="troop-jobs.html">Troop Jobs</a>
                     </li>
                     <li>
-                        <a href="bulletin-board.html">Bulletin Board</a>
+                        <a href="pictures.html">Pictures</a>
                     </li>
                     <li class="dropdown">
                         <a href="faq.html">FAQ <span class="caret"></span></a>
@@ -103,32 +103,20 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Work in Progress</h2>
+                    <h2 class="intro-text text-center">Pictures <b>(experimental)</b></h2>
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>Features on this page are <b>experimental</b>!</p>
+                    <p>Want more photos? Go to our <a href="https://www.flickr.com/photos/97925389@N07/albums" target="_blank">troop flickr page</a>.</p>
+                    <div class="col-md-3">
+                        <!--<figure>
+                            <img src="http://farm1.static.flickr.com/379/19347564849_82d776b90c_m.jpg" alt="" />
+                            <figcaption>Camp Meriweather Day 4 - Tuesday Canoeing</figcaption>
+                        </figure>-->
+                    </div>
+                    <div id="pictures" class="col-md-9"></div>
                 </div>
                 <div class="clearfix"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="box">
-                <div class="addbullet">
-                    <label for="add-name">Name: </label>
-                    <br>
-                    <input type="text" id="add-name"></input>
-                    <br>
-                    <label for="add-value">Text: </label>
-                    <br>
-                    <textarea id="add-value" rows="4" cols="40"></textarea>
-                    <br>
-                    <button type="submit" id="add-bullet" onclick="addBullet()">Add</button>
-                </div>
-                <div class="bulletinboard">
-
-                </div>
             </div>
         </div>
 
@@ -153,35 +141,52 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- Firebase -->
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-
     <!-- Clicky Web Analytics -->
     <a title="Web Statistics" href="https://clicky.com/100869133"><img alt="Web Statistics" src="https://static.getclicky.com/media/links/badge.gif" border="0" /></a>
     <script src="https://static.getclicky.com/js" type="text/javascript"></script>
     <script type="text/javascript">try{ clicky.init(100869133); }catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
-    <script type="text/javascript">
-        //var firebase = new Firebase('https://t485.firebaseio.com/');
-        firebase.remove();
+    <!-- Flickr -->
+    <script>
+        function jsonFlickrApi(rsp) {
+            if (rsp.stat != "ok"){
+                console.log(rsp.stat);
+                return;
+            }
 
-        firebase.on('child_added', function(snapshot) {
-            var bullets = snapshot.val();
-            console.log('Name: ' + bullets.name);
-            console.log('Text: ' + bullets.text);
-        }, function(errorObj) {
-            console.log('Read failed: ' + errorObj.code);
-        });
+            console.log(rsp);
+            for (var j = 0; j < 20; j++) {
+                var s = "";
+                var i = Math.random();
+                i = i * 100;
+                i = Math.ceil(i);
 
-        function addBullet() {
-            var addName = $('#add-name').val();
-            var addValue = $('#add-value').val();
-            $('#add-name').val('');
-            $('#add-value').val('');
-            firebase.push({'name': addName, 'text': addValue});
+                photo = rsp.photoset.photo[j];
+
+                t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
+                console.log(t_url);
+
+                p_url = "http://www.flickr.com/photos/" + rsp.photoset.owner + "/" + photo.id;
+
+                var img = document.createElement("img");
+                img.alt = photo.title;
+                img.src = t_url;
+
+                var a = document.createElement("a");
+                a.href = p_url;
+                a.target = "_blank";
+                a.appendChild(img);
+
+                var div = document.createElement("div");
+                div.className = "col-lg-4 col-md-6 col-sm-12 col-xs-12";
+                div.appendChild(a);
+                document.getElementById("pictures").appendChild(div);
+            }
         }
     </script>
+    <script src="https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=72157655227314193&format=json"></script>
+    <!--<script src="https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=3624106015a6a4fa65d62b48dd872655&photo_id=18911376064&secret="></script>-->
 
 </body>
 
