@@ -108,13 +108,27 @@
                 </div>
                 <div class="col-md-12">
                     <p>Want more photos? Go to our <a href="https://www.flickr.com/photos/97925389@N07/albums" target="_blank">troop flickr page</a>.</p>
-                    <div class="col-md-3">
-                        <!--<figure>
-                            <img src="http://farm1.static.flickr.com/379/19347564849_82d776b90c_m.jpg" alt="" />
-                            <figcaption>Camp Meriweather Day 4 - Tuesday Canoeing</figcaption>
-                        </figure>-->
-                    </div>
-                    <div id="pictures" class="col-md-9"></div>
+                </div>
+                <div class="col-md-3">
+                    <h3>Events</h3>
+                    <figure>
+                        <a href="file:///C:/Users/gliu_000/Documents/GitHub/t485/pictures.html?id=72157652627097883">
+                            <img src="http://farm1.static.flickr.com/551/19076330495_b9e42c476c_m.jpg" alt="Rafting Picture" />
+                            <figcaption style="text-align: center;"><b>Rafting</b></figcaption>
+                        </a>
+                    </figure>
+                    <figure>
+                        <a href="file:///C:/Users/gliu_000/Documents/GitHub/t485/pictures.html?id=72157657485551986">
+                            <img src="http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg" alt="Rafting Picture" />
+                            <figcaption style="text-align: center;"><b>Eagle COH</b></figcaption>
+                        </a>
+                    </figure>
+                </div>
+                <div id="pictures" class="col-md-9">
+                    <h3>Photos</h3>
+                </div>
+                <div class="col-md-12">
+                    <p>Want more photos? Go to our <a href="https://www.flickr.com/photos/97925389@N07/albums" target="_blank">troop flickr page</a>.</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -149,14 +163,27 @@
 
     <!-- Flickr -->
     <script>
+        var id = getUrlVars()["id"];
+        $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=" + id + "&format=json", function() {
+            console.log("loaded script");
+        });
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
         function jsonFlickrApi(rsp) {
             if (rsp.stat != "ok"){
                 console.log(rsp.message);
                 return;
             }
 
-            console.log(rsp);
-            for (var j = 0; j < 100; j++) {
+
+            for (var j = 0; j < 50; j++) {
                 var s = "";
                 var i = Math.random();
                 i = i * 100;
@@ -180,13 +207,15 @@
 
                 var div = document.createElement("div");
                 div.className = "col-lg-4 col-md-6 col-sm-12 col-xs-12";
+                div.style.paddingLeft = "0px";
+                div.style.paddingRight = "0px";
                 div.appendChild(a);
                 document.getElementById("pictures").appendChild(div);
             }
         }
     </script>
-    <script src="https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=72157655225621798&format=json"></script>
-    <!--<script src="https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=3624106015a6a4fa65d62b48dd872655&photo_id=18911376064&secret="></script>-->
+    <!--<script src="https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&format=json"></script>-->
+    <!--<script src="https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=72157654542124968&format=json"></script>-->
 
 </body>
 
