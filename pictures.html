@@ -164,6 +164,11 @@
     <!-- Flickr -->
     <script>
         var id = getUrlVars()["id"];
+        if (id === undefined) {
+            // Point people to rafting if id is undefined
+            id = "72157652627097883";
+        }
+
         $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=" + id + "&format=json", function() {
             console.log("loaded script");
         });
@@ -214,8 +219,6 @@
             }
         }
     </script>
-    <!--<script src="https://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&format=json"></script>-->
-    <!--<script src="https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=72157654542124968&format=json"></script>-->
 
 </body>
 
