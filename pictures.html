@@ -120,35 +120,10 @@
                     <h2 class="intro-text text-center">Pictures <b>(experimental)</b></h2>
                     <hr>
                 </div>
-                <div class="col-md-12">
-                    <p>Want more photos? Go to our <a href="https://www.flickr.com/photos/97925389@N07/albums" target="_blank">troop flickr page</a>.</p>
-                </div>
-                <div class="col-md-3">
-                    <h3>Events</h3>
-                    <a href="http://t485.org/pictures.html?id=72157657485551986">
-                        <figure>
-                                <img src="http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg" alt="3 Eagle Scouts Picture">
-                                <figcaption style="text-align: center;"><b>Eagle COH</b></figcaption>
-                        </figure>
-                    </a>
-                    <a href="http://t485.org/pictures.html?id=72157655225621798">
-                        <figure>
-                                <img src="http://farm4.static.flickr.com/3771/19347409199_112b968b8b_m.jpg" alt="Kayaking Picture">
-                                <figcaption style="text-align: center;"><b>Summer Camp</b></figcaption>
-                        </figure>
-                    </a>
-                    <a href="http://t485.org/pictures.html?id=72157652627097883">
-                        <figure>
-                                <img src="http://farm1.static.flickr.com/551/19076330495_b9e42c476c_m.jpg" alt="Rafting Picture">
-                                <figcaption style="text-align: center;"><b>Rafting</b></figcaption>
-                        </figure>
-                    </a>
-                </div>
+                <div class="col-md-12" id="more-photos-link"></div>
+                <div class="col-md-3" id="event-links"></div>
                 <div id="pictures" class="col-md-9">
                     <h3>Photos</h3>
-                </div>
-                <div class="col-md-12">
-                    <p>Want more photos? Go to our <a href="https://www.flickr.com/photos/97925389@N07/albums" target="_blank">troop flickr page</a>.</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -189,6 +164,7 @@
                 $('#submit').click();
             }
         });
+        getUrlVars();
 
         function checkPassword() {
             var password = $('#password').val();
@@ -201,10 +177,54 @@
                     h = h & h; // Convert to 32bit integer
                 }
                 return h;
-            }
-            if (hash(password) == 3208057) {
+            };
+            var setCookie = function(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            };
+            var getCookie = function(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0; i<ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1);
+                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+                }
+                return "";
+            };
+
+            if (hash(password) == 3208057 || getCookie("logged-in") == "true") {
                 $('#password-form').css('display', 'none');
                 $('#content').css('display', 'block');
+
+                setCookie("logged-in", "true", 1);
+
+                // Put all pictures info in javascript so that Google web
+                // crawler cannot index photos (for privacy)
+                $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
+                $("#event-links").append(
+                    "<h3>Events</h3>" +
+                    "<a href=\"http://t485.org/pictures.html?id=72157657485551986\">" +
+                        "<figure>" +
+                                "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                                "<figcaption style=\"text-align: center;\"><b>Eagle COH</b></figcaption>" +
+                        "</figure>" +
+                    "</a>" +
+                    "<a href=\"http://t485.org/pictures.html?id=72157655225621798\">" +
+                        "<figure>" +
+                                "<img src=\"http://farm4.static.flickr.com/3771/19347409199_112b968b8b_m.jpg\" alt=\"Kayaking Picture\">" +
+                                "<figcaption style=\"text-align: center;\"><b>Summer Camp</b></figcaption>" +
+                        "</figure>" +
+                    "</a>" +
+                    "<a href=\"http://t485.org/pictures.html?id=72157652627097883\">" +
+                        "<figure>" +
+                                "<img src=\"http://farm1.static.flickr.com/551/19076330495_b9e42c476c_m.jpg\" alt=\"Rafting Picture\">" +
+                                "<figcaption style=\"text-align: center;\"><b>Rafting</b></figcaption>" +
+                        "</figure>" +
+                    "</a>"
+                );
             } else {
                 $('.form-group').addClass('has-error has-feedback');
                 $('#password').val('');
@@ -212,22 +232,23 @@
         }
 
 
-        var id = getUrlVars()["id"];
-        if (id === undefined) {
-            // Point people to rafting if id is undefined
-            id = "72157652627097883";
-        }
-
-        $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=" + id + "&format=json", function() {
-            console.log("loaded script");
-        });
-
         function getUrlVars() {
-            var vars = {};
-            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-                vars[key] = value;
+            var getVarsFromUrl = function() {
+                var vars = {};
+                var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                    vars[key] = value;
+                });
+                return vars;
+            };
+            var id = getVarsFromUrl()["id"];
+            if (id === undefined) {
+                // Point people to rafting if id is undefined
+                id = "72157652627097883";
+            }
+
+            $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=" + id + "&format=json", function() {
+                console.log("loaded script");
             });
-            return vars;
         }
 
 
