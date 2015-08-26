@@ -158,6 +158,7 @@
 
     <!-- Flickr -->
     <script>
+        checkPassword();
         $('#submit').click(checkPassword);
         $('#password').keypress(function(e){
             if(e.keyCode==13) {
@@ -196,13 +197,11 @@
             };
 
 
-            var loggedIn = getCookie("logged-in") === "true";
-            if (hash(password) === 3208057 || loggedIn) {
+            if (hash(password) === 3208057 || getCookie("logged-in") === "true") {
                 $('#password-form').css('display', 'none');
                 $('#content').css('display', 'block');
 
                 setCookie("logged-in", "true", 1);
-                console.log(getCookie("logged-in") === "true");
 
                 // Put all pictures info in javascript so that Google web
                 // crawler cannot index photos (for privacy)
