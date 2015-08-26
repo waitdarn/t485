@@ -195,7 +195,7 @@
                 return "";
             };
 
-            if (hash(password) == 3208057 || getCookie("logged-in") == "true") {
+            if (hash(password) == 3208057/* || getCookie("logged-in") == "true"*/) {
                 $('#password-form').css('display', 'none');
                 $('#content').css('display', 'block');
 
