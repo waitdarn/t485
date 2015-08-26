@@ -304,8 +304,8 @@
                 // Put all pictures info in javascript so that Google web
                 // crawler cannot index photos (for privacy)
                 $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
-                $("#event-links").append("<p>hello, world</p>");
-                console.log("appended event links by correct cookie");
+                $("#event-links").append(events);
+                console.log(events);
             }
         }
 
@@ -340,14 +340,12 @@
                 var s = "";
                 var i = Math.random() * rsp.photoset.total;
                 i = Math.floor(i);
-                console.log(rsp.photoset.total);
+                console.log(i);
 
-                photo = rsp.photoset.photo[i];
-
-                t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
+                var photo = rsp.photoset.photo[i];
+                var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
                 console.log(t_url);
-
-                p_url = "http://www.flickr.com/photos/" + rsp.photoset.owner + "/" + photo.id;
+                var p_url = "http://www.flickr.com/photos/" + rsp.photoset.owner + "/" + photo.id;
 
                 var img = document.createElement("img");
                 img.alt = photo.title;
