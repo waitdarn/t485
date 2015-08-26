@@ -158,15 +158,6 @@
 
     <!-- Flickr -->
     <script>
-        $('#submit').click(checkPassword);
-        $('#password').keypress(function(e){
-            if(e.keyCode==13) {
-                $('#submit').click();
-            }
-        });
-        checkCookie();
-        getUrlVars();
-
         var events = "<h3>Events</h3>" +
         "<a href=\"http://t485.org/pictures.html?id=72157657485551986\">" +
             "<figure>" +
@@ -241,6 +232,15 @@
             "</figure>" +
         "</a>";
 
+        $('#submit').click(checkPassword);
+        $('#password').keypress(function(e){
+            if(e.keyCode==13) {
+                $('#submit').click();
+            }
+        });
+        checkCookie();
+        getUrlVars();
+
 
         function checkPassword() {
             var password = $('#password').val();
@@ -271,7 +271,6 @@
                 // crawler cannot index photos (for privacy)
                 $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
                 $("#event-links").append(events);
-                console.log("appended event links by entering password");
             } else {
                 $('.form-group').addClass('has-error has-feedback');
                 $('#password').val('');
@@ -305,7 +304,6 @@
                 // crawler cannot index photos (for privacy)
                 $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
                 $("#event-links").append(events);
-                console.log(events);
             }
         }
 
@@ -340,11 +338,9 @@
                 var s = "";
                 var i = Math.random() * rsp.photoset.total;
                 i = Math.floor(i);
-                console.log(i);
 
                 var photo = rsp.photoset.photo[i];
                 var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
-                console.log(t_url);
                 var p_url = "http://www.flickr.com/photos/" + rsp.photoset.owner + "/" + photo.id;
 
                 var img = document.createElement("img");
