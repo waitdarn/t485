@@ -304,7 +304,7 @@
                 // Put all pictures info in javascript so that Google web
                 // crawler cannot index photos (for privacy)
                 $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
-                $("#event-links").append(events);
+                $("#event-links").append("<p>hello, world</p>");
                 console.log("appended event links by correct cookie");
             }
         }
@@ -339,7 +339,7 @@
             for (var j = 0; j < 50; j++) {
                 var s = "";
                 var i = Math.random() * rsp.photoset.total;
-                i = Math.ceil(i);
+                i = Math.floor(i);
                 console.log(rsp.photoset.total);
 
                 photo = rsp.photoset.photo[i];
