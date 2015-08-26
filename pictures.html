@@ -167,6 +167,81 @@
         checkCookie();
         getUrlVars();
 
+        var events = "<h3>Events</h3>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157657485551986\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Eagle COH</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157653343190823\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 9 - Sunday Back to Home</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157655248362959\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 8 - Saturday Hitting on road</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157655244429468\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 7 - Group Pictures</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157653317971384\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 7 - Friday</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157655230952309\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 6 - Thursday</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157655581340056\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 5 - Wednesday Canoeing, Archery and Camp Fire</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157655225621798\">" +
+            "<figure>" +
+                    "<img src=\"http://farm4.static.flickr.com/3771/19347409199_112b968b8b_m.jpg\" alt=\"Kayaking Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 4 - Tuesday Canoeing</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157655632655161\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 3 - Monday MB class & beach play</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157655217922238\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 2 - Sunday arriving camp</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157653263958573\">" +
+            "<figure>" +
+                    "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 1 - Saturday boarding on train</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157652627097883\">" +
+            "<figure>" +
+                    "<img src=\"http://farm1.static.flickr.com/551/19076330495_b9e42c476c_m.jpg\" alt=\"Rafting Picture\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Rafting</b></figcaption>" +
+            "</figure>" +
+        "</a>";
+
+
         function checkPassword() {
             var password = $('#password').val();
             var hash = function(str) {
@@ -195,27 +270,7 @@
                 // Put all pictures info in javascript so that Google web
                 // crawler cannot index photos (for privacy)
                 $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
-                $("#event-links").append(
-                    "<h3>Events</h3>" +
-                    "<a href=\"http://t485.org/pictures.html?id=72157657485551986\">" +
-                        "<figure>" +
-                                "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
-                                "<figcaption style=\"text-align: center;\"><b>Eagle COH</b></figcaption>" +
-                        "</figure>" +
-                    "</a>" +
-                    "<a href=\"http://t485.org/pictures.html?id=72157655225621798\">" +
-                        "<figure>" +
-                                "<img src=\"http://farm4.static.flickr.com/3771/19347409199_112b968b8b_m.jpg\" alt=\"Kayaking Picture\">" +
-                                "<figcaption style=\"text-align: center;\"><b>Summer Camp</b></figcaption>" +
-                        "</figure>" +
-                    "</a>" +
-                    "<a href=\"http://t485.org/pictures.html?id=72157652627097883\">" +
-                        "<figure>" +
-                                "<img src=\"http://farm1.static.flickr.com/551/19076330495_b9e42c476c_m.jpg\" alt=\"Rafting Picture\">" +
-                                "<figcaption style=\"text-align: center;\"><b>Rafting</b></figcaption>" +
-                        "</figure>" +
-                    "</a>"
-                );
+                $("#event-links").append(events);
             } else {
                 $('.form-group').addClass('has-error has-feedback');
                 $('#password').val('');
@@ -248,27 +303,7 @@
                 // Put all pictures info in javascript so that Google web
                 // crawler cannot index photos (for privacy)
                 $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
-                $("#event-links").append(
-                    "<h3>Events</h3>" +
-                    "<a href=\"http://t485.org/pictures.html?id=72157657485551986\">" +
-                        "<figure>" +
-                                "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
-                                "<figcaption style=\"text-align: center;\"><b>Eagle COH</b></figcaption>" +
-                        "</figure>" +
-                    "</a>" +
-                    "<a href=\"http://t485.org/pictures.html?id=72157655225621798\">" +
-                        "<figure>" +
-                                "<img src=\"http://farm4.static.flickr.com/3771/19347409199_112b968b8b_m.jpg\" alt=\"Kayaking Picture\">" +
-                                "<figcaption style=\"text-align: center;\"><b>Summer Camp</b></figcaption>" +
-                        "</figure>" +
-                    "</a>" +
-                    "<a href=\"http://t485.org/pictures.html?id=72157652627097883\">" +
-                        "<figure>" +
-                                "<img src=\"http://farm1.static.flickr.com/551/19076330495_b9e42c476c_m.jpg\" alt=\"Rafting Picture\">" +
-                                "<figcaption style=\"text-align: center;\"><b>Rafting</b></figcaption>" +
-                        "</figure>" +
-                    "</a>"
-                );
+                $("#event-links").append(events);
             }
         }
 
@@ -301,9 +336,9 @@
 
             for (var j = 0; j < 50; j++) {
                 var s = "";
-                var i = Math.random();
-                i = i * rsp.photoset.total;
+                var i = Math.random() * rsp.photoset.total;
                 i = Math.ceil(i);
+                console.log(rsp.photoset.total);
 
                 photo = rsp.photoset.photo[i];
 
