@@ -158,13 +158,13 @@
 
     <!-- Flickr -->
     <script>
-        checkPassword();
         $('#submit').click(checkPassword);
         $('#password').keypress(function(e){
             if(e.keyCode==13) {
                 $('#submit').click();
             }
         });
+        checkCookie();
         getUrlVars();
 
         function checkPassword() {
@@ -179,23 +179,6 @@
                 }
                 return h;
             };
-            var setCookie = function(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                var expires = "expires="+d.toUTCString();
-                document.cookie = cname + "=" + cvalue + "; " + expires;
-            };
-            var getCookie = function(cname) {
-                var name = cname + "=";
-                var ca = document.cookie.split(';');
-                for(var i=0; i<ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0)==' ') c = c.substring(1);
-                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-                }
-                return "";
-            };
-
 
             getCookie("logged-in");
             if (hash(password) === 3208057 || getCookie("logged-in") === "true") {
@@ -231,6 +214,56 @@
             } else {
                 $('.form-group').addClass('has-error has-feedback');
                 $('#password').val('');
+            }
+        }
+
+        function checkCookie() {
+            var setCookie = function(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            };
+            var getCookie = function(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0; i<ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1);
+                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+                }
+                return "";
+            };
+
+            getCookie("logged-in");
+            if (getCookie("logged-in") === "true") {
+                $('#password-form').css('display', 'none');
+                $('#content').css('display', 'block');
+
+                // Put all pictures info in javascript so that Google web
+                // crawler cannot index photos (for privacy)
+                $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
+                $("#event-links").append(
+                    "<h3>Events</h3>" +
+                    "<a href=\"http://t485.org/pictures.html?id=72157657485551986\">" +
+                        "<figure>" +
+                                "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"3 Eagle Scouts Picture\">" +
+                                "<figcaption style=\"text-align: center;\"><b>Eagle COH</b></figcaption>" +
+                        "</figure>" +
+                    "</a>" +
+                    "<a href=\"http://t485.org/pictures.html?id=72157655225621798\">" +
+                        "<figure>" +
+                                "<img src=\"http://farm4.static.flickr.com/3771/19347409199_112b968b8b_m.jpg\" alt=\"Kayaking Picture\">" +
+                                "<figcaption style=\"text-align: center;\"><b>Summer Camp</b></figcaption>" +
+                        "</figure>" +
+                    "</a>" +
+                    "<a href=\"http://t485.org/pictures.html?id=72157652627097883\">" +
+                        "<figure>" +
+                                "<img src=\"http://farm1.static.flickr.com/551/19076330495_b9e42c476c_m.jpg\" alt=\"Rafting Picture\">" +
+                                "<figcaption style=\"text-align: center;\"><b>Rafting</b></figcaption>" +
+                        "</figure>" +
+                    "</a>"
+                );
             }
         }
 
