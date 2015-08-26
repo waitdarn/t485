@@ -283,12 +283,12 @@
             };
             var id = getVarsFromUrl()["id"];
             if (id === undefined) {
-                // Point people to rafting if id is undefined
-                id = "72157652627097883";
+                // Point people to summer camp if id is undefined
+                id = "72157655225621798";
             }
 
             $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=" + id + "&format=json", function() {
-                console.log("loaded script");
+                console.log("loaded script successfully");
             });
         }
 
@@ -299,14 +299,13 @@
                 return;
             }
 
-
             for (var j = 0; j < 50; j++) {
                 var s = "";
                 var i = Math.random();
-                i = i * 100;
+                i = i * rsp.photoset.total;
                 i = Math.ceil(i);
 
-                photo = rsp.photoset.photo[j];
+                photo = rsp.photoset.photo[i];
 
                 t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
                 console.log(t_url);
