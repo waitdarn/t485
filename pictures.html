@@ -195,12 +195,14 @@
                 return "";
             };
 
-            if (hash(password) === 3208057 || getCookie("logged-in") === "true") {
+            if (hash(password) === 3208057 || getCookie("logged-in") === true) {
                 $('#password-form').css('display', 'none');
                 $('#content').css('display', 'block');
 
                 setCookie("logged-in", "true", 1);
                 console.log(getCookie("logged-in"));
+                console.log(getCookie("logged-in") === "true");
+                console.log(getCookie("logged-in") === true);
 
                 // Put all pictures info in javascript so that Google web
                 // crawler cannot index photos (for privacy)
