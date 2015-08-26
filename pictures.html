@@ -122,7 +122,7 @@
                 </div>
                 <div class="col-md-12" id="more-photos-link"></div>
                 <div class="col-md-3" id="event-links"></div>
-                <div id="pictures" class="col-md-9">
+                <div class="col-md-9" id="pictures">
                     <h3>Photos</h3>
                 </div>
                 <div class="clearfix"></div>
@@ -271,11 +271,13 @@
                 // crawler cannot index photos (for privacy)
                 $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
                 $("#event-links").append(events);
+                console.log("appended event links by entering password");
             } else {
                 $('.form-group').addClass('has-error has-feedback');
                 $('#password').val('');
             }
         }
+
 
         function checkCookie() {
             var setCookie = function(cname, cvalue, exdays) {
@@ -295,7 +297,6 @@
                 return "";
             };
 
-            getCookie("logged-in");
             if (getCookie("logged-in") === "true") {
                 $('#password-form').css('display', 'none');
                 $('#content').css('display', 'block');
@@ -304,6 +305,7 @@
                 // crawler cannot index photos (for privacy)
                 $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
                 $("#event-links").append(events);
+                console.log("appended event links by correct cookie");
             }
         }
 
