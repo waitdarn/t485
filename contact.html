@@ -102,35 +102,47 @@
     <div class="container">
 
       <div class="row">
-          <div class="box">
+          <div class="box" id="form">
               <div class="col-lg-12">
                   <hr>
                   <h2 class="intro-text text-center">Troop <strong>Directory</strong></h2>
                   <hr>
               </div>
               <p style="color: darkred">* Required</p>
-              <p>Warning! This form does not actually send a email and is for demonstration purposes only!</p>
+              <p>Please fill out the form then click submit to add your name to the troop directory</p>
               <div class="col-md-12">
                   <div class="row">
                       <form role="form">
-                          <label>Scout's Full Name<span style="color: darkred">*</span>:</label>
-                          <input type="text" class="form-control">
-                          <label>Scout's Email<span style="color: darkred">*</span>:</label>
-                          <input type="email" class="form-control">
-                          <label>Scout's Home Phone</label>
-                          <input type="number" class="form-control">
-                          <label>Scout's Cell Phone:</label>
-                          <input type="number" class="form-control">
-                          <label>Date Joined Troop 485:</label>
-                          <input type="date" class="form-control">
-                          <label>School Attending</label>
-                          <input type="text" class="form-control">
+                          <label class="control-label">Scout's Full Name<span style="color: darkred">*</span>:</label>
+                          <input type="text" class="form-control" id="name" maxlength="30">
+
+                          <label class="control-label">Scout's Email<span style="color: darkred">*</span>:</label>
+                          <input type="email" class="form-control" id="email" maxlength="50">
+
+                          <label class="control-label">Scout's Home Phone</label>
+                          <input type="number" class="form-control" id="home-phone" max="19999999999">
+
+                          <label class="control-label">Scout's Cell Phone:</label>
+                          <input type="number" class="form-control" id="cell-phone" max="19999999999">
+
+                          <label class="control-label">Date Joined Troop 485:</label>
+                          <input type="date" class="form-control" id="date-joined">
+
+                          <label class="control-label">School Attending</label>
+                          <input type="text" class="form-control" id="school" maxlength="30">
+
+                          <label class="control-label">Patrol</label>
+                          <input type="text" class="form-control" id="patrol" maxlength="8">
+
                           <input type="hidden" name="save" value="contact">
                           <button type="submit" class="btn btn-default">Submit</button>
                       </form>
                   </div>
               </div>
               <div class="clearfix"></div>
+          </div>
+          <div class="box" id="thank-you" style="display: none;">
+              <p>Thank you, your response has been recorded.</p>
           </div>
       </div>
 
@@ -155,11 +167,29 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+
     <!-- Clicky Web Analytics -->
     <a title="Web Statistics" href="https://clicky.com/100869133"><img alt="Web Statistics" src="https://static.getclicky.com/media/links/badge.gif" border="0" /></a>
     <script src="https://static.getclicky.com/js" type="text/javascript"></script>
     <script type="text/javascript">try{ clicky.init(100869133); }catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
+
+    <script>
+        var fireRef = new Firebase("https://t485.firebaseio.com/newcontact");
+
+        $("form").submit(function(){
+            addHeadcount($("#name").val(), $("#email").val(), $("#home-phone").val(), $("#cell-phone").val(), $("#date-joined").val(), $("#school").val(), $("#patrol").val());
+            return false;
+        });
+
+        function addHeadcount(name, email, homephone, cellphone, datejoined, school, patrol) {
+            pushRef = fireRef.push({"name": name, "email": email, "home-phone": homephone, "cell-phone": cellphone, "date-joined": datejoined, "school": school, "patrol": patrol});
+            $("#form").css("display", "none");
+            $("#thank-you").css("display", "block");
+        }
+    </script>
 
 </body>
 

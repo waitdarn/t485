@@ -117,7 +117,7 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Pictures <b>(experimental)</b></h2>
+                    <h2 class="intro-text text-center">Pictures</h2>
                     <hr>
                 </div>
                 <div class="col-md-12" id="more-photos-link"></div>
@@ -318,8 +318,9 @@
             };
             var id = getVarsFromUrl()["id"];
             if (id === undefined) {
-                // Point people to summer camp if id is undefined
-                id = "72157655225621798";
+                // TODO: direct people to latest album if no id
+                // Point people to eagle COH if id is undefined
+                id = "72157657485551986";
             }
 
             $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=" + id + "&format=json", function() {
@@ -335,7 +336,7 @@
             }
 
             var loopTime;
-            if (rsp.photoset.total < 50) {
+            if (rsp.photoset.total < 60) {
                 loopTime = rsp.photoset.total;
             } else {
                 loopTime = 50;
