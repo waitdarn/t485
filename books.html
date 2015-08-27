@@ -421,9 +421,13 @@
             var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
 
             var name = prompt("Please enter your name");
-            fireRef.push({"book": book, "name": name, "date": date});
-
-            alert("Please come to the next troop meeting to recieve your hold.")
+            while (name === "") {
+                name = prompt("Please enter your name");
+            }
+            if (name === "") {
+                fireRef.push({"book": book, "name": name, "date": date});
+                alert("Please come to the next troop meeting to recieve your hold.")
+            }
         }
     </script>
 
