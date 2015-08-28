@@ -28,13 +28,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <style media="screen">
-        iframe {
-            width: 100%;
-            height: 600px;
-        }
-    </style>
-
 </head>
 
 <body>
@@ -77,23 +70,27 @@
                         <a href="pictures.html">Pictures</a>
                     </li>
                     <li class="dropdown">
-                        <a href="faq.html">FAQ <span class="caret"></span></a>
+                        <a onlick="return false;">FAQ <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="faq.html">FAQ</a></li>
                             <li><a href="merit-badges.html">Merit Badges</a></li>
                             <li><a href="eagle.html">Path to Eagle</a></li>
                             <li><a href="smc.html">SMC & BOR</a></li>
                             <li><a href="plc.html">What is PLC?</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="resources.html">Resources <span class="caret"></span></a>
-                    </li>
-                    <li class="dropdown active">
-                        <a href="directory.html">Directory <span class="caret"></span></a>
+                    <li class="dropdown">
+                        <a onlick="return false;">Resources <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="contact.html">Enter Contact Information</a></li>
                             <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
                             <li><a href="books.html">Books</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a onlick="return false;">Directory <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="directory.html" class="active">Directory</a></li>
+                            <li><a href="contact.html">Enter Contact Information</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -131,8 +128,7 @@
             </div>
         </div>
 
-        <!-- Initially hidden -->
-        <div class="row" id="spreadsheet" style="display:none;">
+        <div class="row" id="spreadsheet" style="display: none;">
             <div class="box">
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#cacti">Cacti</a></li>
@@ -197,39 +193,69 @@
     <script type="text/javascript">try{ clicky.init(100869133); }catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#submit').click(checkPassword);
-            $('#password').keypress(function(e){
-                if(e.keyCode==13) {
-                    $('#submit').click();
-                }
-            });
-        });
-
-        function checkPassword() {
-            var password = $('#password').val();
-            var hash = hashCode(password);
-            if (hash == 3208057) {
-                $('#password-form').css('display', 'none');
-                $('#spreadsheet').css('display', 'block');
-                $('#enter-contact-link').css('display', 'block');
-            } else {
-                $('.form-group').addClass('has-error has-feedback');
-                $('#password').val('');
-            }
+    <script>
+    $('#submit').click(checkPassword);
+    $('#password').keypress(function(e){
+        if(e.keyCode === 13) {
+            $('#submit').click();
         }
+    });
+    checkCookie();
 
-        hashCode = function(str){
-            var hash = 0;
-            if (str.length == 0) return hash;
+
+    function checkPassword() {
+        var password = $('#password').val();
+        var hash = function(str) {
+            var h = 0;
+            if (str.length == 0) return h;
             for (i = 0; i < str.length; i++) {
                 char = str.charCodeAt(i);
-                hash = ((hash<<5) - hash) + char;
-                hash = hash & hash; // Convert to 32bit integer
+                h = ((h<<5) - h) + char;
+                h = h & h; // Convert to 32bit integer
             }
-            return hash;
+            return h;
+        };
+        var setCookie = function(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        };
+
+        if (hash(password) === 3208057) {
+            $('#password-form').css('display', 'none');
+            $('#spreadsheet').css('display', 'block');
+
+            setCookie("logged-in", "true", 1);
+        } else {
+            $('.form-group').addClass('has-error has-feedback');
+            $('#password').val('');
         }
+    }
+
+    function checkCookie() {
+        var setCookie = function(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        };
+        var getCookie = function(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+            }
+            return "";
+        };
+
+        if (getCookie("logged-in") === "true") {
+            $('#password-form').css('display', 'none');
+            $('#spreadsheet').css('display', 'block');
+        }
+    }
     </script>
 
 </body>
