@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=0">
-    <title>My Javascript Game</title>
+    <title>Experiments</title>
 
     <style>
         canvas {
@@ -31,24 +31,33 @@
     </noscript>
 
     <div class="container" align="center">
-        <h1>My Javascript Game</h1>
-        <p id="mobile" style="color: red"></p>
-        <canvas id="game" class="noselect" width="900" height="540">Your browser doesn't support canvas. Please download <a href="http://ie.microsoft.com">IE9+</a></canvas>
+
+        <div class="game" style="display: none;">
+            <h1>My Javascript Game</h1>
+            <canvas id="game" class="noselect" width="900" height="540">Your browser doesn't support canvas. Please download <a href="http://ie.microsoft.com">IE9+</a></canvas>-->
+        </div>
+
+        <div class="song">
+            <h1>Click play to play a song</h1>
+            <button type="button" onclick="playSong();">Play</button>
+            <button type="button" onclick="stopSong();">Stop</button>
+        </div>
+
     </div>
 
     <!-- Required libraries -->
     <script src="game-assets/Box2dWeb-2.1.a.3.min.js"></script>
     <script src="game-assets/level.js"></script>
     <script src="game-assets/game.js"></script>
+
+    <!-- Required Libraries -->
+    <script src="game-assets/wad.min.js"></script>
+    <script src="game-assets/song.js"></script>
+
     <!-- Detect if using mobile. This does not work that well on iOS because
          double touch (zoom) events are not click events -->
     <script type="text/javascript">
-        console.log(navigator.userAgent);
 
-        if( navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i)){
-            document.getElementById('mobile').innerHTML = "This game doesn'work (that well) on mobile devices!";
-            console.log("It's an iOS!");
-        }
     </script>
 </body>
 
