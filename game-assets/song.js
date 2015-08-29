@@ -48,15 +48,21 @@
 
 var BPM = 100;
 var BEAT = 60 / BPM;
+var notes = {
+    eighth: 0.25,
+    quarter: 0.5,
+    half: 1,
+    whole: 2
+};
 
 var piano = new Wad({
     source: 'square',
-    volume: 0.8,
+    volume: 0.6,
     env: {
          attack: 0.01,
          decay : 0.005,
          sustain : 0.2,
-         hold : 0.1,
+         hold : 0,
          release : 0.3
     },
     filter: {
