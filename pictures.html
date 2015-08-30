@@ -174,6 +174,12 @@
     <!-- Flickr -->
     <script>
         var events = "<h3>Events</h3>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157657924434891\">" +
+            "<figure>" +
+                    "<img src=\"http://farm1.static.flickr.com/656/20972464802_daf2086efb_m.jpg\" alt=\"\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Henry Coe 2015</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
         "<a href=\"http://t485.org/pictures.html?id=72157657485551986\">" +
             "<figure>" +
                     "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"\">" +
@@ -330,7 +336,6 @@
                 var s = "";
                 var i = Math.random() * rsp.photoset.total;
                 i = Math.floor(i);
-                console.log(i);
 
                 var photo = rsp.photoset.photo[i];
                 var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
