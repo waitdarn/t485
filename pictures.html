@@ -260,7 +260,7 @@
 
                 // Put all pictures info in javascript so that Google web
                 // crawler cannot index photos (for privacy)
-                $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
+                $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389%40N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
                 $("#event-links").append(events);
             } else {
                 $('.form-group').addClass('has-error has-feedback');
@@ -293,7 +293,7 @@
 
                 // Put all pictures info in javascript so that Google web
                 // crawler cannot index photos (for privacy)
-                $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389@N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
+                $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389%40N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
                 $("#event-links").append(events);
             }
         }
@@ -307,14 +307,9 @@
                 });
                 return vars;
             };
-            var id = getVarsFromUrl()["id"];
-            if (id === undefined) {
-                // TODO: direct people to latest album if no id
-                // Point people to eagle COH if id is undefined
-                id = "72157657485551986";
-            }
+            var id = getVarsFromUrl()["id"] || "72157657924434891";
 
-            $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389@N07&photoset_id=" + id + "&format=json", function() {
+            $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389%40N07&photoset_id=" + id + "&format=json", function() {
                 console.log("loaded script successfully");
             });
         }
@@ -326,18 +321,11 @@
                 return;
             }
 
-            var loopTime;
-            if (rsp.photoset.total < 30) {
-                loopTime = rsp.photoset.total;
-            } else {
-                loopTime = 30;
-            }
+            var loopTime = (rsp.photoset.total < 30) ? rsp.photoset.total : 30;
+            var randomNums = generateRandomNums(loopTime);
             for (var j = 0; j < loopTime; j++) {
-                var s = "";
-                var i = Math.random() * rsp.photoset.total;
-                i = Math.floor(i);
 
-                var photo = rsp.photoset.photo[i];
+                var photo = rsp.photoset.photo[randomNums[j]];
                 var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
                 var p_url = "http://www.flickr.com/photos/" + rsp.photoset.owner + "/" + photo.id;
 
@@ -357,6 +345,25 @@
                 div.appendChild(a);
                 document.getElementById("pictures").appendChild(div);
             }
+        }
+
+        // This random number generator will not repeat numbers
+        // Check out Fisher-Yates shuffle
+        function generateRandomNums(nums) {
+            var array = [];
+            for (var i = 0; i < nums; i++) { array[i] = i; }
+            var c = nums, t, r;
+
+            while (c) {
+                r = ~~(Math.random() * c);
+                c -= 1;
+
+                t = array[c];
+                array[c] = array[r];
+                array[r] = t;
+            }
+
+            return array;
         }
     </script>
 
