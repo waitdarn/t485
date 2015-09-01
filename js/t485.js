@@ -27,6 +27,10 @@ $(function() {
     less = {
         async: true
     };
+
+    if (!("ontouchstart" in document.documentElement)) {
+        document.documentElement.className += " no-touch";
+    }
 });
 
 // Returns the version of Internet Explorer or a -1
