@@ -435,7 +435,7 @@
             while (name === "") {
                 name = prompt("Please enter your name");
             }
-            if (name === "") {
+            if (name !== "") {
                 fireRef.push({"book": book, "name": name, "date": date});
                 alert("Please come to the next troop meeting to recieve your hold.")
             }

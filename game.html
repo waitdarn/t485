@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=0">
-    <title>Experiments</title>
+    <title>HTML Experiments</title>
 
     <style>
         canvas {
@@ -37,27 +37,24 @@
             <canvas id="game" class="noselect" width="900" height="540">Your browser doesn't support canvas. Please download <a href="http://ie.microsoft.com">IE9+</a></canvas>-->
         </div>
 
-        <div class="song">
+        <div class="song" style="display: block;">
             <h1>Click play to play a song</h1>
             <button type="button" onclick="playSong();" style="width: 100px; height: 30px;">Play</button>
         </div>
 
+        <div class="missile-fleet" style="margin-top: 20px;">
+            <a href="game-assets/missile_fleet.html">Play Missile Fleet</a>
+        </div>
+
     </div>
 
-    <!-- Required libraries -->
-    <script src="game-assets/Box2dWeb-2.1.a.3.min.js"></script>
+    <!--<script src="game-assets/Box2dWeb-2.1.a.3.min.js"></script>
     <script src="game-assets/level.js"></script>
-    <script src="game-assets/game.js"></script>
+    <script src="game-assets/game.js"></script>-->
 
-    <!-- Required Libraries -->
     <script src="game-assets/wad.min.js"></script>
     <script src="game-assets/song.js"></script>
 
-    <!-- Detect if using mobile. This does not work that well on iOS because
-         double touch (zoom) events are not click events -->
-    <script type="text/javascript">
-
-    </script>
 </body>
 
 </html>
