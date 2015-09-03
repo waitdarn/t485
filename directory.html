@@ -99,7 +99,7 @@
                     <li class="dropdown active">
                         <a data-toggle="dropdown">Directory <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="directory.html" class="active">Directory</a></li>
+                            <li class="active"><a href="directory.html" class="active">Directory</a></li>
                             <li><a href="contact.html">Enter Contact Information</a></li>
                         </ul>
                     </li>
@@ -110,12 +110,12 @@
         <!-- /.container -->
     </nav>
 
-    <noscript>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <a class="close" data-dismiss="alert">×</a>
-            <span class="glyphicon glyphicon-alert"></span>  <strong>Error!</strong> You need to enable javascript in order for this page to work!
-        </div>
-    </noscript>
+    <div id="toTop"></div>
+
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <a class="close" data-dismiss="alert">×</a>
+        <span class="glyphicon glyphicon-info-sign"></span>  Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback and help me improve the website!
+    </div>
 
     <div class="container">
 
@@ -204,68 +204,68 @@
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
     <script>
-    $('#submit').click(checkPassword);
-    $('#password').keypress(function(e){
-        if(e.keyCode === 13) {
-            $('#submit').click();
-        }
-    });
-    checkCookie();
-
-
-    function checkPassword() {
-        var password = $('#password').val();
-        var hash = function(str) {
-            var h = 0;
-            if (str.length == 0) return h;
-            for (i = 0; i < str.length; i++) {
-                char = str.charCodeAt(i);
-                h = ((h<<5) - h) + char;
-                h = h & h; // Convert to 32bit integer
+        $('#submit').click(checkPassword);
+        $('#password').keypress(function(e){
+            if(e.keyCode === 13) {
+                $('#submit').click();
             }
-            return h;
-        };
-        var setCookie = function(cname, cvalue, exdays) {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays*24*60*60*1000));
-            var expires = "expires="+d.toUTCString();
-            document.cookie = cname + "=" + cvalue + "; " + expires;
-        };
+        });
+        checkCookie();
 
-        if (hash(password) === 3208057) {
-            $('#password-form').css('display', 'none');
-            $('#spreadsheet').css('display', 'block');
 
-            setCookie("logged-in", "true", 14);
-        } else {
-            $('.form-group').addClass('has-error has-feedback');
-            $('#password').val('');
-        }
-    }
+        function checkPassword() {
+            var password = $('#password').val();
+            var hash = function(str) {
+                var h = 0;
+                if (str.length == 0) return h;
+                for (i = 0; i < str.length; i++) {
+                    char = str.charCodeAt(i);
+                    h = ((h<<5) - h) + char;
+                    h = h & h; // Convert to 32bit integer
+                }
+                return h;
+            };
+            var setCookie = function(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            };
 
-    function checkCookie() {
-        var setCookie = function(cname, cvalue, exdays) {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays*24*60*60*1000));
-            var expires = "expires="+d.toUTCString();
-            document.cookie = cname + "=" + cvalue + "; " + expires;
-        };
-        var getCookie = function(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i=0; i<ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1);
-                if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+            if (hash(password) === 3217667) {
+                $('#password-form').css('display', 'none');
+                $('#spreadsheet').css('display', 'block');
+
+                setCookie("logged-in", "true", 14);
+            } else {
+                $('.form-group').addClass('has-error has-feedback');
+                $('#password').val('');
             }
-            return "";
-        };
-
-        if (getCookie("logged-in") === "true") {
-            $('#password-form').css('display', 'none');
-            $('#spreadsheet').css('display', 'block');
         }
-    }
+
+        function checkCookie() {
+            var setCookie = function(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+d.toUTCString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            };
+            var getCookie = function(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0; i<ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1);
+                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+                }
+                return "";
+            };
+
+            if (getCookie("logged-in") === "true") {
+                $('#password-form').css('display', 'none');
+                $('#spreadsheet').css('display', 'block');
+            }
+        }
     </script>
 
 </body>

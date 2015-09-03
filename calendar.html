@@ -110,12 +110,12 @@
         <!-- /.container -->
     </nav>
 
-    <noscript>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <a class="close" data-dismiss="alert">×</a>
-            <span class="glyphicon glyphicon-alert"></span>  <strong>Error!</strong> You need to enable javascript in order for this page to work!
-        </div>
-    </noscript>
+    <div id="toTop"></div>
+
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <a class="close" data-dismiss="alert">×</a>
+        <span class="glyphicon glyphicon-info-sign"></span>  Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback and help me improve the website!
+    </div>
 
     <div class="container" style="overflow: none;">
 
@@ -125,7 +125,7 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Create New Headcounts <b>(Experimental Feature)</b></h2>
+                    <h2 class="intro-text text-center">Create New Headcounts</h2>
                     <hr>
                 </div>
                 <div class="col-mg-12">
@@ -186,7 +186,7 @@
     <script type="text/javascript">try{ clicky.init(100869133); }catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
-    <script type="text/javascript">
+    <script>
         var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
         var pushRef;
 

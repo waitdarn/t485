@@ -228,12 +228,8 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     margin-top: 20px;
 }
 
-input {
-    margin-bottom: 15px;
-}
-
-textarea {
-    margin-top: 10px;
+input, textarea {
+    margin-bottom: 15px !important;
 }
 
 #toTop {

@@ -18,7 +18,7 @@
     <link rel="manifest" href="favicons/manifest.json">
     <meta name="theme-color" content="#008000">
 
-    <title>Meeting Minutes - Troop 485</title>
+    <title>Feedback - Troop 485</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -88,11 +88,11 @@
                             <li><a href="plc.html">What is PLC?</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown active">
+                    <li class="dropdown">
                         <a data-toggle="dropdown">Resources <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="resources.html">Resources</a></li>
-                            <li class="active"><a href="meeting-minutes.html">Meeting Minutes</a></li>
+                            <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
                             <li><a href="books.html">Books</a></li>
                         </ul>
                     </li>
@@ -123,48 +123,25 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Meeting Minutes</h2>
+                    <h2 class="intro-text text-center">Submit Feedback</h2>
                     <hr>
                 </div>
-                <div class="col-md-12">
-                    <ul>
-                        <li><a href="https://docs.google.com/spreadsheets/d/1YO--SYuKL2BRyKjyS3ucLOvIfr2JLRgWZSEQLst_Ruc/edit#gid=0" target="_blank">Troop Meeting Mintues Headcounts 8/31/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1g3rP7HmreaeVRN_3mdnNmqfP_gsw57DNqrxh1N2lKjY/edit" target="_blank">Troop Meeting Minutes 8/31/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1T0skJq55HorgjmuyWXHpmY2jQVdg7k9sjJaBQm3a1Fc/edit" target="_blank">PLC Meeting Minutes 8/31/2015</a></li>
+                <div class="col-mg-12">
+                    <form class="feedback-form" style="margin-left: 20px;" role="form">
+                        <div class="input-group col-sm-6 col-md-4">
+                            <label class="control-label" for="feedback-name">Name:</label>
+                            <input type="text" id="feedback-name" class="form-control">
+                        </div>
+                        <div class="input-group col-sm-6 col-md-4">
+                            <label class="control-label" for="feedback-text">Feedback:</label>
+                            <textarea id="feedback-text" class="form-control" rows="5"></textarea>
+                        </div>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1GTXYS5yGelLn3Q2QGRkDjh51_uveRnq9vx92jFB6VBE/edit" target="_blank">PLC Meeting Minutes 8/24/2015</a></li>
-                        <li><a href="https://docs.google.com/spreadsheets/d/1zFwKPGARFbVPxOO5U4CKolL_8qZPDTZgyVuO1K6ev8Q/edit#gid=0" target="_blank">PLC Meeting Minutes Headcounts 8/24/2015</a></li>
-                        <br>
-                        <li><a href="https://docs.google.com/document/d/1WLFYI2ZLgYDZ76KSa8R35HY7292OBiggzw_nKQjYWxM/edit" target="_blank">Troop Meeting Minutes 8/17/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1BdxViFiegKgPdl6kr3kN8vpJCUD0cEjRTQ57e4QNN6g/edit" target="_blank">PLC Meeting Minutes 8/17/2015</a></li>
-                        <br>
-                        <li><a href="https://docs.google.com/document/d/17IBnuZjP8kfWh7LPWECvtD8XFW4KkWATu-pN4hDa2WU/edit" target="_blank">Mini TLT Minutes 8/8/2015</a></li>
-                    </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Reflections</h2>
-                    <hr>
-                </div>
-                <div class="col-md-12" id="reflections" style="display: none;">
-                    <ul>
-                        <li><a href="https://docs.google.com/document/d/159TciVVX0YrZvjSr8UeU0D7Vx-tKePcx0_j6XPkqoc0/edit" target="_blank">Practice Labor Day Backpacking Reflections 8/22-23/2015</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-12" id="password-form">
-                    <div class="form-group input-append">
-                        <label for="password">This section is password protected:</label>
-                        <input type="password" class="form-control" id="password">
-                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none;"></span>
-                        <span id="inputError2Status" class="sr-only">(error)</span>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <div class="thank-you" style="display: none;">
+                        <p>Thank you for your feedback.</p>
                     </div>
-                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
                 </div>
             </div>
         </div>
@@ -187,8 +164,11 @@
 
     <script src="js/t485.js"></script>
 
-     <!-- Bootstrap Core JavaScript -->
+    <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Firebase -->
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
     <!-- Clicky Web Analytics -->
     <a title="Web Statistics" href="https://clicky.com/100869133"><img alt="Web Statistics" src="https://static.getclicky.com/media/links/badge.gif" border="0" /></a>
@@ -196,70 +176,18 @@
     <script type="text/javascript">try{ clicky.init(100869133); }catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
-    <script>
-        $('#submit').click(checkPassword);
-        $('#password').keypress(function(e){
-            if(e.keyCode === 13) {
-                $('#submit').click();
-            }
+    <script type="text/javascript">
+        var fireRef = new Firebase("https://t485.firebaseio.com/feedback");
+
+        $("form").submit(function(){
+            addFeedback($("#feedback-name").val(), $("#feedback-text").val());
+            return false;
         });
-        checkCookie();
 
-
-        function checkPassword() {
-            var password = $('#password').val();
-            var hash = function(str) {
-                var h = 0;
-                if (str.length == 0) return h;
-                for (i = 0; i < str.length; i++) {
-                    char = str.charCodeAt(i);
-                    h = ((h<<5) - h) + char;
-                    h = h & h; // Convert to 32bit integer
-                }
-                return h;
-            };
-            var setCookie = function(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                var expires = "expires="+d.toUTCString();
-                document.cookie = cname + "=" + cvalue + "; " + expires;
-            };
-
-            console.log(hash(password));
-            if (hash(password) === 3217667) {
-                $('#password-form').css('display', 'none');
-                $('#reflections').css('display', 'block');
-
-                setCookie("logged-in", "true", 14);
-            } else {
-                $('.form-group').addClass('has-error has-feedback');
-                $('.form-control-feedback').css('display', '')
-                $('#password').val('');
-            }
-        }
-
-        function checkCookie() {
-            var setCookie = function(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                var expires = "expires="+d.toUTCString();
-                document.cookie = cname + "=" + cvalue + "; " + expires;
-            };
-            var getCookie = function(cname) {
-                var name = cname + "=";
-                var ca = document.cookie.split(';');
-                for(var i=0; i<ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0)==' ') c = c.substring(1);
-                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-                }
-                return "";
-            };
-
-            if (getCookie("logged-in") === "true") {
-                $('#password-form').css('display', 'none');
-                $('#reflections').css('display', 'block');
-            }
+        function addFeedback(name, text) {
+            fireRef.push({"name": name, "text": text});
+            $(".feedback-form").css("display", "none");
+            $(".thank-you").css("display", "block");
         }
     </script>
 
