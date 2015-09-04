@@ -129,7 +129,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>Please only hold a book if you are going to get it at the next troop meeting</p>
+                    <p>Hold any book you like and pick it up at the next troop meeting</p>
                     <table class="table">
                         <thead>
                             <th class="col-xs-6">Book Name</th>
@@ -352,47 +352,47 @@
                             <tr>
                                 <td>Muir Woods Map</td>
                                 <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('booknum')">Hold</button></td>
+                                <td><button type="button" class="btn btn-default" onclick="hold('Muir Woods Map')">Hold</button></td>
                             </tr>
                             <tr>
                                 <td>Packet on Knots/Lashings</td>
                                 <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('booknum')">Hold</button></td>
+                                <td><button type="button" class="btn btn-default" onclick="hold('Packet on Knots/Lashings')">Hold</button></td>
                             </tr>
                             <tr>
                                 <td>Packing Guide</td>
                                 <td>3</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('booknum')">Hold</button></td>
+                                <td><button type="button" class="btn btn-default" onclick="hold('Packing Guide')">Hold</button></td>
                             </tr>
                             <tr>
                                 <td>Parent’s Guide to Protecting Your Child From Child Abuse</td>
                                 <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('booknum')">Hold</button></td>
+                                <td><button type="button" class="btn btn-default" onclick="hold('Parent’s Guide to Protecting Your Child From Child Abuse')">Hold</button></td>
                             </tr>
                             <tr>
                                 <td>Sequoia/Kings Canyon Map</td>
                                 <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('booknum')">Hold</button></td>
+                                <td><button type="button" class="btn btn-default" onclick="hold('Sequoia/Kings Canyon Map')">Hold</button></td>
                             </tr>
                             <tr>
                                 <td>T485 Rank Advancement Guide</td>
                                 <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('booknum')">Hold</button></td>
+                                <td><button type="button" class="btn btn-default" onclick="hold('T485 Rank Advancement Guide')">Hold</button></td>
                             </tr>
                             <tr>
                                 <td>The Patrol Leader Handbook</td>
                                 <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('booknum')">Hold</button></td>
+                                <td><button type="button" class="btn btn-default" onclick="hold('The Patrol Leader Handbook')">Hold</button></td>
                             </tr>
                             <tr>
                                 <td>The Senior Patrol Leader Handbook</td>
                                 <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('booknum')">Hold</button></td>
+                                <td><button type="button" class="btn btn-default" onclick="hold('The Senior Patrol Leader Handbook')">Hold</button></td>
                             </tr>
                             <tr>
                                 <td>Wilderness First Aid Booklet</td>
                                 <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('booknum')">Hold</button></td>
+                                <td><button type="button" class="btn btn-default" onclick="hold('Wilderness First Aid Booklet')">Hold</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -439,13 +439,12 @@
             var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
 
             var name = prompt("Please enter your name");
-            while (name === "") {
+            console.log(name.length);
+            while (name === "" || name.length < 3 || name.length > 30) {
                 name = prompt("Please enter your name");
             }
-            if (name !== "") {
-                fireRef.push({"book": book, "name": name, "date": date});
-                alert("Please come to the next troop meeting to recieve your hold.")
-            }
+            fireRef.push({"book": book, "name": name, "date": date});
+            alert("Please come to the next troop meeting to pick up your book.")
         }
     </script>
 

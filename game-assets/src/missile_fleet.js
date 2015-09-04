@@ -2346,7 +2346,7 @@ MissileFleet = Klass(CanvasNode, {
 
 
 init = function() {
-    var c = E.canvas(1280, 720)
+    var c = E.canvas(window.innerWidth, window.innerHeight)
     var d = E('div', {
         id: 'screen'
     })
