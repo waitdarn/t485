@@ -10,10 +10,6 @@ body {
     color: #828292;
 }
 
-a {
-    color: #8282c2;
-}
-
 h1 {
     color: #727282;
     letter-spacing: 20px;
@@ -38,9 +34,13 @@ h3 {
 }
 
 ol {
+    position: absolute;
     color: #827262;
     text-align: center;
     list-style: none;
+    top: -20px;
+    left: -100px;
+    width: 200px;
 }
 
 li h3 {
@@ -59,47 +59,12 @@ li h3 {
     margin-bottom: 50px;
 }
 
-div.message {
-    width: 360px;
-}
-
 .message {
+    position: absolute;
     text-align: center;
     color: #827262;
     font-size: 12px;
-}
-
-input {
-    margin-right: 4px;
-}
-
-#debug p {
-    margin-bottom: 4px;
-}
-
-#debug div {
-    margin-bottom: 8px;
-}
-
-#screen {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    cursor: default;
-    overflow: hidden;
-    left: 0px;
+    width: 360px;
     top: 0px;
-}
-
-#debug {
-    color: #828292;
-    font-size: 12px;
-    position: absolute;
-    left: 1330px;
-    max-width: 300px;
-    top: 32px;
-}
-
-#debug canvas {
-    margin-top: 4px;
+    left: -180px;
 }

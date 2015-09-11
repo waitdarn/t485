@@ -1,3 +1,7 @@
+/* jshint -W033 */
+/* jshint -W004 */
+/* jshint -W083 */
+/* jshint -W038 */
 /*
   Missile Fleet - a real-time tactics game / browser benchmark
 
@@ -262,15 +266,16 @@ FleetAI.estimateDamage = function(target, attackers) {
     var fs = target.pointDefense.salvos * 1.5 // fudge factor
     var dmg = target.pointDefense.damage
     var hit = false
+    var d;
     return attackers.reduce(function(s, a) {
         var pfs = fs
         fs -= a.weapon.freeSalvos * Math.max(1, (a.weapon.projectileHealth / dmg))
         if (fs <= 0) {
             if (hit) {
-                var d = a.weapon.freeSalvos
+                d = a.weapon.freeSalvos
             } else {
                 hit = true
-                var d = a.weapon.freeSalvos - pfs * Math.floor(dmg / a.weapon.projectileHealth)
+                d = a.weapon.freeSalvos - pfs * Math.floor(dmg / a.weapon.projectileHealth)
             }
             return s + (a.weapon.damage * (d))
         } else {
@@ -353,7 +358,7 @@ Explosion = Klass(CanvasNode, {
     },
 
     blowup: function(t, dt) {
-        if (this.startTime == null)
+        if (this.startTime === null)
             this.startTime = t
         var elapsed = Math.min(500, t - this.startTime)
         var fac = 0.48 * 0.004 * Math.PI
@@ -386,9 +391,9 @@ ControlledNode = Klass(CanvasNode, {
     },
 
     callAI: function(t, dt) {
-        if (this.frame % 10 == 0) {
+        if (this.frame % 10 === 0) {
             // stagger frames
-            if (this.frame == 0) this.frame += Math.floor(Math.random() * 10)
+            if (this.frame === 0) this.frame += Math.floor(Math.random() * 10)
             this.moveSpeedFactor = 0
             this.targetAngle = this.rotation
             this.ai(t, dt)
@@ -752,13 +757,13 @@ Ship = Klass(ControlledNode, {
     },
 
     intercept: function(targets) {
-        if (targets.length == 0) return
+        if (targets.length === 0) return
         var i = 0
         var j = 0
         while (this.pointDefense.readyToFire) {
             this.pointDefense.fireAt(targets[i])
             i = (i + 1) % targets.length
-            if (i == 0) j++
+            if (i === 0) j++
                 if (j == 1) return
         }
     },
@@ -857,7 +862,6 @@ Weapon = Klass(CanvasNode, {
     color: 'white',
     x: 0,
     y: 0,
-    rotation: 0,
     projectile: Projectile,
     readyToFire: true,
 
@@ -1387,7 +1391,6 @@ Level = Klass(CanvasNode, {
             })
         }
         this.selectRect = new Rectangle(0, 0, {
-            stroke: 1,
             strokeOpacity: 0.4,
             stroke: '#00ff00',
             fillOpacity: 0.1,
@@ -1614,13 +1617,13 @@ Level = Klass(CanvasNode, {
             switch (wpn) {
                 case Missiles:
                     pd = PointDefenseMissiles;
-                    break
+                    break;
                 case Beam:
                     pd = Beam;
-                    break
+                    break;
                 case RapidFireRailgun:
                     pd = RapidFireRailgun;
-                    break
+                    break;
                 default:
                     pd = PointDefenseGun
             }
@@ -1640,7 +1643,7 @@ Level = Klass(CanvasNode, {
         var th = this
         var seg = Math.PI * 2 / (weapons.length - 1)
         return weapons.map(function(wpn) {
-            if (i == 0) {
+            if (i === 0) {
                 var dx = 0,
                     dy = 0
             } else {
@@ -1994,7 +1997,7 @@ Level12 = Klass(Level, {
                 this.ships[this.playerTeam] -= 100
                 this.ships[this.enemyTeam] -= 100
             } else
-        if (this.wave == 0) {
+        if (this.wave === 0) {
             return false
         }
         var friends = this.ships[this.playerTeam] || 0
@@ -2257,17 +2260,12 @@ MissileFleet = Klass(CanvasNode, {
 
     setupEtc: function() {
         this.canvas.updateFps = true
-        var debug = E('div')
         var t0 = -1
-        var frames = []
         var fc = E.canvas(200, 10)
         var fpsE = T('')
         var elapsedE = T('')
         var realFpsE = T('')
         var elapsedRealE = T('')
-        E.append(debug, fpsE, ' fps (', elapsedE, ' ms to draw scene)', E('br'),
-            realFpsE, ' real fps (', elapsedRealE, ' ms between frames)',
-            E('br'), fc)
         var fctx = fc.getContext('2d')
         fctx.globalCompositeOperation = 'copy'
         fctx.fillStyle = '#828292'
@@ -2289,56 +2287,6 @@ MissileFleet = Klass(CanvasNode, {
                 }
             }
         })
-        this.canvasControlPanel = new GuiConfig({
-            object: this.canvas,
-            container: $('debug'),
-            title: 'Debug',
-            controls: [
-                'updateFps',
-                'playOnlyWhenFocused',
-                'drawBoundingBoxes', ['useMockContext', 'boolean', {
-                    title: "Turn off drawing. Useful for benchmarking the AI."
-                }]
-            ]
-        })
-        this.canvasControlPanel.show()
-        this.controlPanel = new GuiConfig({
-            object: this,
-            container: $('debug'),
-            title: 'Graphics',
-            controls: [
-                'fastExplosions',
-                'noExplosions',
-                'fastBeams'
-            ]
-        })
-        this.controlPanel.show()
-        this.playerControlPanel = new GuiConfig({
-            object: Player,
-            container: $('debug'),
-            title: 'Support AI',
-            controls: [
-                ['useMovementAI', 'boolean', {
-                    title: 'Use movement AI'
-                }],
-                ['useTargettingAI', 'boolean', {
-                    title: 'Use targetting AI'
-                }]
-            ]
-        })
-        this.playerControlPanel.show()
-        this.enemyControlPanel = new GuiConfig({
-            object: FleetAI,
-            container: $('debug'),
-            title: 'Enemy AI',
-            controls: [
-                ['targetByThreat', 'boolean'],
-                ['useDamageEstimates', 'boolean'],
-                ['runAway', 'boolean']
-            ]
-        })
-        this.enemyControlPanel.show()
-        $('debug').appendChild(debug)
     }
 
 })
@@ -2346,6 +2294,7 @@ MissileFleet = Klass(CanvasNode, {
 
 
 init = function() {
+    //var c = E.canvas(1280, 600)
     var c = E.canvas(window.innerWidth, window.innerHeight)
     var d = E('div', {
         id: 'screen'
