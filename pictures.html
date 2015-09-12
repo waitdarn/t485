@@ -269,7 +269,7 @@
                 $('#password-form').css('display', 'none');
                 $('#content').css('display', 'block');
 
-                setCookie("logged-in", "true", 14);
+                setCookie("logged-in", "true", 7);
 
                 // Put all pictures info in javascript so that Google web
                 // crawler cannot index photos (for privacy)
@@ -335,11 +335,10 @@
                 return;
             }
 
-            //var loopTime = (rsp.photoset.total < 30) ? rsp.photoset.total : 30;
-            var randomNums = generateRandomNums(loopTime);
-            for (var j = 0; j < 30; j++) {
+            var randomNums = generateRandomNums(30);
+            for (var i = 0; i < 30; i++) {
 
-                var photo = rsp.photoset.photo[randomNums[j]];
+                var photo = rsp.photoset.photo[randomNums[i]];
                 var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
                 var p_url = "http://www.flickr.com/photos/" + rsp.photoset.owner + "/" + photo.id;
 
