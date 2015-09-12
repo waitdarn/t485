@@ -335,9 +335,9 @@
                 return;
             }
 
-            var loopTime = (rsp.photoset.total < 30) ? rsp.photoset.total : 30;
+            //var loopTime = (rsp.photoset.total < 30) ? rsp.photoset.total : 30;
             var randomNums = generateRandomNums(loopTime);
-            for (var j = 0; j < loopTime; j++) {
+            for (var j = 0; j < 30; j++) {
 
                 var photo = rsp.photoset.photo[randomNums[j]];
                 var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
@@ -362,7 +362,7 @@
         }
 
         // This random number generator will not repeat numbers
-        // Check out Fisher-Yates shuffle
+        // This is Fisher-Yates shuffle
         function generateRandomNums(nums) {
             var array = [];
             for (var i = 0; i < nums; i++) { array[i] = i; }
