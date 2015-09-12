@@ -192,6 +192,10 @@ footer p {
         table-layout: fixed;
         font-size: 1.25em;
     }
+
+    ul.nav li.dropdown:hover ul.dropdown-menu {
+        display: block;
+    }
 }
 
 @media screen and (min-width:1200px) {
@@ -209,10 +213,6 @@ footer p {
     max-width: 100%;
     height: auto;
     width: auto\9; /* For ie8 compatibility */
-}
-
-ul.nav li.dropdown:hover ul.dropdown-menu {
-    display: block;
 }
 
 .navbar {
