@@ -127,41 +127,43 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <table id="response-table" class="table">
-                        <tbody>
-                            <tr>
-                                <td><b>If your name is here then you already filled this form.</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <form class="headcount-form form-horizontal" style="margin-left: 20px; width: 30%;" role="form">
-                        <div class="input-group" id="headcount-name-group">
-                            <label class="control-label" for="headcount-name">Name:</label>
-                            <input type="text" id="headcount-name" class="form-control" maxlength="30">
-                        </div>
-                        <div class="input-group">
-                            <label class="control-label" for="headcount-coming">Are you coming?</label>
-                            <br>
-                            <div class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-default active">
-                                    <input type="radio" name="headcount-coming" checked="checked" value="yes" /> Yes
-                                </label>
-                                <label class="btn btn-default">
-                                    <input type="radio" name="headcount-coming" value="no" /> No
-                                </label>
+                    <div class="collector">
+                        <table id="response-table" class="table">
+                            <tbody>
+                                <tr>
+                                    <td><b>If your name is here then you already filled this form.</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <form class="headcount-form form-horizontal" style="margin-left: 20px; width: 30%;" role="form">
+                            <div class="input-group" id="headcount-name-group">
+                                <label class="control-label" for="headcount-name">Name:</label>
+                                <input type="text" id="headcount-name" class="form-control" maxlength="30">
                             </div>
-                        </div>
-                        <div class="input-group">
-                            <label class="control-label" for="headcount-adults">Adults coming: </label>
-                            <input type="number" id="headcount-adults" class="form-control" min="0" max="10" value="0">
-                        </div>
-                        <div class="input-group">
-                            <label class="control-label" for="headcount-notes">Notes you want to add: </label>
-                            <input type="text" id="headcount-notes" class="form-control">
-                        </div>
-                        <br>
-                        <button type="submit" id="headcount-submit" class="btn btn-default">Submit</button>
-                    </form>
+                            <div class="input-group">
+                                <label class="control-label" for="headcount-coming">Are you coming?</label>
+                                <br>
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default active">
+                                        <input type="radio" name="headcount-coming" checked="checked" value="yes" /> Yes
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="headcount-coming" value="no" /> No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label class="control-label" for="headcount-adults">Adults coming: </label>
+                                <input type="number" id="headcount-adults" class="form-control" min="0" max="10" value="0">
+                            </div>
+                            <div class="input-group">
+                                <label class="control-label" for="headcount-notes">Notes you want to add: </label>
+                                <input type="text" id="headcount-notes" class="form-control">
+                            </div>
+                            <br>
+                            <button type="submit" id="headcount-submit" class="btn btn-default">Submit</button>
+                        </form>
+                    </div>
                     <div class="thank-you" style="display: none;">
                         <p>Thank you. Your reponse has been recieved. </p>
                     </div>
@@ -205,6 +207,7 @@
         if (id === undefined) {
             console.log("id undefined!");
             alert("Please use the url given by your SiC!");
+            window.location = "http://t485.org";
         } else {
             var fireRef = new Firebase("https://t485.firebaseio.com/headcount/" + id + "/responses");
         }
@@ -239,7 +242,7 @@
                 } else {
                     fireRef.push({"name": name, "coming": false, "adults": adults, "notes": notes});
                 }
-                $(".headcount-form").css("display", "none");
+                $(".collector").css("display", "none");
                 $(".thank-you").css("display", "block");
             }
         }
