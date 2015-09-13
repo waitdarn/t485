@@ -6,4 +6,4 @@ $('#toTop').click(function() { $('body').animate({scrollTop: 0}, 800); });
 less = {async: true};
 
 // Fix dropdown menu bug on iOS
-$('.dropdown a').click(function() { var x = $(this).parent().hasClass('open') ? $(this).removeClass('open') : $(this).addClass('open'); });
+$('.dropdown a').click(function() { var x = $(this).parent().hasClass('open') ? $(this).parent().removeClass('open') : $(this).parent().addClass('open'); });
