@@ -6,7 +6,7 @@ $('#toTop').click(function() { $('body').animate({scrollTop: 0}, 800); });
 less = {async: true};
 
 
-var faqopen = false;
+/*var faqopen = false;
 $('#faq-dropdown').click(function () {
     if (!faqopen) {
         $(".navbar-nav dropdown #faq-dropdown").parent().addClass('open');
@@ -33,5 +33,13 @@ $('#directory-dropdown').click(function () {
         directoryopen = true;
     } else {
         $(".navbar-nav dropdown #directory-dropdown").parent().removeClass('open');
+    }
+});*/
+
+$('.navbar-nav dropdown a').click(function() {
+    if (!$(this).parent().hasClass('open')) {
+        $(this).parent().addClass('open');
+    } else {
+        $(this).parent().removeClass('open');
     }
 });
