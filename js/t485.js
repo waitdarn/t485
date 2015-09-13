@@ -5,9 +5,33 @@ $('#toTop').click(function() { $('body').animate({scrollTop: 0}, 800); });
 // Set LESS async to true to prevent warning on Chrome
 less = {async: true};
 
-toggleMenuOnClick();
 
+var faqopen = false;
+$('#faq-dropdown').click(function () {
+    if (!open) {
+        $(".navbar-nav dropdown #faq-dropdown").parent().addClass('open');
+        open = true;
+    } else {
+        $(".navbar-nav dropdown #faq-dropdown").parent().removeClass('open');
+    }
+});
 
-function toggleMenuOnClick() {
+var resourceopen = false;
+$('#resource-dropdown').click(function () {
+    if (!open) {
+        $(".navbar-nav dropdown #resource-dropdown").parent().addClass('open');
+        open = true;
+    } else {
+        $(".navbar-nav dropdown #resource-dropdown").parent().removeClass('open');
+    }
+});
 
-}
+var directoryopen = false;
+$('#directory-dropdown').click(function () {
+    if (!open) {
+        $(".navbar-nav dropdown #directory-dropdown").parent().addClass('open');
+        open = true;
+    } else {
+        $(".navbar-nav dropdown #directory-dropdown").parent().removeClass('open');
+    }
+});
