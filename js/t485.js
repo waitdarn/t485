@@ -8,9 +8,9 @@ less = {async: true};
 
 var faqopen = false;
 $('#faq-dropdown').click(function () {
-    if (!open) {
+    if (!faqopen) {
         $(".navbar-nav dropdown #faq-dropdown").parent().addClass('open');
-        open = true;
+        faqopen = true;
     } else {
         $(".navbar-nav dropdown #faq-dropdown").parent().removeClass('open');
     }
@@ -18,9 +18,9 @@ $('#faq-dropdown').click(function () {
 
 var resourceopen = false;
 $('#resource-dropdown').click(function () {
-    if (!open) {
+    if (!resourceopen) {
         $(".navbar-nav dropdown #resource-dropdown").parent().addClass('open');
-        open = true;
+        resourceopen = true;
     } else {
         $(".navbar-nav dropdown #resource-dropdown").parent().removeClass('open');
     }
@@ -28,9 +28,9 @@ $('#resource-dropdown').click(function () {
 
 var directoryopen = false;
 $('#directory-dropdown').click(function () {
-    if (!open) {
+    if (!directoryopen) {
         $(".navbar-nav dropdown #directory-dropdown").parent().addClass('open');
-        open = true;
+        directoryopen = true;
     } else {
         $(".navbar-nav dropdown #directory-dropdown").parent().removeClass('open');
     }
