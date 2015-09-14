@@ -120,44 +120,37 @@
     <div class="container">
 
       <div class="row">
-          <div class="box" id="form">
-              <div class="col-lg-12">
-                  <hr>
-                  <h2 class="intro-text text-center">Troop <strong>Directory</strong></h2>
-                  <hr>
-              </div>
-              <p style="color: darkred">* Required</p>
+          <div class="box col-xs-12" id="form">
+              <hr>
+              <h2 class="intro-text text-center">Troop <strong>Directory</strong></h2>
+              <hr>
               <p>Please fill out the form then click submit to add your name to the troop directory</p>
-              <div class="col-md-12">
-                  <div class="row">
-                      <form role="form">
-                          <label class="control-label">Scout's Full Name<span style="color: darkred">*</span>:</label>
-                          <input type="text" class="form-control" id="name" maxlength="30">
+              <p style="color: darkred">* Required</p>
+              <form role="form">
+                  <label class="control-label">Scout's Full Name<span style="color: darkred">*</span>:</label>
+                  <input type="text" class="form-control" id="name" maxlength="30">
 
-                          <label class="control-label">Scout's Email<span style="color: darkred">*</span>:</label>
-                          <input type="email" class="form-control" id="email" maxlength="50">
+                  <label class="control-label">Scout's Email:</label>
+                  <input type="email" class="form-control" id="email" maxlength="50">
 
-                          <label class="control-label">Scout's Home Phone</label>
-                          <input type="number" class="form-control" id="home-phone" max="19999999999">
+                  <label class="control-label">Scout's Home Phone:</label>
+                  <input type="tel" pattern="\d{10}|\d{11}" class="form-control" id="home-phone" max="19999999999">
 
-                          <label class="control-label">Scout's Cell Phone:</label>
-                          <input type="number" class="form-control" id="cell-phone" max="19999999999">
+                  <label class="control-label">Scout's Cell Phone:</label>
+                  <input type="tel" pattern="\d{10}|\d{11}" class="form-control" id="cell-phone" max="19999999999">
 
-                          <label class="control-label">Date Joined Troop 485:</label>
-                          <input type="date" class="form-control" id="date-joined">
+                  <label class="control-label">Date Joined Troop 485:</label>
+                  <input type="date" class="form-control" id="date-joined">
 
-                          <label class="control-label">School Attending</label>
-                          <input type="text" class="form-control" id="school" maxlength="30">
+                  <label class="control-label">School Attending:</label>
+                  <input type="text" class="form-control" id="school" maxlength="30">
 
-                          <label class="control-label">Patrol</label>
-                          <input type="text" class="form-control" id="patrol" maxlength="8">
+                  <label class="control-label">Patrol:</label>
+                  <input type="text" class="form-control" id="patrol" maxlength="8">
 
-                          <input type="hidden" name="save" value="contact">
-                          <button type="submit" class="btn btn-default">Submit</button>
-                      </form>
-                  </div>
-              </div>
-              <div class="clearfix"></div>
+                  <input type="hidden" name="save" value="contact">
+                  <button type="submit" class="btn btn-default">Submit</button>
+              </form>
           </div>
           <div class="box" id="thank-you" style="display: none;">
               <p>Thank you, your response has been recorded.</p>
@@ -198,15 +191,19 @@
         var fireRef = new Firebase("https://t485.firebaseio.com/newcontact");
 
         $("form").submit(function(){
-            addHeadcount($("#name").val(), $("#email").val(), $("#home-phone").val(), $("#cell-phone").val(), $("#date-joined").val(), $("#school").val(), $("#patrol").val());
-            return false;
-        });
-
-        function addHeadcount(name, email, homephone, cellphone, datejoined, school, patrol) {
-            pushRef = fireRef.push({"name": name, "email": email, "home-phone": homephone, "cell-phone": cellphone, "date-joined": datejoined, "school": school, "patrol": patrol});
+            fireRef.push({
+                "name": $("#name").val(),
+                "email": $("#email").val(),
+                "home-phone": $("#home-phone").val(),
+                "cell-phone": $("#cell-phone").val(),
+                "date-joined": $("#date-joined").val(),
+                "school": $("#school").val(),
+                "patrol": $("#patrol").val()
+            });
             $("#form").css("display", "none");
             $("#thank-you").css("display", "block");
-        }
+            return false;
+        });
     </script>
 
 </body>
