@@ -140,7 +140,7 @@
         <div class="row" id="search" style="display: none;">
             <div class="box col-xs-12">
                 <hr>
-                <h2 class="intro-text text-center">Search <strong>(Exprimental Feature!)</strong></h2>
+                <h2 class="intro-text text-center">Search</h2>
                 <hr>
                 <div class="input-group col-lg-12">
                     <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
@@ -153,18 +153,12 @@
                 <table class="table" id="results" style="display: none;">
                     <thead>
                         <tr>
-                            <td colspan="2" style="width: 30%">Name</td>
-                            <td>Email</td>
-                            <td>Cell Phone</td>
+                            <td class="col-xs-4">Name</td>
+                            <td class="col-xs-4">Email</td>
+                            <td class="col-xs-4">Cell Phone</td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Richard Liu<td>
-                            <td>richy.liu.2002@gmail.com</td>
-                            <td>4083682085</td>
-                        </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>
@@ -302,93 +296,90 @@
         }
 
 
-        window.globalData = {cacti: 0, wildcats: 0, hawks: 0, serpents: 0};
+        window.globalData = [];
         // Cacti
         Tabletop.init({
             key: '1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU',
             callback: function (data, tabletop) {
-                globalData['cacti'] = data;
+                window.globalData.push.apply(window.globalData, data);
             },
-            debug: true,
             simpleSheet: true
         });
         // Wildcats
         Tabletop.init({
             key: '1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk',
             callback: function (data, tabletop) {
-                globalData['wildcats'] = data;
+                window.globalData.push.apply(window.globalData, data);
             },
-            debug: true,
             simpleSheet: true
         });
         // Hawks
         Tabletop.init({
             key: '1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y',
             callback: function (data, tabletop) {
-                globalData['hawks'] = data;
+                window.globalData.push.apply(window.globalData, data);
             },
-            debug: true,
             simpleSheet: true
         });
         // Serpents
         Tabletop.init({
             key: '1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc',
             callback: function (data, tabletop) {
-                globalData['serpents'] = data;
+                window.globalData.push.apply(window.globalData, data);
             },
-            debug: true,
             simpleSheet: true
         });
 
         setTimeout(function () {
-            console.log("Cacti:");
-            for (var i = 0; i < globalData.cacti.length; i++) {
-                console.log("\t" + globalData.cacti[i]["Scout's Full Name (last name first):"] + "\t\t\t" + globalData.cacti[i]["Scout's E-mail:"]);
-            }
-            console.log("-------------------------------------");
 
-            console.log("Wildcats:");
-            for (var i = 0; i < globalData.wildcats.length; i++) {
-                console.log("\t" + globalData.wildcats[i]["Scout's Full Name (last name first):"] + "\t\t\t" + globalData.wildcats[i]["Scout's E-mail:"]);
-            }
-            console.log("-------------------------------------");
-
-            console.log("Hawks:");
-            for (var i = 0; i < globalData.hawks.length; i++) {
-                console.log("\t" + globalData.hawks[i]["Scout's Full Name (last name first):"] + "\t\t\t" + globalData.hawks[i]["Scout's E-mail:"]);
-            }
-            console.log("-------------------------------------");
-
-            console.log("Serpents:");
-            for (var i = 0; i < globalData.serpents.length; i++) {
-                console.log("\t" + globalData.serpents[i]["Scout's Full Name (last name first):"] + "\t\t\t" + globalData.serpents[i]["Scout's E-mail:"]);
-            }
-            console.log("-------------------------------------");
         }, 3000);
 
+
+        $('#search-query').keypress(function(e){
+            if(e.keyCode === 13) {
+                $('#search-btn').click();
+            }
+        });
         $("#search-btn").click(function() {
-            var patrols = ['cacti', 'wildcats', 'hawks', 'serpents'];
             var query = $("#search-query").val();
+
+            // Split the names into first and last names
             var patrolnames = [];
-            for (var i = 0; i < 4; i++) {
-                for (var j = 0; j < window.globalData[patrols[i]].length; j++) {
-                    var fullname = window.globalData[patrols[i]][j]["Scout's Full Name (last name first):"];
-                    var name;
-                    if (fullname.search(", ")) {
-                        name = fullname.split(", ");
-                    } else if (fullname.search(" ")) {
-                        name = fullname.split(" ");
-                    } else if (fullname.search(",")) {
-                        name = fullname.split(",");
-                    } else {
-                        name = "ERROR:NAME_NOT_SPLITABLE";
-                    }
-                    window.globalData[patrols[i]][j]["name"] = name;
-                    patrolnames += name;
+            for (var i = 0; i < window.globalData.length; i++) {
+                var fullname = window.globalData[i]["Scout's Full Name (last name first):"];
+                var name;
+                if (fullname.search(", ") > 0) {
+                    name = fullname.split(", ");
+                } else if (fullname.search(" ") > 0) {
+                    name = fullname.split(" ");
+                } else if (fullname.search(",") > 0) {
+                    name = fullname.split(",");
+                } else {
+                    name = "ERROR";
+                    console.error("Unable to split given full name into first and last name");
+                }
+                name[0] = name[0].toLowerCase();
+                name[1] = name[1].toLowerCase();
+                patrolnames.push(name);
+            }
+
+            // Search for patrolnames for query
+            var results = [];
+            for (var i = 0; i < patrolnames.length; i++) {
+                // If first or last name is query
+                if (patrolnames[i][0] === query || patrolnames[i][1] === query) {
+                    results.push(i);
                 }
             }
-            console.log(window.globalData);
-            console.log(patrolnames);
+
+            // Display search results
+            $("#results").css("display", "block");
+            $("#results > tbody").html("");
+            for (var i = 0; i < results.length; i++) {
+                $("#results > tbody").append("<tr><td>" + window.globalData[results[i]]["Scout's Full Name (last name first):"]
+                                                    + "</td><td>" + window.globalData[results[i]]["Scout's E-mail:"]
+                                                    + "</td><td>" + window.globalData[results[i]]["Scout's Cell Phone"] + "</td</tr>");
+            }
         });
     </script>
 
