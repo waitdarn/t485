@@ -140,7 +140,7 @@
         <div class="row" id="search" style="display: none;">
             <div class="box col-xs-12">
                 <hr>
-                <h2 class="intro-text text-center">Search</h2>
+                <h2 class="intro-text text-center">Search <strong>(Experimental)</strong></h2>
                 <hr>
                 <div class="input-group col-lg-12">
                     <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
@@ -376,10 +376,16 @@
             $("#results").css("display", "block");
             $("#results > tbody").html("");
             for (var i = 0; i < results.length; i++) {
-                $("#results > tbody").append("<tr><td>" + window.globalData[results[i]]["Scout's Full Name (last name first):"]
-                                                    + "</td><td>" + window.globalData[results[i]]["Scout's E-mail:"]
-                                                    + "</td><td>" + window.globalData[results[i]]["Scout's Cell Phone"] + "</td</tr>");
+                $("#results > tbody").append(
+                    "<tr><td>" + window.globalData[results[i]]["Scout's Full Name (last name first):"]
+                 + "</td><td>" + window.globalData[results[i]]["Scout's E-mail:"]
+                 + "</td><td>" + window.globalData[results[i]]["Scout's Cell Phone"] + "</td</tr>");
             }
+
+            console.log(window.globalData);
+            console.log(patrolnames);
+            console.log(results);
+            console.log(window.globalData[results[i]]["Scout's Full Name (last name first):"]);
         });
     </script>
 
