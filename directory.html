@@ -341,7 +341,10 @@
             }
         });
         $("#search-btn").click(function() {
+            console.log("clicked button");
             var query = $("#search-query").val();
+            console.log(window.globalData);
+            console.log(query);
 
             // Split the names into first and last names
             var patrolnames = [];
@@ -362,6 +365,7 @@
                 name[1] = name[1].toLowerCase();
                 patrolnames.push(name);
             }
+            console.log(patrolnames);
 
             // Search for patrolnames for query
             var results = [];
@@ -371,6 +375,7 @@
                     results.push(i);
                 }
             }
+            console.log(results);
 
             // Display search results
             $("#results").css("display", "block");
@@ -381,11 +386,6 @@
                  + "</td><td>" + window.globalData[results[i]]["Scout's E-mail:"]
                  + "</td><td>" + window.globalData[results[i]]["Scout's Cell Phone"] + "</td</tr>");
             }
-
-            console.log(window.globalData);
-            console.log(patrolnames);
-            console.log(results);
-            console.log(window.globalData[results[i]]["Scout's Full Name (last name first):"]);
         });
     </script>
 
