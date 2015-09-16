@@ -303,6 +303,7 @@
             callback: function (data, tabletop) {
                 window.globalData.push.apply(window.globalData, data);
             },
+            debug: true,
             simpleSheet: true
         });
         // Wildcats
@@ -311,6 +312,7 @@
             callback: function (data, tabletop) {
                 window.globalData.push.apply(window.globalData, data);
             },
+            debug: true,
             simpleSheet: true
         });
         // Hawks
@@ -319,6 +321,7 @@
             callback: function (data, tabletop) {
                 window.globalData.push.apply(window.globalData, data);
             },
+            debug: true,
             simpleSheet: true
         });
         // Serpents
@@ -327,6 +330,7 @@
             callback: function (data, tabletop) {
                 window.globalData.push.apply(window.globalData, data);
             },
+            debug: true,
             simpleSheet: true
         });
 
@@ -343,6 +347,7 @@
         $("#search-btn").click(function() {
             console.log("clicked button");
             var query = $("#search-query").val();
+            query = query.toLowerCase();
             console.log(window.globalData);
             console.log(query);
 
