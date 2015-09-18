@@ -119,13 +119,7 @@
 
     <div class="container">
 
-        <div class="row" id="enter-contact-link" style="display:none;">
-            <div class="box">
-                <p>Would you like to share your contact information? Go to <a href="contact.html">Enter Contact Information</a></p>
-            </div>
-        </div>
-
-        <div class="row" id="password-form">
+        <div class="row" id="password-form" style="display: block;">
             <div class="box">
                 <div class="form-group input-append">
                     <label for="password">This section is password protected:</label>
@@ -138,11 +132,12 @@
         </div>
 
         <div class="row" id="search" style="display: none;">
-            <div class="box">
+            <div class="box col-xs-12">
                 <hr>
                 <h2 class="intro-text text-center">Search</h2>
                 <hr>
-                <div class="input-group">
+                <p>Click on the name for detailed information.</p>
+                <div class="input-group col-xs-12">
                     <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
                     <span class="input-group-btn" style="vertical-align: top">
                         <button class="btn btn-default" type="button" id="search-btn">
@@ -153,15 +148,21 @@
                 <table class="table" id="results" style="display: none;">
                     <thead>
                         <tr>
-                            <td class="col-sm-3">Name</td>
-                            <td class="col-sm-3">Cell Phone</td>
-                            <td class="col-sm-3">Father's Cell Phone</td>
-                            <td class="col-sm-3">Mother's Cell Phone</td>
+                            <th class="col-xs-3">Name</th>
+                            <th class="col-xs-3">Cell Phone</th>
+                            <th class="col-xs-3">Father's Cell Phone</th>
+                            <th class="col-xs-3">Mother's Cell Phone</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
                 <div id="detail" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="row" id="spreadsheet-confirm" style="display: none;">
+            <div class="box">
+                <button type="button" id="spreadsheet-confirm-btn" class="btn btn-default">Show full directory</button>
             </div>
         </div>
 
@@ -175,28 +176,7 @@
                     <li><a data-toggle="tab" href="#old-contact">Old Directory</a></li>
                 </ul>
 
-                <div class="tab-content">
-                    <div id="cacti" class="tab-pane fade in active">
-                        <a href="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>
-                        <iframe src="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false"></iframe>
-                    </div>
-                    <div id="wildcats" class="tab-pane fade">
-                        <a href="https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>
-                        <iframe src="https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/pubhtml?widget=true&amp;headers=false"></iframe>
-                    </div>
-                    <div id="hawks" class="tab-pane fade">
-                        <a href="https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>
-                        <iframe src="https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/pubhtml?widget=true&amp;headers=false"></iframe>
-                    </div>
-                    <div id="serpents" class="tab-pane fade">
-                        <a href="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>
-                        <iframe src="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/pubhtml?widget=true&amp;headers=false"></iframe>
-                    </div>
-                    <div id="old-contact" class="tab-pane fade">
-                        <p>This is the old directory. Use this one until the patrol leaders update their patrol's directory.</p>
-                        <iframe src="https://docs.google.com/spreadsheets/d/1vG2y2euWgG3ASuSpBC9oD5ufZ8YiL4Q-HlPYyKaZ_o0/pubhtml?widget=true&amp;headers=false"></iframe>
-                    </div>
-                </div>
+                <div class="tab-content" id="spreadsheet-content"></div>
             </div>
         </div>
 
@@ -233,10 +213,36 @@
 
     <script>
         $("#submit").click(checkPassword);
-        $("#password").keypress(function(e){
+        $("#password").keypress(function (e){
             if(e.keyCode === 13) {
                 $("#submit").click();
             }
+        });
+        $("#spreadsheet-confirm-btn").click(function () {
+            $("#spreadsheet-confirm").css("display", "none");
+            $("#spreadsheet-content").html(
+                "<div id=\"cacti\" class=\"tab-pane fade in active\">" +
+                    "<a href=\"https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/edit?usp=drive_web\" target=\"_blank\">Edit Spreadsheet</a>" +
+                    "<iframe src=\"https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false\"></iframe>" +
+                "</div>" +
+                "<div id=\"wildcats\" class=\"tab-pane fade\">" +
+                    "<a href=\"https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/edit?usp=drive_web\" target=\"_blank\">Edit Spreadsheet</a>" +
+                    "<iframe src=\"https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/pubhtml?widget=true&amp;headers=false\"></iframe>" +
+                "</div>" +
+                "<div id=\"hawks\" class=\"tab-pane fade\">" +
+                    "<a href=\"https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/edit?usp=drive_web\" target=\"_blank\">Edit Spreadsheet</a>" +
+                    "<iframe src=\"https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/pubhtml?widget=true&amp;headers=false\"></iframe>" +
+                "</div>" +
+                "<div id=\"serpents\" class=\"tab-pane fade\">" +
+                    "<a href=\"https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/edit?usp=drive_web\" target=\"_blank\">Edit Spreadsheet</a>" +
+                    "<iframe src=\"https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/pubhtml?widget=true&amp;headers=false\"></iframe>" +
+                "</div>" +
+                "<div id=\"old-contact\" class=\"tab-pane fade\">" +
+                    "<p>This is the old directory. Use this one until the patrol leaders update their patrol's directory.</p>" +
+                    "<iframe src=\"https://docs.google.com/spreadsheets/d/1vG2y2euWgG3ASuSpBC9oD5ufZ8YiL4Q-HlPYyKaZ_o0/pubhtml?widget=true&amp;headers=false\"></iframe>" +
+                "</div>"
+            );
+            $("#spreadsheet").css("display", "block");
         });
         checkCookie();
 
@@ -262,8 +268,8 @@
 
             if (hash(password) === 3208057) {
                 $("#password-form").css("display", "none");
-                $("#spreadsheet").css("display", "block");
                 $("#search").css("display", "block");
+                $("#spreadsheet-confirm").css("display", "block");
                 $("#search-query").focus();
 
                 setCookie("logged-in", "true", 7);
@@ -293,8 +299,8 @@
 
             if (getCookie("logged-in") === "true") {
                 $("#password-form").css("display", "none");
-                $("#spreadsheet").css("display", "block");
                 $("#search").css("display", "block");
+                $("#spreadsheet-confirm").css("display", "block");
                 $("#search-query").focus();
             }
         }
@@ -305,19 +311,18 @@
             $("#password").focus();
         });
 
-        setTimeout(function () {
-            // Cacti
-            Tabletop.init({key: "1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU", callback: addData, simpleSheet: true});
-            // Wildcats
-            Tabletop.init({key: "1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk", callback: addData, simpleSheet: true});
-            // Hawks
-            Tabletop.init({key: "1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y", callback: addData, simpleSheet: true});
-            // Serpents
-            Tabletop.init({key: "1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc", callback: addData, simpleSheet: true});
-            function addData(data, t) {
-                window.globalData.push.apply(window.globalData, data);
-            }
-        }, 2000);
+        // Cacti
+        Tabletop.init({key: "1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU", callback: addData, simpleSheet: true});
+        // Wildcats
+        Tabletop.init({key: "1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk", callback: addData, simpleSheet: true});
+        // Hawks
+        Tabletop.init({key: "1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y", callback: addData, simpleSheet: true});
+        // Serpents
+        Tabletop.init({key: "1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc", callback: addData, simpleSheet: true});
+        function addData(data, t) {
+            window.globalData.push.apply(window.globalData, data);
+            console.log("initializing tabletop, 4 times");
+        }
 
         $("#search-query").keypress(function(e){
             if(e.keyCode === 13) {
@@ -328,7 +333,7 @@
             var userquery = $("#search-query").val();
             $("#search-query").val("");
             userquery = userquery.toLowerCase();
-            console.log(userquery);
+            //console.log(userquery);
             var query = [];
             if (userquery.search(" ") > 0) {
                 query = userquery.split(" ");
@@ -337,8 +342,8 @@
                 query[1] = 0;
             }
 
-            console.log(window.globalData);
-            console.log(query);
+            //console.log(window.globalData);
+            //console.log(query);
 
             // Split the names into first and last names
             var patrolnames = [];
@@ -365,7 +370,7 @@
                 name[1] = name[1].toLowerCase();
                 patrolnames.push(name);
             }
-            console.log(patrolnames);
+            //console.log(patrolnames);
 
             // Search for patrolnames for query
             var results = [];
@@ -376,6 +381,16 @@
                 if (query[1] === 0) {
                     if (patrolnames[i][0] === query[0] || patrolnames[i][1] === query[0]) {
                         score.push({id: i, score: 1});
+                    } else if (query[0].length === patrolnames[i][0].length) {
+                        var diff = compare(query[0], patrolnames[i][0], 0.5);
+                        if (diff != 10) {
+                            score.push({id: i, score: diff + 1});
+                        }
+                    } else if (query[0].length === patrolnames[i][1].length) {
+                        var diff = compare(query[0], patrolnames[i][1], 0.5);
+                        if (diff != 10) {
+                            score.push({id: i, score: diff + 1});
+                        }
                     }
                 } else {
                     // If first or last name is query's first or last name set score to 0
@@ -387,6 +402,19 @@
             score.sort(function(a, b) {
                 return parseFloat(a.score) - parseFloat(b.score);
             });
+            var directMatch;
+            for (var i = 0; i < score.length; i++) {
+                if (score[i].score > 1) {
+                    directMatch = true;
+                }
+            }
+            if (directMatch) {
+                for (var i = 0; i < score.length; i++) {
+                    if (score[i].score > 1) {
+                        score.splice(i, 1);
+                    }
+                }
+            }
             console.log(score);
 
             for (var i = 0; i < score.length; i++) {
@@ -400,7 +428,7 @@
             for (var i = 0; i < results.length; i++) {
                 var name = window.globalData[results[i]]["Scout's Full Name (last name first):"];
                 $("#results > tbody").append(
-                    "<tr><td><a onclick=\"showfullinfo('" + results[i] + "')\">" + name
+                    "<tr><td><a onclick=\"showfullinfo(" + results[i] + ")\">" + name
                  + "</a></td><td>" + window.globalData[results[i]]["Scout's Cell Phone"]
                  + "</td><td>" + window.globalData[results[i]]["Father's Cell Phone"]
                  + "</td><td>" + window.globalData[results[i]]["Mother's Cell Phone"] + "</td></tr>");
@@ -418,6 +446,25 @@
                 "Mother's Cell Phone: " + window.globalData[id]["Mother's Cell Phone"] + "<br>" +
                 "Mother's E-mail: "     + window.globalData[id]["Mother's E-mail"] + "<br>"
             );
+        }
+
+        function compare(a, b, threshold) {
+            // Comparing a to b
+            // Loop through every character in the name
+            var percent = 0;
+            for (var i = 0; i < b.length; i++) {
+                if (a[i] !== b[i]) {
+                    percent += 1;
+                }
+            }
+            console.log(percent);
+            console.log(b.length);
+            // Score is less is better!
+            if (percent / b.length < threshold) {
+                return percent / b.length;
+            } else {
+                return 10;
+            }
         }
     </script>
 

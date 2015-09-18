@@ -1,0 +1,371 @@
+Prequel Stuff
+There are two ways to define what happened on your first date with Ariane.
+
+Firstly, you can pick a pre-configured date from the Prequel Menu under Options. There are three types of pre-configured date: a hot date (ie a date that ended in sex; these are marked with an asterisk), an ordinary date that didn't end in sex, or a bad date (although only one of them is so bad that Ariane won't date you again). There is also a setting called "Did It All!!" which combines all of the possible events from the first game (unless otherwise specified, this is the setting used by this walkthrough).
+
+Secondly, if you completed the first game you would have received a code representing the events of that date. If you click the Enter Custom button under Options, when you start the game you will be prompted to enter your code. The advantage of doing this is that you can have combinations of events that aren't possible with the pre-configured dates. This is the only way to access a particular Easter Egg, which is mentioned below.
+
+Endings
+There are a total of 25 endings, listed below in the same order that they will appear in the gallery. If an ending involves sex it has an asterisk.
+
+Once you’ve unlocked all 25 endings, you will have the option to pick one of the girls for an epilogue from the Endings gallery.
+
+Ariane
+Ariane and Rebecca
+Phone Sex
+Blackout Fun*
+Celebrity Sightings
+Tequila Shots
+House Party with Ariane
+Getting Drunk at Ariane's Place
+Fuck Buddies*
+Makeup Sex*
+Safety Pullout*
+
+Rachel
+Coffee Conversations
+The Amusement Park
+Gamer Girl*
+House Party With Rachel
+The Photoshoot
+Concert and After Party
+The Costume Contest
+Arch Angel
+LARPing with Arch Angel
+Skinny Dipping at Night
+
+Stacy
+Centerfold
+
+Wendy
+Topless Volleyball
+
+Bonnie
+Pool Shark at the Live Cabaret
+
+Veronica
+A New Paint Job
+
+Paula
+Something's In The Air
+
+Player notebook
+Version 1.0 added a player notebook, which keeps track of the information that you’ve learned about each character. Where possible I’ve noted where you learn specific things in this format: [Ariane: major] (ie. you’ve learned what Ariane’s major at college was). However, it is not yet fully comprehensive.
+
+Clues
+The player notebook also has six clues that can be unlocked by various actions (listed below):
+#1 - Requires one of the following Ariane endings: 'Rebecca and Ariane', 'Phone Sex', 'Blackout Fun', 'Safety Pullout', or 'Ice Cream' (NB. the latter is no longer an achievement in v1.0, but it still triggers this clue)
+#2 - You must learn that Rachel has a LAN party scheduled for that evening, visit the fortune teller at the carnival, and get the 'Concert and After Party' ending.
+#3 - You must get any of the Bonnie endings, and be ditched by Arch Angel at the strip club (ie. instead of choosing "I don't care if you take me to headquarters." in the walkthrough below, choose "OK, OK, He is in that building ahead.").
+#4 - You must get either of the Veronica endings, plus the 'Skinny Dipping at Night' Rachel ending.
+#5 - You must get the two house party endings, 'House Party' and 'House Party With Rachel'.
+#6 - You must get the 'Tequila Shots' and 'Concert and After Party' endings.
+
+The Walkthrough
+Any option with an asterisk next to it is a cosmetic choice. You will get a slightly different response if you choose another option but it won't significantly affect anything. A blank line is generally used to separate different paths.
+
+The Beginning
+
+To begin with only the first three options will be available. Once you've completed the different stories, the fourth option will become available.
+
+Call Ariane, and see if she wants to go out again (go to Ariane)
+Go to the local gym, where all the hot women tend to be on Saturday morning (go to The Gym)
+Go back to sleep (go to Veronica & Bonnie)
+Hang out at home and play some online games (go to Paula)
+
+The Gym
+
+Go and talk to the funky haired girl [Lydia: job, gym]
+OR
+Talk to Rebecca [Rebecca: gym, dance]
+OR
+Ask Ariane out for a second date
+
+It doesn't matter who you try to approach as you will be shot down one way or another. You will end up talking to Dave, who will suggest going to a bar to pick up chicks this evening.
+
+Do some weight training [Wendy: name, job] (Go to Wendy)
+OR
+Go try out the Yoga class too [Heidi: name, yoga] (Go to The Bar)
+
+The Bar
+
+Um, OK.*
+Assert yourself and demand the hot blonde [Veronica: bar; Ariane: rebecca1] [Ending: Centerfold] OR Let Dave have his way and go talk to the nerdy girl [go to Rachel]
+
+Wendy
+
+Great, show me what to do
+Pretend to do 50 leg lifts
+Negotiate down
+Let me try a mile and see how it goes
+Sure I'll give you a ride to the lake.
+Do you enjoy being a personal trainer? [Wendy: drive-n-dine]
+Where else do you work? [Wendy: lizard]
+OR
+What is this gig you have at the lake? [Lexi: volleyball, job; Wendy: drive-n-dine]
+I don't care, I'll run around naked anyways* [Lexi: name; Veronica: nude] [Ending: Topless Volleyball]
+
+Veronica & Bonnie
+
+[Veronica: bar]
+Hell yeah, I could use some adventure
+Will there be a lot of Emo types there?*
+If the cops dust for fingerprints, they will suspect I stole it. I have to turn you in* [Ending: A New Paint Job]
+
+Sure, I just got done watching five hours of Baseball, I'm ready to party! [Bonnie: name]
+Sure I'll make sure you get inside safe.
+(save when she says "Naw, let's just fuck with the lights on!", then reload until you've seen all the endings)
+[Ending: Pool Shark at the Live Cabaret]
+
+Paula
+
+[Find the hidden raptors if you can. Otherwise, just click wildly until they're all gone]
+Thum the Barbarian gets it
+Mage Cassandra then
+Stealth around them
+Sure Let's go for it
+Let's discuss strategy
+[Save Interrupt Arrow for stopping the golem's Avalanche; use Damage Arrow if it's about to throw a rock; use Damage or Knockback arrow if it's about to stomp]
+Who is this?*
+So, who are you really?*
+Go to the Hotel
+Put token into vending machine
+Go to the Dress Shop
+Here is a blue token
+Green, please
+Go to the Night Club [Wendy: lizard]
+Yes, it's an interesting game*
+Go to Heidi's Salon [Heidi: name, job, ariane; Suki: name, job]
+I have a green one, here you go
+Yellow
+Go to the Art Museum
+Here is a yellow token
+White, please
+Go to the Restaurant
+Here is a white token
+Blue, please,,,
+Go to Home Place
+Here is a blue token
+Red, please
+Go to the Lingerie Store [Rebecca: job]
+Here is a red token
+White, please*
+Yes, it's gibberish*
+I'd love to take you with me*
+I'm supposed to be here for some meeting* [Paula: memory]
+How did you do it? [Paula: iq]
+Yes, I admit the token game was a lot of fun [Rachel: Valena]
+How is that possible? [Paula: education] -> With a little hair and makeup change you could be a star OR What are you a professor of? [Paula: atmosphere]
+What are you doing now?*
+[Play with the settings until you get everything right]
+[Ending: Something's In The Air]
+
+Rachel
+
+Do you come here often? (This leads to the end of the evening unless you went to the diner on your first date with Ariane, but still had a good date (which is not possible with the pre-configured dates, but a custom first date experience of 414aa should work). If that’s the case you will go to the diner again. This happens any time a date with Ariane or Rachel ends prematurely in the evening. Go to Diner)
+
+Hello.
+So, I'm supposed to distract you while my friend hits on your friend. [Rachel: honesty, name, student]
+So, What is your major?
+I have heard worse reasons for choosing a major.
+We can wait, what is the wait like?*
+I'll have the Vegetarian platter
+I'll take the soup*
+Cola* [Rachel: vegetarian, age]
+No, It just sounded tasty.*
+I like it here, I just don't know many people here yet. OR I love this town, there is so much to do here [Rachel: dishonest]
+
+(You can learn a lot of information about Rachel during this conversation. However, most of the paths are mutually exclusive or do not lead to the date continuing, so you should save here if you’re being a completist. The numbers in brackets refer to how much that option improves the PC's relationship with Rachel.)
+
+Books
+          Fiction mostly (+1)
+                   Romance novels [Rachel: dishonest]
+                   Sci-Fi and Fantasy (+1) [Rachel: sci-fi] -> Fantasy Fest
+                   Graphic novels (+1) [Rachel: comic] -> Fantasy Fest
+          Non-Fiction mostly
+                   Science mostly (+1) [Rachel: science] -> Albert Einstein -> Carl Sagan (+1) -> Neil deGrasse Tyson (+1)
+                   Religion and Philosophy [Rachel: humanism]
+          Magazines mostly
+                   Sports magazines [Rachel: model, beach]
+                   Men's magazines (+1) [Rachel: honest. dishonest, model, beach] -> Would you be willing to do nude work? (+1)
+
+Movies (leads to movie date after dinner)
+          Action films (+1) [Rachel: action] -> I like women that know what they like. (+1)
+
+Sports -> What were you doing in the Seychelles? -> Wait, that does not make sense. [Rachel: model]
+
+Video Games (+1) [Rachel: video games]
+          First person shooters [Rachel: fps] -> Mostly solo* (+1)
+          MMORPG's (+1) [Rachel: rpg, elemental realms]
+
+Her Career [Rachel: model, beach]
+
+Atmospheric Science (+1) [Rachel: environment]
+          (Doesn’t matter)*
+                   Global climate change is a fact (+1)
+                   I really have not decided yet  [Rachel: ignorant]
+
+Offer to pay [Rachel: geek]
+
+(If you talked about movies, Rachel will suggest going to see “The Maguffin Job 2”. Go to Movie with Rachel)
+
+If you learned that she is a model but didn’t score enough points to get a date, she will sign a copy of Beach magazine for you [Rachel: magazine2]
+
+Let's go to that nightclub [Heidi: name, job; Rachel: model; Suki: name, job] (go to Nightclub) OR I'm new to town, you should pick a spot I don't know about. [Rachel: car, extrovert, photo] (go to Carnival)
+
+Movie with Rachel
+I liked it.* [Rachel: model]
+Intervene (+1) [Rachel: beach, website]
+[Ending: Coffee Conversations]
+
+Nightclub
+
+So, what do you have planned? [Suki: college] -> Sure, why not? [Suki: volleyball]
+OR
+Why do you have to stay? [Suki: books] -> Sure, why not? [Suki: volleyball; Heidi: secret]
+OR
+Read some magazines [Rachel: beach, magazine1, nude]
+
+So, how did you get into modeling?*
+The second, the daring purple number. (+1) OR The black one with pink trim [Rachel: nude]
+[Wendy: lizard; Ariane: rebecca2]
+We went to all that trouble to make you look fabulous, we should stay for the after party [Ending: Concert and After Party] OR Let's avoid the crowd and just leave now. [Rachel: car, home]
+Whew, that is a relief. (+1) [Rachel: studio, photo]
+Number 3
+Number 4
+As artistic nudes go these are very good. [Rachel: erotic] [Ending: The Photoshoot]
+
+Carnival
+
+Ferris wheel
+The Magician
+Tilt-a-Whirl
+The rollercoaster [Ending: The Amusement Park]
+
+The Snack Bar
+OK, It's you.
+The rollercoaster
+The Dunk Booth
+Yes, I'm interested [go to House Party]
+
+The rollercoaster
+The Dunk Booth
+Tilt-A-Whirl* [go to Second Date with Rachel]
+
+House Party
+
+You are right we should go.* [Ending: House Party With Rachel]
+
+Fantasy Fest
+
+Nice, you just happen to have that in your closet?*
+
+Let's have a look around.
+Yes*
+Go to the costume contest.
+Vote for the one on the left*
+Go check out the comic vendors [Ending: Arch Angel]
+
+Let's do the trivia contest
+[The answers are Angel, Ariana, Barry Allen, Blink, Dragonball, Evolved Human time travellers, Geonosis, Ghost in the Shell, Hellboy, Invader Zim, Kilgore Trout, Mother and Son, My Neighbor Totoro, Philip K Dick, Poison Ivy, Stephen King, The Foundation Series, The Targaryens, The Trill, The Wheel of Time.]
+Go look around the rest of the festival.
+Go to the Women's Costume Contest.
+(if you didn't answer all of the trivia questions correctly Ending: The Costume Contest; if you did Ending: Skinny Dipping at Night)
+
+Let's do the trivia contest (see above)
+Go look around the rest of the festival.
+Go check out the comic vendors
+Tell me more about larping, is it like cosplay?* [Rachel: LARP]
+I'd be willing to play along with you
+I'm not telling you a thing!
+I don't care if you take me to headquarters. [Rachel: home] (Choose "OK, OK, He is in that building ahead." to unlock Clue 3)
+Those handcuffs don't scare me.
+Looks like you will have to get physical with me.
+Very well, he likes to go to the diner [Lexi: job, tits]
+OR
+Very well, he likes to go to the nightclub [Ariane: rebecca3]
+OR
+Never!
+OK, He's at the strip club.* [Rachel: nude, sex, fetish, bi] [Ending: LARPing with Rachel] [NB. This ending is called LARPing with Arch Angel in the ending gallery]
+
+Second Date with Rachel
+
+I did not hear about the festival.* [Rachel: home, mod, valena]
+Fight*
+She does!
+Yes, Your Highness.* [Rachel: nude, sex] [Ending: Gamer Girl]
+
+Ariane
+
+Hey beautiful, whatcha wearing?
+Different is cool with me. What do you got in mind?
+You want a suit? You got it!
+Good evening Ariane, I love your dress.*
+Let's sit at the bar and wait then.
+Ask about her day* [Stacy: wine]
+All right, Let's go.
+
+If you had a hot date [Ariane: brutal]
+Why was it so important to you?
+I'm sorry you feel that way. [Ending: Fuck Buddies] OR We should just go out and have some fun.
+Be careful, I may just take you up on that offer.
+
+If you "Did It All!!"
+The movie Xanadu*
+
+See an Action Movie (go to Action Movie) OR See a Romantic Comedy (go to Romantic Comedy) OR See a Drama (go to Drama) OR Let Ariane decide (go to Ariane Decides)
+
+Romantic Comedy [Veronica: romcom; Ariane: romcom]
+
+Let's stick with the concert
+Let Ariane go get the beer
+If Ariane is willing, then I am too
+I'm already feeling performance anxiety thinking about it.*
+Ariane, are you giving me permission to lick another woman's pussy?*
+If you don't feel comfortable, Ariane, maybe you shouldn't* [Ending: Tequila Shots]
+OR
+It's your turn to choose, remember?
+Are you sure you want to run around the party shirtless?* [Ending: House Party with Ariane]
+
+Ariane Decides [Veronica: romcom; Ariane: romcom]
+
+Go to the nightclub [Ending: Celebrity Sightings] OR Go back to her place (go to Ariane's House) OR Let her decide what to do (go to Mountain Drive)
+
+Action Movie
+
+It wasn't very good.* [Ariane: action movie]
+Really? Me too.* [Ariane: gym, action]
+I'm not that interested then.*
+What? "Action Girl" is afraid of a little blackout and thunderstorm?
+[Ending: Blackout Fun]
+
+Drama [Heidi: heiariane] (If you didn’t meet Rebecca on the first date: Rebecca: name, ariane, job)
+
+Let Rebecca find a seat elsewhere.
+I agree, it was a good movie, but very sad. [Ariane: drama] (If you didn’t meet Rebecca on the first date Rebecca: gay)
+Well, now I am.  Thanks for the imagery. * [Ariane: hetero]
+Yes, but now is not the time (if you Did It All!!)
+So, uh, what are you wearing? [Ending: Phone Sex]
+
+I'd be willing to get in on that action.
+Yes, but now is not the time*
+
+Invite Rebecca to join you and Ariane [Ariane: drama]
+I agree, it was a good movie, but very sad. (If you didn’t meet Rebecca on the first date: Rebecca: gay)
+Not a problem with it at all, I know a few myself. [Ariane: major, gym, cheer; Rebecca: major, dance]
+You wouldn't happen to still have your uniform would you?* [Ariane: helper]
+[Ending: Ariane and Rebecca]
+
+Ariane's House
+
+If you had a hot date
+Just the beer thanks* [Ending: Makeup Sex]
+
+If you "Did It all!!"
+Stop at the store as well
+Crank up the tunes!
+Carry Ariane to bed [Ending: Getting Drunk at Ariane's Place]
+
+Mountain Drive
+
+No* [Ending: Safety Pullout]
