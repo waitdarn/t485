@@ -138,11 +138,11 @@
         </div>
 
         <div class="row" id="search" style="display: none;">
-            <div class="box col-xs-12">
+            <div class="box">
                 <hr>
                 <h2 class="intro-text text-center">Search</h2>
                 <hr>
-                <div class="input-group col-lg-12">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
                     <span class="input-group-btn" style="vertical-align: top">
                         <button class="btn btn-default" type="button" id="search-btn">
@@ -153,15 +153,15 @@
                 <table class="table" id="results" style="display: none;">
                     <thead>
                         <tr>
-                            <td class="col-xs-2">Name</td>
-                            <td class="col-xs-2">Email</td>
-                            <td class="col-xs-2">Cell Phone</td>
-                            <td class="col-xs-2">Father's Cell Phone</td>
-                            <td class="col-xs-2">Mother's Cell Phone</td>
+                            <td class="col-sm-3">Name</td>
+                            <td class="col-sm-3">Cell Phone</td>
+                            <td class="col-sm-3">Father's Cell Phone</td>
+                            <td class="col-sm-3">Mother's Cell Phone</td>
                         </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
+                <div id="detail" style="display: none;"></div>
             </div>
         </div>
 
@@ -223,7 +223,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Firebase -->
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 
     <!-- Clicky Web Analytics -->
     <a title="Web Statistics" href="https://clicky.com/100869133"><img alt="Web Statistics" src="https://static.getclicky.com/media/links/badge.gif" border="0" /></a>
@@ -232,17 +232,17 @@
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
     <script>
-        $('#submit').click(checkPassword);
-        $('#password').keypress(function(e){
+        $("#submit").click(checkPassword);
+        $("#password").keypress(function(e){
             if(e.keyCode === 13) {
-                $('#submit').click();
+                $("#submit").click();
             }
         });
         checkCookie();
 
 
         function checkPassword() {
-            var password = $('#password').val();
+            var password = $("#password").val();
             var hash = function(str) {
                 var h = 0;
                 if (str.length == 0) return h;
@@ -261,14 +261,15 @@
             };
 
             if (hash(password) === 3208057) {
-                $('#password-form').css('display', 'none');
-                $('#spreadsheet').css('display', 'block');
-                $('#search').css('display', 'block');
+                $("#password-form").css("display", "none");
+                $("#spreadsheet").css("display", "block");
+                $("#search").css("display", "block");
+                $("#search-query").focus();
 
                 setCookie("logged-in", "true", 7);
             } else {
-                $('.form-group').addClass('has-error has-feedback');
-                $('#password').val('');
+                $(".form-group").addClass("has-error has-feedback");
+                $("#password").val("");
             }
         }
 
@@ -281,44 +282,51 @@
             };
             var getCookie = function(cname) {
                 var name = cname + "=";
-                var ca = document.cookie.split(';');
+                var ca = document.cookie.split(";");
                 for(var i=0; i<ca.length; i++) {
                     var c = ca[i];
-                    while (c.charAt(0)==' ') c = c.substring(1);
+                    while (c.charAt(0)==" ") c = c.substring(1);
                     if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
                 }
                 return "";
             };
 
             if (getCookie("logged-in") === "true") {
-                $('#password-form').css('display', 'none');
-                $('#spreadsheet').css('display', 'block');
-                $('#search').css('display', 'block');
+                $("#password-form").css("display", "none");
+                $("#spreadsheet").css("display", "block");
+                $("#search").css("display", "block");
+                $("#search-query").focus();
             }
         }
 
 
         window.globalData = [];
+        $(document).ready(function() {
+            $("#password").focus();
+        });
 
-        // Cacti
-        Tabletop.init({key: '1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU', callback: addData, simpleSheet: true});
-        // Wildcats
-        Tabletop.init({key: '1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk', callback: addData, simpleSheet: true});
-        // Hawks
-        Tabletop.init({key: '1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y', callback: addData, simpleSheet: true});
-        // Serpents
-        Tabletop.init({key: '1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc', callback: addData, simpleSheet: true});
-        function addData(data, t) {
-            window.globalData.push.apply(window.globalData, data);
-        }
+        setTimeout(function () {
+            // Cacti
+            Tabletop.init({key: "1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU", callback: addData, simpleSheet: true});
+            // Wildcats
+            Tabletop.init({key: "1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk", callback: addData, simpleSheet: true});
+            // Hawks
+            Tabletop.init({key: "1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y", callback: addData, simpleSheet: true});
+            // Serpents
+            Tabletop.init({key: "1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc", callback: addData, simpleSheet: true});
+            function addData(data, t) {
+                window.globalData.push.apply(window.globalData, data);
+            }
+        }, 2000);
 
-        $('#search-query').keypress(function(e){
+        $("#search-query").keypress(function(e){
             if(e.keyCode === 13) {
-                $('#search-btn').click();
+                $("#search-btn").click();
             }
         });
         $("#search-btn").click(function() {
             var userquery = $("#search-query").val();
+            $("#search-query").val("");
             userquery = userquery.toLowerCase();
             console.log(userquery);
             var query = [];
@@ -387,16 +395,30 @@
 
             // Display search results
             $("#results").css("display", "block");
+            $("#detail").css("display", "none")
             $("#results > tbody").html("");
             for (var i = 0; i < results.length; i++) {
+                var name = window.globalData[results[i]]["Scout's Full Name (last name first):"];
                 $("#results > tbody").append(
-                    "<tr><td>" + window.globalData[results[i]]["Scout's Full Name (last name first):"]
-                 + "</td><td>" + window.globalData[results[i]]["Scout's E-mail:"]
-                 + "</td><td>" + window.globalData[results[i]]["Scout's Cell Phone"]
+                    "<tr><td><a onclick=\"showfullinfo('" + results[i] + "')\">" + name
+                 + "</a></td><td>" + window.globalData[results[i]]["Scout's Cell Phone"]
                  + "</td><td>" + window.globalData[results[i]]["Father's Cell Phone"]
-                 + "</td><td>" + window.globalData[results[i]]["Mother's Cell Phone"] + "</td</tr>");
+                 + "</td><td>" + window.globalData[results[i]]["Mother's Cell Phone"] + "</td></tr>");
             }
         });
+
+        function showfullinfo(id) {
+            $("#results").css("display", "none");
+            $("#detail").css("display", "block").html("").append(
+                "Name: "                + window.globalData[id]["Scout's Full Name (last name first):"] + "<br>" +
+                "Email: "               + window.globalData[id]["Scout's E-mail:"] + "<br>" +
+                "Cell Phone: "          + window.globalData[id]["Scout's Cell Phone"] + "<br>" +
+                "Father's Cell Phone: " + window.globalData[id]["Father's Cell Phone"] + "<br>" +
+                "Father's E-mail: "     + window.globalData[id]["Father's E-mail"] + "<br>" +
+                "Mother's Cell Phone: " + window.globalData[id]["Mother's Cell Phone"] + "<br>" +
+                "Mother's E-mail: "     + window.globalData[id]["Mother's E-mail"] + "<br>"
+            );
+        }
     </script>
 
 </body>
