@@ -181,6 +181,18 @@
     <!-- Flickr -->
     <script>
         var events =
+        "<a href=\"http://t485.org/pictures.html?id=72157658182644490\">" +
+            "<figure>" +
+                    "<img src=\"https://farm1.staticflickr.com/613/21211787148_8ba213618c_m.jpg\" alt=\"\">" +
+                    "<figcaption style=\"text-align: center;\"><b>September 2015 COH</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"http://t485.org/pictures.html?id=72157656623076373\">" +
+            "<figure>" +
+                    "<img src=\"https://farm6.staticflickr.com/5755/21431605430_5569c1f9f6_m.jpg\" alt=\"\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Labor Day Backpacking Group 5</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
         "<a href=\"http://t485.org/pictures.html?id=72157658370580202\">" +
             "<figure>" +
                     "<img src=\"https://farm6.staticflickr.com/5636/21074730510_80bd4d9acd_m.jpg\" alt=\"\">" +
@@ -203,36 +215,6 @@
             "<figure>" +
                     "<img src=\"http://farm6.static.flickr.com/5809/20760027111_e493afd369_m.jpg\" alt=\"\">" +
                     "<figcaption style=\"text-align: center;\"><b>Eagle COH</b></figcaption>" +
-            "</figure>" +
-        "</a>" +
-        "<a href=\"http://t485.org/pictures.html?id=72157655248362959\">" +
-            "<figure>" +
-                    "<img src=\"https://farm1.staticflickr.com/363/18934781093_592042bafe_m.jpg\" alt=\"\">" +
-                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 8-9 - Travelling Home</b></figcaption>" +
-            "</figure>" +
-        "</a>" +
-        "<a href=\"http://t485.org/pictures.html?id=72157653317971384\">" +
-            "<figure>" +
-                    "<img src=\"https://farm1.staticflickr.com/403/18925175123_b8a4f4b28c_m.jpg\" alt=\"\">" +
-                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 7 - Friday</b></figcaption>" +
-            "</figure>" +
-        "</a>" +
-        "<a href=\"http://t485.org/pictures.html?id=72157655230952309\">" +
-            "<figure>" +
-                    "<img src=\"https://farm1.staticflickr.com/420/19538080262_f2f752d54b_m.jpg\" alt=\"\">" +
-                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 6 - Thursday</b></figcaption>" +
-            "</figure>" +
-        "</a>" +
-        "<a href=\"http://t485.org/pictures.html?id=72157655225621798\">" +
-            "<figure>" +
-                    "<img src=\"http://farm4.static.flickr.com/3771/19347409199_112b968b8b_m.jpg\" alt=\"\">" +
-                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 4-5 - Canoeing and Beach Activities</b></figcaption>" +
-            "</figure>" +
-        "</a>" +
-        "<a href=\"http://t485.org/pictures.html?id=72157653263958573\">" +
-            "<figure>" +
-                    "<img src=\"http://farm1.static.flickr.com/3673/19341389658_4f3e8d78eb_m.jpg\" alt=\"\">" +
-                    "<figcaption style=\"text-align: center;\"><b>Camp Meriweather Day 1-3 - Travelling and Monday</b></figcaption>" +
             "</figure>" +
         "</a>";
 
@@ -324,7 +306,7 @@
                 return vars;
             };
             // If no id use latest
-            var id = getVarsFromUrl()["id"] || "72157658370580202";
+            var id = getVarsFromUrl()["id"] || "72157658182644490";
 
             $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389%40N07&photoset_id=" + id + "&format=json", function() {
                 console.log("loaded script successfully");
