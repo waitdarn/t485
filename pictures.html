@@ -236,6 +236,9 @@
             "</figure>" +
         "</a>";
 
+        $(document).ready(function() {
+            $("#password").focus();
+        });
         $('#submit').click(checkPassword);
         $('#password').keypress(function(e){
             if(e.keyCode === 13) {

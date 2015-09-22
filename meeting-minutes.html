@@ -120,14 +120,14 @@
     <div class="container">
 
         <div class="row" id="password-form">
-            <div class="box col-lg-12">
+            <div class="box">
                 <div class="form-group input-append">
                     <label for="password">This section is password protected:</label>
                     <input type="password" class="form-control" id="password">
-                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" style="display: none;"></span>
+                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
                     <span id="inputError2Status" class="sr-only">(error)</span>
                 </div>
-                <button type="submit" class="btn btn-default" id="submit">Submit</button>
             </div>
         </div>
 
@@ -140,6 +140,10 @@
                 </div>
                 <div class="col-md-12">
                     <ul>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1YO--SYuKL2BRyKjyS3ucLOvIfr2JLRgWZSEQLst_Ruc/edit#gid=0" target="_blank">Troop Meeting Mintues Headcounts 9/21/2015</a></li>
+                        <li><a href="https://docs.google.com/document/d/1fVhar4ZxNfw5I7x5SuHthdLqj8dydFxfus_32qytoMU/edit" target="_blank">Troop Meeting Minutes 9/21/2015</a></li>
+                        <li><a href="https://docs.google.com/document/d/1b9mrcrcHPaxtdmusNJhSX8IDJiwbVD4X6gD7Nc-BsIw/edit" target="_blank">PLC Meeting Minutes 9/21/2015</a></li>
+                        <br>
                         <li><a href="https://docs.google.com/spreadsheets/d/1YO--SYuKL2BRyKjyS3ucLOvIfr2JLRgWZSEQLst_Ruc/edit#gid=0" target="_blank">Troop Meeting Mintues Headcounts 8/31/2015</a></li>
                         <li><a href="https://docs.google.com/document/d/1g3rP7HmreaeVRN_3mdnNmqfP_gsw57DNqrxh1N2lKjY/edit" target="_blank">Troop Meeting Minutes 8/31/2015</a></li>
                         <li><a href="https://docs.google.com/document/d/1T0skJq55HorgjmuyWXHpmY2jQVdg7k9sjJaBQm3a1Fc/edit" target="_blank">PLC Meeting Minutes 8/31/2015</a></li>
@@ -197,6 +201,9 @@
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif" /></p></noscript>
 
     <script>
+        $(document).ready(function() {
+            $("#password").focus();
+        });
         $('#submit').click(checkPassword);
         $('#password').keypress(function(e){
             if(e.keyCode === 13) {
