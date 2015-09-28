@@ -442,9 +442,9 @@
             var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
 
             var name = prompt("Please enter your first and last name");
-            console.log(name.length);
+
             // Shortest name: Hi Le
-            while (name === "" || name.length < 5 || name.length > 30 || name.search(" ") < 2) {
+            while (name === "" || name.length < 5 || name.length > 30 || name.search(" ") < 2 || name.search(" ") > name.length - 3) {
                 name = prompt("Please enter your first and last name");
             }
             fireRef.push({"book": book, "name": name, "date": date});

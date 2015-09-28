@@ -128,25 +128,25 @@
               <p style="color: darkred">* Required</p>
               <form role="form">
                   <label class="control-label">Scout's Full Name<span style="color: darkred;">*</span>:</label>
-                  <input type="text" class="form-control" id="name" maxlength="30">
+                  <input type="text" class="form-control" id="name" maxlength="30" required>
 
                   <label class="control-label">Scout's Email:</label>
                   <input type="email" class="form-control" id="email" maxlength="50">
 
                   <label class="control-label">Scout's Home Phone:</label>
-                  <input type="number" pattern="\d{10}" class="form-control" id="home-phone" max="9999999999">
+                  <input type="number" pattern="\d{10}" class="form-control" id="home-phone">
 
                   <label class="control-label">Scout's Cell Phone:</label>
-                  <input type="number" pattern="\d{10}" class="form-control" id="cell-phone" max="9999999999">
+                  <input type="number" pattern="\d{10}" class="form-control" id="cell-phone">
 
-                  <label class="control-label">Date Joined Troop 485:</label>
-                  <input type="date" class="form-control" id="date-joined">
+                  <label class="control-label">Date Joined Troop 485<span style="color: darkred;">*</span>:</label>
+                  <input type="date" class="form-control" id="date-joined" required>
 
-                  <label class="control-label">School Attending:</label>
-                  <input type="text" class="form-control" id="school" maxlength="30">
+                  <label class="control-label">School Attending<span style="color: darkred;">*</span>:</label>
+                  <input type="text" class="form-control" id="school" maxlength="35" required>
 
-                  <label class="control-label">Patrol:</label>
-                  <input type="text" class="form-control" id="patrol" maxlength="8">
+                  <label class="control-label">Patrol<span style="color: darkred;">*</span>:</label>
+                  <input type="text" class="form-control" id="patrol" maxlength="8" required>
 
                   <input type="hidden" name="save" value="contact">
                   <button type="submit" class="btn btn-default">Submit</button>
