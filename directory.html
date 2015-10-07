@@ -41,7 +41,7 @@
 
 <body>
 
-    <a href="index.html"><img src="img/header.gif" id="header" alt=""></a>
+    <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485"></a>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
@@ -251,7 +251,7 @@
             d.setTime(d.getTime() + (exdays*24*60*60*1000));
             var expires = "expires="+d.toUTCString();
             document.cookie = cname + "=" + cvalue + "; " + expires;
-        };
+        }
         function getCookie(cname) {
             var name = cname + "=";
             var ca = document.cookie.split(";");
@@ -261,17 +261,17 @@
                 if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
             }
             return "";
-        };
+        }
 
         function checkPassword() {
             var password = $("#password").val();
-            var hash = function(str) {
-                var h = 0;
-                if (str.length == 0) return h;
-                for (i = 0; i < str.length; i++) {
-                    char = str.charCodeAt(i);
-                    h = ((h<<5) - h) + char;
-                    h = h & h; // Convert to 32bit integer
+            // Hash function from http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
+            var hash = function(s) {
+                var h = 0, i, c, l = s.length;
+                if (l == 0) return h;
+                for (i = 0; i < l; i++) {
+                    h = ((h<<5) - h) + s.charCodeAt(i);
+                    h |= 0; // Convert to 32bit integer
                 }
                 return h;
             };
