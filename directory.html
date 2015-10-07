@@ -136,8 +136,8 @@
                 <hr>
                 <h2 class="intro-text text-center">Search</h2>
                 <hr>
-                <p>Click on the name for detailed information.</p>
-                <p>Notice someone's name missing? Click <a href="feedback.html">here</a> to submit the bug.</p>
+                <p>Click on the name for more information.</p>
+                <p>Notice someone's name is missing? Click <a href="feedback.html">here</a> to submit the bug.</p>
                 <div class="input-group col-xs-12">
                     <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
                     <span class="input-group-btn" style="vertical-align: top">
@@ -373,7 +373,7 @@
                 // Only first/last name
                 if (query[1] === 0) {
                     if (patrolnames[i][0] === query[0] || patrolnames[i][1] === query[0]) {
-                        score.push({id: i, score: 1});
+                        score.push({id: i, score: 0});
                     } else if (query[0].length === patrolnames[i][0].length) {
                         var diff = compare(query[0], patrolnames[i][0], 0.5);
                         if (diff != 10) {
@@ -385,33 +385,21 @@
                             score.push({id: i, score: diff + 1});
                         }
                     }
-                } else {
-                    // If first or last name is query's first or last name set score to 0
-                    if (patrolnames[i][0] === query[0] && patrolnames[i][1] === query[1]) {
-                        score.push({id: i, score: 0});
-                    }
+                // If first or last name is query's first and last name set score to 0
+                } else if (patrolnames[i][0] === query[0] && patrolnames[i][1] === query[1]) {
+                    score.push({id: i, score: 0});
                 }
             }
             score.sort(function(a, b) {
                 return parseFloat(a.score) - parseFloat(b.score);
             });
-            var directMatch;
             for (var i = 0; i < score.length; i++) {
-                if (score[i].score > 1) {
-                    directMatch = true;
+                if (score[i].score === 0) {
+                    results.push(score[i].id);
+                    break;
+                } else if (score[i].score === 1) {
+                    results.push(score[i].id);
                 }
-            }
-            if (directMatch) {
-                for (var i = 0; i < score.length; i++) {
-                    if (score[i].score > 1) {
-                        score.splice(i, 1);
-                    }
-                }
-            }
-            console.log(score);
-
-            for (var i = 0; i < score.length; i++) {
-                results[i] = score[i].id;
             }
 
             // Display search results
@@ -451,8 +439,6 @@
                     percent += 1;
                 }
             }
-            console.log(percent);
-            console.log(b.length);
             // Score is less is better!
             if (percent / b.length < threshold) {
                 return percent / b.length;
