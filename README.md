@@ -1,2 +1,2 @@
 # Info
-For more information, visit my website [here](http://bit.ly/1FoSCWj).
+For more information, visit my website [here](http://agor.io).
