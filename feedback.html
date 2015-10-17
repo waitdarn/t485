@@ -115,16 +115,16 @@
     <div class="container">
 
         <div class="row">
-            <div class="box col-xso-12">
+            <div class="box col-xs-12">
                 <hr>
                 <h2 class="intro-text text-center">Submit Feedback</h2>
                 <hr>
                 <form class="feedback-form" style="margin-left: 20px;" role="form">
-                    <div class="input-group col-sm-6 col-md-4">
+                    <div class="input-group col-xs-12 col-sm-6 col-md-4">
                         <label class="control-label" for="feedback-name">Name:</label>
-                        <input type="text" id="feedback-name" class="form-control" required>
+                        <input type="text" id="feedback-name" class="form-control" required pattern=".{5,30}">
                     </div>
-                    <div class="input-group col-sm-6 col-md-4">
+                    <div class="input-group col-xs-12 col-sm-6 col-md-4">
                         <label class="control-label" for="feedback-text">Feedback:</label>
                         <textarea id="feedback-text" class="form-control" rows="5" required></textarea>
                     </div>
@@ -170,15 +170,11 @@
         var fireRef = new Firebase("https://t485.firebaseio.com/feedback");
 
         $("form").submit(function(){
-            addFeedback($("#feedback-name").val(), $("#feedback-text").val());
-            return false;
-        });
-
-        function addFeedback(name, text) {
-            fireRef.push({"name": name, "text": text});
+            fireRef.push({"name": $("#feedback-name").val(), "text": $("#feedback-text").val()});
             $(".feedback-form").css("display", "none");
             $(".thank-you").css("display", "block");
-        }
+            return false;
+        });
     </script>
 
 </body>
