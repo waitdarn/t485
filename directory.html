@@ -352,7 +352,9 @@
                 query = userquery.split(" ");
             } else {
                 query[0] = userquery;
-                query[1] = 0;
+                query[1] = null;
+                // If more than one space
+                if (query[2] !== undefined) return;
             }
 
             //console.log(window.globalData);
@@ -391,7 +393,7 @@
             var score = [];
             for (var i = 0; i < patrolnames.length; i++) {
                 // Only first/last name
-                if (query[1] === 0) {
+                if (query[1] === null) {
                     if (patrolnames[i][0] === query[0] || patrolnames[i][1] === query[0]) {
                         score.push({id: i, score: 0});
                     } else {
