@@ -391,7 +391,7 @@
             });
 
             // Make sure scores list has items
-            if (!score[0] === null) {
+            if (!(score[0] === undefined)) {
                 var firstScore = score[0].score;
                 for (var i = 0; i < score.length; i++) {
                     // If direct match of query
