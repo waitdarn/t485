@@ -7,3 +7,13 @@ less = {async: true};
 
 // Fix dropdown menu bug on iOS
 $('.dropdown a').click(function() { x = $(this).parent().hasClass('open') ? $(this).parent().removeClass('open') : $(this).parent().addClass('open'); });
+
+function hashPassword(str) {
+    var hash = 0;
+    if (str.length === 0) return 0;
+    for (var i = 0; i < str.length; i++) {
+        hash = ((hash<<5) - hash) + str.charCodeAt(i);
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+}

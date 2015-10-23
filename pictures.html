@@ -239,16 +239,6 @@
 
         function checkPassword() {
             var password = $('#password').val();
-            var hash = function(str) {
-                var h = 0;
-                if (str.length == 0) return h;
-                for (i = 0; i < str.length; i++) {
-                    char = str.charCodeAt(i);
-                    h = ((h<<5) - h) + char;
-                    h = h & h; // Convert to 32bit integer
-                }
-                return h;
-            };
             var setCookie = function(cname, cvalue, exdays) {
                 var d = new Date();
                 d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -256,7 +246,7 @@
                 document.cookie = cname + "=" + cvalue + "; " + expires;
             };
 
-            if (hash(password) === 3208057) {
+            if (hashPassword(password) === 3208057) {
                 $('#password-form').css('display', 'none');
                 $('#content').css('display', 'block');
 
