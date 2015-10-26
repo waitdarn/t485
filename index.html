@@ -21,7 +21,7 @@
     <title>Troop 485</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/t485.css" rel="stylesheet">
@@ -38,6 +38,7 @@
         console.log(window.innerHeight);
 
         document.addEventListener("DOMContentLoaded", function(event) {
+            document.getElementById("test").innerHTML = window.innerWidth;
             // If screen size large use high res images
             if (window.innerWidth > 500) {
                 document.getElementById("img1").setAttribute("src", "http://t485.org/img/slide-1.jpg");
@@ -129,7 +130,7 @@
 
     <div class="alert alert-info alert-dismissible" role="alert">
         <a class="close" data-dismiss="alert">×</a>
-        <span class="glyphicon glyphicon-info-sign"></span> Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the <span id="test">website!</span>
+        <span class="glyphicon glyphicon-info-sign"></span> Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!<span id="test"></span>
     </div>
 
     <div class="container">
@@ -238,12 +239,12 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script src="js/t485.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.csshttps://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- Clicky Web Analytics -->
     <script src="https://static.getclicky.com/js"></script>
