@@ -223,7 +223,7 @@ input, textarea {
 #toTop {
     width: 37px;
     height: 39px;
-    background: url(../img/back2top.png) bottom center no-repeat;
+    background: url(http://t485.org/img/back2top.png) bottom center no-repeat;
     position: fixed;
     bottom: 20px;
     right: 20px;
