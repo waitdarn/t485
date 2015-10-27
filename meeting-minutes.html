@@ -257,7 +257,7 @@
                 meetingMinuteRef.push({link: $("#add-link-link").val(), fileName: $("#add-link-file-name").val(), authorName: $("#add-link-author-name").val()});
                 alert("Thank you for adding meeting minutes.");
             }
-            if ($(this).serializeArray()[0].value === "reflection") {
+            if ($(this).serializeArray()[0].value === "reflection" && confirm("Are you sure you want to add a reflection?")) {
                 reflectionRef.push({link: $("#add-link-link").val(), fileName: $("#add-link-file-name").val(), authorName: $("#add-link-author-name").val()});
                 alert("Thank you for adding a reflection.");
             }
