@@ -226,7 +226,7 @@
     <script src="js/t485.js"></script>
 
      <!-- Bootstrap Core JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.csshttps://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
@@ -273,10 +273,9 @@
             linkElement.href = response.link;
             linkElement.innerHTML = response.fileName;
             linkElement.target = "_blank";
-            console.log(listElement);
-            console.log(linkElement);
+            console.log(listElement.firstChild);
             listElement.appendChild(linkElement);
-            meetingMinuteListElement.appendChild(listElement);
+            meetingMinuteListElement.insertBefore(listElement, meetingMinuteListElement.firstChild);
         });
 
         // Add reflections
@@ -289,10 +288,8 @@
             linkElement.href = response.link;
             linkElement.innerHTML = response.fileName;
             linkElement.target = "_blank";
-            console.log(listElement);
-            console.log(linkElement);
             listElement.appendChild(linkElement);
-            reflectionListElement.appendChild(listElement);
+            reflectionListElement.insertBefore(listElement, reflectionListElement.firstChild);
         });
 
 
