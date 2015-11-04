@@ -110,7 +110,8 @@
         <span class="glyphicon glyphicon-info-sign"></span>  Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!
     </div>
 
-
+    <div class="container">
+        
         <div class="row" id="password-form">
             <div class="box">
                 <div class="form-group input-append">
@@ -305,14 +306,8 @@
 
         function checkPassword() {
             var password = $('#password').val();
-            var setCookie = function(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                var expires = "expires="+d.toUTCString();
-                document.cookie = cname + "=" + cvalue + "; " + expires;
-            };
-
-            if (hashPassword(password) === 3208057) {
+            
+            if (hashPassword(password) === -376092119) {
                 $('#password-form').css('display', 'none');
                 $('.protected').css('display', 'block');
 
@@ -325,23 +320,6 @@
         }
 
         function checkCookie() {
-            var setCookie = function(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays*24*60*60*1000));
-                var expires = "expires="+d.toUTCString();
-                document.cookie = cname + "=" + cvalue + "; " + expires;
-            };
-            var getCookie = function(cname) {
-                var name = cname + "=";
-                var ca = document.cookie.split(';');
-                for(var i=0; i<ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0)==' ') c = c.substring(1);
-                    if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
-                }
-                return "";
-            };
-
             if (getCookie("logged-in") === "true") {
                 $('#password-form').css('display', 'none');
                 $('.protected').css('display', 'block');
