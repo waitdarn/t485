@@ -132,6 +132,8 @@
 
     </div>
     <!-- /.container -->
+        <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
  <script type="text/javascript">
       // Enter a client ID for a web application from the Google Developer Console.
       // The provided clientId will only work if the sample is run directly from
@@ -182,6 +184,7 @@
             heading.appendChild(image);
             heading.appendChild(document.createTextNode(resp.displayName));
             document.getElementById('content').appendChild(heading);
+            alert(heading)
           });
         });
       }</script>
