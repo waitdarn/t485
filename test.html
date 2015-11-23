@@ -123,8 +123,8 @@
                 <div class="col-md-12">
                     <p>Just a test page for developers only.</p>
                     <!--Add a button for the user to click to initiate auth sequence -->
-                    <button id="authorize-button" style="visibility: hidden">Authorize</button> 
-                    
+                    <button id="authorize-button" style="visibility: hidden">Authorize</button>
+
                     <script type="text/javascript">
                         // Enter a client ID for a web application from the Google Developer Console.
                         // The provided clientId will only work if the sample is run directly from
@@ -145,26 +145,28 @@
                             gapi.client.setApiKey(apiKey);
                             window.setTimeout(checkAuth, 1);
                         }
-                        
+
                         function checkAuth() {
+                            console.log('checkauth (test 0)');
                             gapi.auth.authorize({
                                 client_id: clientId,
                                 scope: scopes,
                                 immediate: true
                             }, handleAuthResult);
                         }
-                        
+
                         function handleAuthResult(authResult) {
                             var authorizeButton = document.getElementById('authorize-button');
                             if (authResult && !authResult.error) {
                                 authorizeButton.style.visibility = 'hidden';
+                                console.log('test 1 passed');
                                 makeApiCall();
                             } else {
                                 authorizeButton.style.visibility = '';
                                 authorizeButton.onclick = handleAuthClick;
                             }
                         }
-                        
+
                         function handleAuthClick(event) {
                                 gapi.auth.authorize({
                                     client_id: clientId,
@@ -174,13 +176,16 @@
                                 return false;
                             }
                             // Load the API and make an API call.  Display the results on the screen.
-                        
+
                         function makeApiCall() {
+                            console.log('makeapicall (test 2)');
                             gapi.client.load('plus', 'v1', function() {
                                 var request = gapi.client.plus.people.get({
                                     'userId': 'me'
                                 });
+                                console.log('test 3');
                                 request.execute(function(resp) {
+                                    console.log('test 4');
                                     console.log(resp.image.url);
                                     console.log(resp.displayName);
                                     var heading = document.createElement('h4');
@@ -192,9 +197,9 @@
                                 });
                             });
                         }
-                    </script> 
+                    </script>
                     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
-                    
+
                     <div id="content"></div>
                     <p>Retrieves your profile name using the Google Plus API.</p>
                     <p id="login-content">You are logged in!</p>
@@ -215,7 +220,7 @@
             </div>
         </div>
     </footer>
-    
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
