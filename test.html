@@ -148,6 +148,8 @@
 
                         function checkAuth() {
                             console.log('checkauth (test 0)');
+                            console.log(client_id);
+                            console.log(scopes);
                             gapi.auth.authorize({
                                 client_id: clientId,
                                 scope: scopes,
@@ -156,6 +158,8 @@
                         }
 
                         function handleAuthResult(authResult) {
+                            console.log('test 0.5 passed');
+                            console.log(authResult);
                             var authorizeButton = document.getElementById('authorize-button');
                             if (authResult && !authResult.error) {
                                 authorizeButton.style.visibility = 'hidden';
