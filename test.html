@@ -127,12 +127,14 @@
 
                     <script type="text/javascript">
                         /* global gapi */
+                        
                         // Enter a client ID for a web application from the Google Developer Console.
                         // The provided clientId will only work if the sample is run directly from
                         // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
                         // In your Developer Console project, add a JavaScript origin that corresponds to the domain
                         // where you will be running the script.
-                        var clientId = '484093697294-ptjocjkbkl629v80iuv555e2d04gtq6a.apps.googleusercontent.com';
+                        //var clientId = '484093697294-ptjocjkbkl629v80iuv555e2d04gtq6a.apps.googleusercontent.com';
+                        var clientId = '40407220209-hnfu5t1ci2krkj4rgm8e96k7u07kfv5p.apps.googleusercontent.com';
                         // Enter the API key from the Google Develoepr Console - to handle any unauthenticated
                         // requests in the code.
                         // The provided key works for this sample only when run from
@@ -143,7 +145,7 @@
                         var scopes = 'https://www.googleapis.com/auth/plus.me';
                         // Use a button to handle authentication the first time.
                         function handleClientLoad() {
-                            gapi.client.setApiKey(apiKey);
+                            //gapi.client.setApiKey(apiKey);
                             window.setTimeout(checkAuth, 1);
                         }
 
@@ -171,16 +173,16 @@
                         }
 
                         function handleAuthClick(event) {
-                                console.log('handle click');
-                                gapi.auth.authorize({
-                                    client_id: clientId,
-                                    scope: scopes,
-                                    immediate: false
-                                }, handleAuthResult);
-                                return false;
-                            }
-                            // Load the API and make an API call.  Display the results on the screen.
-
+                            console.log('handle click');
+                            gapi.auth.authorize({
+                                client_id: clientId,
+                                scope: scopes,
+                                immediate: false
+                            }, handleAuthResult);
+                            return false;
+                        }
+                        
+                        // Load the API and make an API call.  Display the results on the screen.
                         function makeApiCall() {
                             console.log('makeapicall (test 2)');
                             gapi.client.load('plus', 'v1', function() {
