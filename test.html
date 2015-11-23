@@ -168,6 +168,7 @@
                         }
 
                         function handleAuthClick(event) {
+                                console.log('handle click');
                                 gapi.auth.authorize({
                                     client_id: clientId,
                                     scope: scopes,

@@ -209,12 +209,6 @@
                     "<img src=\"https://farm1.staticflickr.com/699/21236649855_4eb03bda2c_m.jpg\" alt=\"\">" +
                     "<figcaption style=\"text-align: center;\"><b>Labor Day Backpacking Group 3</b></figcaption>" +
             "</figure>" +
-        "</a>" +
-        "<a href=\"http://t485.org/pictures.html?id=72157657924434891\">" +
-            "<figure>" +
-                    "<img src=\"http://farm1.static.flickr.com/656/20972464802_daf2086efb_m.jpg\" alt=\"\">" +
-                    "<figcaption style=\"text-align: center;\"><b>Henry Coe Practice Backpacking</b></figcaption>" +
-            "</figure>" +
         "</a>";
 
         $(document).ready(function() {
@@ -236,7 +230,8 @@
             if (hashPassword(password) === -376092119) {
                 $('#password-form').css('display', 'none');
                 $('#content').css('display', 'block');
-
+                
+                // Sets cookie to expire in 7 days
                 setCookie("logged-in", "true", 7);
 
                 // Put all pictures info in javascript so that Google web

@@ -246,6 +246,7 @@
                 $("#spreadsheet-confirm").css("display", "block");
                 $("#search-query").focus();
 
+                // Sets cookie to expire in 7 days
                 setCookie("logged-in", "true", 7);
             } else {
                 $(".form-group").addClass("has-error has-feedback");
