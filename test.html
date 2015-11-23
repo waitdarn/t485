@@ -192,8 +192,7 @@
                                 console.log('test 3');
                                 request.execute(function(resp) {
                                     console.log('test 4');
-                                    console.log(resp.image.url);
-                                    console.log(resp.displayName);
+                                    console.log(resp);
                                     var heading = document.createElement('h4');
                                     var image = document.createElement('img');
                                     image.src = resp.image.url;
