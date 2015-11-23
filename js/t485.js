@@ -4,6 +4,7 @@ $(window).scroll(function(){ if ($(this).scrollTop() > 0) { $('#toTop').fadeIn(3
 // Set LESS async to true to prevent warning on Chrome
 less = {async: true};
 
+
 // Fix dropdown menu bug on iOS
 $('.dropdown a').click(function() {
     if ($(this).parent().hasClass('open')) {
@@ -14,6 +15,8 @@ $('.dropdown a').click(function() {
     }
 });
 
+
+// Source: http://www.w3schools.com/js/js_cookies.asp
 function hashPassword(str) {
     var hash = 0;
     if (str.length === 0) return 0;
@@ -30,6 +33,7 @@ function setCookie(cname, cvalue, exdays) {
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
+
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
