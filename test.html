@@ -150,6 +150,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script src="js/t485.js"></script>
+    <script src="js/tabletop.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -161,6 +162,17 @@
     
     <script>
         /* global gapi */
+        /* global Tabletop */
+        
+        window.emails = [];
+        
+        Tabletop.init({key: "1nwdnNbooJgiAxRMfvIT-UXoRf7lDa6oshZBEUqCaUNk", callback: function (data, t) {
+            console.log(data);
+            window.emails = data;
+            console.log("initialized tabletop");
+        }, simpleSheet: true});
+        
+        
         
         // Enter a client ID for a web application from the Google Developer Console.
         // The provided clientId will only work if the sample is run directly from
@@ -177,6 +189,7 @@
         //var apiKey = 'AIzaSyCSjWMJtrmc8IbifL9_QIizQdEnh2UAk7k';
         // To enter one or more authentication scopes, refer to the documentation for the API.
         var scopes = 'https://www.googleapis.com/auth/userinfo.email';
+        
         // Use a button to handle authentication the first time.
         function handleClientLoad() {
             //gapi.client.setApiKey(apiKey);
@@ -228,17 +241,22 @@
                     console.log('test 4');
                     console.log(resp);
                     console.log(resp.emails[0].value);
-                    var heading = document.createElement('h4');
+                    /*var heading = document.createElement('h4');
                     var image = document.createElement('img');
-                    var email = document.createElement('p');
                     image.src = resp.image.url;
                     heading.appendChild(image);
                     heading.appendChild(document.createTextNode(resp.displayName));
-                    email.innerHTML = resp.emails[0].value;
-                    document.getElementById('content').appendChild(heading);
+                    document.getElementById('content').appendChild(heading);*/
+                    var email = document.createElement('p');
                     document.getElementById('content').appendChild(email);
+                    email.innerHTML = 'Email: ' + resp.emails[0].value;
                     
-                    document.getElementById('login-content').setAttribute('style', 'display: block;');
+                    for (var i = 0; i < window.emails.length; i++) {
+                        if (window.emails[i] === email) {
+                            document.getElementById('login-content').setAttribute('style', 'display: block;');
+                            break;
+                        }
+                    }
                 });
             });
         }
