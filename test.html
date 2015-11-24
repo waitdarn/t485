@@ -121,7 +121,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>Just a test page for developers only. Retrieves your profile name using the Google Plus API.</p>
+                    <p>Just a test page for developers only. Retrieves your profile name and email address using the Google Plus API.</p>
                     <!--Add a button for the user to click to initiate auth sequence -->
                     <button id="authorize-button" style="visibility: hidden">Authorize</button>
 
@@ -238,7 +238,7 @@
                     document.getElementById('content').appendChild(heading);
                     document.getElementById('content').appendChild(email);
                     
-                    document.getElementById('login-content').attr('style', 'display: block;');
+                    document.getElementById('login-content').setAttribute('style', 'display: block;');
                 });
             });
         }
