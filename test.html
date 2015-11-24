@@ -249,9 +249,10 @@
                     heading.appendChild(image);
                     heading.appendChild(document.createTextNode(resp.displayName));
                     document.getElementById('content').appendChild(heading);*/
-                    var email = document.createElement('p');
-                    document.getElementById('content').appendChild(email);
-                    email.innerHTML = 'Email: ' + resp.emails[0].value;
+                    var email = resp.emails[0].value;
+                    var emailElement = document.createElement('p');
+                    document.getElementById('content').appendChild(emailElement);
+                    emailElement.innerHTML = 'Email: ' + email;
                     
                     for (var i = 0; i < window.emails.length; i++) {
                         if (window.emails[i] === email) {
