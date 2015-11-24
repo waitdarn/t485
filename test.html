@@ -167,8 +167,10 @@
         window.emails = [];
         
         Tabletop.init({key: "1nwdnNbooJgiAxRMfvIT-UXoRf7lDa6oshZBEUqCaUNk", callback: function (data, t) {
-            console.log(data);
-            window.emails = data;
+            for (var i = 0; i < data.length; i++) {
+                window.emails[i] = data[i].Emails;
+            }
+            console.log(window.emails);
             console.log("initialized tabletop");
         }, simpleSheet: true});
         
