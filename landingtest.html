@@ -193,7 +193,8 @@
                     currentRef.remove();
                     console.log("removed " + snapshotValKeys[i]);
                     
-                    if (hasVaildToken) return;
+                    // Exit js
+                    if (hasVaildToken) throw '';
                 }
                 
                 // If no token matchs
@@ -201,8 +202,8 @@
                 console.log("redirecting user");
             } else {
                 // No token and empty snapshot
-                console.log("redirecting user");
                 //redirectUser();
+                console.log("redirecting user");
             }
         });
         
