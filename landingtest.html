@@ -165,7 +165,7 @@
         
         if (urlVars["token"] != undefined) {
             authTokenRef.on("value", function(snapshot) {
-                var snapshotVal = snapshot.val;
+                var snapshotVal = snapshot.val();
                 console.log(snapshotVal);
                 var posts = Object.keys(snapshotVal).map(function(key){return snapshotVal[key];});
                 console.log(posts);
