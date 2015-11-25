@@ -198,7 +198,7 @@
                 }
                 
                 // If no token matchs
-                redirectUser();
+                if (!hasVaildToken) redirectUser();
             } else {
                 // No token and empty snapshot
                 redirectUser();
