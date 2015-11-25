@@ -167,6 +167,8 @@
             authTokenRef.on("value", function(snapshot) {
                 var snapshotVal = snapshot.val();
                 console.log(snapshotVal);
+                var snapshotValKeys = Object.keys(snapshotVal);
+                console.log(snapshotValKeys);
                 var posts = Object.keys(snapshotVal).map(function(key){return snapshotVal[key];});
                 console.log(posts);
                 var deleteIndex = [];
@@ -186,7 +188,9 @@
                     }
                 }
                 for (i = 0; i < deleteIndex.length; i++) {
-                    //var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref" + posts[deleteIndex[i]].)
+                    var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref" + snapshotValKeys[deleteIndex[i]]);
+                    currentRef.remove();
+                    console.log("removed " + snapshotValKeys[deleteIndex[i]])
                 }
             });
         }
