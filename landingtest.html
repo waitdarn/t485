@@ -165,46 +165,42 @@
             urlVars[key] = value;
         });
         
-        if (urlVars["token"] != undefined) {
-            authTokenRef.on("value", function(snapshot) {
-                if (snapshot.val() != null) {
-                    var snapshotVal = snapshot.val();
-                    console.log(snapshotVal);
-                    var snapshotValKeys = Object.keys(snapshotVal);
-                    console.log(snapshotValKeys);
-                    var posts = Object.keys(snapshotVal).map(function(key){return snapshotVal[key];});
-                    console.log(posts);
+        authTokenRef.on("value", function(snapshot) {
+            if (snapshot.val() != null && urlVars["token"] != undefined) {
+                var snapshotVal = snapshot.val();
+                console.log(snapshotVal);
+                var snapshotValKeys = Object.keys(snapshotVal);
+                console.log(snapshotValKeys);
+                var posts = Object.keys(snapshotVal).map(function(key){return snapshotVal[key];});
+                console.log(posts);
+                
+                var hasVaildToken = false;
+                
+                for (var i = 0; i < posts.length; i++) {
+                    console.log("post: " + posts[i]);
+                    console.log("Expire date:  " + posts[i].expire);
+                    console.log("current date: " + Date.now());
+                    console.log("Token: " + posts[i].token);
                     
-                    var hasVaildToken = false;
-                    
-                    for (var i = 0; i < posts.length; i++) {
-                        console.log("post: " + posts[i]);
-                        console.log("Expire date:  " + posts[i].expire);
-                        console.log("current date: " + Date.now());
-                        console.log("Token: " + posts[i].token);
-                        
-                        if (posts[i].expire > Date.now() && urlVars["token"] == posts[i].token) {
-                            console.log("yay");
-                            document.getElementById("login").setAttribute("style", "display: block;");
-                            hasVaildToken = true;
-                        }
-                        
-                        // Remove ref after used
-                        var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref/" + snapshotValKeys[i]);
-                        currentRef.remove();
-                        console.log("removed " + snapshotValKeys[i]);
+                    if (posts[i].expire > Date.now() && urlVars["token"] == posts[i].token) {
+                        console.log("yay");
+                        document.getElementById("login").setAttribute("style", "display: block;");
+                        hasVaildToken = true;
                     }
                     
-                    // If no token matchs
-                    if (!hasVaildToken) redirectUser();
-                } else {
-                    redirectUser();
+                    // Remove ref after used
+                    var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref/" + snapshotValKeys[i]);
+                    currentRef.remove();
+                    console.log("removed " + snapshotValKeys[i]);
                 }
-            });
-        } else {
-            // If no token given
-            redirectUser();
-        }
+                
+                // If no token matchs
+                if (!hasVaildToken) redirectUser();
+            } else {
+                // No token and empty snapshot
+                redirectUser();
+            }
+        });
         
         function redirectUser() {
             window.location.href = "//t485.org/test";
