@@ -35,3 +35,22 @@
         </script>
 </body>
 </html>
+
+<!--
+
+Get Latest: http://api.tumblr.com/v2/blog/cutegirlnude.tumblr.com/posts?api_key=fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4
+
+
+main should be api call result
+code:
+
+var main1 = main.response.posts
+var a = [];
+for (var i = 0; i < main1.length; i++) {
+    if (main1[i].photos != undefined) {
+    console.log(main1[i].photos[0].alt_sizes[3].url);
+    a.push(main1[i].photos[0].alt_sizes[3].url);}
+}
+console.log(a);
+
+-->
