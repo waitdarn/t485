@@ -120,7 +120,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p id="login" style="display: none;">You have successfully logged in and you can now see the directory.</p>
+                    <p id="login" style="display: none;">You have successfully logged in and can now see the directory.</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -156,6 +156,7 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <script>
+        /* global Firebase */
         var authTokenRef = new Firebase("https://t485.firebaseio.com/authtokenref");
         
         var urlVars = {};
@@ -167,15 +168,19 @@
             authTokenRef.on("value", function(snapshot) {
                 var snapshotVal = snapshot.val();
                 console.log(snapshotVal);
+                
                 var snapshotValKeys = Object.keys(snapshotVal);
                 console.log(snapshotValKeys);
+                
                 var posts = Object.keys(snapshotVal).map(function(key){return snapshotVal[key];});
                 console.log(posts);
+                
                 var deleteIndex = [];
+                var loggedIn = false;
                 
                 for (var i = 0; i < posts.length; i++) {
                     console.log("post: " + posts[i]);
-                    console.log("Expire date: " + posts[i].expire);
+                    console.log("Expire date:  " + posts[i].expire);
                     console.log("current date: " + Date.now());
                     console.log("Token: " + posts[i].token);
                     if (posts[i].expire < Date.now()) {
@@ -185,16 +190,26 @@
                     } else if (urlVars["token"] == posts[i].token) {
                         console.log("yay");
                         document.getElementById("login").setAttribute("style", "display: block;");
+                        loggedIn = true;
                     }
+                }
+                // If no token matchs
+                if (!loggedIn) {
+                    redirectUser();
                 }
                 for (i = 0; i < deleteIndex.length; i++) {
                     var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref/" + snapshotValKeys[deleteIndex[i]]);
                     currentRef.remove();
-                    console.log("removed " + snapshotValKeys[deleteIndex[i]])
+                    console.log("removed " + snapshotValKeys[deleteIndex[i]]);
                 }
             });
+        } else {
+            redirectUser();
         }
         
+        function redirectUser() {
+            window.location.href = "//t485.org/test";
+        }
         
     </script>
 
