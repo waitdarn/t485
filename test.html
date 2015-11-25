@@ -234,8 +234,10 @@
                 console.log('test 3');
                 request.execute(function(resp) {
                     console.log('test 4');
+                    var email = resp.emails[0].value
+                    
                     console.log(resp);
-                    console.log(resp.emails[0].value);
+                    console.log(email);
                     
                     for (var i = 0; i < window.emails.length; i++) {
                         if (window.emails[i] === email) {
