@@ -171,7 +171,6 @@
         
         var authTokenRef = new Firebase('https://t485.firebaseio.com/authtokenref');
         window.emails = [];
-        var initTabletop = false;
         
         Tabletop.init({key: '1nwdnNbooJgiAxRMfvIT-UXoRf7lDa6oshZBEUqCaUNk', callback: function (data, t) {
             for (var i = 0; i < data.length; i++) {
@@ -179,30 +178,19 @@
             }
             console.log(window.emails);
             console.log('initialized tabletop');
-            initTabletop = true;
         }, simpleSheet: true});
         
         
-        
-        // Enter a client ID for a web application from the Google Developer Console.
-        // The provided clientId will only work if the sample is run directly from
-        // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
-        // In your Developer Console project, add a JavaScript origin that corresponds to the domain
-        // where you will be running the script.
         var clientId = '40407220209-hnfu5t1ci2krkj4rgm8e96k7u07kfv5p.apps.googleusercontent.com';
-        // To enter one or more authentication scopes, refer to the documentation for the API.
         var scopes = 'https://www.googleapis.com/auth/userinfo.email';
         
         // Use a button to handle authentication the first time.
         function handleClientLoad() {
-            //gapi.client.setApiKey(apiKey);
             window.setTimeout(checkAuth, 1);
         }
 
         function checkAuth() {
             console.log('checkauth (test 0)');
-            // Wait until tabletop loaded
-            while (!initTabletop) {}
             gapi.auth.authorize({
                 client_id: clientId,
                 scope: scopes,
@@ -247,14 +235,18 @@
                     
                     console.log(resp);
                     console.log(email);
-                    
-                    for (var i = 0; i < window.emails.length; i++) {
-                        if (window.emails[i] === email) {
-                            var token = Math.floor(Math.random() * 10000000000);
-                            authTokenRef.push({'expire': Date.now() + 10 * 1000, 'token': token});
-                            window.location.href = '//t485.org/landingtest.html?token=' + token;
+                       
+                    // Wait until tabletop loaded
+                    setTimeout(function() {
+                        for (var i = 0; i < window.emails.length; i++) {
+                            if (window.emails[i] === email) {
+                                var token = Math.floor(Math.random() * 10000000000);
+                                authTokenRef.push({'expire': Date.now() + 10 * 1000, 'token': token});
+                                window.location.href = '//t485.org/landingtest.html?token=' + token;
+                            }
                         }
-                    }
+                    }, 1000);
+                    
                     $('main').css('display', 'none');
                     $('notauthorized').css('display', 'block');
                 });
