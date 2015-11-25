@@ -121,9 +121,14 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>Just a test page for developers only. Retrieves your profile name and email address using the Google Plus API.</p>
-                    <!--Add a button for the user to click to initiate auth sequence -->
-                    <button id="authorize-button" style="visibility: hidden">Authorize</button>
+                    <div id="main">
+                        <p>Just a test page for developers only. Retrieves your profile name and email address using the Google Plus API.</p>
+                        <!--Add a button for the user to click to initiate auth sequence -->
+                        <button id="authorize-button" style="visibility: hidden">Authorize</button>
+                    </div>
+                    <div id="notauthorized" style="display: none;">
+                        <p>Sorry, but you are not authorized to see the directory. Click <a href="https://accounts.google.com/logout">here</a> to logout of your google account.</p>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -162,16 +167,17 @@
     <script>
         /* global gapi */
         /* global Tabletop */
+        /* global Firebase */
         
-        var authTokenRef = new Firebase("https://t485.firebaseio.com/authtokenref");
+        var authTokenRef = new Firebase('https://t485.firebaseio.com/authtokenref');
         window.emails = [];
         
-        Tabletop.init({key: "1nwdnNbooJgiAxRMfvIT-UXoRf7lDa6oshZBEUqCaUNk", callback: function (data, t) {
+        Tabletop.init({key: '1nwdnNbooJgiAxRMfvIT-UXoRf7lDa6oshZBEUqCaUNk', callback: function (data, t) {
             for (var i = 0; i < data.length; i++) {
                 window.emails[i] = data[i].Emails;
             }
             console.log(window.emails);
-            console.log("initialized tabletop");
+            console.log('initialized tabletop');
         }, simpleSheet: true});
         
         
@@ -203,14 +209,13 @@
         function handleAuthResult(authResult) {
             console.log('test 0.5 passed');
             console.log(authResult);
-            var authorizeButton = document.getElementById('authorize-button');
             if (authResult && !authResult.error) {
-                authorizeButton.style.visibility = 'hidden';
+                $('authorize-button').css('display', 'none');
                 console.log('test 1 passed');
                 makeApiCall();
             } else {
-                authorizeButton.style.visibility = '';
-                authorizeButton.onclick = handleAuthClick;
+                $('authorize-button').css('display', 'block');
+                $('authorize-button').click(handleAuthClick());
             }
         }
 
@@ -234,7 +239,7 @@
                 console.log('test 3');
                 request.execute(function(resp) {
                     console.log('test 4');
-                    var email = resp.emails[0].value
+                    var email = resp.emails[0].value;
                     
                     console.log(resp);
                     console.log(email);
@@ -242,11 +247,12 @@
                     for (var i = 0; i < window.emails.length; i++) {
                         if (window.emails[i] === email) {
                             var token = Math.floor(Math.random() * 10000000000);
-                            authTokenRef.push({"expire": Date.now() + 10 * 1000, "token": token});
-                            window.location.href = "//t485.org/landingtest.html?token=" + token;
+                            authTokenRef.push({'expire': Date.now() + 10 * 1000, 'token': token});
+                            window.location.href = '//t485.org/landingtest.html?token=' + token;
                         }
                     }
-                    alert("Sorry, but you are not authorized to see the directory.");
+                    $('main').css('display', 'none');
+                    $('notauthorized').css('display', 'block');
                 });
             });
         }
