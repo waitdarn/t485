@@ -168,10 +168,12 @@
                 var post = snapshot.val();
                 console.log(post);
                 console.log("Expire date: " + post.expire);
+                console.log("current date: " + Date.now())
                 console.log("Token: " + post.token);
-                if (post.expire > Date.now()) {
+                if (post.expire < Date.now()) {
                     console.log("delete");
                 } else if (urlVars["token"] == post.token) {
+                    console.log("yay");
                     document.getElementById("login").setAttribute("style", "display: block;")
                 }
             });
