@@ -192,11 +192,13 @@
                     var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref/" + snapshotValKeys[i]);
                     currentRef.remove();
                     console.log("removed " + snapshotValKeys[i]);
+                    
+                    if (hasVaildToken) return;
                 }
                 
                 // If no token matchs
-                //if (!hasVaildToken) redirectUser();
-                if (!hasVaildToken) console.log("redirecting user");
+                //redirectUser();
+                console.log("redirecting user");
             } else {
                 // No token and empty snapshot
                 console.log("redirecting user");
