@@ -195,10 +195,12 @@
                 }
                 
                 // If no token matchs
-                if (!hasVaildToken) redirectUser();
+                //if (!hasVaildToken) redirectUser();
+                if (!hasVaildToken) console.log("redirecting user");
             } else {
                 // No token and empty snapshot
-                redirectUser();
+                console.log("redirecting user");
+                //redirectUser();
             }
         });
         
