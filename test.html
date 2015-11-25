@@ -171,6 +171,7 @@
         
         var authTokenRef = new Firebase('https://t485.firebaseio.com/authtokenref');
         window.emails = [];
+        var initTabletop = false;
         
         Tabletop.init({key: '1nwdnNbooJgiAxRMfvIT-UXoRf7lDa6oshZBEUqCaUNk', callback: function (data, t) {
             for (var i = 0; i < data.length; i++) {
@@ -178,6 +179,7 @@
             }
             console.log(window.emails);
             console.log('initialized tabletop');
+            initTabletop = true;
         }, simpleSheet: true});
         
         
@@ -199,6 +201,8 @@
 
         function checkAuth() {
             console.log('checkauth (test 0)');
+            // Wait until tabletop loaded
+            while (!initTabletop) {}
             gapi.auth.authorize({
                 client_id: clientId,
                 scope: scopes,
