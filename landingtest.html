@@ -188,7 +188,7 @@
                     }
                 }
                 for (i = 0; i < deleteIndex.length; i++) {
-                    var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref" + snapshotValKeys[deleteIndex[i]]);
+                    var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref/" + snapshotValKeys[deleteIndex[i]]);
                     currentRef.remove();
                     console.log("removed " + snapshotValKeys[deleteIndex[i]])
                 }
