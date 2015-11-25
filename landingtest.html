@@ -156,7 +156,7 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <script>
-        var authTokenRef = new Firebase("https://t485.firebaseio.com/files/authtokenref");
+        var authTokenRef = new Firebase("c");
         
         var urlVars = {};
         window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -164,17 +164,28 @@
         });
         
         if (urlVars["token"] != undefined) {
-            authTokenRef.on("child_added", function(snapshot, prevChildKey) {
-                var post = snapshot.val();
-                console.log(post);
-                console.log("Expire date: " + post.expire);
-                console.log("current date: " + Date.now())
-                console.log("Token: " + post.token);
-                if (post.expire < Date.now()) {
-                    console.log("delete");
-                } else if (urlVars["token"] == post.token) {
-                    console.log("yay");
-                    document.getElementById("login").setAttribute("style", "display: block;")
+            authTokenRef.on("value", function(snapshot) {
+                var snapshotVal = snapshot.val;
+                var posts = Object.keys(snapshotVal).map(function(key){return snapshotVal[key];});
+                console.log(posts);
+                var deleteIndex = [];
+                
+                for (var i = 0; i < posts.length; i++) {
+                    console.log("post: " + posts[i]);
+                    console.log("Expire date: " + posts[i].expire);
+                    console.log("current date: " + Date.now());
+                    console.log("Token: " + posts[i].token);
+                    if (posts[i].expire < Date.now()) {
+                        console.log("delete me");
+                        deleteIndex.push(i);
+                        
+                    } else if (urlVars["token"] == posts[i].token) {
+                        console.log("yay");
+                        document.getElementById("login").setAttribute("style", "display: block;");
+                    }
+                }
+                for (i = 0; i < deleteIndex.length; i++) {
+                    //var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref" + posts[deleteIndex[i]].)
                 }
             });
         }

@@ -124,10 +124,6 @@
                     <p>Just a test page for developers only. Retrieves your profile name and email address using the Google Plus API.</p>
                     <!--Add a button for the user to click to initiate auth sequence -->
                     <button id="authorize-button" style="visibility: hidden">Authorize</button>
-
-                    <div id="content"></div>
-                    
-                    <p id="login-content" style="display: none;">You are logged in!</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -167,7 +163,7 @@
         /* global gapi */
         /* global Tabletop */
         
-        var authTokenRef = new Firebase("https://t485.firebaseio.com/files/authtokenref");
+        var authTokenRef = new Firebase("https://t485.firebaseio.com/authtokenref");
         window.emails = [];
         
         Tabletop.init({key: "1nwdnNbooJgiAxRMfvIT-UXoRf7lDa6oshZBEUqCaUNk", callback: function (data, t) {
@@ -262,9 +258,7 @@
                         if (window.emails[i] === email) {
                             var token = Math.floor(Math.random()*10000000000);
                             authTokenRef.push({"expire": Date.now() + 10 * 1000, "token": token});
-                            
                             window.location.href = "//t485.org/landingtest.html?token=" + token;
-                            document.getElementById('login-content').setAttribute('style', 'display: block;');
                             break;
                         }
                     }
