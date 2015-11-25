@@ -263,7 +263,7 @@
                             var token = Math.floor(Math.random()*10000000000);
                             authTokenRef.push({"expire": Date.now() + 10 * 1000, "token": token});
                             
-                            window.location.href = "landingtest.html&token=" + token;
+                            window.location.href = "//t485.org/landingtest.html?token=" + token;
                             document.getElementById('login-content').setAttribute('style', 'display: block;');
                             break;
                         }
