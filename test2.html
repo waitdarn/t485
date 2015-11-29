@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="484093697294-ptjocjkbkl629v80iuv555e2d04gtq6a.apps.googleusercontent.com  ">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.70YIlYVcHMs.O/m=client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCP0C_8qZ5OJ-IV6BpTtHqSbnaMwuQ/t=zcms/cb=gapi.loaded_0" async=""></script><script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -127,9 +124,10 @@
                         
 
     <p>Displays login-only content without redirection using firebase login.</p>
-    				  <button onclick="auth">click me to login</button>
-
-                    <p id="login-content" style="display:none;">You are logged in!</p>
+                      <a id="glogin" class="btn btn-social btn-google" onclick="auth();">
+    <span class="fa fa-google"></span> Sign in with Google
+  </a>
+                    <p id="login-content" style="display: block;">You are logged in!</p>
 
                     <div id="notauthorized" style="display: none;">
                         <p>Sorry, but you are not authorized to see the directory. Click <a href="https://accounts.google.com/logout">here</a> to logout of your google account.</p>
@@ -146,7 +144,7 @@
         <div class="container">
             <div class="box">
                 <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; 2015 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America</p>
+                    <p>Copyright © 2015 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America</p>
                 </div>
             </div>
         </div>
@@ -166,18 +164,23 @@
 
     <script>
 function auth() {
-    var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
-    ref.authWithOAuthPopup("google", function(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-      } else {
-        console.log("Authenticated successfully with payload:", authData);
-      }
-    });
+  var ref = new Firebase("https://t485auth.firebaseio.com");
+  ref.authWithOAuthPopup("google", function(error, authData) {
+    if (error) {
+      console.log("Login Failed!", error);
+      $("#notautorized").css("display", "block");
+      $("#glogin").css("display", "none")
+    } else {
+      console.log("Authenticated successfully with payload:", authData);
+      $("#login-content").css("display", "block");
+      $("#glogin").css("display", "none")
+    }
+  });
 }
     </script>
-    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" gapi_processed="true"></script>
 
-</body>
 
-</html>
+
+
+<iframe name="oauth2relay416055991" id="oauth2relay416055991" src="https://accounts.google.com/o/oauth2/postmessageRelay?parent=http%3A%2F%2Ft485.org#rpctoken=715481902&amp;forcesecure=1" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
