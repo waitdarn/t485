@@ -133,8 +133,7 @@
                     <div id="notauthorized" style="display: none;">
                         <p>Sorry, but you are not authorized to see the directory. Click <a href="https://accounts.google.com/logout">here</a> to logout of your google account.</p>
                     </div>
-                    <a> Show debug console</a>
-                    <div id="debug"></div>
+
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -173,12 +172,11 @@
           console.log("Login Failed!", error);
           $("#notauthorized").css("display", "block");
           $("#glogin").css("display", "none")
-          $("#debug").empty();
-          $("debug").append("login failed. Error:" + error)
       } else {
           console.log("Authenticated successfully with payload:", authData);
           $("#login-content").css("display", "block");
           $("#glogin").css("display", "none")
+          alert(authData)
       }
   }, {
   scope: "email"
