@@ -1,33 +1,33 @@
 <html lang="en"><head>
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="484093697294-ptjocjkbkl629v80iuv555e2d04gtq6a.apps.googleusercontent.com  ">
-    <script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.70YIlYVcHMs.O/m=client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCP0C_8qZ5OJ-IV6BpTtHqSbnaMwuQ/t=zcms/cb=gapi.loaded_0" async=""></script><script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
-    <meta name="author" content="Richard Liu">
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="484093697294-ptjocjkbkl629v80iuv555e2d04gtq6a.apps.googleusercontent.com  ">
+<script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.70YIlYVcHMs.O/m=client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCP0C_8qZ5OJ-IV6BpTtHqSbnaMwuQ/t=zcms/cb=gapi.loaded_0" async=""></script><script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+<meta name="author" content="Richard Liu">
 
-    <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="favicons/manifest.json">
-    <meta name="theme-color" content="#008000">
+<link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="favicons/manifest.json">
+<meta name="theme-color" content="#008000">
 
-    <title>Google API Test Page</title>
+<title>Google API Test Page</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="css/t485.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/t485.css" rel="stylesheet">
 
-    <!-- Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+<!-- Fonts -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -121,12 +121,12 @@
                 </div>
                 <div class="col-md-12">
                     <p>If you decide to test this page, please give feedback if it is not a tottal fail.</p>
-                        
+                    
 
-    <p>Displays login-only content without redirection using firebase login.</p>
-                      <a id="glogin" class="btn btn-social btn-google" onclick="auth();">
-    <span class="fa fa-google"></span> Sign in with Google
-  </a>
+                    <p>Displays login-only content without redirection using firebase login.</p>
+                    <a id="glogin" class="btn btn-social btn-google" onclick="auth();">
+                        <span class="fa fa-google"></span> Sign in with Google
+                    </a>
                     <p id="login-content" style="display: block;">You are logged in!</p>
 
                     <div id="notauthorized" style="display: none;">
@@ -163,24 +163,24 @@
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 
     <script>
-function auth() {
-  var ref = new Firebase("https://t485auth.firebaseio.com");
-  ref.authWithOAuthPopup("google", function(error, authData) {
-    if (error) {
-      console.log("Login Failed!", error);
-      $("#notautorized").css("display", "block");
-      $("#glogin").css("display", "none")
-    } else {
-      console.log("Authenticated successfully with payload:", authData);
-      $("#login-content").css("display", "block");
-      $("#glogin").css("display", "none")
-    }
+    function auth() {
+      var ref = new Firebase("https://t485auth.firebaseio.com");
+      ref.authWithOAuthPopup("google", function(error, authData) {
+        if (error) {
+          console.log("Login Failed!", error);
+          $("#notautorized").css("display", "block");
+          $("#glogin").css("display", "none")
+      } else {
+          console.log("Authenticated successfully with payload:", authData);
+          $("#login-content").css("display", "block");
+          $("#glogin").css("display", "none")
+      }
   });
-}
-    </script>
-    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" gapi_processed="true"></script>
+  }
+  </script>
+  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" gapi_processed="true"></script>
 
 
 
 
-<iframe name="oauth2relay416055991" id="oauth2relay416055991" src="https://accounts.google.com/o/oauth2/postmessageRelay?parent=http%3A%2F%2Ft485.org#rpctoken=715481902&amp;forcesecure=1" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
+  <iframe name="oauth2relay416055991" id="oauth2relay416055991" src="https://accounts.google.com/o/oauth2/postmessageRelay?parent=http%3A%2F%2Ft485.org#rpctoken=715481902&amp;forcesecure=1" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
