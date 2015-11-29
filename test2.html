@@ -1,7 +1,8 @@
 <html lang="en"><head>
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id" content="484093697294-ptjocjkbkl629v80iuv555e2d04gtq6a.apps.googleusercontent.com  ">
-<script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.70YIlYVcHMs.O/m=client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCP0C_8qZ5OJ-IV6BpTtHqSbnaMwuQ/t=zcms/cb=gapi.loaded_0" async=""></script><script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script>
+<script src="https://apis.google.com/_/scs/apps-static/_/js/k=oz.gapi.en.70YIlYVcHMs.O/m=client/rt=j/sv=1/d=1/ed=1/am=AQ/rs=AGLTcCP0C_8qZ5OJ-IV6BpTtHqSbnaMwuQ/t=zcms/cb=gapi.loaded_0" async=""></script>
+<script src="https://apis.google.com/js/platform.js" async="" defer="" gapi_processed="true"></script>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -168,7 +169,7 @@
       ref.authWithOAuthPopup("google", function(error, authData) {
         if (error) {
           console.log("Login Failed!", error);
-          $("#notautorized").css("display", "block");
+          $("#notauthorized").css("display", "block");
           $("#glogin").css("display", "none")
       } else {
           console.log("Authenticated successfully with payload:", authData);
