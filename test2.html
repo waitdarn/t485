@@ -127,7 +127,8 @@
                         
 
     <p>Displays login-only content without redirection using firebase login.</p>
-    				  <a onclick="auth();">Sign in with Google</a>
+    				  <button onclick="auth">click me to login</button>
+
                     <p id="login-content" style="display:none;">You are logged in!</p>
 
                     <div id="notauthorized" style="display: none;">
@@ -165,18 +166,14 @@
 
     <script>
 function auth() {
-  var ref = new Firebase("https://t485auth.firebaseio.com");
-  ref.authWithOAuthPopup("google", function(error, authData) {
-    if (error) {
-      console.log("Login Failed!", error);
-      $("#notautorized").css("display", "block");
-      $("#glogin").css("display", "none")
-    } else {
-      console.log("Authenticated successfully with payload:", authData);
-      $("#login-content").css("display", "block");
-      $("#glogin").css("display", "none")
-    }
-  });
+    var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
+    ref.authWithOAuthPopup("google", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+      }
+    });
 }
     </script>
     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
