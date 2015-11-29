@@ -164,27 +164,28 @@
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 
-    <script>
-    function auth() {
-      var ref = new Firebase("https://t485auth.firebaseio.com");
-      ref.authWithOAuthPopup("google", function(error, authData) {
-        if (error) {
-          console.log("Login Failed!", error);
-          $("#notauthorized").css("display", "block");
-          $("#glogin").css("display", "none")
-      } else {
-          console.log("Authenticated successfully with payload:", authData);
-          $("#login-content").css("display", "block");
-          $("#glogin").css("display", "none")
-      }
-  }, {
-  scope: "email"
-});
-  }
-  </script>
   <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" gapi_processed="true"></script>
 
 
 
 
-  <iframe name="oauth2relay416055991" id="oauth2relay416055991" src="https://accounts.google.com/o/oauth2/postmessageRelay?parent=http%3A%2F%2Ft485.org#rpctoken=715481902&amp;forcesecure=1" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
+    <script>
+    function auth() {
+        var ref = new Firebase("https://t485auth.firebaseio.com");
+        ref.authWithOAuthPopup("google", function(error, authData) {
+            if (error) {
+              console.log("Login Failed!", error);
+              $("#notauthorized").css("display", "block");
+              $("#glogin").css("display", "none")
+            } else {
+              console.log("Authenticated successfully with payload:", authData);
+              $("#login-content").css("display", "block");
+              $("#glogin").css("display", "none")
+              console.log(authData["g"]["email"])
+            }
+        }, {
+            remember: "sessionOnly",
+            scope: "email"
+        });
+    } 
+  </script></body></html>
