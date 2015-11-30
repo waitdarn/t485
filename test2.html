@@ -184,8 +184,9 @@
               $("#glogin").css("display", "none")
               var members = snapshot.val();
               var email = ref.getAuth().google.email;
-              console.log(email)
-              if (members.indexOf(email) > -1 || email.substring(-9) === "@t485.org") {
+              var ending = email.substring(-9)
+              console.log(ending)
+              if (members.indexOf(email) > -1 || ending === "@t485.org") {
                 $("#login-content").css("display", "block");
 
               } else {
