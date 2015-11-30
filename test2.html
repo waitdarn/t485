@@ -172,7 +172,6 @@
     <script>
 
     function auth() {
-
         var ref = new Firebase("https://t485auth.firebaseio.com");
         ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
@@ -182,7 +181,7 @@
             } else {
               $("#glogin").css("display", "none")
               var members = ["jeffmeng@gmail.com", "richy.liu.2002@gmail.com"];
-              var email = ref.getAuth().password.email;
+              var email = ref.getAuth().google.email;
               console.log(email)
               if (members.indexOf(email) > -1 || email.substring(-8) === "t485.com") {
                 $("#login-content").css("display", "block");
