@@ -181,7 +181,9 @@
               $("#glogin").css("display", "none")
             } else {
               $("#glogin").css("display", "none")
-              var email = ["jeffmeng@gmail.com", "richy.liu.2002@gmail.com"];
+              var members = ["jeffmeng@gmail.com", "richy.liu.2002@gmail.com"];
+              var email = ref.getAuth().password.email;
+
               if (members.indexOf(email) > -1 || email.substring(-8) === "t485.com") {
                 $("#login-content").css("display", "block");
 
