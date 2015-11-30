@@ -183,7 +183,7 @@
                     console.log("Token: " + posts[i].token);
                     
                     if (posts[i].expire > Date.now() && urlVars["token"] == posts[i].token) {
-                        console.log("yay");
+                        console.log("success! logged in");
                         document.getElementById("login").setAttribute("style", "display: block;");
                         hasVaildToken = true;
                     }
@@ -192,9 +192,6 @@
                     var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref/" + snapshotValKeys[i]);
                     currentRef.remove();
                     console.log("removed " + snapshotValKeys[i]);
-                    
-                    // Exit js
-                    if (hasVaildToken) throw '';
                 }
                 
                 // If no token matchs
