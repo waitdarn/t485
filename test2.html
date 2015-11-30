@@ -128,10 +128,10 @@
                     <a id="glogin" class="btn btn-social btn-google" onclick="auth();">
                         <span class="fa fa-google"></span> Sign in with Google
                     </a>
-                    <p id="login-content" style="display: none;">You are logged in!</p>
+                    <p id="login-content" style="display: none;">You are logged in! Hello member of t485</p>
 
                     <div id="notauthorized" style="display: none;">
-                        <p>Sorry, but you are not authorized to see the directory. Click <a href="https://accounts.google.com/logout">here</a> to logout of your google account.</p>
+                        <p>Sorry, but you are not authorized to see the directory. To see the directory, you muse be a member of t485 with a email ending in t485.org</p>
                     </div>
 
                 </div>
@@ -170,23 +170,37 @@
 
 
     <script>
+
     function auth() {
+
         var ref = new Firebase("https://t485auth.firebaseio.com");
-        ref.authWithOAuthPopup("google", function(error, authData) {
-            if (error) {
-              console.log("Login Failed!", error);
-              $("#notauthorized").css("display", "block");
-              $("#glogin").css("display", "none")
-            } else {
-              console.log("Authenticated successfully with payload:", authData);
-              $("#login-content").css("display", "block");
-              $("#glogin").css("display", "none")
-              var email = ref.getAuth().google.email;
-              console.log(email)
-            }
-        }, {
-            remember: "sessionOnly",
-            scope: "email"
-        });
+        ref.child("memebers").once("value", function(snapshot) {
+            var members = snapshot.val();
+            ref.authWithOAuthPopup("google", function(error, authData) {
+                if (error) {
+                  console.log("Login Failed!", error);
+                  $("#notauthorized").css("display", "block");
+                  $("#glogin").css("display", "none")
+                } else {
+                  console.log("Authenticated successfully with payload:", authData);
+                  $("#glogin").css("display", "none")
+                  var email = ref.getAuth().google.email;
+                  if (members.indexOf(email) > -1 || email.substring(-8) === "t485.com") {
+                    $("#login-content").css("display", "block");
+
+                  } else {
+                    $("#notauthorized").css("display", "block");
+
+                  }
+                }
+            }, {
+                remember: "sessionOnly",
+                scope: "email"
+            });
+
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });        
+
     } 
   </script></body></html>
