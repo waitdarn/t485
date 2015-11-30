@@ -174,33 +174,26 @@
     function auth() {
 
         var ref = new Firebase("https://t485auth.firebaseio.com");
-        ref.child("memebers").once("value", function(snapshot) {
-            var members = snapshot.val();
-            ref.authWithOAuthPopup("google", function(error, authData) {
-                if (error) {
-                  console.log("Login Failed!", error);
-                  $("#notauthorized").css("display", "block");
-                  $("#glogin").css("display", "none")
-                } else {
-                  console.log("Authenticated successfully with payload:", authData);
-                  $("#glogin").css("display", "none")
-                  var email = ref.getAuth().google.email;
-                  if (members.indexOf(email) > -1 || email.substring(-8) === "t485.com") {
-                    $("#login-content").css("display", "block");
+        var members = snapshot.val();
+        ref.authWithOAuthPopup("google", function(error, authData) {
+            if (error) {
+              console.log("Login Failed!", error);
+              $("#notauthorized").css("display", "block");
+              $("#glogin").css("display", "none")
+            } else {
+              $("#glogin").css("display", "none")
+              var email = ["jeffmeng@gmail.com", "richy.liu.2002@gmail.com"];
+              if (members.indexOf(email) > -1 || email.substring(-8) === "t485.com") {
+                $("#login-content").css("display", "block");
 
-                  } else {
-                    $("#notauthorized").css("display", "block");
+              } else {
+                $("#notauthorized").css("display", "block");
 
-                  }
-                }
-            }, {
-                remember: "sessionOnly",
-                scope: "email"
-            });
-
-        }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        });        
-
+              }
+            }
+        }, {
+            remember: "sessionOnly",
+            scope: "email"
+        });
     } 
   </script></body></html>
