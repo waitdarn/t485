@@ -185,7 +185,7 @@
               var members = snapshot.val();
               var email = ref.getAuth().google.email;
               console.log(email)
-              if (members.indexOf(email) > -1 || email.substring(-8) === "t485.com") {
+              if (members.indexOf(email) > -1 || email.substring(-9) === "@t485.org") {
                 $("#login-content").css("display", "block");
 
               } else {
