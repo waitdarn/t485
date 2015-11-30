@@ -173,7 +173,7 @@
 
     function auth() {
         var ref = new Firebase("https://t485auth.firebaseio.com");
-        ref.on("value", function(snapshot) {
+        ref.child("members").on("value", function(snapshot) {
           
         ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
