@@ -173,6 +173,8 @@
 
     function auth() {
         var ref = new Firebase("https://t485auth.firebaseio.com");
+        ref.on("value", function(snapshot) {
+          
         ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
               console.log("Login Failed!", error);
@@ -180,7 +182,7 @@
               $("#glogin").css("display", "none")
             } else {
               $("#glogin").css("display", "none")
-              var members = ["jeffmeng7@gmail.com", "richy.liu.2002@gmail.com"];
+              var members = snapshot.val();
               var email = ref.getAuth().google.email;
               console.log(email)
               if (members.indexOf(email) > -1 || email.substring(-8) === "t485.com") {
@@ -194,6 +196,9 @@
         }, {
             remember: "sessionOnly",
             scope: "email"
+        });
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
         });
     } 
   </script></body></html>
