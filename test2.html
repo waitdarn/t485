@@ -96,6 +96,9 @@
                             <li><a href="contact.html">Enter Contact Information</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a onclick="auth();" id="glogin">Login</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -184,7 +187,7 @@
               $("#glogin").css("display", "none")
               var members = snapshot.val();
               var email = ref.getAuth().google.email;
-              var ending = email.substring(-9)
+              var ending = email.substring(-9, -4)
               console.log(ending)
               if (members.indexOf(email) > -1 || ending === "@t485.org") {
                 $("#login-content").css("display", "block");
