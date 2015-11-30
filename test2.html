@@ -174,7 +174,6 @@
     function auth() {
 
         var ref = new Firebase("https://t485auth.firebaseio.com");
-        var members = snapshot.val();
         ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
               console.log("Login Failed!", error);
