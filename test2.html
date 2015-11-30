@@ -97,9 +97,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a onclick="auth();" id="glogin">Login</a>
+                        <a onclick="auth();" class="login">Login</a>
                     </li>
-
+                    <li><div id="profile"></div></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -129,7 +129,7 @@
 
 
                     <p>Displays login-only content without redirection using firebase login.</p>
-                    <p class="login-content">Sign in in the nav bar</p>
+                    <p class="login">Sign in in the nav bar</p>
                     <p class="login-content" style="display: none;">You are logged in! Hello member of t485</p>
 
                     <div class="notauthorized" style="display: none;">
@@ -180,15 +180,15 @@
         ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
               console.log("Login Failed!", error);
-              $("#notauthorized").css("display", "block");
-              $("#glogin").css("display", "none")
+              $(".notauthorized").css("display", "block");
+              $(".login").css("display", "none")
             } else {
-              $("#glogin").css("display", "none")
+              $(".login").css("display", "none")
               var members = snapshot.val();
               var email = ref.getAuth().google.email;
               if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
                 $(".login-content").css("display", "block");
-
+                $("#profile").append("<p>Hi, " + email + "You are now logged in, this is a test</p>")
               } else {
                 $(".notauthorized").css("display", "block");
 
