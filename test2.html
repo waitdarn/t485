@@ -188,7 +188,6 @@
               var email = ref.getAuth().google.email;
               if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
                 $(".login-content").css("display", "block");
-                $("#profile").append("<p>Hi, " + email + "You are now logged in, this is a test</p>")
               } else {
                 $(".notauthorized").css("display", "block");
 
