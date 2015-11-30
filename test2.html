@@ -99,6 +99,7 @@
                     <li>
                         <a onclick="auth();" id="glogin">Login</a>
                     </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -131,9 +132,9 @@
                     <a id="glogin" class="btn btn-social btn-google" onclick="auth();">
                         <span class="fa fa-google"></span> Sign in with Google
                     </a>
-                    <p id="login-content" style="display: none;">You are logged in! Hello member of t485</p>
+                    <p class="login-content" style="display: none;">You are logged in! Hello member of t485</p>
 
-                    <div id="notauthorized" style="display: none;">
+                    <div class="notauthorized" style="display: none;">
                         <p>Sorry, but you are not authorized to see the directory. To see the directory, you muse be a member of t485 with a email ending in t485.org</p>
                     </div>
 
@@ -187,12 +188,11 @@
               $("#glogin").css("display", "none")
               var members = snapshot.val();
               var email = ref.getAuth().google.email;
-              console.log(ending)
               if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
-                $("#login-content").css("display", "block");
+                $(".login-content").css("display", "block");
 
               } else {
-                $("#notauthorized").css("display", "block");
+                $(".notauthorized").css("display", "block");
 
               }
             }
