@@ -178,6 +178,9 @@
             }
             console.log(window.emails);
             console.log('initialized tabletop');
+            
+            // Init Google API
+            $.getScript("https://apis.google.com/js/client.js?onload=handleClientLoad");
         }, simpleSheet: true});
         
         
@@ -252,12 +255,7 @@
                 });
             });
         }
-        
-        setTimeout(function() {
-            $.getScript("https://apis.google.com/js/client.js?onload=handleClientLoad", function() { console.log("success!"); });
-        }, 1000);
     </script>
-    <!--<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>-->
 
 </body>
 
