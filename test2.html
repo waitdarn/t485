@@ -181,7 +181,8 @@
               console.log("Authenticated successfully with payload:", authData);
               $("#login-content").css("display", "block");
               $("#glogin").css("display", "none")
-              console.log(authData["google.email"])
+              var email = ref.getAuth().google.email;
+              console.log(email)
             }
         }, {
             remember: "sessionOnly",
