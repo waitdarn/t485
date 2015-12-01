@@ -99,7 +99,6 @@
                     <li>
                         <a onclick="auth();" class="login">Login</a>
                     </li>
-                    <li><div id="profile"></div></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -172,33 +171,45 @@
 
 
     <script>
+    function checkGoogleCookie() {
+        var login = getCookie("googlelogin");
+        if (login === "true") {
+            return true;
+        } else {
+            return false;
 
+        }
+    }
     function auth() {
-        var ref = new Firebase("https://t485auth.firebaseio.com");
-        ref.child("members").on("value", function(snapshot) {
-          
-        ref.authWithOAuthPopup("google", function(error, authData) {
-            if (error) {
-              console.log("Login Failed!", error);
-              $(".notauthorized").css("display", "block");
-              $(".login").css("display", "none")
-            } else {
-              $(".login").css("display", "none")
-              var members = snapshot.val();
-              var email = ref.getAuth().google.email;
-              if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
-                $(".login-content").css("display", "block");
-              } else {
-                $(".notauthorized").css("display", "block");
-
-              }
-            }
-        }, {
-            remember: "sessionOnly",
-            scope: "email"
-        });
-        }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        });
+        if (checkGoogleCookie()) {
+            $(".login-content").css("display", "block");
+            $(".login").css("display", "none")
+        } else {
+            var ref = new Firebase("https://t485auth.firebaseio.com");
+            ref.child("members").on("value", function(snapshot) {
+              
+            ref.authWithOAuthPopup("google", function(error, authData) {
+                if (error) {
+                  console.log("Login Failed!", error);
+                  $(".notauthorized").css("display", "block");
+                  $(".login").css("display", "none")
+                } else {
+                  $(".login").css("display", "none")
+                  var members = snapshot.val();
+                  var email = ref.getAuth().google.email;
+                  if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
+                    $(".login-content").css("display", "block");
+                    setCookie("googlelogin", "true", 7)
+                  } else {
+                    $(".notauthorized").css("display", "block");
+                  }
+                }
+            }, {
+                scope: "email"
+            });
+            }, function (errorObject) {
+              console.log("The read failed: " + errorObject.code);
+            });
+        }
     } 
   </script></body></html>
