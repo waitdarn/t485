@@ -172,11 +172,13 @@
 
 
     <script>
-
+        if (getCookie("googlelogin") === "true") {
+            $(".login-content").css("display", "block");
+        }
     function auth() {
         var ref = new Firebase("https://t485auth.firebaseio.com");
         ref.child("members").on("value", function(snapshot) {
-          
+
         ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
               console.log("Login Failed!", error);
@@ -188,6 +190,7 @@
               var email = ref.getAuth().google.email;
               if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
                 $(".login-content").css("display", "block");
+                document.cookie("googlelogin=true;")
               } else {
                 $(".notauthorized").css("display", "block");
 
