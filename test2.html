@@ -19,7 +19,34 @@
 <meta name="theme-color" content="#008000">
 
 <title>Google API Test Page</title>
+<script>
 
+    function auth() {
+            var ref = new Firebase("https://t485auth.firebaseio.com");
+            ref.child("members").on("value", function(snapshot) {
+            ref.authWithOAuthPopup("google", function(error, authData) {
+                if (error) {
+                  console.log("Login Failed!", error);
+                  $(".notauthorized").css("display", "block");
+                  $(".login").css("display", "none")
+                } else {
+                  $(".login").css("display", "none")
+                  var members = snapshot.val();
+                  var email = ref.getAuth().google.email;
+                  if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
+                    $(".login-content").css("display", "block");
+                  } else {
+                    $(".notauthorized").css("display", "block");
+                  
+                    }
+            }, {
+                scope: "email"
+            });
+            }, function (errorObject) {
+              console.log("The read failed: " + errorObject.code);
+            });
+    } 
+  </script>
 <!-- Bootstrap Core CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
@@ -170,31 +197,4 @@
 
 
 
-    <script>
-
-    function auth() {
-            var ref = new Firebase("https://t485auth.firebaseio.com");
-            ref.child("members").on("value", function(snapshot) {
-            ref.authWithOAuthPopup("google", function(error, authData) {
-                if (error) {
-                  console.log("Login Failed!", error);
-                  $(".notauthorized").css("display", "block");
-                  $(".login").css("display", "none")
-                } else {
-                  $(".login").css("display", "none")
-                  var members = snapshot.val();
-                  var email = ref.getAuth().google.email;
-                  if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
-                    $(".login-content").css("display", "block");
-                  } else {
-                    $(".notauthorized").css("display", "block");
-                  
-                    }
-            }, {
-                scope: "email"
-            });
-            }, function (errorObject) {
-              console.log("The read failed: " + errorObject.code);
-            });
-    } 
-  </script></body></html>
+    </body></html>
