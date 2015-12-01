@@ -96,6 +96,10 @@
                             <li><a href="contact.html">Enter Contact Information</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a onclick="auth();" class="login">Login</a>
+                    </li>
+                    <li><div id="profile"></div></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -125,12 +129,10 @@
 
 
                     <p>Displays login-only content without redirection using firebase login.</p>
-                    <a id="glogin" class="btn btn-social btn-google" onclick="auth();">
-                        <span class="fa fa-google"></span> Sign in with Google
-                    </a>
-                    <p id="login-content" style="display: none;">You are logged in! Hello member of t485</p>
+                    <p class="login">Sign in in the nav bar</p>
+                    <p class="login-content" style="display: none;">You are logged in! Hello member of t485</p>
 
-                    <div id="notauthorized" style="display: none;">
+                    <div class="notauthorized" style="display: none;">
                         <p>Sorry, but you are not authorized to see the directory. To see the directory, you muse be a member of t485 with a email ending in t485.org</p>
                     </div>
 
@@ -170,27 +172,27 @@
 
 
     <script>
-
+        if (getCookie("googlelogin") === "true") {
+            $(".login-content").css("display", "block");
+        }
     function auth() {
         var ref = new Firebase("https://t485auth.firebaseio.com");
         ref.child("members").on("value", function(snapshot) {
-          
+
         ref.authWithOAuthPopup("google", function(error, authData) {
             if (error) {
               console.log("Login Failed!", error);
-              $("#notauthorized").css("display", "block");
-              $("#glogin").css("display", "none")
+              $(".notauthorized").css("display", "block");
+              $(".login").css("display", "none")
             } else {
-              $("#glogin").css("display", "none")
+              $(".login").css("display", "none")
               var members = snapshot.val();
               var email = ref.getAuth().google.email;
-              var ending = email.substring(-9)
-              console.log(ending)
-              if (members.indexOf(email) > -1 || ending === "@t485.org") {
-                $("#login-content").css("display", "block");
-
+              if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
+                $(".login-content").css("display", "block");
+                document.cookie("googlelogin=true;")
               } else {
-                $("#notauthorized").css("display", "block");
+                $(".notauthorized").css("display", "block");
 
               }
             }
