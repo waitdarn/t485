@@ -199,7 +199,7 @@
                         // Check if email is on approved list
                         if (members.indexOf(email) > -1) {
                             $('.login-content').css('display', 'block');
-                            // This sets the cookie to expire at the end of the session
+                            // Create cookie with no expiration date so sookie is deleted upon browser close.
                             document.cookie = 'googlelogin=true';
                         } else {
                             $('.notauthorized').css('display', 'block');
