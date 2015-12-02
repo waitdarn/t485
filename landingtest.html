@@ -192,6 +192,11 @@
                     var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref/" + snapshotValKeys[i]);
                     currentRef.remove();
                     console.log("removed " + snapshotValKeys[i]);
+                    
+                    if (hasVaildToken) {
+                        // Show logged in info
+                        
+                    }
                 }
                 
                 // If no token matchs

@@ -158,7 +158,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script src="js/t485.js"></script>
-    <script src="js/tabletop.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -166,42 +165,49 @@
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
 
-  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" gapi_processed="true"></script>
-
-
-
 
     <script>
         if (getCookie("googlelogin") === "true") {
             $(".login-content").css("display", "block");
         }
-    function auth() {
-        var ref = new Firebase("https://t485auth.firebaseio.com");
-        ref.child("members").on("value", function(snapshot) {
+    
+        function auth() {
+            var ref = new Firebase("https://t485auth.firebaseio.com");
+            
+            ref.child("members").on("value", function(snapshot) {
+                ref.authWithOAuthPopup("google", function(error, authData) {
+                    if (error) {
+                        // Login failed
+                        console.log("Login Failed!" + error);
+                        $(".notauthorized").css("display", "block");
+                        $(".login").css("display", "none");
+                    } else {
+                        // Login succeeded
+                        $(".login").css("display", "none");
+                        var members = snapshot.val();
+                        console.log(members);
+                        var email = ref.getAuth().google.email;
+                        console.log(email);
+                        
+                        // Check if email is on approved list
+                        if (members.indexOf(email) > -1/* || email.indexOf("@t485.org") > -1*/) {
+                            $(".login-content").css("display", "block");
+                            document.cookie("googlelogin=true;");
+                        } else {
+                            $(".notauthorized").css("display", "block");
+                        }
+                    }
+                }, {
+                    remember: "sessionOnly",
+                    scope: "email"
+                });
+            }, function(errorObject) {
+                console.log("The read failed: " + errorObject.code);
+            });
+        }
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" gapi_processed="true"></script>
+    
+</body>
 
-        ref.authWithOAuthPopup("google", function(error, authData) {
-            if (error) {
-              console.log("Login Failed!", error);
-              $(".notauthorized").css("display", "block");
-              $(".login").css("display", "none")
-            } else {
-              $(".login").css("display", "none")
-              var members = snapshot.val();
-              var email = ref.getAuth().google.email;
-              if (members.indexOf(email) > -1 || email.indexOf("@t485.org") > -1) {
-                $(".login-content").css("display", "block");
-                document.cookie("googlelogin=true;")
-              } else {
-                $(".notauthorized").css("display", "block");
-
-              }
-            }
-        }, {
-            remember: "sessionOnly",
-            scope: "email"
-        });
-        }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        });
-    } 
-  </script></body></html>
+</html>
