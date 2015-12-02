@@ -164,45 +164,53 @@
 
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-
+    
+    <!-- Clicky Web Analytics -->
+    <script src="https://static.getclicky.com/js"></script>
+    <script>try{clicky.init(100869133)}catch(e){}</script>
+    <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        if (getCookie("googlelogin") === "true") {
-            $(".login-content").css("display", "block");
+        /* global getCookie */
+        /* global setCookie */
+        /* global Firebase */
+        
+        if (getCookie('googlelogin') === 'true') {
+            $('.login-content').css('display', 'block');
         }
     
         function auth() {
-            var ref = new Firebase("https://t485auth.firebaseio.com");
+            var ref = new Firebase('https://t485auth.firebaseio.com');
             
-            ref.child("members").on("value", function(snapshot) {
-                ref.authWithOAuthPopup("google", function(error, authData) {
+            ref.child('members').on('value', function(snapshot) {
+                ref.authWithOAuthPopup('google', function(error, authData) {
                     if (error) {
                         // Login failed
-                        console.log("Login Failed!" + error);
-                        $(".notauthorized").css("display", "block");
-                        $(".login").css("display", "none");
+                        console.log('Login Failed!' + error);
+                        $('.notauthorized').css('display', 'block');
+                        $('.login').css('display', 'none');
                     } else {
                         // Login succeeded
-                        $(".login").css("display", "none");
+                        $('.login').css('display', 'none');
                         var members = snapshot.val();
                         console.log(members);
                         var email = ref.getAuth().google.email;
                         console.log(email);
                         
                         // Check if email is on approved list
-                        if (members.indexOf(email) > -1/* || email.indexOf("@t485.org") > -1*/) {
-                            $(".login-content").css("display", "block");
-                            document.cookie("googlelogin=true;");
+                        if (members.indexOf(email) > -1/* || email.indexOf('@t485.org') > -1*/) {
+                            $('.login-content').css('display', 'block');
+                            setCookie('googlelogin', 'true', 365);
                         } else {
-                            $(".notauthorized").css("display", "block");
+                            $('.notauthorized').css('display', 'block');
                         }
                     }
                 }, {
-                    remember: "sessionOnly",
-                    scope: "email"
+                    remember: 'sessionOnly',
+                    scope: 'email'
                 });
             }, function(errorObject) {
-                console.log("The read failed: " + errorObject.code);
+                console.log('The read failed: ' + errorObject.code);
             });
         }
     </script>
