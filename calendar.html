@@ -112,9 +112,8 @@
 
     <div class="container" style="overflow: none;">
 
-        <iframe id="calendar" src="https://www.google.com/calendar/embed?showTitle=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=bsa485%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FLos_Angeles" style="border-width: 0; height: 600px; width: 100%;"></iframe>
+        <iframe id="calendar" src="https://calendar.google.com/calendar/embed?showCalendars=0&amp;mode=AGENDA&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=bsa485%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FLos_Angeles" style="border-width: 0; width: 100%;"></iframe>
         
-        <p id="screen-size"></p>
         <!--<div class="row add-headcount">
             <div class="box col-xs-12">
                 <hr>
@@ -175,8 +174,8 @@
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
-    <script>
-        /*var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
+    <!--<script>
+        var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
         var pushRef;
 
         $("form").submit(function(){
@@ -206,13 +205,8 @@
         function undo() {
             fireRef.child(pushRef.key()).remove();
             location.reload();
-        }*/
-        
-        $('#screen-size').html(window.innerHeight);
-        if (window.innerHeight < 600) {
-            $('#calendar').css('height', window.innerHeight * 0.7);
         }
-    </script>
+    </script>-->
 
 </body>
 
