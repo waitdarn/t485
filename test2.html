@@ -133,7 +133,7 @@
                         <p>You are logged in! Hello member of t485</p>
                         
                         <div class="protected">
-                            <div class="row" id="search" style="display: none;">
+                            <div class="row" id="search">
                                 <div class="box col-xs-12">
                                     <hr>
                                     <h2 class="intro-text text-center">Search</h2>
@@ -163,13 +163,13 @@
                                 </div>
                             </div>
                     
-                            <div class="row" id="spreadsheet-confirm" style="display: none;">
+                            <div class="row" id="spreadsheet-confirm">
                                 <div class="box">
                                     <button type="button" id="spreadsheet-confirm-btn" class="btn btn-default">Show full directory</button>
                                 </div>
                             </div>
                     
-                            <div class="row" id="spreadsheet" style="display: none;">
+                            <div class="row" id="spreadsheet">
                                 <div class="box">
                                     <ul class="nav nav-tabs">
                                         <li class="active"><a data-toggle="tab" href="#cacti">Cacti</a></li>
@@ -290,12 +290,7 @@ _|_|_|    _|  _|          _|_|_|    _|_|_|      _|_|    _|_|    _|          _|_|
         /* global hashPassword */
         /* global Tabletop */
         
-        $("#submit").click(checkPassword);
-        $("#password").keypress(function (e){
-            if(e.keyCode === 13) {
-                $("#submit").click();
-            }
-        });
+        
         $("#spreadsheet-confirm-btn").click(function () {
             $("#spreadsheet-confirm").css("display", "none");
             $("#spreadsheet-content").html(
@@ -322,30 +317,6 @@ _|_|_|    _|  _|          _|_|_|    _|_|_|      _|_|    _|_|    _|          _|_|
             );
             $("#spreadsheet").css("display", "block");
         });
-        checkCookie();
-
-        function checkPassword() {
-            var password = $("#password").val();
-            if (hashPassword(password) === -376092119) {
-                $("#password-form").css("display", "none");
-                $(".protected").css("display", "block");
-                $("#search-query").focus();
-
-                // Sets cookie to expire in 7 days
-                setCookie("logged-in", "true", 7);
-            } else {
-                $(".form-group").addClass("has-error has-feedback");
-                $("#password").val("");
-            }
-        }
-
-        function checkCookie() {
-            if (getCookie("logged-in") === "true") {
-                $("#password-form").css("display", "none");
-                $(".protected").css("display", "block");
-                $("#search-query").focus();
-            }
-        }
 
 
         window.globalData = [];
