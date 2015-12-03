@@ -97,7 +97,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a onclick="auth();" class="login">Login</a>
+                        <a class="login" id="login-btn">Login</a>
                     </li>
                     <li><div id="profile"></div></li>
                 </ul>
@@ -177,6 +177,8 @@
         if (getCookie('googlelogin') === 'true') {
             $('.login-content').css('display', 'block');
         }
+        
+        $('#login-btn').click(auth);
     
         function auth() {
             var ref = new Firebase('https://t485auth.firebaseio.com');
@@ -214,7 +216,6 @@
             });
         }
     </script>
-    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad" gapi_processed="true"></script>
     
 </body>
 
