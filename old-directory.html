@@ -121,57 +121,59 @@
             <span id="inputError2Status" class="sr-only">(error)</span>
           </div>
         </div>
-
-        <div class="row" id="search" style="display: none;">
-            <div class="box col-xs-12">
-                <hr>
-                <h2 class="intro-text text-center">Search</h2>
-                <hr>
-                <p>Click on the name for more information.</p>
-                <p>Notice someone's name is missing? Click <a href="feedback.html">here</a> to submit the bug.</p>
-                <div class="input-group col-xs-12">
-                    <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
-                    <span class="input-group-btn" style="vertical-align: top">
-                        <button class="btn btn-default" type="button" id="search-btn">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
+        
+        <div class="protected">
+            <div class="row" id="search" style="display: none;">
+                <div class="box col-xs-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Search</h2>
+                    <hr>
+                    <p>Click on the name for more information.</p>
+                    <p>Notice someone's name is missing? Click <a href="feedback.html">here</a> to submit the bug.</p>
+                    <div class="input-group col-xs-12">
+                        <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
+                        <span class="input-group-btn" style="vertical-align: top">
+                            <button class="btn btn-default" type="button" id="search-btn">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <table class="table" id="results" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th class="col-xs-3">Name</th>
+                                <th class="col-xs-3">Cell Phone</th>
+                                <th class="col-xs-3">Father's Cell Phone</th>
+                                <th class="col-xs-3">Mother's Cell Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div id="detail" style="display: none;"></div>
                 </div>
-                <table class="table" id="results" style="display: none;">
-                    <thead>
-                        <tr>
-                            <th class="col-xs-3">Name</th>
-                            <th class="col-xs-3">Cell Phone</th>
-                            <th class="col-xs-3">Father's Cell Phone</th>
-                            <th class="col-xs-3">Mother's Cell Phone</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-                <div id="detail" style="display: none;"></div>
+            </div>
+    
+            <div class="row" id="spreadsheet-confirm" style="display: none;">
+                <div class="box">
+                    <button type="button" id="spreadsheet-confirm-btn" class="btn btn-default">Show full directory</button>
+                </div>
+            </div>
+    
+            <div class="row" id="spreadsheet" style="display: none;">
+                <div class="box">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#cacti">Cacti</a></li>
+                        <li><a data-toggle="tab" href="#wildcats">Wildcats</a></li>
+                        <li><a data-toggle="tab" href="#hawks">Hawks</a></li>
+                        <li><a data-toggle="tab" href="#serpents">Serpents</a></li>
+                        <li><a data-toggle="tab" href="#old-contact">Old Directory</a></li>
+                    </ul>
+    
+                    <div class="tab-content" id="spreadsheet-content"></div>
+                </div>
             </div>
         </div>
-
-        <div class="row" id="spreadsheet-confirm" style="display: none;">
-            <div class="box">
-                <button type="button" id="spreadsheet-confirm-btn" class="btn btn-default">Show full directory</button>
-            </div>
-        </div>
-
-        <div class="row" id="spreadsheet" style="display: none;">
-            <div class="box">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#cacti">Cacti</a></li>
-                    <li><a data-toggle="tab" href="#wildcats">Wildcats</a></li>
-                    <li><a data-toggle="tab" href="#hawks">Hawks</a></li>
-                    <li><a data-toggle="tab" href="#serpents">Serpents</a></li>
-                    <li><a data-toggle="tab" href="#old-contact">Old Directory</a></li>
-                </ul>
-
-                <div class="tab-content" id="spreadsheet-content"></div>
-            </div>
-        </div>
-
+        
     </div>
     <!-- /.container -->
 
@@ -203,7 +205,11 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        "use strict";
+        /* global getCookie */
+        /* global setCookie */
+        /* global hashPassword */
+        /* global Tabletop */
+        
         $("#submit").click(checkPassword);
         $("#password").keypress(function (e){
             if(e.keyCode === 13) {
@@ -242,8 +248,7 @@
             var password = $("#password").val();
             if (hashPassword(password) === -376092119) {
                 $("#password-form").css("display", "none");
-                $("#search").css("display", "block");
-                $("#spreadsheet-confirm").css("display", "block");
+                $(".protected").css("display", "block");
                 $("#search-query").focus();
 
                 // Sets cookie to expire in 7 days
@@ -257,8 +262,7 @@
         function checkCookie() {
             if (getCookie("logged-in") === "true") {
                 $("#password-form").css("display", "none");
-                $("#search").css("display", "block");
-                $("#spreadsheet-confirm").css("display", "block");
+                $(".protected").css("display", "block");
                 $("#search-query").focus();
             }
         }
@@ -358,7 +362,7 @@
             var results = [];
             // score lower is better
             var score = [];
-            for (var i = 0; i < patrolnames.length; i++) {
+            for (i = 0; i < patrolnames.length; i++) {
                 // Only first/last name
                 if (query[1] === null) {
                     if (patrolnames[i][0] === query[0] || patrolnames[i][1] === query[0]) {
@@ -400,7 +404,7 @@
           	
             // Display search results
             $("#results").css("display", "block");
-            $("#detail").css("display", "none")
+            $("#detail").css("display", "none");
             $("#results > tbody").html("");
             for (var i = 0; i < results.length; i++) {
                 var name = window.globalData[results[i]]["Scout's Full Name (last name first):"];
@@ -456,7 +460,7 @@
             }
 
             return matrix[b.length][a.length];
-        };
+        }
     </script>
 
 </body>
