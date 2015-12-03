@@ -200,7 +200,7 @@
                         if (members.indexOf(email) > -1) {
                             $('.login-content').css('display', 'block');
                             // This sets the cookie to expire at the end of the session
-                            document.cookie = 'googlelogin=true';
+                            document.cookie = 'googlelogin=true;';
                         } else {
                             $('.notauthorized').css('display', 'block');
                         }
