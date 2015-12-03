@@ -133,7 +133,7 @@
                     <p class="login-content" style="display: none;">You are logged in! Hello member of t485</p>
 
                     <div class="notauthorized" style="display: none;">
-                        <p>Sorry, but you are not authorized to see the directory. To see the directory, you muse be a member of t485.</p>
+                        <p>Sorry, but you are not authorized to see the directory. To see the directory, you must be on the t485 mailing list.<!-- Contact webmaster@t485.org for more information.--></p>
                     </div>
 
                 </div>
@@ -199,7 +199,7 @@
                         // Check if email is on approved list
                         if (members.indexOf(email) > -1) {
                             $('.login-content').css('display', 'block');
-                            // Create cookie with no expiration date so sookie is deleted upon browser close.
+                            // Create cookie with no expiration date so cookie is deleted when session ends.
                             document.cookie = 'googlelogin=true';
                         } else {
                             $('.notauthorized').css('display', 'block');
