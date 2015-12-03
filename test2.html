@@ -250,9 +250,7 @@
                         // Login succeeded
                         $('.login').css('display', 'none');
                         var members = snapshot.val();
-                        console.log(members);
                         var email = ref.getAuth().google.email;
-                        console.log(email);
                         
                         // Check if email is on approved list
                         if (members.indexOf(email) > -1) {
