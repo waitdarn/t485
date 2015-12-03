@@ -121,7 +121,7 @@
               <p style="color: darkred">* Required</p>
               <form role="form">
                   <label class="control-label">Scout's Full Name<span style="color: darkred;">*</span>:</label>
-                  <input type="text" class="form-control" id="name" maxlength="30" required>
+                  <input type="text" class="form-control" id="name" required pattern="[a-zA-Z]{2,20} [a-zA-Z]{2,20}" title="Please enter your first and last name">
 
                   <label class="control-label">Scout's Email:</label>
                   <input type="email" class="form-control" id="email" maxlength="50" required>
@@ -136,10 +136,10 @@
                   <input type="date" class="form-control" id="date-joined" required>
 
                   <label class="control-label">School Attending<span style="color: darkred;">*</span>:</label>
-                  <input type="text" class="form-control" id="school" maxlength="35" required>
+                  <input type="text" class="form-control" id="school" required pattern="[a-zA-Z]{3,40}" title="Please enter a valid school">
 
                   <label class="control-label">Patrol<span style="color: darkred;">*</span>:</label>
-                  <input type="text" class="form-control" id="patrol" maxlength="8" required>
+                  <input type="text" class="form-control" id="patrol" required pattern="[a-zA-Z]{5,8}" title="Please enter a patrol name">
 
                   <input type="hidden" name="save" value="contact">
                   <button type="submit" class="btn btn-default">Submit</button>
