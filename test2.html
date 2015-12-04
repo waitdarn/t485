@@ -234,7 +234,6 @@
                     if (error) {
                         // Login failed
                         console.log('Login Failed!' + error);
-                        alert("You are not authorized.");
                     } else {
                         // Login succeeded
                         $('.login').css('display', 'none');
@@ -243,12 +242,12 @@
                         
                         // Check if email is on approved list
                         if (members.indexOf(email) > -1) {
-                            $('.login-content').css('display', 'block');
+                            $('.login').css('display', 'block');
                             initTabletop();
                             // Create cookie with no expiration date so cookie is deleted when session ends.
                             document.cookie = 'googlelogin=true';
                         } else {
-                            $('.notauthorized').css('display', 'block');
+                            alert("You are not authorized.");
                         }
                     }
                 }, {
