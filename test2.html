@@ -236,13 +236,15 @@
                         console.log('Login Failed!' + error);
                     } else {
                         // Login succeeded
-                        $('.login').css('display', 'none');
                         var members = snapshot.val();
                         var email = ref.getAuth().google.email;
+                        console.log('login succeeded');
                         
                         // Check if email is on approved list
                         if (members.indexOf(email) > -1) {
+                            $('.login').css('display', 'none');
                             $('.login').css('display', 'block');
+                            console.log('logged in');
                             initTabletop();
                             // Create cookie with no expiration date so cookie is deleted when session ends.
                             document.cookie = 'googlelogin=true';
