@@ -117,6 +117,7 @@
                 <hr>
                 <h2 class="intro-text text-center">Search</h2>
                 <hr>
+                <button class="btn btn-default" onclick="logout();">Logout</button>
                 <p>Click on the name for more information.</p>
                 <p>Notice someone's name is missing? Click <a href="feedback.html">here</a> to submit the bug.</p>
                 <div class="input-group col-xs-12">
@@ -193,6 +194,7 @@
     <script>
         /* global getCookie */
         /* global Tabletop */
+        /* global Firebase */
         
         $('#spreadsheet-confirm-btn').click(function () {
             $('#spreadsheet-confirm').css('display', 'none');

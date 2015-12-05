@@ -52,3 +52,9 @@ function getVarsFromUrl() {
     });
     return vars;
 }
+
+function logout() {
+    document.cookie = 'googlelogin=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    var fRef = new Firebase('https://t485auth.firebaseio.com');
+    fRef.unauth();
+}
