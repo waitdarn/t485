@@ -177,9 +177,6 @@
         }
         
         
-        setTimeout(auth, 1000);
-        
-        
         ref.child('members').on('value', function(snapshot) {
             console.log('read succeeded');
             window.members = snapshot.val();
