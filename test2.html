@@ -221,6 +221,7 @@
         
         if (getCookie('googlelogin') === 'true') {
             $('.login').css('display', 'none');
+            $('.login-content').css('display', 'block');
         }
         
         $('#login-btn').click(auth);
@@ -246,7 +247,7 @@
                             // Create cookie with no expiration date so cookie is deleted when session ends.
                             document.cookie = 'googlelogin=true';
                         } else {
-                            alert("You are not authorized.");
+                            alert("You are not authorized to view this page.");
                         }
                     }
                 }, {
