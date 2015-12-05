@@ -243,11 +243,12 @@
                         // Check if email is on approved list
                         if (members.indexOf(email) > -1) {
                             $('.login').css('display', 'none');
-                            $('.login').css('display', 'block');
-                            console.log('logged in');
-                            initTabletop();
+                            $('.login-content').css('display', 'block');
+                            
                             // Create cookie with no expiration date so cookie is deleted when session ends.
                             document.cookie = 'googlelogin=true';
+                            console.log('logged in');
+                            initTabletop();
                         } else {
                             alert("You are not authorized to view this page.");
                         }
