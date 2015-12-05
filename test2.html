@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-md-12">
                     <p>Work in progress</p>
-                    <p>Displays login-only content without redirection using firebase login.</p>
+                    <p>Displays login-only content with redirection using firebase login.</p>
                     <p>Click the sign in link above.</p>
                 </div>
                 <div class="clearfix"></div>
@@ -219,46 +219,56 @@
         /* global getCookie */
         /* global Firebase */
         
+        
         if (getCookie('googlelogin') === 'true') {
             $('.login').css('display', 'none');
             $('.login-content').css('display', 'block');
         }
         
         $('#login-btn').click(auth);
-    
-        function auth() {
-            var ref = new Firebase('https://t485auth.firebaseio.com');
+        
+        
+        
+        window.members = [];
+        var ref = new Firebase('https://t485auth.firebaseio.com');
             
-            ref.child('members').on('value', function(snapshot) {
-                ref.authWithOAuthRedirect('google', function(error, authData) {
-                    if (error) {
-                        // Login failed
-                        console.log('Login Failed!' + error);
-                    } else {
-                        // Login succeeded
-                        var members = snapshot.val();
-                        var email = ref.getAuth().google.email;
-                        console.log('login succeeded');
-                        
-                        // Check if email is on approved list
-                        if (members.indexOf(email) > -1) {
-                            $('.login').css('display', 'none');
-                            $('.login-content').css('display', 'block');
-                            
-                            // Create cookie with no expiration date so cookie is deleted when session ends.
-                            document.cookie = 'googlelogin=true';
-                            console.log('logged in');
-                            initTabletop();
-                        } else {
-                            alert("You are not authorized to view this page.");
-                        }
-                    }
-                }, {
-                    remember: 'sessionOnly',
-                    scope: 'email'
-                });
-            }, function(errorObject) {
-                console.log('The read failed: ' + errorObject.code);
+        ref.child('members').on('value', function(snapshot) {
+            console.log('read succeeded');
+            window.members = snapshot.val();
+        }, function(errorObject) {
+            console.log('The read failed: ' + errorObject.code);
+        });
+        
+            
+        ref.onAuth(function(authData) {
+            // Login succeeded
+            console.log(authData);
+            var email = authData.google.email;
+            console.log('login succeeded');
+            
+            // Check if email is on approved list
+            if (window.members.indexOf(email) > -1) {
+                $('.login').css('display', 'none');
+                $('.login-content').css('display', 'block');
+                
+                // Create cookie with no expiration date so cookie is deleted when session ends.
+                document.cookie = 'googlelogin=true';
+                console.log('logged in');
+                initTabletop();
+            } else {
+                alert("You are not authorized to view this page.");
+            }
+        });
+        
+        
+        function auth() {
+            ref.authWithOAuthRedirect('google', function(error) {
+               if (error) {
+                   console.log('Login failed! ' + error);
+               } 
+            }, {
+                remember: 'sessionOnly',
+                scope: 'email'
             });
         }
         
@@ -278,9 +288,6 @@ _|_|_|    _|  _|          _|_|_|    _|_|_|      _|_|    _|_|    _|          _|_|
         
         
         
-        /* global getCookie */
-        /* global setCookie */
-        /* global hashPassword */
         /* global Tabletop */
         
         
@@ -474,35 +481,8 @@ _|_|_|    _|  _|          _|_|_|    _|_|_|      _|_|    _|_|    _|          _|_|
         }
 
         // Code from https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#JavaScript
-        function compare(a, b) {
-            if (a.length === 0) return b.length;
-            if (b.length === 0) return a.length;
-            var matrix = [];
-
-            var i;
-            for (i = 0; i <= b.length; i++) {
-                matrix[i] = [i];
-            }
-
-            var j;
-            for (j = 0; j <= a.length; j++) {
-                matrix[0][j] = j;
-            }
-
-            for (i = 1; i <= b.length; i++) {
-                for (j = 1; j <= a.length; j++) {
-                    if (b.charAt(i-1) == a.charAt(j-1)) {
-                        matrix[i][j] = matrix[i-1][j-1];
-                    } else {
-                        matrix[i][j] = Math.min(matrix[i-1][j-1]+1,
-                                       Math.min(matrix[i][j-1]+1,
-                                                matrix[i-1][j]+1));
-                    }
-                }
-            }
-
-            return matrix[b.length][a.length];
-        }
+        // Compressed using http://javascript-minifier.com/
+        function compare(t,n){if(0===t.length)return n.length;if(0===n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length]}
     </script>
     
 </body>
