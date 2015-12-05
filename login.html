@@ -202,8 +202,8 @@
                         
                         handleLoggedIn(redirectUrl);
                     } else {
-                        console.error("The user is not authorized to view this page.");
-                        alert("You are not authorized to view this page.");
+                        alert("Sorry, but you are not authorized to view this page.");
+                        window.location.href = '/index';
                     }
                 }
             });
