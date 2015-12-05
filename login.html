@@ -115,7 +115,7 @@
     <!-- https://accounts.google.com/o/oauth2/auth?response_type=token&scope=profile&redirect_uri=http%3A%2F%2Ft485.org&client_id=484093697294-ptjocjkbkl629v80iuv555e2d04gtq6a.apps.googleusercontent.com -->
     <div class="container">
 
-        <div class="row login">
+        <div class="row">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
@@ -123,7 +123,8 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <img src="img/sign-in-with-google.png"></img>
+                    <img class="login" src="img/sign-in-with-google.png" onclick="auth();"></img>
+                    <p class="logged-in" style="display: none;">You have successfully logged in.</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -221,6 +222,8 @@
                 window.location.href = '/' + url;
             } else {
                 // Handle login without redirect url
+                $('.login').css('display', 'none');
+                $('.logged-in').css('display', 'block');
             }
         }
     </script>
