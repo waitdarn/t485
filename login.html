@@ -188,21 +188,23 @@
         
         function auth() {
             ref.onAuth(function(authData) {
-                // Login succeeded
-                var email = authData.google.email;
-                console.log(email);
-                console.log(window.members);
-                
-                // Check if email is on approved list
-                if (window.members.indexOf(email) > -1) {
-                    // Create cookie with no expiration date so cookie is deleted when session ends.
-                    document.cookie = 'googlelogin=true';
-                    console.log('logged in');
+                if (authData !== null) {
+                    // Login succeeded
+                    var email = authData.google.email;
+                    console.log(email);
+                    console.log(window.members);
                     
-                    handleLoggedIn(redirectUrl);
-                } else {
-                    console.error("The user is not authorized to view this page.");
-                    alert("You are not authorized to view this page.");
+                    // Check if email is on approved list
+                    if (window.members.indexOf(email) > -1) {
+                        // Create cookie with no expiration date so cookie is deleted when session ends.
+                        document.cookie = 'googlelogin=true';
+                        console.log('logged in');
+                        
+                        handleLoggedIn(redirectUrl);
+                    } else {
+                        console.error("The user is not authorized to view this page.");
+                        alert("You are not authorized to view this page.");
+                    }
                 }
             });
             
