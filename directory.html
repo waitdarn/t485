@@ -120,7 +120,7 @@
                 <p>Click on the name for more information.</p>
                 <p>Notice someone's name is missing? Click <a href="feedback.html">here</a> to submit the bug.</p>
                 <div class="input-group col-xs-12">
-                    <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
+                    <input type="text" id="search-query" class="form-control" placeholder="Type a name...">
                     <span class="input-group-btn" style="vertical-align: top">
                         <button class="btn btn-default" type="button" id="search-btn">
                             <i class="glyphicon glyphicon-search"></i>
@@ -132,8 +132,6 @@
                         <tr>
                             <th class="col-xs-3">Name</th>
                             <th class="col-xs-3">Cell Phone</th>
-                            <th class="col-xs-3">Father's Cell Phone</th>
-                            <th class="col-xs-3">Mother's Cell Phone</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -375,9 +373,7 @@
                 var name = window.globalData[results[i]]['Scout\'s Full Name (last name first):'];
                 $('#results > tbody').append(
                     '<tr><td><a onclick="showfullinfo(' + results[i] + ')">' + name
-                 + '</a></td><td>'  + window.globalData[results[i]]['Scout\'s Cell Phone']
-                 + '</td><td>'      + window.globalData[results[i]]['Father\'s Cell Phone']
-                 + '</td><td>'      + window.globalData[results[i]]['Mother\'s Cell Phone'] + '</td></tr>');
+                 + '</a></td><td>'  + window.globalData[results[i]]['Scout\'s Cell Phone'] + '</td></tr>');
             }
         });
 
