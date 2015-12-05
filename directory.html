@@ -112,65 +112,53 @@
 
     <div class="container">
         
-        <div class="box">
-            <div class="form-group input-append">
-                <label for="password">This section is password protected:</label>
-                <input type="password" class="form-control" id="password">
-                <button type="submit" class="btn btn-default" id="submit">Submit</button>
-                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                <span id="inputError2Status" class="sr-only">(error)</span>
+        <div class="row" id="search">
+            <div class="box col-xs-12">
+                <hr>
+                <h2 class="intro-text text-center">Search</h2>
+                <hr>
+                <p>Click on the name for more information.</p>
+                <p>Notice someone's name is missing? Click <a href="feedback.html">here</a> to submit the bug.</p>
+                <div class="input-group col-xs-12">
+                    <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
+                    <span class="input-group-btn" style="vertical-align: top">
+                        <button class="btn btn-default" type="button" id="search-btn">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <table class="table" id="results" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-3">Name</th>
+                            <th class="col-xs-3">Cell Phone</th>
+                            <th class="col-xs-3">Father's Cell Phone</th>
+                            <th class="col-xs-3">Mother's Cell Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div id="detail" style="display: none;"></div>
             </div>
         </div>
-        
-        <div class="protected">
-            <div class="row" id="search">
-                <div class="box col-xs-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Search</h2>
-                    <hr>
-                    <p>Click on the name for more information.</p>
-                    <p>Notice someone's name is missing? Click <a href="feedback.html">here</a> to submit the bug.</p>
-                    <div class="input-group col-xs-12">
-                        <input type="text" class="form-control" placeholder="Type a name..." id="search-query">
-                        <span class="input-group-btn" style="vertical-align: top">
-                            <button class="btn btn-default" type="button" id="search-btn">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </span>
-                    </div>
-                    <table class="table" id="results" style="display: none;">
-                        <thead>
-                            <tr>
-                                <th class="col-xs-3">Name</th>
-                                <th class="col-xs-3">Cell Phone</th>
-                                <th class="col-xs-3">Father's Cell Phone</th>
-                                <th class="col-xs-3">Mother's Cell Phone</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                    <div id="detail" style="display: none;"></div>
-                </div>
+
+        <div class="row" id="spreadsheet-confirm">
+            <div class="box">
+                <button type="button" id="spreadsheet-confirm-btn" class="btn btn-default">Show full directory</button>
             </div>
-    
-            <div class="row" id="spreadsheet-confirm">
-                <div class="box">
-                    <button type="button" id="spreadsheet-confirm-btn" class="btn btn-default">Show full directory</button>
-                </div>
-            </div>
-    
-            <div class="row" id="spreadsheet">
-                <div class="box">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#cacti">Cacti</a></li>
-                        <li><a data-toggle="tab" href="#wildcats">Wildcats</a></li>
-                        <li><a data-toggle="tab" href="#hawks">Hawks</a></li>
-                        <li><a data-toggle="tab" href="#serpents">Serpents</a></li>
-                        <li><a data-toggle="tab" href="#old-contact">Old Directory</a></li>
-                    </ul>
-    
-                    <div class="tab-content" id="spreadsheet-content"></div>
-                </div>
+        </div>
+
+        <div class="row" id="spreadsheet" style="display: none;">
+            <div class="box">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#cacti">Cacti</a></li>
+                    <li><a data-toggle="tab" href="#wildcats">Wildcats</a></li>
+                    <li><a data-toggle="tab" href="#hawks">Hawks</a></li>
+                    <li><a data-toggle="tab" href="#serpents">Serpents</a></li>
+                    <li><a data-toggle="tab" href="#old-contact">Old Directory</a></li>
+                </ul>
+
+                <div class="tab-content" id="spreadsheet-content"></div>
             </div>
         </div>
         
@@ -238,8 +226,6 @@
 
         function auth() {
             if (getCookie('googlelogin') === 'true') {
-                $('#password-form').css('display', 'none');
-                $('.protected').css('display', 'block');
                 $('#search-query').focus();
             } else {
                 window.location.href = '/login?redirect=directory';
