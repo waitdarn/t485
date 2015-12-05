@@ -242,9 +242,9 @@
             
         ref.onAuth(function(authData) {
             // Login succeeded
-            console.log(authData);
             var email = authData.google.email;
-            console.log('login succeeded');
+            console.log(email);
+            console.log(window.members);
             
             // Check if email is on approved list
             if (window.members.indexOf(email) > -1) {
@@ -256,6 +256,7 @@
                 console.log('logged in');
                 initTabletop();
             } else {
+                console.error("The user is not authorized to view this page.");
                 alert("You are not authorized to view this page.");
             }
         });
@@ -263,9 +264,7 @@
         
         function auth() {
             ref.authWithOAuthRedirect('google', function(error) {
-               if (error) {
-                   console.log('Login failed! ' + error);
-               } 
+               if (error) console.log('Login failed! ' + error);
             }, {
                 remember: 'sessionOnly',
                 scope: 'email'
