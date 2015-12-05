@@ -231,7 +231,8 @@
         
         window.members = [];
         var ref = new Firebase('https://t485auth.firebaseio.com');
-            
+        
+        
         ref.child('members').on('value', function(snapshot) {
             console.log('read succeeded');
             window.members = snapshot.val();
@@ -239,30 +240,29 @@
             console.log('The read failed: ' + errorObject.code);
         });
         
-            
-        ref.onAuth(function(authData) {
-            // Login succeeded
-            var email = authData.google.email;
-            console.log(email);
-            console.log(window.members);
-            
-            // Check if email is on approved list
-            if (window.members.indexOf(email) > -1) {
-                $('.login').css('display', 'none');
-                $('.login-content').css('display', 'block');
-                
-                // Create cookie with no expiration date so cookie is deleted when session ends.
-                document.cookie = 'googlelogin=true';
-                console.log('logged in');
-                initTabletop();
-            } else {
-                console.error("The user is not authorized to view this page.");
-                alert("You are not authorized to view this page.");
-            }
-        });
-        
         
         function auth() {
+            ref.onAuth(function(authData) {
+                // Login succeeded
+                var email = authData.google.email;
+                console.log(email);
+                console.log(window.members);
+                
+                // Check if email is on approved list
+                if (window.members.indexOf(email) > -1) {
+                    $('.login').css('display', 'none');
+                    $('.login-content').css('display', 'block');
+                    
+                    // Create cookie with no expiration date so cookie is deleted when session ends.
+                    document.cookie = 'googlelogin=true';
+                    console.log('logged in');
+                    initTabletop();
+                } else {
+                    console.error("The user is not authorized to view this page.");
+                    alert("You are not authorized to view this page.");
+                }
+            });
+            
             ref.authWithOAuthRedirect('google', function(error) {
                if (error) console.log('Login failed! ' + error);
             }, {
