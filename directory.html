@@ -372,9 +372,11 @@
             $('#detail').hide();
 			
           	if (results.length === 0) {
+          	    $('#results').hide();
           	    $('#no-results').html('Your search - <b>' + userquery + '</b> - did not match any names.');
           	    $('#no-results').show();
           	} else {
+          	    $('#no-results').hide();
                 $('#results > tbody').html('');
           	    for (var i = 0; i < results.length; i++) {
                     var name = window.globalData[results[i]]['Scout\'s Full Name (last name first):'];
