@@ -33,7 +33,7 @@
 
 </head>
 
-<body>
+<body onload="checkPassword();">
 
     <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485"></a>
 
@@ -112,18 +112,6 @@
     </div>
 
     <div class="container">
-
-        <div class="row" id="password-form">
-            <div class="box">
-                <div class="form-group input-append">
-                    <label for="password">This section is password protected:</label>
-                    <input type="password" class="form-control" id="password">
-                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
-                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-                    <span id="inputError2Status" class="sr-only">(error)</span>
-                </div>
-            </div>
-        </div>
 
         <div class="row" id="content" style="display: none;">
             <div class="box">
@@ -221,7 +209,12 @@
             }
         });
         function checkPassword() {
-            window.location = "http://t485.org/login?redirect=pictures"
+            if (getCookie('googlelogin') === 'true') {
+                $('#content').show();
+            } else {
+                window.location.href = '/login?redirect=pictures';
+        }
+        
         }
         /*
         checkCookie();
