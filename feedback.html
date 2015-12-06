@@ -170,8 +170,8 @@
             fireRef.push({"name": $("#feedback-name").val(),
                          "email": $("#feedback-email").val(),
                          "text": $("#feedback-text").val()});
-            $(".feedback-form").css("display", "none");
-            $(".thank-you").css("display", "block");
+            $(".feedback-form").hide();
+            $(".thank-you").show();
             return false;
         });
     </script>

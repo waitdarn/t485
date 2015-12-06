@@ -221,8 +221,8 @@
                 window.location.href = '/' + url;
             } else {
                 // Handle login without redirect url
-                $('.login').css('display', 'none');
-                $('.logged-in').css('display', 'block');
+                $('.login').hide();
+                $('.logged-in').show();
                 throw '';
             }
         }

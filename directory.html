@@ -197,7 +197,7 @@
         /* global Firebase */
         
         $('#spreadsheet-confirm-btn').click(function () {
-            $('#spreadsheet-confirm').css('display', 'none');
+            $('#spreadsheet-confirm').hide();
             $('#spreadsheet-content').html(
                 '<div id="cacti" class="tab-pane fade in active">' +
                     '<a href="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
@@ -220,7 +220,7 @@
                     '<iframe src="https://docs.google.com/spreadsheets/d/1vG2y2euWgG3ASuSpBC9oD5ufZ8YiL4Q-HlPYyKaZ_o0/pubhtml?widget=true&amp;headers=false"></iframe>' +
                 '</div>'
             );
-            $('#spreadsheet').css('display', 'block');
+            $('#spreadsheet').show();
         });
         auth();
 
@@ -368,8 +368,8 @@
             
             
             // Display search results
-            $('#results').css('display', 'block');
-            $('#detail').css('display', 'none');
+            $('#results').show();
+            $('#detail').hide();
             $('#results > tbody').html('');
 			
           	if (results.length === 0) {
@@ -385,7 +385,7 @@
         });
 
         function showfullinfo(id) {
-            $('#results').css('display', 'none');
+            $('#results').hide();
             $('#detail').css('display', 'block').html('').append(
                 'Name: '                + window.globalData[id]['Scout\'s Full Name (last name first):'] + '<br>' +
                 'Email: '               + window.globalData[id]['Scout\'s E-mail:'] + '<br>' +

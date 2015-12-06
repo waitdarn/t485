@@ -228,8 +228,8 @@
             var password = $('#password').val();
             
             if (hashPassword(password) === -376092119) {
-                $('#password-form').css('display', 'none');
-                $('#content').css('display', 'block');
+                $('#password-form').hide();
+                $('#content').show();
                 
                 // Sets cookie to expire in 7 days
                 setCookie("logged-in", "true", 7);
@@ -247,8 +247,8 @@
 
         function checkCookie() {
             if (getCookie("logged-in") === "true") {
-                $('#password-form').css('display', 'none');
-                $('#content').css('display', 'block');
+                $('#password-form').hide();
+                $('#content').show();
 
                 // Put all pictures info in javascript so that Google web crawler cannot index photos (for privacy)
                 $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389%40N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
