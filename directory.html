@@ -347,7 +347,7 @@
                 // First and last name
                 } else {
                     var diff = compare(query[0], patrolnames[i][0]) + compare(query[1], patrolnames[i][1]);
-                    console.log(diff);
+                    console.log('Diff: ' + diff + ', compare name: ' + patrolnames[i][0] + ', ' + patrolnames[i][1]);
                     if (diff < (query[0].length + query[1].length) / 2) {
                         score.push({id: i, score: diff + 1});
                     }
