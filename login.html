@@ -184,29 +184,28 @@
             console.log('The read failed: ' + errorObject.code);
         });
         
+        ref.onAuth(function(authData) {
+            if (authData !== null) {
+                // Login succeeded
+                var email = authData.google.email;
+                console.log(email);
+                console.log(window.members);
+                
+                // Check if email is on approved list
+                if (window.members.indexOf(email) > -1) {
+                    // Create cookie with no expiration date so cookie is deleted when session ends.
+                    document.cookie = 'googlelogin=true';
+                    console.log('logged in');
+                    
+                    handleLoggedIn(redirectUrl);
+                } else {
+                    alert("Sorry, but you are not authorized to view this page.");
+                    window.location.href = '/index';
+                }
+            }
+        });
         
         function auth() {
-            ref.onAuth(function(authData) {
-                if (authData !== null) {
-                    // Login succeeded
-                    var email = authData.google.email;
-                    console.log(email);
-                    console.log(window.members);
-                    
-                    // Check if email is on approved list
-                    if (window.members.indexOf(email) > -1) {
-                        // Create cookie with no expiration date so cookie is deleted when session ends.
-                        document.cookie = 'googlelogin=true';
-                        console.log('logged in');
-                        
-                        handleLoggedIn(redirectUrl);
-                    } else {
-                        alert("Sorry, but you are not authorized to view this page.");
-                        window.location.href = '/index';
-                    }
-                }
-            });
-            
             ref.authWithOAuthRedirect('google', function(error) {
                if (error) console.log('Login failed! ' + error);
             }, {
