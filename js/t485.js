@@ -54,7 +54,9 @@ function getVarsFromUrl() {
 }
 
 function logout() {
+    // Clears cookie
     document.cookie = 'googlelogin=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    // Unauth Firebase
     var fRef = new Firebase('https://t485auth.firebaseio.com');
     fRef.unauth();
 }
