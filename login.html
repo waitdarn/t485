@@ -186,6 +186,13 @@
         
         
         function auth() {
+            ref.authWithOAuthRedirect('google', function(error) {
+               if (error) console.log('Login failed! ' + error);
+            }, {
+                remember: 'sessionOnly',
+                scope: 'email'
+            });
+            
             ref.onAuth(function(authData) {
                 if (authData !== null) {
                     // Login succeeded
@@ -205,13 +212,6 @@
                         window.location.href = '/index';
                     }
                 }
-            });
-            
-            ref.authWithOAuthRedirect('google', function(error) {
-               if (error) console.log('Login failed! ' + error);
-            }, {
-                remember: 'sessionOnly',
-                scope: 'email'
             });
         }
         
