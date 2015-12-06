@@ -288,12 +288,10 @@
             } else {
                 query[0] = userquery;
                 query[1] = null;
-                // If more than one space
-                if (query[2] !== undefined) return;
+                // If more than one space use only first 2
+                if (query[2] !== undefined) query = query.splice(0, 2);
             }
-            if (query[0] === '') query[1] = null;
-            console.log(query);
-            console.log(userquery);
+            if (query[1] === '') query[1] = null;
 
             //console.log(window.globalData);
             //console.log(query);
