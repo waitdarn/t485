@@ -138,7 +138,7 @@
                 <div class="col-md-3" id="event-links">
                     <h3>Events</h3>
                 </div>
-                <div class="col-md-9" id="pictures">
+                <div class="col-md-9" id="pictures" data-role="main" class="ui-content">
                     <h3>Photos</h3>
                 </div>
                 <div class="clearfix"></div>
@@ -280,10 +280,12 @@
             for (var i = 0; i < 30; i++) {
 
                 var photo = rsp.photoset.photo[randomNums[i]];
-                var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
+                var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_";
+                var medium_url = t_url + 'm.jpg';
+                var original_url = t_url + 'o.jpg';
                 var p_url = "http://www.flickr.com/photos/" + rsp.photoset.owner + "/" + photo.id;
 
-                var img = document.createElement("img");
+                /*var img = document.createElement("img");
                 img.alt = photo.title;
                 img.src = t_url;
 
@@ -298,6 +300,18 @@
                 div.style.paddingRight = "0px";
                 div.appendChild(a);
                 document.getElementById("pictures").appendChild(div);
+                
+                $('#pictures').append('<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="padding-left: 0px; padding-right: 0px;">' + 
+                    '<a href="' + p_url + '" target="_blank"><img alt="' + photo.title + '" src="' + t_url + '" ></a>' + 
+                '</div>');*/
+                
+                $('#pictures').append('<a href="#' + i + '" data-rel="popup" data-position-to="window">' +
+                    '<img src="' + t_url + '" alt="' + photo.title + '" style="width:200px;" class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="padding-left: 0px; padding-right: 0px;">' +
+                '</a>' +
+                
+                '<div data-role="popup" id="' + i + '">' +
+                    '<a href="#pictures" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="' + original_url + '" style="width:800px;height:400px;" alt="' + photo.title + '">' +
+                '</div>');
             }
         }
 
