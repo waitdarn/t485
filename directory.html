@@ -37,7 +37,7 @@
     <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485"></a>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -137,6 +137,7 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+                <p id="no-result"></p>
                 <div id="detail" style="display: none;"></div>
             </div>
         </div>
@@ -368,19 +369,20 @@
             
             
             // Display search results
-            $('#results').show();
             $('#detail').hide();
-            $('#results > tbody').html('');
 			
           	if (results.length === 0) {
-          	    $('#results').html('Your search - <b>' + userquery + '</b> - did not match any names.');
+          	    $('#no-results').html('Your search - <b>' + userquery + '</b> - did not match any names.');
+          	    $('#no-results').show();
           	} else {
+                $('#results > tbody').html('');
           	    for (var i = 0; i < results.length; i++) {
                     var name = window.globalData[results[i]]['Scout\'s Full Name (last name first):'];
                     $('#results > tbody').append(
                         '<tr><td><a onclick="showfullinfo(' + results[i] + ')">' + name
                      + '</a></td><td>'  + window.globalData[results[i]]['Scout\'s Cell Phone'] + '</td></tr>');
                 }
+                $('#results').show();
           	}
         });
 
