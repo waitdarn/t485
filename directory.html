@@ -137,7 +137,7 @@
                     </thead>
                     <tbody></tbody>
                 </table>
-                <p id="no-result"></p>
+                <p id="no-result" style="display: none;"></p>
                 <div id="detail" style="display: none;"></div>
             </div>
         </div>
@@ -373,10 +373,10 @@
 			
           	if (results.length === 0) {
           	    $('#results').hide();
-          	    $('#no-results').html('Your search - <b>' + userquery + '</b> - did not match any names.');
-          	    $('#no-results').show();
+          	    $('#no-result').html('Your search - <b>' + userquery + '</b> - did not match any names.');
+          	    $('#no-result').show();
           	} else {
-          	    $('#no-results').hide();
+          	    $('#no-result').hide();
                 $('#results > tbody').html('');
           	    for (var i = 0; i < results.length; i++) {
                     var name = window.globalData[results[i]]['Scout\'s Full Name (last name first):'];
