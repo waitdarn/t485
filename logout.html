@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
     <meta name="author" content="Richard Liu">
-    
+
     <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
@@ -17,15 +17,15 @@
     <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
     <link rel="manifest" href="favicons/manifest.json">
     <meta name="theme-color" content="#008000">
-    
-    <title>Log In - Troop 485</title>
-    
+
+    <title>Log out - Troop 485</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Custom CSS -->
     <link href="css/t485.css" rel="stylesheet">
-    
+
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
@@ -66,6 +66,9 @@
                         <a href="new-scout.html">New Scout</a>
                     </li>
                     <li>
+                        <a href="troop-jobs.html">Troop Jobs</a>
+                    </li>
+                    <li>
                         <a href="pictures.html">Pictures</a>
                     </li>
                     <li class="dropdown">
@@ -84,7 +87,6 @@
                             <li><a href="resources.html">Resources</a></li>
                             <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
                             <li><a href="books.html">Books</a></li>
-                            <li><a href="troop-jobs.html">Troop Jobs</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -94,17 +96,13 @@
                             <li><a href="contact.html">Enter Contact Information</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a class="login" id="login-btn">Login</a>
-                    </li>
-                    <li><div id="profile"></div></li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
-    
+
     <a href="#" id="toTop"></a>
 
     <div class="alert alert-info alert-dismissible" role="alert">
@@ -112,20 +110,17 @@
         <span class="glyphicon glyphicon-info-sign"></span>  Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!
     </div>
 
-    <!-- https://accounts.google.com/o/oauth2/auth?response_type=token&scope=profile&redirect_uri=http%3A%2F%2Ft485.org&client_id=484093697294-ptjocjkbkl629v80iuv555e2d04gtq6a.apps.googleusercontent.com -->
     <div class="container">
 
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Log In</h2>
+                    <h2 class="intro-text text-center">Logged out</h2>
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <img class="login" src="img/sign-in-with-google.png" onclick="auth();"></img>
-                    <p class="logged-in" style="display: none;">You have successfully logged in.</p>
-                    <button class="btn btn-default logged-in" onclick="window.location.href='/logout'">Logout</button>
+                    <p>You have successfully logged out.</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -138,7 +133,7 @@
         <div class="container">
             <div class="box">
                 <div class="col-lg-12 text-center">
-                    <p>Copyright © 2015 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America</p>
+                    <p>Copyright &copy; 2015 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America</p>
                 </div>
             </div>
         </div>
@@ -148,85 +143,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
     <script src="js/t485.js"></script>
-    <script src="js/tabletop.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <!-- Firebase -->
-    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-    
     <!-- Clicky Web Analytics -->
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
-    <script>
-        /* global getCookie */
-        /* global Firebase */
-        /* global getVarsFromUrl */
-        
-        
-        var redirectUrl = getVarsFromUrl()["redirect"] || null;
-        var ref = new Firebase('https://t485auth.firebaseio.com');
-        window.members = [];
-        
-        
-        if (getCookie('googlelogin') === 'true') {
-            handleLoggedIn(redirectUrl);
-        }
-        
-        
-        ref.child('members').on('value', function(snapshot) {
-            console.log('read succeeded');
-            window.members = snapshot.val();
-        }, function(errorObject) {
-            console.log('The read failed: ' + errorObject.code);
-        });
-        
-        
-        function auth() {
-            ref.onAuth(function(authData) {
-                if (authData !== null) {
-                    // Login succeeded
-                    var email = authData.google.email;
-                    console.log(email);
-                    console.log(window.members);
-                    
-                    // Check if email is on approved list
-                    if (window.members.indexOf(email) > -1) {
-                        // Create cookie with no expiration date so cookie is deleted when session ends.
-                        document.cookie = 'googlelogin=true';
-                        console.log('logged in');
-                        
-                        handleLoggedIn(redirectUrl);
-                    } else {
-                        alert("Sorry, but you are not authorized to view this page.");
-                        window.location.href = '/index';
-                    }
-                }
-            });
-            
-            ref.authWithOAuthRedirect('google', function(error) {
-               if (error) console.log('Login failed! ' + error);
-            }, {
-                remember: 'sessionOnly',
-                scope: 'email'
-            });
-        }
-        
-        function handleLoggedIn(url) {
-            if (url !== null) {
-                window.location.href = '/' + url;
-            } else {
-                // Handle login without redirect url
-                $('.login').css('display', 'none');
-                $('.logged-in').css('display', 'block');
-                throw '';
-            }
-        }
-    </script>
-    
 </body>
 
 </html>
