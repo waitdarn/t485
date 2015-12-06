@@ -224,7 +224,7 @@
             $('#spreadsheet').show();
         });
         auth();
-
+        
         function auth() {
             if (getCookie('googlelogin') === 'true') {
                 $('#search-query').focus();
@@ -232,8 +232,8 @@
                 window.location.href = '/login?redirect=directory';
             }
         }
-
-
+        
+        
         window.globalData = [];
         $(document).ready(function() {
             $('#password').focus();
@@ -271,7 +271,7 @@
             window.globalData.push.apply(window.globalData, data);
             console.log('initializing tabletop, 4 times');
         }, simpleSheet: true});
-
+        
         $('#search-query').keypress(function(e){
             if(e.keyCode === 13) {
                 $('#search-btn').click();
@@ -293,10 +293,10 @@
                 if (query[2] !== undefined) query = query.splice(0, 2);
             }
             if (query[1] === '') query[1] = null;
-
+            
             //console.log(window.globalData);
             //console.log(query);
-
+            
             // Split the names into first and last names
             var patrolnames = [];
             for (var i = 0; i < window.globalData.length; i++) {
@@ -323,7 +323,7 @@
                 patrolnames.push(name);
             }
             //console.log(patrolnames);
-
+            
             // Search for patrolnames for query
             var results = [];
             // score lower is better
@@ -336,6 +336,7 @@
                     } else {
                         var diff = compare(query[0], patrolnames[i][0]) < compare(query[0], patrolnames[i][1]) ?
                                    compare(query[0], patrolnames[i][0]) : compare(query[0], patrolnames[i][1]);
+                        console.log(diff);
                         if (diff < query[0].length / 2) {
                             score.push({id: i, score: diff + 1});
                         }
@@ -343,12 +344,19 @@
                 // If direct match set score to 0
                 } else if (patrolnames[i][0] === query[0] && patrolnames[i][1] === query[1]) {
                     score.push({id: i, score: 0});
+                // First and last name
+                } else {
+                    var diff = compare(query[0], patrolnames[i][0]) + compare(query[1], patrolnames[i][1]);
+                    console.log(diff);
+                    if (diff < (query[0].length + query[1].length) / 2) {
+                        score.push({id: i, score: diff + 1});
+                    }
                 }
             }
             score.sort(function(a, b) {
                 return parseFloat(a.score) - parseFloat(b.score);
             });
-
+            
             // Make sure scores list has items
             if (!(score[0] === undefined)) {
                 var firstScore = score[0].score;
@@ -364,8 +372,8 @@
                     }
                 }
             }
-
-            console.log(window.globalData);
+            
+            //console.log(window.globalData);
             
             
             // Display search results
@@ -376,9 +384,9 @@
           	    $('#no-result').html('Your search - <b>' + userquery + '</b> - did not match any names.');
           	    $('#no-result').show();
           	} else {
-          	    $('#no-result').hide();
+                $('#no-result').hide();
                 $('#results > tbody').html('');
-          	    for (var i = 0; i < results.length; i++) {
+                for (var i = 0; i < results.length; i++) {
                     var name = window.globalData[results[i]]['Scout\'s Full Name (last name first):'];
                     $('#results > tbody').append(
                         '<tr><td><a onclick="showfullinfo(' + results[i] + ')">' + name
@@ -387,7 +395,7 @@
                 $('#results').show();
           	}
         });
-
+        
         function showfullinfo(id) {
             $('#results').hide();
             $('#detail').css('display', 'block').html('').append(
@@ -402,10 +410,10 @@
                 'Mother\'s E-mail: '     + window.globalData[id]['Mother\'s E-mail'] + '<br>'
             );
         }
-
-        // Code from https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Levenshtein_distance#JavaScript
+        
+        // Code from https://gist.github.com/andrei-m/982927
         // Compressed using http://javascript-minifier.com/
-        function compare(t,n){if(0===t.length)return n.length;if(0===n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length]}
+        function compare(t,n){if(0==t.length)return n.length;if(0==n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length]}
     </script>
 
 </body>
