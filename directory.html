@@ -365,18 +365,23 @@
             }
 
             console.log(window.globalData);
-				
-          	
+            
+            
             // Display search results
             $('#results').css('display', 'block');
             $('#detail').css('display', 'none');
             $('#results > tbody').html('');
-            for (var i = 0; i < results.length; i++) {
-                var name = window.globalData[results[i]]['Scout\'s Full Name (last name first):'];
-                $('#results > tbody').append(
-                    '<tr><td><a onclick="showfullinfo(' + results[i] + ')">' + name
-                 + '</a></td><td>'  + window.globalData[results[i]]['Scout\'s Cell Phone'] + '</td></tr>');
-            }
+			
+          	if (results.length === 0) {
+          	    $('#results').html('Your search - <b>' + userquery + '</b> - did not match any names.');
+          	} else {
+          	    for (var i = 0; i < results.length; i++) {
+                    var name = window.globalData[results[i]]['Scout\'s Full Name (last name first):'];
+                    $('#results > tbody').append(
+                        '<tr><td><a onclick="showfullinfo(' + results[i] + ')">' + name
+                     + '</a></td><td>'  + window.globalData[results[i]]['Scout\'s Cell Phone'] + '</td></tr>');
+                }
+          	}
         });
 
         function showfullinfo(id) {
