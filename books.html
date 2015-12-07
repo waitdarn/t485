@@ -432,7 +432,8 @@
         function update(book) {
             fireLib.once("value", function(snapshot) {
                 var holds = snapshpt.val();
-                fireLib.child(book).child("hold-count") = holds + 1
+                fireLib.child(book).child("hold-count").remove();
+                fireLib.child(book).child("hold-count").push(holds + 1);
             });
         }
         function hold(book) {
