@@ -16,6 +16,9 @@ $('.dropdown a').click(function() {
 });
 
 
+
+// Helper functions
+
 // Source: http://www.w3schools.com/js/js_cookies.asp
 function hashPassword(str) {
     var hash = 0;
@@ -60,3 +63,6 @@ function logout() {
     var fRef = new Firebase('https://t485auth.firebaseio.com');
     fRef.unauth();
 }
+
+// Fisher-Yates shuffle
+function generateRandomNums(r){for(var a=[],n=0;r>n;n++)a[n]=n;for(var o,e,t=r;t;)e=~~(Math.random()*t),t-=1,o=a[t],a[t]=a[e],a[e]=o;return a}
