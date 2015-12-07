@@ -138,7 +138,7 @@
                 <div class="col-md-3" id="event-links">
                     <h3>Events</h3>
                 </div>
-                <div class="col-md-9" id="pictures" data-role="main" class="ui-content">
+                <div class="col-md-9" id="pictures">
                     <h3>Photos</h3>
                 </div>
                 <div class="clearfix"></div>
@@ -260,6 +260,9 @@
                 $('#content').show();
 
                 // Put all pictures info in javascript so that Google web crawler cannot index photos (for privacy)
+                if ($("#more-photos-link") !== null)  {    
+                $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389%40N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
+            }
                 $("#event-links").append(events);
             } else {
                 window.location.href = "login.html?redirect=pictures.html"
@@ -286,12 +289,10 @@
             for (var i = 0; i < 30; i++) {
 
                 var photo = rsp.photoset.photo[randomNums[i]];
-                var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_";
-                var medium_url = t_url + 'm.jpg';
-                var original_url = t_url + 'o.jpg';
+                var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_" + "m.jpg";
                 var p_url = "http://www.flickr.com/photos/" + rsp.photoset.owner + "/" + photo.id;
 
-                /*var img = document.createElement("img");
+                var img = document.createElement("img");
                 img.alt = photo.title;
                 img.src = t_url;
 
@@ -306,6 +307,7 @@
                 div.style.paddingRight = "0px";
                 div.appendChild(a);
                 document.getElementById("pictures").appendChild(div);
+<<<<<<< Updated upstream
                 
                 $('#pictures').append('<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" style="padding-left: 0px; padding-right: 0px;">' + 
                     '<a href="' + p_url + '" target="_blank"><img alt="' + photo.title + '" src="' + t_url + '" ></a>' + 
@@ -318,6 +320,8 @@
                 '<div data-role="popup" id="' + i + '">' +
                     '<a href="#pictures" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="' + original_url + '" style="width:800px;height:400px;" alt="' + photo.title + '">' +
                 '</div>');
+=======
+>>>>>>> Stashed changes
             }
         }
 
