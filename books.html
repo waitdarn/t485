@@ -449,6 +449,7 @@
                 name = prompt("Please enter your first and last name");
             }
             fireLib.child("holds").push({"book": book, "name": name, "date": date});
+            update(book)
             alert("Please come to the next troop meeting to pick up your book.")
         }
     </script>
