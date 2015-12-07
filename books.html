@@ -428,9 +428,12 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        var fireRef = new Firebase("https://t485.firebaseio.com/libary/holds");
-        function update(title) {
-            var fb = new Firebase 
+        var fireLib = new Firebase("https://t485.firebaseio.com/libary")
+        function update(book) {
+            fireLib.once("value", function(snapshot) {
+                var holds = snapshpt.val();
+                fireLib.child(book).child("hold-count") = (holds + 1)
+            });
         }
         function hold(book) {
             var d = new Date();
@@ -445,7 +448,7 @@
                    name.search(" ") < 2 || name.search(" ") > name.length - 3) {
                 name = prompt("Please enter your first and last name");
             }
-            fireRef.push({"book": book, "name": name, "date": date});
+            fireLib.child("holds").push({"book": book, "name": name, "date": date});
             alert("Please come to the next troop meeting to pick up your book.")
         }
     </script>
