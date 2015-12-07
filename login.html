@@ -124,11 +124,11 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <a class="btn btn-social btn-google" onclick="auth();">
+                    <a class="btn btn-social btn-google login" onclick="auth();">
                         <span class="fa fa-google"></span> Sign in with Google
-                      </a>
-                        <p>You have successfully logged in.</p>
-                    <button class="btn btn-default logged-in" onclick="window.location.href='/logout'">Logout</button>
+                    </a>
+                    <p class="logged-in" style="display: none;">You have successfully logged in.</p>
+                    <button class="btn btn-default logged-in" onclick="window.location.href='logout'">Logout</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -226,6 +226,8 @@
                 // Handle login without redirect url
                 $('.login').hide();
                 $('.logged-in').show();
+                
+                // Throw errow to end js execution
                 throw '';
             }
         }
