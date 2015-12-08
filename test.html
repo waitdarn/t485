@@ -2,25 +2,7 @@
 <html lang="en">
 
 <head>
-    <script>
-    // a test not related to this page, but alerts for any page.
-        function getQuery(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-        if (getQuery("alert").indexOf("test") > -1) {
-            $("#alert-box").append('<div class="alert alert-danger alert-dismissible" role="alert">
-        <a class="close" data-dismiss="alert">×</a>
-        <span class="glyphicon glyphicon-info-sign"></span> <p><b>Note:</b> This page is for testing only and should not be used for holding books. Do not use this page for holding books. Instead, go to the <a class="alert-link">book page.</a>.</p>
-    </div>')
-        } else if (getQuery("alert") === "none") {
 
-        } else {
-            window.location.href = "http://t485.org/test.html?alert=test"
-        }
-    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -442,7 +424,23 @@
     <script src="https://static.getclicky.com/js"></script>
     <script type="text/javascript">try {clicky.init(100869133);} catch (e) {}</script>
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
+    <script>
+    // a test not related to this page, but alerts for any page.
+        function getQuery(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        if (getQuery("alert").indexOf("test") > -1) {
+            $("#alert-box").append('<div class="alert alert-danger alert-dismissible" role="alert"><a class="close" data-dismiss="alert">×</a><span class="glyphicon glyphicon-info-sign"></span> <p><b>Note:</b> This page is for testing only and should not be used for holding books. Do not use this page for holding books. Instead, go to the <a class="alert-link">book page.</a>.</p>
+    </div>')
+        } else if (getQuery("alert") === "none") {
 
+        } else {
+            window.location.href = "http://t485.org/test.html?alert=test"
+        }
+    </script>
     <script>
         var fireLib = new Firebase("https://t485.firebaseio.com/libary")
         function update(book) {
