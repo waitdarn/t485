@@ -437,8 +437,7 @@
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
         if (getQuery("alert").indexOf("test") > -1) {
-            $("#alert-box").append('<p>this would be the alert</p>
-    </div>')
+            $("#alert-box").append("<p>this would be the alert</p></div>");
         } else if (getQuery("alert") === "none") {
 
         } else {
