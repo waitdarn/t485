@@ -444,15 +444,16 @@
         }
     </script>
     <script>
-        var fireLib = new Firebase("https://t485.firebaseio.com/
-            fireLib.once("value", function(snapshot) {libary")
+        var fireLib = new Firebase("https://t485.firebaseio.com/");
+        fireLib.once("value", function(snapshot) {
         function update(book) {
                 var holds = snapshpt.val();
                 fireLib.child(book).child("hold-count").set(null);
                 fireLib.child(book).child("hold-count").push(String(Number(holds) + 1) );
                 console.log("updated!")
-            });
         }
+            });
+        
         function hold(book) {
             var d = new Date();
             // Month starts at 0 for January
