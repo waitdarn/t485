@@ -434,7 +434,7 @@
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
         if (getQuery("alert").indexOf("note") > -1) {
-            $("#alert-box").append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Note</strong> this page is a test opnly, and holding on this page will not be recived as a hold, but as a test. To see the book page, click <a href="books.html" class="alert-link">here</a>.</div>');
+            $("#alert-box").append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Note</strong> this page is a test only, and holding on this page will not be recived as a hold, but as a test. To see the book page, click <a href="books.html" class="alert-link">here</a>.</div>');
         } else if (getQuery("alert") !== "none") {
             window.location.href = "http://t485.org/test.html?alert=note"
 
