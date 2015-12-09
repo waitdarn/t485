@@ -110,10 +110,7 @@
         <a class="close" data-dismiss="alert">×</a>
         <span class="glyphicon glyphicon-info-sign"></span>  Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!
     </div>
-    <div class="alert alert-danger alert-dismissible" role="alert">
-        <a class="close" data-dismiss="alert">×</a>
-        <span class="glyphicon glyphicon-info-sign"></span><b>Note:</b> This page is for testing only and should not be used for holding books. Do not use this page for holding books. Instead, go to the <a class="alert-link">book page.</a>.
-    </div>
+    
     <div id="alert-box"></div>
     <div class="container">
         <div class="row">
@@ -428,7 +425,6 @@
     <script src="https://static.getclicky.com/js"></script>
     <script type="text/javascript">try {clicky.init(100869133);} catch (e) {}</script>
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
-    <!--
     <script>
     // a test not related to this page, but alerts for any page.
         function getQuery(name) {
@@ -437,18 +433,20 @@
                 results = regex.exec(location.search);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
-        if (getQuery("alert").indexOf("test") > -1) {
-            $("#alert-box").append("<p>this would be the alert</p></div>");
-        } else if (getQuery("alert") === "none") {
+        if (getQuery("alert").indexOf("note") > -1) {
+            $("#alert-box").append('<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Warning!</strong> Better check yourself, you are not looking too good.</div>');
+        } else if !(getQuery("alert") === "none") {
+            window.location.href = "http://t485.org/test.html?alert=note"
 
-        } else {
-            window.location.href = "http://t485.org/test.html?alert=test"
         }
-    </script> -->
+        if (getQuery("alert").indexOf("test") > -1) {
+            $("#alert-box").append('<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>test alert</div>');
+        }
+    </script>
     <script>
-        var fireLib = new Firebase("https://t485.firebaseio.com/libary")
+        var fireLib = new Firebase("https://t485.firebaseio.com/
+            fireLib.once("value", function(snapshot) {libary")
         function update(book) {
-            fireLib.once("value", function(snapshot) {
                 var holds = snapshpt.val();
                 fireLib.child(book).child("hold-count").set(null);
                 fireLib.child(book).child("hold-count").push(String(Number(holds) + 1) );
