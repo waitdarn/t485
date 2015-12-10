@@ -479,7 +479,7 @@
                 fireLib.child(book).child("hold-count").set(null);
                 console.log(snapshot.val)
                 fireLib.child(book).child("hold-count").push(String(Number(holds) + 1) );
-                console.log(String(Number(holds) + 1)
+                console.log(String(Number(holds) + 1))
                 console.log("updated!")
         }
             });
@@ -503,6 +503,8 @@
         }
     </script>
     <script>
+            var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
+
         fireLib.on("value", function(snapshot) {
                 var holds = snapshot.val();
                 var dataKeys = ["#Archaeology-holds"]
