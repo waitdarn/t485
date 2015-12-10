@@ -125,8 +125,10 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th class="col-xs-6">Book Name</th>
-                                <th class="col-xs-4">Number Avaliable</th>
+                                <th class="col-xs-4">Book Name</th>
+                                <th class="col-xs-2">Tottal Avaliable</th>
+                                <th class="col-xs-2">holds</th>
+                                <th class="col-xs-2">checked out</th>
                                 <th class="col-xs-2">Hold</th>
                             </tr>
                         </thead>
@@ -134,6 +136,8 @@
                             <tr>
                                 <td>Archaeology</td>
                                 <td>1</td>
+                                <td><span id="Archaeology-holds"></span></td>
+                                <td><span id="Archaeology-checked-out"></span></td>
                                 <td><button type="button" class="btn btn-default" onclick="hold('Archaeology')">Hold</button></td>
                             </tr>
                             <tr>
@@ -466,12 +470,14 @@
         }
     </script>
     <script>
-        var fireLib = new Firebase("https://t485.firebaseio.com/");
+        var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
         fireLib.once("value", function(snapshot) {
         function update(book) {
-                var holds = snapshpt.val();
+                var holds = snapshot.val();
                 fireLib.child(book).child("hold-count").set(null);
+                console.log(snapshot.val)
                 fireLib.child(book).child("hold-count").push(String(Number(holds) + 1) );
+                console.log(String(Number(holds) + 1)
                 console.log("updated!")
         }
             });
@@ -494,7 +500,22 @@
             alert("Please come to the next troop meeting to pick up your book.")
         }
     </script>
+    <script>
+        fireLib.on("value", function(snapshot) {
+                var holds = snapshot.val();
+                var dataKeys = ["#Archaeology-holds"]
+                var data = {
+                    "#Archaeology-holds":"Archaeology"
+                }
+               for (i = 0; i < dataKeys.length; i ++) {
+                    $(dataKeys[i]).val(snapshot.child(data[dataKeys[i]]).child("holds").val())
+                    
+               }
 
+    });
+        
+
+    </script>
 </body>
 
 </html>
