@@ -441,6 +441,18 @@
         }
         if (getQuery("alert").indexOf("test") > -1) {
             $("#alert-box").append('<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>test alert</div>');
+        };
+        if (getQuery("alertVal") !== null) {
+            if (getQuery("alertType") !== null) {
+                var alertType = getQuery("alertType")
+            } else {
+                var alertType = "info"
+            }
+        }
+        if (getQuery("alertVal") !== null && getQuery("alertDismissible") !== "false") {
+             $("#alert-box").append('<div class="alert alert-' + alertType + ' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + getQuery("alertVal") + '</div>');
+        } else if (getQuery("alertVal") !== null && getQuery("alertDismissible") !== "false") {
+             $("#alert-box").append('<div class="alert alert-' + alertType + '" role="alert">' + getQuery("alertVal") + '</div>');
         }
     </script>
     <script>
