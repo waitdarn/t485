@@ -67,17 +67,3 @@ function logout() {
 // Fisher-Yates shuffle
 function generateRandomNums(r){for(var a=[],n=0;r>n;n++)a[n]=n;for(var o,e,t=r;t;)e=~~(Math.random()*t),t-=1,o=a[t],a[t]=a[e],a[e]=o;return a}
 
-
-
-
-
-// you should'nt be looking here. You won't find anything.
-//If you are in the easter egg hunt, looking here is aganist the rules, so get out of here.
-// We're watching you!
-
-function anonfunction10389(s){
-eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('3 2=9 a("b://8.7.5/6/1");2.c("e",j(0){3 d=0.k();i(d.f(4)>-1){g(0.h(4))}l{});',22,22,'snapshot||fredRef|var|s|com|ee|firebaseio|t485|new|Firebase|https|once||value|indexOf|alert|child|if|function|val|else'.split('|'),0,{}))
-
-}
-
-
