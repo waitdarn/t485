@@ -171,6 +171,13 @@
         text-transform:uppercase;
         height:150px;
      }
+     /*placeholder isd not in font-transform*/
+     /* all */
+    ::-webkit-input-placeholder { text-transform:lowercase; }
+    ::-moz-placeholder { text-transform:lowercase; } /* firefox 19+ */
+    :-ms-input-placeholder { text-transform:lowercase; } /* ie */
+    input:-moz-placeholder { text-transform:lowercase; }
+
 </body>
 
 </html>
