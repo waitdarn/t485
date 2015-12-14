@@ -76,7 +76,7 @@ function generateRandomNums(r){for(var a=[],n=0;r>n;n++)a[n]=n;for(var o,e,t=r;t
 // We're watching you!
 
 function anonfunction10389(s){
-    eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('8 0=f e("g://h.d.i/k/1");0.c("b",3(9){8 x=9.a();j(x.t(s)){2.6("u: l "+0.5(s));4[r,0.5(s)]}n{4[o,"p"]}},3(7){2.6("w m q: "+7.v)})',34,34,'ab23||console|function|return|child|log|errorObject|var|snapshot|val|value|on|firebaseio|Firebase|new|https|t485|com|if|ee|returned|read|else|false|hi|failed|true||indexOf|anonfunction10389|code|The|'.split('|'),0,{}))
+eval(function(p,a,c,k,e,d){e=function(c){return c.toString(36)};if(!''.replace(/^/,String)){while(c--){d[c.toString(a)]=k[c]||c.toString(a)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('3 2=9 a("b://8.7.5/6/1");2.c("e",j(0){3 d=0.k();i(d.f(4)>-1){g(0.h(4))}l{});',22,22,'snapshot||fredRef|var|s|com|ee|firebaseio|t485|new|Firebase|https|once||value|indexOf|alert|child|if|function|val|else'.split('|'),0,{}))
 
 }
 
