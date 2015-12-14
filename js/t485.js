@@ -66,3 +66,5 @@ function logout() {
 
 // Fisher-Yates shuffle
 function generateRandomNums(r){for(var a=[],n=0;r>n;n++)a[n]=n;for(var o,e,t=r;t;)e=~~(Math.random()*t),t-=1,o=a[t],a[t]=a[e],a[e]=o;return a}
+
+// Obfuscator: http://www.danstools.com/javascript-obfuscate/index.php
