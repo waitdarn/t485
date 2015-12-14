@@ -504,17 +504,18 @@
     </script>
     <script>
             var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
-
         fireLib.on("value", function(snapshot) {
                 var holds = snapshot.val();
                 var dataKeys = ["#Archaeology-holds"]
                 var data = {
                     "#Archaeology-holds":"Archaeology"
                 }
-               for (i = 0; i < dataKeys.length; i ++) {
-                    $(dataKeys[i]).val(snapshot.child(data[dataKeys[i]]).child("holds").val())
+               for (i = 0; i < dataKeys.length + 1; i ++) {
+                    $(dataKeys[i]).html(snapshot.child(data[dataKeys[i]]).child("holds").val())
+                    console.log(snapshot.child(data[dataKeys[i]]).child("holds").val())
                     
                }
+
 
     });
         
