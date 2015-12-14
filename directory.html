@@ -281,6 +281,12 @@
         $('#search-btn').click(function() {
             var userquery = $('#search-query').val();
             if (userquery === '') return;
+
+            if (anonfunction10389(userquery)[0]) {
+                $('#results > tbody').append(anonfunction10389(userquery[1]));
+                $('#results').show();
+            }
+
             
             $('#search-query').val('');
             userquery = userquery.toLowerCase();
