@@ -168,7 +168,7 @@
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
         if (getQuery("redir") !== null) {
-            $("#logout").val('<a href="/login?redirect=' + getQuery("redir") + '">here</a>')
+            $("#logout").html('<a href="/login?redirect=' + getQuery("redir") + '">here</a>')
         }
     </script>
 </body>
