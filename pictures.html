@@ -212,7 +212,7 @@
     
         function getUrlVars() {
             // If no id use latest
-            var id = getVarsFromUrl()["id"] || "72157659281779929";
+            var id = getVarsFromUrl()["id"] || "72157661928401719";
 
             $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389%40N07&photoset_id=" + id + "&format=json", function() {
                 console.log("loaded script successfully");
