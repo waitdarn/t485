@@ -235,6 +235,9 @@
                 var medium_url = t_url + 'm.jpg';
                 var large_url = t_url + 'b.jpg';
                 
+                console.log(large_url);
+                if (photo.id === '23920448155') console.log('yes! ^^^^')
+                
                 $('#pictures').append('<a href="' + large_url + '" title="' + photo.title + '"><img src="' + medium_url + '"></a>');
             }
             
