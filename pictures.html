@@ -228,7 +228,7 @@
             
             console.log(rsp.photoset.photo)
             
-            var randomNums = generateRandomNums(30);
+            var randomNums = generateRandomNums(rsp.photoset.photo.length);
             for (var i = 0; i < 30; i++) {
 
                 var photo = rsp.photoset.photo[randomNums[i]];
