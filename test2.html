@@ -272,7 +272,8 @@
 <!-- /.modal -->
 <script>
 function openModal(title, url) {
-    document.cookie = "modalTitle=" + title + ";modalLink=" + url + ";";
+    document.cookie = "modalTitle=" + title + ";";
+    document.cookie = "modalLink=" + url + ";";
     $("#myModal").modal("open");
 }
 </script>
