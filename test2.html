@@ -33,7 +33,14 @@
 </head>
 
 <body>
-
+    <script>
+function openModal(title, url) {
+    $('#myModalLabel').html(title);
+    $('#ifr').attr('src', url);
+    $('#mdlk').attr('href', url);
+    $('#myModal').modal('show');
+}
+</script>
     <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485"></a>
 
     <!-- Navigation -->
@@ -123,44 +130,46 @@
                 <div class="col-md-12">
                     <p><button class="btn btn-default" onclick="window.location.href='logout?redir=meeting-minutes'">Log out</button></p>
                     <ul id="meeting-minute-list">
-                        <li><a data-toggle="modal" data-target="#myModal">PLC Meeting Minutes 12/21/2015</a></li>
+                        <!-- template: <li><a onclick="openModal('title', 'link');">title</aL</li>
+                    -->
+                        <li><a onclick="openModal('PLC Meeting Minutes 12/21/2015', 'https://docs.google.com/document/d/15dPqK71mcCN3uLEpGqMOTriPNXrQwaFojEziWs-JKtk/edit')">PLC Meeting Minutes 12/21/2015</a></li>
                         <br>
                         <li><a onclick="openModal('Troop Meeting Minutes 12/14/2015', 'https://docs.google.com/document/d/1SdQg_sqIphzOacu1ciT7EPM6LPZOMobELs7-Kqh06yE/edit')">Troop Meeting Minutes 12/14/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1soWTS4lhjRZhd7E8TqRH81DQDMelnGFqHSSZU-IYZ6I/edit" target="_blank">PLC Meeting Minutes 12/14/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 12/14/2015', 'https://docs.google.com/document/d/1soWTS4lhjRZhd7E8TqRH81DQDMelnGFqHSSZU-IYZ6I/edit')">PLC Meeting Minutes 12/14/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1Sg9HgfLkdnnA7dtOmY1P7Kkt2Ele7YiSdjHvyHvPF50/edit" target="_blank">Troop Meeting Minutes 11/30/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1D610HR4qc8nHFzsGBvlEPZCduqqXGDLePz-Q6JKVp3I/edit" target="_blank">PLC Meeting Minutes 11/30/2015</a></li>
+                        <li><a onclick="openModal('Troop Meeting Minutes 11/30/2015', 'https://docs.google.com/document/d/1Sg9HgfLkdnnA7dtOmY1P7Kkt2Ele7YiSdjHvyHvPF50/edit')">Troop Meeting Minutes 11/30/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 11/30/2015', https://docs.google.com/document/d/1D610HR4qc8nHFzsGBvlEPZCduqqXGDLePz-Q6JKVp3I/edit')">PLC Meeting Minutes 11/30/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1gqPfONLJu3TumytrhZHultVrcCjUPgFENctuexgTaM4/edit" target="_blank">PLC Meeting Minutes 11/23/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 11/23/2015', 'https://docs.google.com/document/d/1gqPfONLJu3TumytrhZHultVrcCjUPgFENctuexgTaM4/edit')">PLC Meeting Minutes 11/23/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1k7xvYz7Y6shDZ5jpH5G6pKQAHMka8gPGhdLvhbCxcd8/edit" target="_blank">Troop Meeting Minutes 11/17/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1zMcAPAwVjws2ZAsiJ9ImyL51DDLWV7xtrQhbozTP1K8/edit" target="_blank">PLC Meeting Minutes 11/17/2015</a></li>
+                        <li><a onclick="openModal('Troop Meeting Minutes 11/17/2015', 'https://docs.google.com/document/d/1k7xvYz7Y6shDZ5jpH5G6pKQAHMka8gPGhdLvhbCxcd8/edit')">Troop Meeting Minutes 11/17/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 11/17/2015', 'https://docs.google.com/document/d/1zMcAPAwVjws2ZAsiJ9ImyL51DDLWV7xtrQhbozTP1K8/edit')">PLC Meeting Minutes 11/17/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/13YzUQaOp9ek-BrLTsdsyA1YzZbV3-Q5PEj3jd-Tcya0/edit" target="_blank">Troop Meeting Minutes 11/2/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1uqpu3FMX9nmt9M4QUW-Y1FSteiD80L73LpBqKMoa-s0/edit" target="_blank">PLC Meeting Minutes 11/2/2015</a></li>
+                        <li><a onclick="openModal('Troop Meeting Minutes 11/2/2015', 'https://docs.google.com/document/d/13YzUQaOp9ek-BrLTsdsyA1YzZbV3-Q5PEj3jd-Tcya0/edit')">Troop Meeting Minutes 11/2/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 11/2/2015', 'https://docs.google.com/document/d/1uqpu3FMX9nmt9M4QUW-Y1FSteiD80L73LpBqKMoa-s0/edit')">PLC Meeting Minutes 11/2/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1DoiDfqrRLlIk7YOMs12MSU1v8_Cqb980Vb3IfrX0dVo/edit" target="_blank">PLC Meeting Minutes 10/26/2015</a></li>
+                        <li><a onclcik="onclick('PLC Meeting Minutes 10/26/2015', 'https://docs.google.com/document/d/1DoiDfqrRLlIk7YOMs12MSU1v8_Cqb980Vb3IfrX0dVo/edit')">PLC Meeting Minutes 10/26/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/12E2vN76DFpwTR4QvAwFBpIPMcONxfmgBmcrm1p--7jo/edit" target="_blank">Troop Meeting Minutes 10/19/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1WxlXFMSWAsStlIEHjEsTsTdVkIeg3AvLV2k3AJU-RdQ/edit" target="_blank">PLC Meeting Minutes 10/19/2015</a></li>
+                        <li><a onclick="openModal(Troop Meeting Minutes 10/19/2015', 'https://docs.google.com/document/d/12E2vN76DFpwTR4QvAwFBpIPMcONxfmgBmcrm1p--7jo/edit')">Troop Meeting Minutes 10/19/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 10/19/2015', 'https://docs.google.com/document/d/1WxlXFMSWAsStlIEHjEsTsTdVkIeg3AvLV2k3AJU-RdQ/edit')">PLC Meeting Minutes 10/19/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1mHFjfxnGfpnEgvDVqslK7QmEftSLDOoAwovcbVTykrk/edit" target="_blank">Troop Meeting Minutes 10/5/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1iHmLmF3NTJ_NNEHG4qB8ya8J1DYy5HUAIV5mnnhTm2g/edit" target="_blank">PLC Meeting Minutes 10/5/2015</a></li>
+                        <li><a onclick="openModal('Troop Meeting Minutes 10/5/2015', 'https://docs.google.com/document/d/1mHFjfxnGfpnEgvDVqslK7QmEftSLDOoAwovcbVTykrk/edit')">Troop Meeting Minutes 10/5/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 10/5/2015', 'https://docs.google.com/document/d/1iHmLmF3NTJ_NNEHG4qB8ya8J1DYy5HUAIV5mnnhTm2g/edit')">PLC Meeting Minutes 10/5/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1nt2I43SezuYPYqqgTaX5OROewZm9Y1o3eZnA3vaVZbM/edit" target="_blank">PLC Meeting Minutes 9/28/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 9/28/2015', 'https://docs.google.com/document/d/1nt2I43SezuYPYqqgTaX5OROewZm9Y1o3eZnA3vaVZbM/edit')">PLC Meeting Minutes 9/28/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1fVhar4ZxNfw5I7x5SuHthdLqj8dydFxfus_32qytoMU/edit" target="_blank">Troop Meeting Minutes 9/21/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1b9mrcrcHPaxtdmusNJhSX8IDJiwbVD4X6gD7Nc-BsIw/edit" target="_blank">PLC Meeting Minutes 9/21/2015</a></li>
+                        <li><a onclick="openModal('Troop Meeting Minutes 9/21/2015', 'https://docs.google.com/document/d/1fVhar4ZxNfw5I7x5SuHthdLqj8dydFxfus_32qytoMU/edit')">Troop Meeting Minutes 9/21/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 9/21/2015', 'https://docs.google.com/document/d/1b9mrcrcHPaxtdmusNJhSX8IDJiwbVD4X6gD7Nc-BsIw/edit')">PLC Meeting Minutes 9/21/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1g3rP7HmreaeVRN_3mdnNmqfP_gsw57DNqrxh1N2lKjY/edit" target="_blank">Troop Meeting Minutes 8/31/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1T0skJq55HorgjmuyWXHpmY2jQVdg7k9sjJaBQm3a1Fc/edit" target="_blank">PLC Meeting Minutes 8/31/2015</a></li>
+                        <li><a onclick="openModal('Troop Meeting Minutes 8/31/2015', 'https://docs.google.com/document/d/1g3rP7HmreaeVRN_3mdnNmqfP_gsw57DNqrxh1N2lKjY/edit')">Troop Meeting Minutes 8/31/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 8/31/2015, 'https://docs.google.com/document/d/1T0skJq55HorgjmuyWXHpmY2jQVdg7k9sjJaBQm3a1Fc/edit')">PLC Meeting Minutes 8/31/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1GTXYS5yGelLn3Q2QGRkDjh51_uveRnq9vx92jFB6VBE/edit" target="_blank">PLC Meeting Minutes 8/24/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 8/24/2015', 'https://docs.google.com/document/d/1GTXYS5yGelLn3Q2QGRkDjh51_uveRnq9vx92jFB6VBE/edit')">PLC Meeting Minutes 8/24/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/1WLFYI2ZLgYDZ76KSa8R35HY7292OBiggzw_nKQjYWxM/edit" target="_blank">Troop Meeting Minutes 8/17/2015</a></li>
-                        <li><a href="https://docs.google.com/document/d/1BdxViFiegKgPdl6kr3kN8vpJCUD0cEjRTQ57e4QNN6g/edit" target="_blank">PLC Meeting Minutes 8/17/2015</a></li>
+                        <li><a onclick="openModal('Troop Meeting Minutes 8/17/2015', 'https://docs.google.com/document/d/1WLFYI2ZLgYDZ76KSa8R35HY7292OBiggzw_nKQjYWxM/edit')">Troop Meeting Minutes 8/17/2015</a></li>
+                        <li><a onclick="openModal('PLC Meeting Minutes 8/17/2015', 'https://docs.google.com/document/d/1BdxViFiegKgPdl6kr3kN8vpJCUD0cEjRTQ57e4QNN6g/edit')">PLC Meeting Minutes 8/17/2015</a></li>
                         <br>
-                        <li><a href="https://docs.google.com/document/d/17IBnuZjP8kfWh7LPWECvtD8XFW4KkWATu-pN4hDa2WU/edit" target="_blank">Mini TLT Minutes 8/8/2015</a></li>
+                        <li><a onclick="openModal('Mini TLT Minutes 8/8/2015', 'https://docs.google.com/document/d/17IBnuZjP8kfWh7LPWECvtD8XFW4KkWATu-pN4hDa2WU/edit')">Mini TLT Minutes 8/8/2015</a></li>
                     </ul>
                 </div>
                 <div class="clearfix"></div>
@@ -172,10 +181,10 @@
                 <hr>
                 <ul id="reflection-list">
                     
-                    <li><a data-toggle="modal" data-target="#myModal">Rim of the Bay - Pinnacles Reflections</a></li>
-                    <li><a href="https://docs.google.com/document/d/1BHi-TA2JKR3xXvQmlUgCzRZsbI1gmLd8gHE1PDmPl10/edit" target="_blank">Coyote Creek Cycling Classic Reflections 9/26-27/2015</a></li>
-                    <li><a href="https://docs.google.com/document/d/1hZOGddGkE5gLuOk1DNF1npcl4HCrBfQsIBEJdxukRTQ/edit" target="_blank">Labor Day Backpacking Reflections 9/5-6/2015</a></li>
-                    <li><a href="https://docs.google.com/document/d/159TciVVX0YrZvjSr8UeU0D7Vx-tKePcx0_j6XPkqoc0/edit" target="_blank">Practice Labor Day Backpacking Reflections 8/22-23/2015</a></li>
+                    <li><a onclick="openModal('Rim of the Bay - Pinnacles Reflections', 'https://docs.google.com/document/d/177YYMJNPOzIV4qccfCZpfDmt9qMvclDGGHeqfO4lRXs/edit')">Rim of the Bay - Pinnacles Reflections</a></li>
+                    <li><a onclick="openModal('Coyote Creek Cycling Classic Reflections 9/26-27/2015', 'https://docs.google.com/document/d/1BHi-TA2JKR3xXvQmlUgCzRZsbI1gmLd8gHE1PDmPl10/edit')">Coyote Creek Cycling Classic Reflections 9/26-27/2015</a></li>
+                    <li><a onclick="openModal('Labor Day Backpacking Reflections 9/5-6/2015', 'https://docs.google.com/document/d/1hZOGddGkE5gLuOk1DNF1npcl4HCrBfQsIBEJdxukRTQ/edit')">Labor Day Backpacking Reflections 9/5-6/2015</a></li>
+                    <li><a onclick="openModal('Practice Labor Day Backpacking Reflections 8/22-23/2015', 'https://docs.google.com/document/d/159TciVVX0YrZvjSr8UeU0D7Vx-tKePcx0_j6XPkqoc0/edit')" >Practice Labor Day Backpacking Reflections 8/22-23/2015</a></li>
                 </ul>
             </div>
         </div>
@@ -270,26 +279,21 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
-<script>
-function openModal(title, url) {
-    document.cookie = "modalTitle=" + title + ";";
-    document.cookie = "modalLink=" + url + ";";
-    $("#myModal").modal("open");
-}
-</script>
+
  <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"><script>document.write(getCookie("modalTitle"))</script></h4>
+        <h4 class="modal-title" id="myModalLabel">Content Unavaliable</h4>
       </div>
       <div class="modal-body">
-          <script>document.write('<iframe src="' + getCookie("modalLink") + '" width="90%" height="90%" frameborder="0" allowtransparency="true"></iframe>') </script> 
+        <iframe id="ifr" src="" width="90%" height="90%" frameborder="0" allowtransparency="true">Unfortunately, this content is unavaliable at this time. Please give feedback for this bug, and view the document on your google drive.</iframe>
       </div>
       <div class="modal-footer">
-        <script>document.write('<a type="button" class="btn btn-primary" href="' + getCookie("modalLink") + '" target="_blank">View on google drive</a>')</script>
+      <a type="button" class="btn btn-primary"  href="https://google.com" id="mdlk" target="_blank">Go to actual page</a>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -297,7 +301,7 @@ function openModal(title, url) {
   </div>
   <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->
+
     <!--<script>
         var meetingMinuteRef = new Firebase("https://t485.firebaseio.com/files/meetingminute");
         var reflectionRef = new Firebase("https://t485.firebaseio.com/files/reflection");
