@@ -183,15 +183,20 @@ var link = prompt("Since this is not the real 404 page, please enter what would 
         <hr>
       </div>
       <div class="col-md-12">
-        <p>The requested page <b><script>document.write(link/*window.location.pathname */)</script></b> was not found on this website!</p><br>
+        <p>The requested page <b><script>document.write(window.location.pathname)</script></b> was not found on this website!</p><br>
         <script>
         document.write(
           "<p>Maybe you wanted to go to the <a href='" +
-          closest(link/* window.location.pathname */) + "'>" + closest(link /* window.location.pathname */) + " </a> page?");
+          closest(window.location.pathname) + "'>" + closest(window.location.pathname) + " </a> page?")
 
         </script>
         <p>If you did not mean the above website, your page was either moved into a diffrent or new folder, deleted, or was never created.</p>
-        <p><b>If you do nothing, you will be redirected to to the above page in <span id="countdown2">in <span id="countdown">15</span> seconds</span>.</b></p>
+        <script>
+        document.write(
+          "<p><b>If you do nothing, you will be redirected to to the " + closest(window.location.pathname) + " page in <span id='countdown2'>in <span id='countdown'>15</span> seconds</span>.</b></p>")
+
+        </script>
+        
 
          <p>Or click <a href="t485.org">here</a> to go to the home page.<p>
 
@@ -236,7 +241,7 @@ function time_dec(){
         var originalstring = document.getElementById('countdown2').innerHTML;
         var newstring = originalstring.replace('seconds','second');
         document.getElementById('countdown2').innerHTML = newstring;
-        window.location.href = closest(link /* window.location.pathname */)
+        window.location.href = closest(window.location.pathname)
         clearInterval(cinterval);
     }
 }
