@@ -443,12 +443,7 @@
             alertDismissable will decided if the alert is dismissiable or not. accepts true or false. Defualt is true, anything other then false is counted as true.
 
     */
-        function getQuery(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
+        
         if (getQuery("alert").indexOf("note") > -1) {
             $("#alert-box").append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Note</strong> this page is a test only, and holding on this page will not be recived as a hold, but as a test. To see the book page, click <a href="books.html" class="alert-link">here</a>.</div>');
         } else if (getQuery("alert") !== "none") {
@@ -473,16 +468,18 @@
     </script>
     <script>
         var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
-        fireLib.once("value", function(snapshot) {
         function update(book) {
+            fireLib.once("value", function(snapshot) {
+
                 var holds = snapshot.val();
                 fireLib.child(book).child("hold-count").set(null);
                 console.log(snapshot.val)
                 fireLib.child(book).child("hold-count").push(String(Number(holds) + 1) );
                 console.log(String(Number(holds) + 1))
                 console.log("updated!")
+        });
+
         }
-            });
         
         function hold(book) {
             var d = new Date();
@@ -495,15 +492,16 @@
             // If name is invalid ask again
             while (name === "" || name.length < 5 || name.length > 30 ||
                    name.search(" ") < 2 || name.search(" ") > name.length - 3) {
-                name = prompt("Please enter your first and last name");
+                name = prompt("Your name did not match the requested format. Please enter your first and last name again");
             }
             fireLib.child("holds").push({"book": book, "name": name, "date": date});
-            update(book)
+            update(book);
             alert("Please come to the next troop meeting to pick up your book.")
         }
-    </script>
-    <script>
-            var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
+
+        var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
+        
+        var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
         fireLib.on("value", function(snapshot) {
                 var holds = snapshot.val();
                 var dataKeys = ["#Archaeology-holds"]
@@ -518,7 +516,6 @@
 
 
     });
-        
 
     </script>
 </body>
