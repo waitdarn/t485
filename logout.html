@@ -123,6 +123,7 @@
                     <p>You have successfully logged out.</p>
                     <p>Accidentally clicked log out? Click <span id="logout"></span> to log back in.</p>
                     <p>Warning: you are still logged in to your google account.</p>
+                    <p><b>If you do nothing, you will be redirected to the home page in <span id="countdown2">in <span id="countdown">15</span>seconds</b></p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -161,12 +162,7 @@
         logout();
     </script>
     <script>
-        function getQuery(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
+        
         if (getQuery("redir") !== null) {
             $("#logout").html('<a href="/login?redirect=' + getQuery("redir") + '">here</a>')
         }

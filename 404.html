@@ -178,7 +178,7 @@
                         </script>
                         
                         <p>If you did not mean the above website, your page was either moved into a diffrent or new folder, deleted, or was never created.</p>
-                        <p><b>If you do nothing, you will be redirected to to the above page in <span id="countdown2">in <span id="countdown">15</span> seconds</span>.</b></p>
+                        <p><b>If you do nothing, you will be redirected to to the above page in <span id="countdown"></span>.</b></p>
                         <p>Or click <a href="t485.org">here</a> to go to the home page.
                         <p>
                     </div>
@@ -213,21 +213,7 @@
         <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
         
         <script>
-            var time_left = 15;
-            var cinterval;
-            function time_dec(){
-                time_left--;
-                document.getElementById('countdown').innerHTML = time_left;
-                if(time_left == 1){
-                    var originalstring = document.getElementById('countdown2').innerHTML;
-                    var newstring = originalstring.replace('seconds','second');
-                    document.getElementById('countdown2').innerHTML = newstring;
-                    window.location.href = closest(window.location.pathname);
-                    clearInterval(cinterval);
-                }
-            }
-             
-            cinterval = setInterval('time_dec()', 1000);
+            countdown(15, $("#countdown"), function(){window.location.href = "t485.org/" + closest(window.location.pathname)});
         </script>
     </body>
 </html>
