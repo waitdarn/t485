@@ -120,7 +120,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p><button class="btn btn-default" onclick="window.location.href='logout?redir=directory'">Log out</button></p>
+                    <p><button class="btn btn-default" onclick="window.location.href='logout?redir=forum.html'">Log out</button></p>
                     <iframe id="forum_embed" src="javascript:void(0)" style="overflow: hidden; border: 0;"></iframe>
                     <script>document.getElementById("forum_embed").src = "https://groups.google.com/forum/embed/?place=forum/t485&showsearch=true&showpopout=true&hideforumtitle=true&parenturl=" + encodeURIComponent(window.location.href);</script>
                 </div>
@@ -156,7 +156,7 @@
     
     <script>
         if (getCookie('googlelogin') !== 'true') {
-            window.location.href = '/login?redirect=directory';
+            window.location.href = '/login?redirect=forum.html';
         }
     </script>
 
