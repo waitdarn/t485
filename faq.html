@@ -244,6 +244,34 @@
           
             </div>
         </div>
+        
+        <div class="row">
+            <div class="box col-xs-12">
+                <hr>
+                <h2 class="intro-text text-center">Ask a question</h2>
+                <hr>
+                <form class="feedback-form" style="margin-left: 20px;" role="form">
+                    <div class="input-group col-xs-12 col-sm-6 col-md-4">
+                        <label class="control-label" for="feedback-name">Name:</label>
+                        <input type="text" id="feedback-name" class="form-control" required pattern="[a-zA-Z]{2,20} [a-zA-Z]{2,20}" title="Please enter your first and last name">
+                    </div>
+                    <div class="input-group col-xs-12 col-sm-6 col-md-4">
+                        <label class="control-label" for="feedback-email">Email:</label>
+                        <input type="email" id="feedback-email" class="form-control">
+                    </div>
+                    <div class="input-group col-xs-12 col-sm-6 col-md-4">
+                        <label class="control-label" for="feedback-text">Feedback:</label>
+                        <textarea id="feedback-text" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+                <div class="thank-you" style="display: none;">
+                    <p>Thank you for your question. We will try to get back to you as soon as possible</p>
+                </div>
+            </div>
+        </div>
+        
     </div>
     <!-- /.container -->
 
@@ -269,7 +297,20 @@
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
+    
+        
+    <script type="text/javascript">
+        var fireRef = new Firebase("https://t485.firebaseio.com/faq-questions");
 
+        $("form").submit(function(){
+            fireRef.push({"name": $("#feedback-name").val(),
+                         "email": $("#feedback-email").val(),
+                         "text": $("#feedback-text").val()});
+            $(".feedback-form").hide();
+            $(".thank-you").show();
+            return false;
+        });
+    </script>
 </body>
 
 </html>
