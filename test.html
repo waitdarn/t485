@@ -67,9 +67,6 @@
                         <a href="new-scout.html">New Scout</a>
                     </li>
                     <li>
-                        <a href="troop-jobs.html">Troop Jobs</a>
-                    </li>
-                    <li>
                         <a href="pictures.html">Pictures</a>
                     </li>
                     <li class="dropdown">
@@ -88,6 +85,7 @@
                             <li><a href="resources.html">Resources</a></li>
                             <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
                             <li class="active"><a href="books.html">Books</a></li>
+                            <li><a href="troop-jobs.html">Troop Jobs</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -499,8 +497,7 @@
             alert("Please come to the next troop meeting to pick up your book.")
         }
 
-
-        var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
+%        var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
         fireLib.on("value", function(snapshot) {
                 var holds = snapshot.val();
                 var dataKeys = ["#Archaeology-holds"]
@@ -513,8 +510,7 @@
                     
                }
 
-
-    });
+%    });
 
     </script>
 </body>
