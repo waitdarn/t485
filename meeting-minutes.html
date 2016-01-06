@@ -298,11 +298,16 @@ function openModal(title, url) {
         </div>
         <!-- /.modal-dialog -->
     </div>
-
+    
+    <script>
+        if (!(getCookie("googlelogin") === "true")) {
+            window.location.href = 'login?redirect=meeting-minutes';
+        }
+    </script>
+    
     <!--<script>
         var meetingMinuteRef = new Firebase("https://t485.firebaseio.com/files/meetingminute");
         var reflectionRef = new Firebase("https://t485.firebaseio.com/files/reflection");
-        auth();
 
 
 
@@ -345,14 +350,6 @@ function openModal(title, url) {
             listElement.appendChild(linkElement);
             reflectionListElement.insertBefore(listElement, reflectionListElement.firstChild);
         });
-
-
-
-         function auth() {
-            if (!(getCookie("googlelogin") === "true")) {
-                window.location.href = '/login?redirect=meeting-minutes';
-            }
-        }
     </script>-->
     
 </body>
