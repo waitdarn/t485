@@ -56,7 +56,6 @@
                     <li>
                         <a href="index.html">Home</a>
                     </li>
-                        
                     <li>
                         <a href="calendar.html">Calendar</a>
                     </li>
@@ -181,22 +180,18 @@
                     console.log("Expire date:  " + posts[i].expire);
                     console.log("current date: " + Date.now());
                     console.log("Token: " + posts[i].token);
-                    
                     if (posts[i].expire > Date.now() && urlVars["token"] == posts[i].token) {
                         console.log("success! logged in");
                         document.getElementById("login").setAttribute("style", "display: block;");
                         hasVaildToken = true;
                     }
-                    
                     // Remove ref after used
                     var currentRef = new Firebase("https://t485.firebaseio.com/authtokenref/" + snapshotValKeys[i]);
                     currentRef.remove();
                     console.log("removed " + snapshotValKeys[i]);
-                    
                     if (hasVaildToken) {
                         // Show logged in info
-                        
-                    }
+                        }
                 }
                 
                 // If no token matchs

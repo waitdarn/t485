@@ -57,7 +57,6 @@
                     <li>
                         <a href="index.html">Home</a>
                     </li>
-                        
                     <li>
                         <a href="calendar.html">Calendar</a>
                     </li>
@@ -509,7 +508,6 @@
                for (i = 0; i < dataKeys.length + 1; i ++) {
                     $(dataKeys[i]).html(snapshot.child(data[dataKeys[i]]).child("holds").val())
                     console.log(snapshot.child(data[dataKeys[i]]).child("holds").val())
-                    
                }
 
 %    });
