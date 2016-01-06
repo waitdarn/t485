@@ -121,8 +121,7 @@
                 <div class="col-md-12">
                     <p>You have successfully logged out.</p>
                     <p>Accidentally clicked log out? Click <span id="logout"></span> to log back in.</p>
-                    <p>Warning: you are still logged in to your google account.</p>
-                    <p><b>If you do nothing, you will be redirected to the home page in <span id="countdown2">in <span id="countdown">15</span>seconds</b></p>
+                    <p>Warning: you are still logged in to your google account. Click <a href="https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://t485.org">here</a> to log out of your Google account.</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -161,7 +160,6 @@
         logout();
     </script>
     <script>
-        
         if (getQuery("redir") !== null) {
             $("#logout").html('<a href="/login?redirect=' + getQuery("redir") + '">here</a>')
         }
