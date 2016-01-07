@@ -30,6 +30,7 @@ function hashPassword(str) {
     return hash;
 }
 
+
 function setCookie(cname, cvalue, exdays) {
     if (exdays === null || exdays === "" || exdays === "browser" || exdays === 0) {
         document.cookie = cname + "=" + cvalue + "; ";
@@ -40,6 +41,7 @@ function setCookie(cname, cvalue, exdays) {
         document.cookie = cname + "=" + cvalue + "; " + expires;
     }
 }
+
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -52,6 +54,7 @@ function getCookie(cname) {
     return "";
 }
 
+
 function getVarsFromUrl() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
@@ -59,6 +62,19 @@ function getVarsFromUrl() {
     });
     return vars;
 }
+
+
+// Checks if the user is logged in
+function auth() {
+    return getCookie('dwrtqd4cmx22y6jji3xy') === '6grg2zb0cjknxtsi9dm3';
+}
+
+
+// Sets the cookie for login
+function setAuth() {
+    document.cookie = 'dwrtqd4cmx22y6jji3xy=6grg2zb0cjknxtsi9dm3';
+}
+
 
 function logout() {
     // Clears cookie
@@ -68,8 +84,12 @@ function logout() {
     fRef.unauth();
 }
 
+
+
 // Fisher-Yates shuffle
 function generateRandomNums(r){for(var a=[],n=0;r>n;n++)a[n]=n;for(var o,e,t=r;t;)e=~~(Math.random()*t),t-=1,o=a[t],a[t]=a[e],a[e]=o;return a}
+
+
 // http://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer - more acurate timer
 function countdown(duration, display, callback) {
     var start = Date.now(),

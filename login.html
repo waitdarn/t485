@@ -174,7 +174,7 @@
         window.members = [];
         
         
-        if (getCookie('googlelogin') === 'true') {
+        if (auth()) {
             handleLoggedIn(redirectUrl);
         }
         
@@ -195,10 +195,9 @@
                     console.log(window.members);
                     // Check if email is on approved list
                     if (window.members.indexOf(email) > -1) {
-                        // Create cookie with no expiration date so cookie is deleted when session ends.
-                        document.cookie = 'googlelogin=true';
+                        setAuth();
                         console.log('logged in');
-                            handleLoggedIn(redirectUrl);
+                        handleLoggedIn(redirectUrl);
                     } else {
                         alert("Sorry, but you are not authorized to view this page.");
                         window.location.href = '/index';

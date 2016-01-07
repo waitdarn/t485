@@ -196,7 +196,7 @@
         
         
         function checkCookie() {
-            if (getCookie("googlelogin") === "true") {
+            if (auth()) {
                 $('#content').show();
 
                 // Put all pictures info in javascript so that Google web crawler cannot index photos (for privacy)
@@ -218,7 +218,7 @@
             });
         }
 
-%        function jsonFlickrApi(rsp) {
+        function jsonFlickrApi(rsp) {
             if (rsp.stat != "ok"){
                 console.log(rsp.message);
                 return;

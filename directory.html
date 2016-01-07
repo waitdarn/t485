@@ -223,14 +223,11 @@
             );
             $('#spreadsheet').show();
         });
-        auth();
         
-        function auth() {
-            if (getCookie('googlelogin') === 'true') {
-                $('#search-query').focus();
-            } else {
-                window.location.href = '/login?redirect=directory';
-            }
+        if (auth()) {
+            $('#search-query').focus();
+        } else {
+            window.location.href = '/login?redirect=directory';
         }
         
         

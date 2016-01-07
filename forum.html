@@ -152,7 +152,7 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <script>
-        if (getCookie('googlelogin') !== 'true') {
+        if (!auth()) {
             window.location.href = '/login?redirect=forum.html';
         }
     </script>

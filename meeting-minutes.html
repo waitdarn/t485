@@ -300,7 +300,7 @@ function openModal(title, url) {
     </div>
     
     <script>
-        if (!(getCookie("googlelogin") === "true")) {
+        if (!auth()) {
             window.location.href = 'login?redirect=meeting-minutes';
         }
     </script>
