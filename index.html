@@ -36,7 +36,8 @@
             if (window.innerWidth > 500) {
                 for (var i = 1; i < 6; i++) {
                     document.getElementById("img" + i).setAttribute("src", "http://t485.org/img/slide-" + i + ".jpg");
-                    document.getElementById("img" + i).setAttribute("style", "width: 900px; height: 602px;");
+                    document.getElementById("img" + i).setAttribute("width", "900");
+                    document.getElementById("img" + i).setAttribute("height", "602");
                 }
             }
         });
