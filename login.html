@@ -123,7 +123,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <a class="btn btn-social btn-google login" onclick="auth();">
+                    <a class="btn btn-social btn-google login" onclick="signIn();">
                         <span class="fa fa-google"></span> Sign in with Google
                     </a>
                     <p class="logged-in" style="display: none;">You have successfully logged in.</p>
@@ -206,7 +206,7 @@
             });
         }, 1000);
         
-        function auth() {
+        function signIn() {
             ref.authWithOAuthRedirect('google', function(error) {
                if (error) console.log('Login failed! ' + error);
             }, {

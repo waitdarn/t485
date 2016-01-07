@@ -126,6 +126,7 @@ function countdown(duration, display, callback) {
     setInterval(timer, 1000);
 }
 
+
 // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 function getQuery(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
