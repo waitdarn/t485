@@ -33,14 +33,6 @@
 </head>
 
 <body>
-    <script>
-function openModal(title, url) {
-    $('#myModalLabel').html(title);
-    $('#ifr').attr('src', url);
-    $('#mdlk').attr('href', url);
-    $('#myModal').modal('show');
-}
-</script>
     <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485" width="990" height="151"></a>
 
     <!-- Navigation -->
@@ -302,7 +294,14 @@ function openModal(title, url) {
     
     <script>
         if (!auth()) {
-            window.location.href = 'login?redirect=meeting-minutes';
+            window.location.href = 'login.html?redirect=meeting-minutes.html';
+        }
+        
+        function openModal(title, url) {
+            $('#myModalLabel').html(title);
+            $('#ifr').attr('src', url);
+            $('#mdlk').attr('href', url);
+            $('#myModal').modal('show');
         }
     </script>
     

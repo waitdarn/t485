@@ -79,7 +79,7 @@ function setAuth(){document.cookie='dw=39483970481658019767'}
 
 function logout() {
     // Clears cookie
-    document.cookie = 'googlelogin=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'dw=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     // Unauth Firebase
     var fRef = new Firebase('https://t485auth.firebaseio.com');
     fRef.unauth();
