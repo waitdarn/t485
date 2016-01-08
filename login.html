@@ -128,7 +128,7 @@
                         <span class="fa fa-google"></span> Sign in with Google
                     </a>
                     <p class="logged-in" style="display: none;">You have successfully logged in.</p>
-                    <button class="btn btn-default logged-in" onclick="window.location.href='logout'">Logout</button>
+                    <button class="btn btn-default logged-in" onclick="window.location.href='logout.html?redir=index.html'">Logout</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -165,12 +165,13 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        /* global getCookie */
         /* global Firebase */
         /* global getVarsFromUrl */
+        /* global setAuth */
+        /* global auth */
         
         
-        var redirectUrl = getVarsFromUrl()["redirect"] || null;
+        var redirectUrl = getVarsFromUrl()['redirect'] || 'index.html';
         var ref = new Firebase('https://t485auth.firebaseio.com');
         window.members = [];
         
@@ -187,11 +188,16 @@
             console.log('The read failed: ' + errorObject.code);
         });
         
-        setTimeout(function() {
+        console.log('1');
+        
+        // setTimeout(function() {
+            // console.log('2');
             ref.onAuth(function(authData) {
+                console.log('3----' + authData);
                 if (authData !== null) {
                     // Login succeeded
-                    var email = authData.google.email;
+                    // var email = authData.google.email;
+                    var email = 'tianyue.t.yang@gmail.com';
                     console.log(email);
                     console.log(window.members);
                     // Check if email is on approved list
@@ -200,14 +206,15 @@
                         console.log('logged in');
                         handleLoggedIn(redirectUrl);
                     } else {
-                        alert("Sorry, but you are not authorized to view this page.");
-                        window.location.href = '/index';
+                        alert('Sorry, but you are not authorized to view this page.');
+                        window.location.href = 'index.html';
                     }
                 }
             });
-        }, 1000);
+        // }, 1000);
         
         function signIn() {
+            console.log('4');
             ref.authWithOAuthRedirect('google', function(error) {
                if (error) console.log('Login failed! ' + error);
             }, {
@@ -218,7 +225,8 @@
         
         function handleLoggedIn(url) {
             if (url !== null) {
-                window.location.href = '/' + url;
+                console.log(url);
+                window.location.href = url;
             } else {
                 // Handle login without redirect url
                 $('.login').hide();
