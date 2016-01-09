@@ -218,8 +218,7 @@
                 console.log('authdata: ' + authData);
                 if (authData !== null) {
                     // Login succeeded
-                    // var email = authData.google.email;
-                    var email = 'tianyue.t.yang@gmail.com';
+                    var email = authData.google.email;
                     console.log('Email: ' + email);
                     // Check if email is on approved list
                     if (window.members.indexOf(email) > -1) {
