@@ -184,22 +184,16 @@
         ref.child('members').on('value', function(snapshot) {
             console.log('read succeeded');
             window.members = snapshot.val();
-        }, function(errorObject) {
-            console.log('The read failed: ' + errorObject.code);
-        });
-        
-        console.log('1');
-        
-        // setTimeout(function() {
-            // console.log('2');
+            console.log('Members: ' + window.members);
+            
+            
             ref.onAuth(function(authData) {
-                console.log('3----' + authData);
+                console.log('authdata: ' + authData);
                 if (authData !== null) {
                     // Login succeeded
                     // var email = authData.google.email;
                     var email = 'tianyue.t.yang@gmail.com';
-                    console.log(email);
-                    console.log(window.members);
+                    console.log('Email: ' + email);
                     // Check if email is on approved list
                     if (window.members.indexOf(email) > -1) {
                         setAuth();
@@ -211,10 +205,38 @@
                     }
                 }
             });
-        // }, 1000);
+            
+            
+        }, function(errorObject) {
+            console.log('The read failed: ' + errorObject.code);
+        });
+        
+        console.log('1');
+        
+        /*setTimeout(function() {
+            console.log('2');
+            ref.onAuth(function(authData) {
+                console.log('authdata: ' + authData);
+                if (authData !== null) {
+                    // Login succeeded
+                    // var email = authData.google.email;
+                    var email = 'tianyue.t.yang@gmail.com';
+                    console.log('Email: ' + email);
+                    // Check if email is on approved list
+                    if (window.members.indexOf(email) > -1) {
+                        setAuth();
+                        console.log('logged in');
+                        handleLoggedIn(redirectUrl);
+                    } else {
+                        alert('Sorry, but you are not authorized to view this page.');
+                        window.location.href = 'index.html';
+                    }
+                }
+            });
+        }, 3000);*/
         
         function signIn() {
-            console.log('4');
+            console.log('3');
             ref.authWithOAuthRedirect('google', function(error) {
                if (error) console.log('Login failed! ' + error);
             }, {
