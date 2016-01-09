@@ -184,15 +184,14 @@
         ref.child('members').on('value', function(snapshot) {
             console.log('read succeeded');
             window.members = snapshot.val();
-            console.log('Members: ' + window.members);
+            // console.log('Members: ' + window.members);
             
             
             ref.onAuth(function(authData) {
                 console.log('authdata: ' + authData);
                 if (authData !== null) {
                     // Login succeeded
-                    // var email = authData.google.email;
-                    var email = 'tianyue.t.yang@gmail.com';
+                    var email = authData.google.email;
                     console.log('Email: ' + email);
                     // Check if email is on approved list
                     if (window.members.indexOf(email) > -1) {
