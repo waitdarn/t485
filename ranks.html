@@ -32,7 +32,7 @@
 
 </head>
 
-<body>
+<body onload="$(document).scrollTop(0);">
 
     <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485"></a>
 
@@ -292,6 +292,7 @@
                                         <li>Tell what you can do while on a campout or other outdoor activity to prevent or reduce the occurrence of injuries or exposure listed in Tenderfoot requirements 4a and 4b.</li>
                                         <li>Assemble a personal first-aid kit to carry with you on future campouts and hikes. Tell how each item in the kit would be used. </li>
                                     </ol>
+                                    <b>Hiking</b>
                                     <li>Explain the rules of safe hiking, both on the highway and cross-country, during the day and at night. Explain what to do if you are lost.</li>
                                     <li>Demonstrate how to display, raise, lower, and fold the American flag.</li>
                                     <li>Repeat from memory and explain in your own words the Scout Oath, Law, motto, and slogan.</li>
@@ -1064,7 +1065,6 @@
     var lastTab = window.location.hash;
     if (lastTab) {
         $('[href="' + lastTab + '"]').tab('show');
-        $(document).scrollTop(0);
     } else {
         window.location.hash = "scout"
     }
