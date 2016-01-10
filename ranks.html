@@ -124,7 +124,7 @@
                     <p><b>Note: You can find more information about transitioning to the new 2016 boy scout requirements <a href="http://www.scouting.org/filestore/program_update/pdf/Transitioning_New_Requirements_2016.pdf">here</a>.</b></p>
                     <div>
                         <!-- Nav tabs -->
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs" role="tablist" id="rankstab">
                             <li role="presentation" class="active"><a class="tab-link" href="#scout" aria-controls="scout" role="tab" data-toggle="tab">Scout(joining requirements)</a></li>
                             <li role="presentation"><a class="tab-link" href="#trailtofirst" aria-controls="trailtofirst" role="tab" data-toggle="tab">Trail to First Class infromation</a></li>
                             <li role="presentation"><a class="tab-link" href="#tenderfoot" aria-controls="tenderfoot" role="tab" data-toggle="tab">Tenderfoot</a></li>
@@ -1051,6 +1051,23 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <script>
+    // http://stackoverflow.com/questions/18999501/bootstrap-3-keep-selected-tab-on-page-refresh
+    $('#rankstab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    // store the currently selected tab in the hash value
+    $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+        var id = $(e.target).attr("href").substr(1);
+        window.location.hash = id;
+    });
+
+    // on load of the page: switch to the currently selected tab
+    var hash = window.location.hash;
+    $('#myTab a[href="' + hash + '"]').tab('show');
+    </script>
     <!-- Clicky Web Analytics -->
     <script src="https://static.getclicky.com/js"></script>
     <script>
