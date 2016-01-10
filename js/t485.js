@@ -70,20 +70,20 @@ var KEY = 'knhq5nac69w1w59mg7jy';
 
 // Checks if the user is logged in
 function auth() {
-    return getCookie('BN') === KEY;
+    return sessionStorage.getItem('key') === KEY;
 }
 
 
-// Sets the cookie for login
+// Sets the session storage for login
 function setAuth() {
-    document.cookie = 'BN=' + KEY;
+    sessionStorage.setItem('BN', KEY);
 }
 
 
 
 function logout() {
-    // Clears cookie
-    document.cookie = 'BN=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    // Clears session storage
+    sessionStorage.setItem('BN', KEY);
     // Unauth Firebase
     var fRef = new Firebase('https://t485auth.firebaseio.com');
     fRef.unauth();
