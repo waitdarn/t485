@@ -1052,21 +1052,25 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script>
-    // http://stackoverflow.com/questions/18999501/bootstrap-3-keep-selected-tab-on-page-refresh
-    $('#rankstab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
+    //http://stackoverflow.com/questions/16808205/keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload
+    $(function() 
+                    { 
+                      $('a[data-toggle="tab"]').on('shown', function () {
+                        //save the latest tab;
+                        window.location.hash = $(this).attr('href')
+                       });
 
-    // store the currently selected tab in the hash value
-    $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
-        var id = $(e.target).attr("href").substr(1);
-        window.location.hash = id;
-    });
-
-    // on load of the page: switch to the currently selected tab
-    var hash = window.location.hash;
-    $('#myTab a[href="' + hash + '"]').tab('show');
+                      //go to the latest tab, if it exists:
+                      var lastTab = window.location.hash
+                      if (lastTab) {
+                         $('a[href=' + lastTab + ']').tab('show');
+                      }
+                      else
+                      {
+                        // Set the first tab if cookie do not exist
+                        $('a[data-toggle="tab"]:first').tab('show');
+                      }
+                  });
     </script>
     <!-- Clicky Web Analytics -->
     <script src="https://static.getclicky.com/js"></script>
