@@ -32,7 +32,7 @@
 
 </head>
 
-<body onload="$(document).scrollTop(0);">
+<body>
 
     <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485"></a>
 
@@ -1053,6 +1053,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script>
+    $(window).on('hashchange', function() {
+  $(document).scrollTop(0)
+});
     //http://stackoverflow.com/questions/10523433/how-do-i-keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload/10524697
     $(function() { 
     // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
