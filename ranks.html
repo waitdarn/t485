@@ -1064,6 +1064,7 @@
     var lastTab = window.location.hash;
     if (lastTab) {
         $('[href="' + lastTab + '"]').tab('show');
+        $(document).scrollTop(0);
     } else {
         window.location.hash = "scout"
     }
