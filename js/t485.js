@@ -76,7 +76,7 @@ function auth() {
 
 // Sets the cookie for login
 function setAuth() {
-    document.cookie = 'dw=' + key;
+    document.cookie = 'dw=' + KEY;
 }
 
 
