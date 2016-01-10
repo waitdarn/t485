@@ -65,25 +65,25 @@ function getVarsFromUrl() {
 
 
 
-var KEY = '39483970481658019760';
+var KEY = 'knhq5nac69w1w59mg7jy';
 
 
 // Checks if the user is logged in
 function auth() {
-    return getCookie('dw') === KEY;
+    return getCookie('BN') === KEY;
 }
 
 
 // Sets the cookie for login
 function setAuth() {
-    document.cookie = 'dw=' + KEY;
+    document.cookie = 'BN=' + KEY;
 }
 
 
 
 function logout() {
     // Clears cookie
-    document.cookie = 'dw=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'BN=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     // Unauth Firebase
     var fRef = new Firebase('https://t485auth.firebaseio.com');
     fRef.unauth();
