@@ -1055,7 +1055,7 @@
     //http://stackoverflow.com/questions/16808205/keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload
     $(function() 
                     { 
-                      $('#rankstab').on('shown', function () {
+                      $('a[data-toggle="tab"]').on('shown', function () {
                         //save the latest tab;
                             window.location.hash = $(this).attr('href')
                             console.log($(this).attr('href'))
