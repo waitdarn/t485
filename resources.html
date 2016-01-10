@@ -201,7 +201,7 @@
             alert("Thank you for adding a link.");
         });
 
-%        var resourceListElement = document.getElementById("resources-list");
+        var resourceListElement = document.getElementById("resources-list");
         // For every file link make an li element and append to resource list
         fireRef.on("child_added", function(snapshot) {
             var response = snapshot.val();
