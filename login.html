@@ -242,13 +242,6 @@
             }
         }
         
-        console.log('Cookie: ' + getCookie('dontrun'));
-        if (getCookie('dontrun') !== 'true') {
-            ref.onAuth(onAuthCallback);
-            console.log('test 123');
-            setCookie('dontrun', 'true', 0.1);
-        }
-        
         console.log('2');
         
         /*setTimeout(function() {
