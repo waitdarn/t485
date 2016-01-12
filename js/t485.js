@@ -70,7 +70,7 @@ var KEY = 'knhq5nac69w1w59mg7jy';
 
 // Checks if the user is logged in
 function auth() {
-    return sessionStorage.getItem('key') === KEY;
+    return sessionStorage.getItem('BN') === KEY;
 }
 
 
