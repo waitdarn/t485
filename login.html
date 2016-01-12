@@ -245,8 +245,9 @@
         setCookie('runonce', 'true', 0.1);
         
         if (getCookie('runonce') === 'true') {
-            ref.onAuth(onAuthCallback());
-            setCookie('runonce', '', 0.1);
+            ref.onAuth(onAuthCallback);
+            console.log('test 123');
+            setCookie('runonce', 'false', 0.1);
         }
         
         console.log('2');
