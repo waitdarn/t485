@@ -169,6 +169,8 @@
         /* global getVarsFromUrl */
         /* global setAuth */
         /* global auth */
+        /* global setCookie */
+        /* global getCookie */
         
         
         var redirectUrl = getVarsFromUrl()['redirect'] || 'index.html';
@@ -219,7 +221,8 @@
         
         console.log('1');
         
-        ref.onAuth(function(authData) {
+        
+        function onAuthCallback(authData) {
             console.log('authdata: ' + authData);
             
             if (authData !== null) {
@@ -237,7 +240,14 @@
                     window.location.href = 'index.html';
                 }
             }
-        });
+        }
+        
+        setCookie('runonce', 'true', 0.1);
+        
+        if (getCookie('runonce') === 'true') {
+            ref.onAuth(onAuthCallback());
+            setCookie('runonce', '', 0.1);
+        }
         
         console.log('2');
         
