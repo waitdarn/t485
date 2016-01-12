@@ -242,13 +242,11 @@
             }
         }
         
-        setCookie('runonce', 'true', 0.1);
-        
-        console.log(getCookie('runonce'));
-        if (getCookie('runonce') === 'true') {
+        console.log(getCookie('dontrun'));
+        if (getCookie('dontrun') !== 'false') {
             ref.onAuth(onAuthCallback);
             console.log('test 123');
-            setCookie('runonce', 'false', 0.1);
+            setCookie('dontrun', 'true', 0.1);
         }
         
         console.log('2');
