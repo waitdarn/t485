@@ -18,13 +18,13 @@
     <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="http://t485.org/css/t485.css" rel="stylesheet">
+    <link href="css/t485.css" rel="stylesheet">
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <a href="index.html"><img src="http://t485.org/img/header.gif" id="header" alt="Troop 485"></a>
+    <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485"></a>
     <!-- Navigation -->
     <nav class="navbar navbar-default">
         <div class="container">
@@ -174,11 +174,11 @@
                     </p>
                     <br>
                     <script>
-                        document.write("<p>Maybe you wanted to go to the <a href='http://t485.org/" + closest(window.location.pathname) + "'>" + closest(window.location.pathname) + " </a> page?");
+                        document.write("<p>Maybe you wanted to go to the <a href='" + closest(window.location.pathname) + "'>" + closest(window.location.pathname) + " </a> page?");
                     </script>
                     <p>If you did not mean the above website, your page was either moved into a diffrent or new folder, deleted, or was never created.</p>
                     <p><b>If you do nothing, you will be redirected to to the above page in <span id="countdown"></span>.</b></p>
-                    <p>Or click <a href="t485.org">here</a> to go to the home page.
+                    <p>Or click <a href="index.html">here</a> to go to the home page.
                     <p>
                 </div>
                 <div class="clearfix"></div>
@@ -212,7 +212,9 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <script>
-        countdown(15, $("#countdown"), function(){window.location.href = "http://t485.org/" + closest(window.location.pathname)});
+        countdown(15, $("#countdown"), function() {
+            window.location.href = closest(window.location.pathname);
+        });
     </script>
 </body>
 </html>
