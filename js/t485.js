@@ -83,7 +83,7 @@ function setAuth() {
 
 function logout() {
     // Clears session storage
-    sessionStorage.setItem('BN', KEY);
+    sessionStorage.setItem('BN', '');
     // Unauth Firebase
     var fRef = new Firebase('https://t485auth.firebaseio.com');
     fRef.unauth();
