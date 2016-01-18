@@ -115,7 +115,8 @@
         <iframe src="https://calendar.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=bsa485%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FLos_Angeles" style="border-width: 0; width: 100%;"></iframe>
         
         <div class="row add-headcount">
-            <div class="box col-xs-12">
+            <div id="li"><p>If you want to create a new headcounts, you must <a href="login.html?redirect=calander.html">login</a>.</p></div>
+            <div class="box col-xs-12" id="headcounts" style="display:none;">
                 <hr>
                 <h2 class="intro-text text-center">Create New Headcounts</h2>
                 <hr>
@@ -178,15 +179,14 @@
         if (!auth()) {
             window.location.href = 'login.html?redirect=meeting-minutes.html';
         }
-        
         var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
         var pushRef;
-
-        $("form").submit(function(){
+        
+        $("form").submit(function() {
             addHeadcount($("#headcount-email").val(), $("form").serializeArray()[0].value);
             return false;
         });
-
+        
         function addHeadcount(email, troop) {
             var d = new Date();
             var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
@@ -210,6 +210,12 @@
         function undo() {
             fireRef.child(pushRef.key()).remove();
             location.reload();
+        }
+        if(!auth()) {
+            $("#li").attr("style", "display:block;");
+            $("#headcounts").remove();
+        } else {
+            $("#li").attr("style", "display:none;");
         }
     </script>
 
