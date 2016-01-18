@@ -176,8 +176,11 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        if (!auth()) {
-            window.location.href = 'login.html?redirect=meeting-minutes.html';
+        if(!auth()) {
+            $("#li").attr("style", "display:block;");
+            $("#headcounts").remove();
+        } else {
+            $("#li").attr("style", "display:none;");
         }
         var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
         var pushRef;
@@ -211,12 +214,7 @@
             fireRef.child(pushRef.key()).remove();
             location.reload();
         }
-        if(!auth()) {
-            $("#li").attr("style", "display:block;");
-            $("#headcounts").remove();
-        } else {
-            $("#li").attr("style", "display:none;");
-        }
+
     </script>
 
 </body>
