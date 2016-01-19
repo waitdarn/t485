@@ -201,7 +201,7 @@
             var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
             
             // Shortest name: Ho X
-            if (name === "" || name.length < 4 || name.length > 50) {
+            if (checkIfName(name)) {
                 $("#headcount-name-group").attr("class", "has-error has-feedback");
             } else {
                 if (troop === "yes") {

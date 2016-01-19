@@ -196,7 +196,7 @@
     <!-- Send headcounts to firebase -->
     <script type="text/javascript">
         if (!auth()) {
-            window.location.href = 'login.html?redirect=' + '';
+            window.location.href = 'login.html?redirect=' + window.location.href.replace(/^(?:\/\/|[^\/]+)*\//, '');
         }
         
         
