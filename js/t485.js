@@ -121,11 +121,11 @@ function countdown(duration, display, callback) {
             if (callback === "reset" || callback === null) {
                 start = Date.now() + 1000;
             } else {
-                callback()
+                callback();
             }
                 
         }
-    };
+    }
     // we don't want to wait a full second before the timer starts
     timer();
     setInterval(timer, 1000);
@@ -139,4 +139,7 @@ function getQuery(name) {
     results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     
+}
+function checkIfName(name) {
+    return /^(?:(([A-Z]{1}[a-z]{1,})|([a-z]{2,})) (([A-Z]{1}[a-z]{1,})|([a-z]{2,})))$/gm.test(name);
 }
