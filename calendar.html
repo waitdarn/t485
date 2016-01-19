@@ -185,11 +185,15 @@
             $("#login-prompt").attr("style", "display:none;");
         }
         
+        console.log(1);
+        
         var authFireRef = new Firebase("https://t485auth.firebaseio.com");
         var email = authFireRef.getAuth().google.email;
         
         var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
         var pushRef;
+        
+        console.log(2);
         
         $("form").submit(function() {
             addHeadcount($("#headcount-name").val(), $("form").serializeArray()[0].value);
@@ -200,10 +204,13 @@
             var d = new Date();
             var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
             
+            console.log(3);
+            
             // Shortest name: Ho X
-            if (checkIfName(name)) {
+            if (!checkIfName(name)) {
                 $("#headcount-name-group").attr("class", "has-error has-feedback");
             } else {
+                console.log(4);
                 if (troop === "yes") {
                     pushRef = fireRef.push({"name": name, "email": email, "troop": true, "date": date});
                 } else {
