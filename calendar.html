@@ -115,15 +115,17 @@
         <iframe src="https://calendar.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=bsa485%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FLos_Angeles" style="border-width: 0; width: 100%;"></iframe>
         
         <div class="row add-headcount">
-            <div id="li"><p>If you want to create a new headcounts, you must <a href="login.html?redirect=calander.html">login</a>.</p></div>
-            <div class="box col-xs-12" id="headcounts" style="display:none;">
+            <div class="box col-xs-12"  id="login-prompt">
+                <p>If you want to create a new headcounts, you must <a href="login.html?redirect=calendar.html">login</a>.</p>
+            </div>
+            <div class="box col-xs-12" id="headcounts">
                 <hr>
                 <h2 class="intro-text text-center">Create New Headcounts</h2>
                 <hr>
                 <form class="headcount-form form-horizontal" style="margin-left: 20px; width: 20%;" role="form">
-                    <div class="input-group" id="headcount-email-group">
-                        <label class="control-label" for="headcount-email">Email <i class="glyphicon glyphicon-question-sign" rel="tooltip" title="We need your email as a way of contacting you."></i>:</label>
-                        <input type="email" id="headcount-email" class="form-control">
+                    <div class="input-group" id="headcount-name-group">
+                        <label class="control-label" for="headcount-name">Your name:</label>
+                        <input type="name" id="headcount-name" class="form-control">
                     </div>
                     <div class="input-group">
                         <label class="control-label" for="headcount-troop">Is this a troop event?</label>
@@ -177,31 +179,35 @@
 
     <script>
         if(!auth()) {
-            $("#li").attr("style", "display:block;");
+            $("#login-prompt").attr("style", "display:block;");
             $("#headcounts").remove();
         } else {
-            $("#li").attr("style", "display:none;");
+            $("#login-prompt").attr("style", "display:none;");
         }
+        
+        var authFireRef = new Firebase("https://t485auth.firebaseio.com");
+        var email = authFireRef.getAuth().google.email;
+        
         var fireRef = new Firebase("https://t485.firebaseio.com/headcount");
         var pushRef;
         
         $("form").submit(function() {
-            addHeadcount($("#headcount-email").val(), $("form").serializeArray()[0].value);
+            addHeadcount($("#headcount-name").val(), $("form").serializeArray()[0].value);
             return false;
         });
         
-        function addHeadcount(email, troop) {
+        function addHeadcount(name, troop) {
             var d = new Date();
             var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
-
-            // Shortest possible email: a@b.co
-            if (email === "" || email.length <= 6) {
-                $("#headcount-email-group").attr("class", "has-error has-feedback");
+            
+            // Shortest name: Ho X
+            if (name === "" || name.length < 4 || name.length > 50) {
+                $("#headcount-name-group").attr("class", "has-error has-feedback");
             } else {
                 if (troop === "yes") {
-                    pushRef = fireRef.push({"email": email, "troop": true, "date": date});
+                    pushRef = fireRef.push({"name": name, "email": email, "troop": true, "date": date});
                 } else {
-                    pushRef = fireRef.push({"email": email, "troop": false, "date": date});
+                    pushRef = fireRef.push({"name": name, "email": email, "troop": false, "date": date});
                 }
                 $(".headcount-form").hide();
                 $(".thank-you").show();

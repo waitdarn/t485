@@ -165,11 +165,12 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <!-- Send headcounts to firebase -->
-    <script type="text/javascript">
+    <script>
         var id = getUrlVars()["id"];
+        
         if (id === undefined) {
             console.log("id undefined!");
-            alert("Please use the url that was given to you when you created the event.");
+            alert("Lost your url? Email the webmaster at richy.liu.2002@gmail.com");
         } else {
             var fireRef = new Firebase("https://t485.firebaseio.com/headcount/" + id + "/responses");
         }

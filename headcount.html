@@ -195,14 +195,23 @@
 
     <!-- Send headcounts to firebase -->
     <script type="text/javascript">
+        if (!auth()) {
+            window.location.href = 'login.html?redirect=' + '';
+        }
+        
+        
         var id = getUrlVars()["id"];
         if (id === undefined) {
             console.log("id undefined!");
             alert("Please use the url given by your SiC!");
             window.location = "index.html";
         } else {
+            var authFireRef = new Firebase("https://t485auth.firebaseio.com");
+            var email = authFireRef.getAuth().google.email;
+            
             var fireRef = new Firebase("https://t485.firebaseio.com/headcount/" + id + "/responses");
         }
+
 
         var table = document.getElementById("response-table");
 
@@ -230,9 +239,9 @@
             } else {
                 console.log(name);
                 if (coming === "yes") {
-                    fireRef.push({"name": name, "coming": true, "adults": adults, "notes": notes});
+                    fireRef.push({"name": name, "coming": true, "adults": adults, "notes": notes, "email": email});
                 } else {
-                    fireRef.push({"name": name, "coming": false, "adults": adults, "notes": notes});
+                    fireRef.push({"name": name, "coming": false, "adults": adults, "notes": notes, "email": email});
                 }
                 $(".collector").hide();
                 $(".thank-you").show();
