@@ -14,9 +14,17 @@
     <p>Testing 123</p>
     
     <?php
-        $ip = $_SERVER['REMOTE_ADDR'];
+        $authorized_ips = array("205.174.240.241");
         
-        echo $ip;
+        $user_ip = $_SERVER["REMOTE_ADDR"];
+        $authorized = true;
+        
+        foreach ($authorized_ips as $ip) {
+            if ($user_ip == $ip) $authorized = true;
+        }
+        
+        echo $user_ip;
+        echo "Auth: $authorized";
     ?>
     
 </body>
