@@ -87,13 +87,5 @@ function getQuery(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new R
 function checkIfName(name) {
     return /^(?:(([A-Z]{1}[a-z]{1,})|([a-z]{2,})) (([A-Z]{1}[a-z]{1,})|([a-z]{2,})))$/gm.test(name);
 }
-function requestFullScreen(element) {
-  var elem = element;
-    if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-    elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-    elem.webkitRequestFullscreen();
-    }
-}
+
+

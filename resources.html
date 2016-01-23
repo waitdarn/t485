@@ -188,12 +188,12 @@
                 </div>
                 
                 <div class="modal-body">
-                    <iframe frameborder="0" height="90%" id="iframe-modal" name="ifr" src="" width="90%">Unfortunately, this content is unavaliable at this time. Please give feedback for this bug, and view the document on your google drive.</iframe>
+                    <iframe frameborder="0" height="90%" id="ifr" name="ifr" src="" width="90%">Unfortunately, this content is unavaliable at this time. Please give feedback for this bug, and view the document on your google drive.</iframe>
                 </div>
                 
                 <div class="modal-footer">
                     <a class="btn btn-primary" href="https://google.com" id="mdlk" target="_blank" type="button">Open in new tab</a>
-                    <button class="btn btn-primary" onclick="requestFullScreen($('#iframe-modal'))">Fullscreen mode</button>
+                    <button class="btn btn-primary" onclick="requestFullScreen(document.getElementById('ifr') );">Fullscreen mode</button>
                     <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
                 </div>
             </div>
@@ -221,8 +221,8 @@
         function openModal(_this, url) {
             title = $(_this).html();
             $('#myModalLabel').html(title);
-            $('#iframe-modal').attr('src', url);
-            $('#mdlk').attr('href', url);
+            $('#ifr').attr('src', url);
+            $('#mdlk').attr('href', url.replace("moblieview", "edit"));
             $('#myModal').modal('show');
         }
         
@@ -250,6 +250,29 @@
             listElement.appendChild(linkElement);
             resourceListElement.appendChild(listElement);
         });
+        function requestFullScreen() {
+
+  var el = document.body;
+
+  // Supports most browsers and their versions.
+  var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
+  || el.mozRequestFullScreen || el.msRequestFullScreen;
+
+  if (requestMethod) {
+
+    // Native full screen.
+    requestMethod.call(el);
+
+  } else if (typeof window.ActiveXObject !== "undefined") {
+
+    // Older IE.
+    var wscript = new ActiveXObject("WScript.Shell");
+
+    if (wscript !== null) {
+      wscript.SendKeys("{F11}");
+    }
+  }
+}
     </script>
 
 </body>
