@@ -117,10 +117,7 @@
 
     <a href="#" id="toTop"></a>
 
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <a class="close" data-dismiss="alert">×</a>
-        <span class="glyphicon glyphicon-info-sign"></span> Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!
-    </div>
+    <script>/* global getCookie */ if(getCookie("feedback-dismissed") !== "true" ) {document.write('<div class="alert alert-info alert-dismissible" role="alert"><a class="close" data-dismiss="alert" onclick="setCookie(\'feedback-dismissed\', \'true\', 14)">×</a><span class="glyphicon glyphicon-info-sign"></span> Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!</div>');}</script>
 
     <div class="container">
 
