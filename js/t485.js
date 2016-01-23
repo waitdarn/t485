@@ -69,7 +69,9 @@ function setAuth() {
 
 
 function logout() {
-    $.ajax({url: "logout.php"});
+    var response = $.ajax({url: "logout.php"});
+    console.log(response);
+    
     // Unauth Firebase
     var fRef = new Firebase('https://t485auth.firebaseio.com');
     fRef.unauth();

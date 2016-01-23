@@ -15,6 +15,7 @@
         
         // Removes user ip
         array_splice($authorized_ips , array_search($user_ip, $authorized_ips), 1);
+        echo $authorized_ips;
         
         foreach($authorized_ips as $ip) {
             fwrite($myfile, $ip . "\n");
