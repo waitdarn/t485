@@ -87,3 +87,25 @@ function getQuery(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new R
 function checkIfName(name) {
     return /^(?:(([A-Z]{1}[a-z]{1,})|([a-z]{2,})) (([A-Z]{1}[a-z]{1,})|([a-z]{2,})))$/gm.test(name);
 }
+function requestFullScreen(element) {
+  var el = element;
+
+  // Supports most browsers and their versions.
+  var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
+  || el.mozRequestFullScreen || el.msRequestFullScreen;
+
+  if (requestMethod) {
+
+    // Native full screen.
+    requestMethod.call(el);
+
+  } else if (typeof window.ActiveXObject !== "undefined") {
+
+    // Older IE.
+    var wscript = new ActiveXObject("WScript.Shell");
+
+    if (wscript !== null) {
+      wscript.SendKeys("{F11}");
+    }
+  }
+}
