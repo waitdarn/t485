@@ -13,9 +13,8 @@
     if (!$authorized) {
         $myfile = fopen($filename, "r+") or die("Unable to open file!");
         
-        if(($key = array_search($user_ip, $authorized_ips)) !== false) {
-            unset($authorized_ips[$key]);
-        }
+        // Removes user ip
+        array_splice($authorized_ips , array_search($user_ip, $authorized_ips), 1);
         
         foreach($authorized_ips as $ip) {
             fwrite($myfile, $ip . "\n");
