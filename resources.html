@@ -201,7 +201,7 @@
                 
                 <div class="modal-footer">
                     <a class="btn btn-primary" href="https://google.com" id="mdlk" target="_blank" type="button">Open in new tab</a>
-                    <button class="btn btn-primary" onclick="requestFullScreen(document.getElementById('ifr') );">Fullscreen mode</button>
+                    <button class="btn btn-primary" onclick="requestFullScreen();">Fullscreen mode</button>
                     <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
                 </div>
             </div>
@@ -258,28 +258,27 @@
             listElement.appendChild(linkElement);
             resourceListElement.appendChild(listElement);
         });
-        function requestFullScreen(el) {
-
-
-  // Supports most browsers and their versions.
-  var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
-  || el.mozRequestFullScreen || el.msRequestFullScreen;
-
-  if (requestMethod) {
-
-    // Native full screen.
-    requestMethod.call(el);
-
-  } else if (typeof window.ActiveXObject !== "undefined") {
-
-    // Older IE.
-    var wscript = new ActiveXObject("WScript.Shell");
-
-    if (wscript !== null) {
-      wscript.SendKeys("{F11}");
-    }
-  }
-}
+        function requestFullScreen() {
+            var el = document.getElementById("ifr")
+          // Supports most browsers and their versions.
+          var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
+          || el.mozRequestFullScreen || el.msRequestFullScreen;
+        
+          if (requestMethod) {
+        
+            // Native full screen.
+            requestMethod.call(el);
+        
+          } else if (typeof window.ActiveXObject !== "undefined") {
+        
+            // Older IE.
+            var wscript = new ActiveXObject("WScript.Shell");
+        
+            if (wscript !== null) {
+              wscript.SendKeys("{F11}");
+            }
+          }
+        }
     </script>
 
 </body>
