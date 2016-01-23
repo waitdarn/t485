@@ -26,6 +26,7 @@
         // $user_ip = $_SERVER["REMOTE_ADDR"];
         $user_ip = "10.240.0.157";
         $authorized = in_array($user_ip, $authorized_ips);
+        echo $authorized;
         
         
         // Debug code

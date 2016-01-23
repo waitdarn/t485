@@ -46,30 +46,36 @@ function getVarsFromUrl() {
 }
 
 
-
-var KEY = 'knhq5nac69w1w59mg7jy';
-
+/* LOGIN FUNCTIONS */
 
 // Checks if the user is logged in
 function auth() {
-    return sessionStorage.getItem('BN') === KEY;
+    var response = $.ajax({url: "loggedin.php", async: false});
+    console.log(response);
+    
+    var result = response.responseText;
+    result = (result === 'true');
+    console.log(result);
+    
+    return result;
 }
 
 
 // Sets the session storage for login
 function setAuth() {
-    sessionStorage.setItem('BN', KEY);
+    $.ajax({url: "setlogin.php"});
 }
 
 
 
 function logout() {
-    // Clears session storage
-    sessionStorage.setItem('BN', '');
+    $.ajax({url: "logout.php"});
     // Unauth Firebase
     var fRef = new Firebase('https://t485auth.firebaseio.com');
     fRef.unauth();
 }
+
+/* END LOGIN FUNCTIONS */
 
 
 
