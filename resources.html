@@ -258,9 +258,8 @@
             listElement.appendChild(linkElement);
             resourceListElement.appendChild(listElement);
         });
-        function requestFullScreen() {
+        function requestFullScreen(el) {
 
-  var el = document.body;
 
   // Supports most browsers and their versions.
   var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
