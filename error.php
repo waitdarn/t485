@@ -24,7 +24,7 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485"></a>
+    <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485 banner"></a>
     <!-- Navigation -->
     <nav class="navbar navbar-default">
         <div class="container">
