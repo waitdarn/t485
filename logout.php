@@ -5,8 +5,8 @@
     
     
     // Get user ip
-    // $user_ip = $_SERVER["REMOTE_ADDR"];
-    $user_ip = '76.247.185.191';
+    $user_ip = $_SERVER["REMOTE_ADDR"];
+    // $user_ip = '76.247.185.191';
     $authorized = in_array($user_ip, $authorized_ips);
     
     
