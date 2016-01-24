@@ -98,9 +98,7 @@
         <span class="glyphicon glyphicon-info-sign"></span>  Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!
     </div>
     
-    <script>
-        var errorCode = getQuery("errorCode")
-    </script>
+    
     
     
     <div class="container">
@@ -112,7 +110,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>
+                    <p id="errordescription">
                         
                     
                     
@@ -148,6 +146,20 @@
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
-    
+    <?php
+        $ip = $_SERVER["REMORE_ADDR"];
+    ?>
+    <script>
+    /* global getQuery */
+    $(document).ready(function(){
+        var errorCode = getQuery("errorCode");
+        if (errorCode === "500") {
+            $("#errorcode").html("500");
+            $("#errordescription").html('Internal Server Error<br><br>The server is down or inaccessable at this moment.' +
+                '<br>That\'s all we know.<br><a role="button" data-toggle="collapse" href="#moreinfo" aria-expanded="false" aria-controls="moreinfo">Request more information from the server.</a>' +
+                '<br><div class="collapse" id="moreinfo">Apache server<br>IP: ' + /*<?=$ip;?> + */'</div>')
+        }
+    });
+    </script>
 </body>
 </html>
