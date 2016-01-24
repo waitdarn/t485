@@ -55,16 +55,33 @@
             z-index: 9999;
         }
         
-        .popup {
-            width: 50%;
-            height: 50%;
-            background: #D23939;
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            margin: auto;
+        
+        @media screen and (min-width: 480px) {
+            .popup {
+                width: 50%;
+                height: 50%;
+                background: #D23939;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .popup {
+                width: 100px;
+                height: 50%;
+                background: #D23939;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+            }
         }
     </style>
 
@@ -147,7 +164,7 @@
         Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!
     </div>
     
-    <noscript>
+    <noscrip>
         <div class="container-popup">
             <div class="popup box">
                 <p>
