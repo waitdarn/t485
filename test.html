@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+    <meta name="robots" content="noimageindex">
     <meta name="author" content="Richard Liu">
 
     <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
@@ -18,12 +19,15 @@
     <link rel="manifest" href="favicons/manifest.json">
     <meta name="theme-color" content="#008000">
 
-    <title>Test - Troop 485</title>
+    <title>Pictures - Troop 485</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/t485.css" rel="stylesheet">
+    
+    <link href="css/magnific-popup.css" rel="stylesheet">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
@@ -33,9 +37,7 @@
 
 <body>
 
-    <a href="index.html">
-        <img src="img/header.gif" id="header" alt="">
-    </a>
+    <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485" width="990" height="151"></a>
 
     <!-- Navigation -->
     <nav class="navbar navbar-default">
@@ -66,7 +68,7 @@
                     <li>
                         <a href="forum.html">Forum</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="pictures.html">Pictures</a>
                     </li>
                     <li class="dropdown">
@@ -85,7 +87,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="resources.html">Resources</a></li>
                             <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
-                            <li class="active"><a href="books.html">Books</a></li>
+                            <li><a href="books.html">Books</a></li>
                             <li><a href="troop-jobs.html">Troop Jobs</a></li>
                             <li><a href="ranks.html">Ranks</a></li>
                         </ul>
@@ -110,294 +112,25 @@
         <a class="close" data-dismiss="alert">×</a>
         <span class="glyphicon glyphicon-info-sign"></span>  Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!
     </div>
-    
-    <div id="alert-box"></div>
-    <div class="container">
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Merit Badge Books<b> Reminder:test only!</b></h2>
-                    <hr>
-                </div>
-                <div class="col-md-12">
-                    <p>Hold any book you like and pick it up at the next troop meeting</p>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="col-xs-4">Book Name</th>
-                                <th class="col-xs-2">Tottal Avaliable</th>
-                                <th class="col-xs-2">holds</th>
-                                <th class="col-xs-2">checked out</th>
-                                <th class="col-xs-2">Hold</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Archaeology</td>
-                                <td>1</td>
-                                <td><span id="Archaeology-holds"></span></td>
-                                <td><span id="Archaeology-checked-out"></span></td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Archaeology')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Archery</td>
-                                <td>1</td>
-                                <td><span id="Archery-holds"></span></td>
-                                <td><span id="Archery-checked-out"></span></td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Archery')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Astronomy</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Astronomy')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Bird Study</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Bird Study')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Camping</td>
-                                <td>3</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Camping')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Citizenship In The Nation</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Citizenship In The Nation')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Communications</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Communications')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Cycling</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Cycling')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Energy</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Energy')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Environmental Science</td>
-                                <td>4</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Environmental Science')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Family Life</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Family Life')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>First Aid</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('First Aid')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Fish and Wildlife Management</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Fish and Wildlife Management')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Fishing</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Fishing')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Forestry</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Forestry')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Geology</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Geology')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Hiking</td>
-                                <td>3</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Hiking')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Insect Study</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Insect Study')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Landscape Architecture</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Landscape Architecture')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Life Saving</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Life Saving')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Mammal Studies</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Mammal Studies')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Nature</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Nature')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Personal Management</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Personal Management')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Plant Science</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Plant Science')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Reptile and Amphibian Study</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Reptile and Amphibian Study')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Rifle Shooting</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Rifle Shooting')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Soil and Water Conservation</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Soil and Water Conservation')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Space Exploration</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Space Exploration')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Swimming</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Swimming')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Weather</td>
-                                <td>3</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Weather')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Wood Carving</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Wood Carving')">Hold</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
 
-        <div class="row">
+    <div class="container">
+        
+        <div class="row" id="content" style="display: none;">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Other Books</h2>
+                    <h2 class="intro-text text-center">Pictures</h2>
                     <hr>
                 </div>
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="col-xs-6">Book Name</th>
-                                <th class="col-xs-4">Number Avaliable</th>
-                                <th class="col-xs-2">Hold</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>BSA Field Book</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('BSA Field Book')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Boy Scout Leader Fast Start VCR</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Boy Scout Leader Fast Start VCR')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>California State Parks Map</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('California State Parks Map')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Campsite Selection Guide</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Campsite Selection Guide')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>First Aid Booklet</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('First Aid Booklet')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Guide to Using a Compass</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Guide to Using a Compass')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Map of Emigrant Wilderness</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Map of Emigrant Wilderness')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Muir Woods Map</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Muir Woods Map')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Packet on Knots/Lashings</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Packet on Knots/Lashings')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Packing Guide</td>
-                                <td>3</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Packing Guide')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Parent’s Guide to Protecting Your Child From Child Abuse</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Parent’s Guide to Protecting Your Child From Child Abuse')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Sequoia/Kings Canyon Map</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Sequoia/Kings Canyon Map')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>T485 Rank Advancement Guide</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('T485 Rank Advancement Guide')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>The Patrol Leader Handbook</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('The Patrol Leader Handbook')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>The Senior Patrol Leader Handbook</td>
-                                <td>2</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('The Senior Patrol Leader Handbook')">Hold</button></td>
-                            </tr>
-                            <tr>
-                                <td>Wilderness First Aid Booklet</td>
-                                <td>1</td>
-                                <td><button type="button" class="btn btn-default" onclick="hold('Wilderness First Aid Booklet')">Hold</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-md-12" id="more-photos-link">
+                    <button class="btn btn-default" onclick="window.location.href='logout.html?redir=pictures.html'">Log out</button>
+                    <p>These photos are ordered randomly, so refresh the page to get different photos.</p>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6" id="event-links">
+                    <h3>Events</h3>
+                </div>
+                <div class="col-md-9 col-sm-8 col-xs-6" id="pictures">
+                    <h3>Photos</h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -420,100 +153,121 @@
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
     <script src="js/t485.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <!-- Firebase -->
-    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-
     <!-- Clicky Web Analytics -->
     <script src="https://static.getclicky.com/js"></script>
-    <script type="text/javascript">try {clicky.init(100869133);} catch (e) {}</script>
+    <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
+
+    <!-- Flickr -->
     <script>
-    // a test not related to this page, but alerts for any page.
-    /*
-        Explination:
-            Syntax: predefined alerts note and test. test is for showing what would happen with 2 variables, note is for showing that this page is a test and if in the query, alert=test is not included and alert=none is also not included, will redirect to add this into the query. Example: http://t495.org/test.html#?alert=test+note&someOtherKey=SomeOPtherValue&anotherKey&value
-            will show the test and note alerts and thenthe other keys will not be reconised since we don't care about them.
-            More:
-            the alertVal key will add an alert and will show the html value in an alert
-            alertType will deciede if the alert is danger, warning, info, or success. Defualt is info
-            alertDismissable will decided if the alert is dismissiable or not. accepts true or false. Defualt is true, anything other then false is counted as true.
-
-    */
+        var events =
+        "<a href=\"pictures.html?id=72157662747042099\">" +
+            "<figure>" +
+                    "<img src=\"https://farm2.staticflickr.com/1679/24327112405_f09c039bcc_m.jpg\" alt=\"\">" +
+                    "<figcaption style=\"text-align: center;\"><b>TLT 2016</b></figcaption>" +
+            "</figure>" +
+        "</a>" + 
+        "<a href=\"pictures.html?id=72157661928401719\">" +
+            "<figure>" +
+                    "<img src=\"https://farm2.staticflickr.com/1612/23812145722_478ecd6659_m.jpg\" alt=\"\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Rim of the Bay Hike</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"pictures.html?id=72157662747042099\">" +
+            "<figure>" +
+                    "<img src=\"https://farm1.staticflickr.com/769/21458655874_416fc5c6b5_m.jpg\" alt=\"\">" +
+                    "<figcaption style=\"text-align: center;\"><b>Coyote Creek Cycling Classic</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"pictures.html?id=72157659191789575\">" +
+            "<figure>" +
+                    "<img src=\"https://farm6.staticflickr.com/5817/21777553621_8435e60f06_m.jpg\" alt=\"\">" +
+                    "<figcaption style=\"text-align: center;\"><b>CASA Camporee 2015</b></figcaption>" +
+            "</figure>" +
+        "</a>" +
+        "<a href=\"pictures.html?id=72157658182644490\">" +
+            "<figure>" +
+                    "<img src=\"https://farm1.staticflickr.com/613/21211787148_8ba213618c_m.jpg\" alt=\"\">" +
+                    "<figcaption style=\"text-align: center;\"><b>September 2015 COH</b></figcaption>" +
+            "</figure>" +
+        "</a>";
         
-        if (getQuery("alert").indexOf("note") > -1) {
-            $("#alert-box").append('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Note</strong> this page is a test only, and holding on this page will not be recived as a hold, but as a test. To see the book page, click <a href="books.html" class="alert-link">here</a>.</div>');
-        } else if (getQuery("alert") !== "none") {
-            window.location.href = "test.html?alert=note"
-
-        }
-        if (getQuery("alert").indexOf("test") > -1) {
-            $("#alert-box").append('<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>test alert</div>');
-        };
-        if (getQuery("alertVal") !== "null") {
-            if (getQuery("alertType") !== "null") {
-                var alertType = getQuery("alertType")
-            } else {
-                var alertType = "info"
-            }
-        }
-        if (getQuery("alertVal") !== "null" && getQuery("alertDismissible") !== "false") {
-             $("#alert-box").append('<div class="alert alert-' + alertType + ' alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + getQuery("alertVal") + '</div>');
-        } else if (getQuery("alertVal") !== "null" && getQuery("alertDismissible") === "false") {
-             $("#alert-box").append('<div class="alert alert-' + alertType + '" role="alert">' + getQuery("alertVal") + '</div>');
-        }
-    </script>
-    <script>
-        var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
-        function update(book) {
-            fireLib.once("value", function(snapshot) {
-
-                var holds = snapshot.val();
-                fireLib.child(book).child("hold-count").set(null);
-                console.log(snapshot.val)
-                fireLib.child(book).child("hold-count").push(String(Number(holds) + 1) );
-                console.log(String(Number(holds) + 1))
-                console.log("updated!")
-        });
-
-        }
         
-        function hold(book) {
-            var d = new Date();
-            // Month starts at 0 for January
-            var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+        checkCookie();
+        getUrlVars();
+        
+        
+        function checkCookie() {
+            if (auth()) {
+                $('#content').show();
 
-            var name = prompt("Please enter your first and last name");
-
-            // Shortest name: Hi Le
-            // If name is invalid ask again
-            while (name === "" || name.length < 5 || name.length > 30 ||
-                   name.search(" ") < 2 || name.search(" ") > name.length - 3) {
-                name = prompt("Your name did not match the requested format. Please enter your first and last name again");
-            }
-            fireLib.child("holds").push({"book": book, "name": name, "date": date});
-            update(book);
-            alert("Please come to the next troop meeting to pick up your book.")
-        }
-
-%        var fireLib = new Firebase("https://t485.firebaseio.com/libary/books");
-        fireLib.on("value", function(snapshot) {
-                var holds = snapshot.val();
-                var dataKeys = ["#Archaeology-holds"]
-                var data = {
-                    "#Archaeology-holds":"Archaeology"
+                // Put all pictures info in javascript so that Google web crawler cannot index photos (for privacy)
+                if ($("#more-photos-link") !== null)  {    
+                    $("#more-photos-link").append("<p>Want more photos? Go to our <a href=\"https://www.flickr.com/photos/97925389%40N07/albums\" target=\"_blank\">troop flickr page</a>.</p>");
                 }
-               for (i = 0; i < dataKeys.length + 1; i ++) {
-                    $(dataKeys[i]).html(snapshot.child(data[dataKeys[i]]).child("holds").val())
-                    console.log(snapshot.child(data[dataKeys[i]]).child("holds").val())
-               }
+                $("#event-links").append(events);
+            } else {
+                window.location.href = "login.html?redirect=pictures.html";
+            }
+        }
+    
+        function getUrlVars() {
+            // If no id use latest
+            var id = getVarsFromUrl()["id"] || "72157662747042099";
 
-%    });
+            $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389%40N07&photoset_id=" + id + "&format=json", function() {
+                console.log("loaded script successfully");
+            });
+        }
 
+        function jsonFlickrApi(rsp) {
+            if (rsp.stat != "ok"){
+                console.log(rsp.message);
+                return;
+            }
+            
+            var randomNums = generateRandomNums(rsp.photoset.photo.length);
+            // 18 is divisible by 3, 2, 1 (can be evenly divided into 3, 2, and 1 columns)
+            var NUM_DISPLAY_PHOTOS = 24;
+            for (var i = 0; i < NUM_DISPLAY_PHOTOS; i++) {
+
+                var photo = rsp.photoset.photo[randomNums[i]];
+                var t_url = "http://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_";
+                
+                var medium_url = t_url + 'm.jpg';
+                var large_url = t_url + 'b.jpg';
+                
+                $('#pictures').append('<a class="col-md-4 col-sm-6" href="' + large_url + '" title="' + photo.title + '"><img src="' + medium_url + '"></a>');
+            }
+            
+            // Set up the image popup with Magnific Popup JQuery plugin
+            $(document).ready(function() {
+                $('#pictures').magnificPopup({
+                    delegate: 'a',
+                    type: 'image',
+                    tLoading: 'Loading image #%curr%...',
+                    mainClass: 'mfp-img-mobile',
+                    gallery: {
+                        enabled: true,
+                        navigateByImgClick: true,
+                        preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+                    },
+                    image: {
+                        tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                        titleSrc: function(item) {
+                            return item.el.attr('title') + '<small>Troop 485 Flickr</small>';
+                        }
+                    }
+                });
+            });
+        }
     </script>
+
 </body>
 
 </html>
