@@ -2,8 +2,8 @@
     
     $to = "richy.liu.2002@gmail.com";
     $subject = "File to add (auto-generated)";
-    $txt = "{$_POST["link"]}\nFile name: {$_POST["file-name"]}.\nReferrer: {$_POST["from"]}";
-    $headers = "From: {$_POST["author-name"]}";
+    $txt = "Url: {$_POST["link"]}\nFile name: {$_POST["file-name"]}.\nReferrer: {$_POST["from"]}";
+    $headers = "From: {$_POST["email"]}";
     
     // $to = "richy.liu.2002@gmail.com";
     // $subject = "generated test file";
