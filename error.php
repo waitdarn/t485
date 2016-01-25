@@ -147,7 +147,10 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <?php
-        $ip = $_SERVER["REMORE_ADDR"];
+        $ip = $_SERVER["REMOTE_ADDR"];
+        date_default_timezone_set('UTC');
+        echo date('l jS \of F Y h:i:s A');
+        echo date(DATE_ATOM, mktime(0, 0, 0, 7, 1, 2000));
     ?>
     <script>
     /* global getQuery */
@@ -155,9 +158,14 @@
         var errorCode = getQuery("errorCode");
         if (errorCode === "500") {
             $("#errorcode").html("500");
-            $("#errordescription").html('Internal Server Error<br><br>The server is down or inaccessable at this moment.' +
-                '<br>That\'s all we know.<br><a role="button" data-toggle="collapse" href="#moreinfo" aria-expanded="false" aria-controls="moreinfo">Request more information from the server.</a>' +
-                '<br><div class="collapse" id="moreinfo">Apache server<br>IP: ' + /*<?=$ip;?> + */'</div>')
+            $("#errordescription").html('Internal Server Error:<br>The server is down or inaccessable at this moment.' +
+                '<br><small>That\'s all we know.</small><br><a role="button" data-toggle="collapse" href="#moreinfo" aria-expanded="false" aria-controls="moreinfo">Request more information from the server.</a>' +
+                '<br><div class="collapse" id="moreinfo">Apache server<br>IP: <?=$ip;?></div>');
+        } else {
+            $("#errorcode").html(errorCode);
+            $("#errordescription").html('Unknown Error:<br>The server or client encounterd an unknown error. For more information, view the <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">wikipedia page</a> that contains a list of all the error codes, even if it is not on this server.' +
+                '<br><small>That\'s all we know.</small><br><a role="button" data-toggle="collapse" href="#moreinfo" aria-expanded="false" aria-controls="moreinfo">Request more information from the server.</a>' +
+                '<br><div class="collapse" id="moreinfo">Apache server<br>IP: <?=$ip;?><br>time:' + (new Date.getTime()) + '</div>');
         }
     });
     </script>
