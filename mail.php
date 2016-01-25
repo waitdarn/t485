@@ -1,11 +1,21 @@
 <?php
     
-    $to = $_POST["recipents"];
-    $subject = $_POST["subject"];
-    $txt = $_POST["content"];
-    $headers = "From: " . $_POST["from"];
+    $to = "richy.liu.2002@gmail.com";
+    $subject = "File to add (auto-generated)";
+    $txt = "{$_POST["link"]}\nFile name: {$_POST["file-name"]}.\nReferrer: {$_POST["from"]}";
+    $headers = "From: {$_POST["author-name"]}";
+    
+    // $to = "richy.liu.2002@gmail.com";
+    // $subject = "generated test file";
+    // $txt = "test 123";
+    // $headers = "From: testtest";
     
     
-    mail($to,$subject,$txt,$headers);
+    echo "<p>$to</p>";
+    echo "<p>$subject</p>";
+    echo "<p>$txt</p>";
+    echo "<p>$headers</p>";
+    
+    mail($to, $subject, $txt, $headers);
     
 ?>
