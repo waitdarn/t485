@@ -96,4 +96,6 @@ function checkIfName(name) {
     return /^(?:(([A-Z]{1}[a-z]{1,})|([a-z]{2,})) (([A-Z]{1}[a-z]{1,})|([a-z]{2,})))$/gm.test(name);
 }
 
-
+function mail(recipents, subject, content, from) {
+    $.post("/mail.php", {"recipents": recipents, "subject":subject, "content":content, "from":from}, function(result){});
+}
