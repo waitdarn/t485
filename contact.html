@@ -29,6 +29,11 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    
+    <!-- Polymer polyfill -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    
+    <link rel="import" href="bower_components/paper-input/paper-input.html">
 
 </head>
 
@@ -120,8 +125,7 @@
               <p>Please fill out the form then click submit to add your name to the troop directory</p>
               <p style="color: darkred">* Required</p>
               <form role="form">
-                  <label class="control-label">Scout's Full Name<span style="color: darkred;">*</span>:</label>
-                  <input type="text" class="form-control" id="name" required pattern="[a-zA-Z]{2,20} [a-zA-Z]{2,20}" title="Please enter your first and last name">
+                  <paper-input type="text" id="name" label="Full name" required pattern="[a-zA-Z]{2,20} [a-zA-Z]{2,20}" title="Please enter your first and last name"></paper-input>
 
                   <label class="control-label">Scout's Email:</label>
                   <input type="email" class="form-control" id="email" maxlength="50" required>

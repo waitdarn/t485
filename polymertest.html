@@ -34,6 +34,7 @@
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
     
     <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-input/paper-input.html">
 
 </head>
 
@@ -59,19 +60,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="index.html">Home</a>
+                        <paper-button onclick="window.location.href='index.html'">Home</paper-button>
                     </li>
                     <li>
-                        <a href="calendar.html">Calendar</a>
+                        <paper-button onclick="window.location.href='calendar.html'">Calendar</paper-button>
                     </li>
                     <li>
-                        <a href="new-scout.html">New Scout</a>
+                        <paper-button onclick="window.location.href='new-scout.html'">New Scout</paper-button>
                     </li>
                     <li>
-                        <a href="forum.html">Forum</a>
+                        <paper-button onclick="window.location.href='forum.html'">Forum</paper-button>
                     </li>
                     <li>
-                        <a href="pictures.html">Pictures</a>
+                        <paper-button onclick="window.location.href='pictures.html'">Pictures</paper-button>
                     </li>
                     <li class="dropdown">
                         <a>FAQ <span class="caret"></span></a>
@@ -128,6 +129,8 @@
                     <p>This page is work-in-progress. Please wait patiently for this to be finished!</p>
                     
                     <paper-button>link</paper-button>
+                    
+                    <paper-input label="Input label"></paper-input>
                     
                 </div>
                 <div class="clearfix"></div>
