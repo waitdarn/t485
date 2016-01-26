@@ -35,6 +35,8 @@
     
     <link rel="import" href="bower_components/paper-button/paper-button.html">
     <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="bower_components/iron-icons/iron-icons.html">
 
 </head>
 
@@ -123,14 +125,13 @@
                 <hr>
                 <h2 class="intro-text text-center">Search</h2>
                 <hr>
-                <p><button class="btn btn-default" onclick="window.location.href='logout.html?redir=directory.html'">Log out</button></p>
+                <p><paper-button raised     onclick="window.location.href='logout.html?redir=directory.html'">Log out</paper-button></p>
                 <p>Click on the name for more information.</p>
                 <p>Notice someone's name is missing? Click <a href="feedback.html">here</a> to submit the bug.</p>
                 <div class="input-group col-xs-12">
-                    <paper-input type="text" id="search-query" label="Type a name..." style="float: left; width: 90%"></paper-input>
-                    <paper-button type="button" id="search-btn" style="float: left; width: 4%">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </paper-button>
+                    <paper-input label="Type a name..." id="search-query">
+                        <paper-icon-button suffix id="search-btn" icon="search" alt="search" title="search"></paper-icon-button>
+                    </paper-input>
                 </div>
                 
                 <table class="table" id="results" style="display: none;">
@@ -149,7 +150,7 @@
 
         <div class="row" id="spreadsheet-confirm">
             <div class="box">
-                <button type="button" id="spreadsheet-confirm-btn" class="btn btn-default">Show spreadsheet</button>
+                <paper-button raised id="spreadsheet-confirm-btn">Show spreadsheet</paper-button>
             </div>
         </div>
 
@@ -235,7 +236,7 @@
         if (auth()) {
             $('#search-query').focus();
         } else {
-            window.location.href = 'login.html?redirect=directory.html';
+            // window.location.href = 'login.html?redirect=directory.html';
         }
         
         

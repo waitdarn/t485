@@ -33,8 +33,12 @@
     <!-- Polymer polyfill -->
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
     
+    <link rel="import" href="bower_components/polymer/polymer.html">
+    
     <link rel="import" href="bower_components/paper-button/paper-button.html">
     <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="bower_components/iron-icons/iron-icons.html">
 
 </head>
 
@@ -57,6 +61,11 @@
                 <a class="navbar-brand" href="index.html">T485</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
+            
+            
+            <!-- NOTE: USE NAVBAR AT CPM.ORG FOR INSPIRATION -->
+            
+            
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
@@ -130,7 +139,10 @@
                     
                     <paper-button>link</paper-button>
                     
-                    <paper-input label="Input label"></paper-input>
+                    <paper-input label="username" id="inputWithButton">
+                        <paper-icon-button suffix onclick="clearInput()" icon="search" alt="search" title="search">
+                        </paper-icon-button>
+                    </paper-input>
                     
                 </div>
                 <div class="clearfix"></div>
