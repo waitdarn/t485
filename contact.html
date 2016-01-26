@@ -33,6 +33,7 @@
     <!-- Polymer polyfill -->
     <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
     
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
     <link rel="import" href="bower_components/paper-input/paper-input.html">
 
 </head>
@@ -120,33 +121,24 @@
       <div class="row">
           <div class="box col-xs-12" id="form">
               <hr>
-              <h2 class="intro-text text-center">Troop <strong>Directory</strong></h2>
+              <h2 class="intro-text text-center">Troop <strong>Directory</strong> Form</h2>
               <hr>
-              <p>Please fill out the form then click submit to add your name to the troop directory</p>
-              <p style="color: darkred">* Required</p>
               <form role="form">
                   <paper-input type="text" id="name" label="Full name" required pattern="[a-zA-Z]{2,20} [a-zA-Z]{2,20}" title="Please enter your first and last name"></paper-input>
 
-                  <label class="control-label">Scout's Email:</label>
-                  <input type="email" class="form-control" id="email" maxlength="50" required>
+                  <paper-input type="email" id="email" label="Email" maxlength="50" required></paper-input>
 
-                  <label class="control-label">Scout's Home Phone:</label>
-                  <input type="number" pattern="\d{10}" class="form-control" id="home-phone">
+                  <paper-input type="number" id="home-phone" label="Home phone" pattern="\d{10}" ></paper-input>
 
-                  <label class="control-label">Scout's Cell Phone:</label>
-                  <input type="number" pattern="\d{10}" class="form-control" id="cell-phone">
+                  <paper-input type="number" id="home-phone" label="Cell phone" pattern="\d{10}" ></paper-input>
 
-                  <label class="control-label">Date Joined Troop 485<span style="color: darkred;">*</span>:</label>
-                  <input type="date" class="form-control" id="date-joined" required>
+                  <paper-input type="date" id="date-joined" label="Date joined" required></paper-input>
 
-                  <label class="control-label">School Attending<span style="color: darkred;">*</span>:</label>
-                  <input type="text" class="form-control" id="school" required pattern="[a-zA-Z]{3,40}" title="Please enter a valid school">
+                  <paper-input type="text" id="school" label="School" required></paper-input>
 
-                  <label class="control-label">Patrol<span style="color: darkred;">*</span>:</label>
-                  <input type="text" class="form-control" id="patrol" required pattern="[a-zA-Z]{5,8}" title="Please enter a patrol name">
-
-                  <input type="hidden" name="save" value="contact">
-                  <button type="submit" class="btn btn-default">Submit</button>
+                  <paper-input type="text" id="patrol" label="Patrol" required pattern="[a-zA-Z]{5,15}" title="Please enter a patrol name"></paper-input>
+                  
+                  <paper-button type="submit" raised>Submit</paper-button>
               </form>
           </div>
           <div class="box" id="thank-you" style="display: none;">

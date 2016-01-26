@@ -67,7 +67,7 @@ function setAuth() {
 }
 
 
-
+// Logs out user
 function logout() {
     var response = $.ajax({url: "logout.php"});
     console.log(response);
