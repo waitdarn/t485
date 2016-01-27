@@ -29,6 +29,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+    
+    <!-- Polymer polyfill -->
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-input/paper-input.html">
+    <link rel="import" href="bower_components/paper-input/paper-textarea.html">
 
 </head>
 
@@ -104,33 +111,32 @@
     </nav>
 
     <a href="#" id="toTop"></a>
-
+    
+    
+    <!------------------------------------------------------------------------->
+    <!--                                                                     -->
+    <!--                        NOTE: THIS PAGE IS DEAD                      -->
+    <!--                                                                     -->
+    <!------------------------------------------------------------------------->
+    
+    
     <div class="container">
 
         <div class="row">
             <div class="box col-xs-12">
-                <hr>
+                <!--<hr>
                 <h2 class="intro-text text-center">Submit Feedback</h2>
                 <hr>
                 <form class="feedback-form" style="margin-left: 20px;" role="form">
-                    <div class="input-group col-xs-12 col-sm-6 col-md-4">
-                        <label class="control-label" for="feedback-name">Name:</label>
-                        <input type="text" id="feedback-name" class="form-control" required pattern="[a-zA-Z]{2,20} [a-zA-Z]{2,20}" title="Please enter your first and last name">
-                    </div>
-                    <div class="input-group col-xs-12 col-sm-6 col-md-4">
-                        <label class="control-label" for="feedback-email">Email:</label>
-                        <input type="email" id="feedback-email" class="form-control">
-                    </div>
-                    <div class="input-group col-xs-12 col-sm-6 col-md-4">
-                        <label class="control-label" for="feedback-text">Feedback:</label>
-                        <textarea id="feedback-text" class="form-control" rows="5" required></textarea>
-                    </div>
+                    <paper-input id="feedback-name" label="Full name" required pattern="[a-zA-Z]{2,20} [a-zA-Z]{2,20}" error-message="Please enter your first and last name"></paper-input>
+                    <paper-input id="feedback-email" label="Email" required pattern="[^@]+@[^@]+" error-message="Please enter your email address"></paper-input>
+                    <paper-textarea id="feedback-text" label="Feedback" required></paper-textarea>
                     <br>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <paper-button type="submit" onclick="document.getElementById('feedback-name').validate(); " raised>Submit</paper-button>
                 </form>
                 <div class="thank-you" style="display: none;">
                     <p>Thank you for your feedback.</p>
-                </div>
+                </div>-->
             </div>
         </div>
 
@@ -167,9 +173,11 @@
         var fireRef = new Firebase("https://t485.firebaseio.com/feedback");
 
         $("form").submit(function(){
-            fireRef.push({"name": $("#feedback-name").val(),
-                         "email": $("#feedback-email").val(),
-                         "text": $("#feedback-text").val()});
+            fireRef.push({
+                "name": $("#feedback-name").value,
+                "email": $("#feedback-email").value,
+                "text": $("#feedback-text").value
+            });
             $(".feedback-form").hide();
             $(".thank-you").show();
             return false;

@@ -470,7 +470,7 @@ fieldset[disabled] .btn-google.active {
     border: none;
 }
 
-a {
+a, a:visited {
     border-bottom: 1px solid transparent;
     -webkit-transition: border .5s ease-out;
     -moz-transition: border .5s ease-out;
@@ -486,5 +486,9 @@ a:hover {
     -moz-transition: border 0s ease-out;
     -o-transition: border 0s ease-out;
     transition: border 0s ease-out;
+    text-decoration: none;
+}
+
+a:focus {
     text-decoration: none;
 }
