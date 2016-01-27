@@ -169,12 +169,15 @@
         /* global getVarsFromUrl */
         /* global setAuth */
         /* global auth */
-        /* global setCookie */
-        /* global getCookie */
+        
+        
+        
+        if (auth()) {
+            handleLoggedIn(redirectUrl);
+        }
         
         
         var redirectUrl = getVarsFromUrl()['redirect'];
-        
         
         var ref = new Firebase('https://t485auth.firebaseio.com');
         // Updated 1/24/2016
@@ -213,10 +216,6 @@
         'zonghuan.wu@gmail.com'];
         
         
-        if (auth()) {
-            handleLoggedIn(redirectUrl);
-        }
-        
         
         // console.log('Members: ' + window.members);
             
@@ -253,7 +252,7 @@
         function signIn() {
             console.log('3');
             ref.authWithOAuthRedirect('google', function(error) {
-               if (error) console.log('Login failed! ' + error);
+                if (error) console.log('Login failed! ' + error);
             }, {
                 remember: 'sessionOnly',
                 scope: 'email'
@@ -263,7 +262,6 @@
         
         function handleLoggedIn(url) {
             if (url !== null) {
-                console.log(url);
                 window.location.href = url;
             } else {
                 // Handle login without redirect url
