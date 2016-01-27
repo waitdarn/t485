@@ -173,16 +173,8 @@
         /* global getCookie */
         
         
-        var redirectUrl;
-        if (!sessionStorage.getItem('doNotRunAgain')) {
-            redirectUrl = getVarsFromUrl()['redirect'] || 'index.html';
-            sessionStorage.setItem('redirect', redirectUrl);
-            sessionStorage.setItem('doNotRunAgain', true);
-            console.log(redirectUrl);
-        } else {
-            redirectUrl = sessionStorage.getItem('redirect');
-            sessionStorage.setItem('doNotRunAgain', false);
-        }
+        var redirectUrl = getVarsFromUrl()['redirect'];
+        
         
         var ref = new Firebase('https://t485auth.firebaseio.com');
         // Updated 1/24/2016
@@ -256,27 +248,6 @@
         ref.onAuth(onAuthCallback);
         
         console.log('2');
-        
-        /*setTimeout(function() {
-            console.log('2');
-            ref.onAuth(function(authData) {
-                console.log('authdata: ' + authData);
-                if (authData !== null) {
-                    // Login succeeded
-                    var email = authData.google.email;
-                    console.log('Email: ' + email);
-                    // Check if email is on approved list
-                    if (window.members.indexOf(email) > -1) {
-                        setAuth();
-                        console.log('logged in');
-                        handleLoggedIn(redirectUrl);
-                    } else {
-                        alert('Sorry, but you are not authorized to view this page.');
-                        window.location.href = 'index.html';
-                    }
-                }
-            });
-        }, 3000);*/
         
         
         function signIn() {
