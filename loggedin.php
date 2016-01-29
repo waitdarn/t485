@@ -6,7 +6,7 @@
     
     
     // Get user ip
-    $user_ip = $_SERVER["REMOTE_ADDR"];
+    $user_ip = $_POST["fingerprint"];
     
     
     // Check if user ip on list

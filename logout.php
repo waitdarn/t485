@@ -1,10 +1,12 @@
 <?php
     // Read authorized ips file
     $filename = "authorized_ips";
-    $authorized_ips = file($filename, FILE_IGNORE_NEW_LINES);
+    $authorized_ips_string = fgets(fopen($filename, 'r'));
+    $authorized_ips = explode(",", $authorized_ips_string);
+    
     
     // Get user ip
-    $user_ip = $_SERVER["REMOTE_ADDR"];
+    $user_ip = $_POST["fingerprint"];
     
     
     $myfile = fopen($filename, "w") or die("Unable to open file!");
@@ -16,7 +18,7 @@
     
     // Write ip to file
     foreach($authorized_ips as $ip) {
-        fwrite($myfile, $ip . "\n");
+        fwrite($myfile, $ip . ",");
     }
     
     fclose($myfile);
