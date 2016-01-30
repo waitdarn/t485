@@ -174,7 +174,7 @@
     
         auth(function() {
             handleLoggedIn(redirectUrl);
-        });
+        }, function() {});
     
     
         var redirectUrl = getVarsFromUrl()['redirect'] || 'index';

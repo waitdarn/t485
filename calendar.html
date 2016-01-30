@@ -178,12 +178,12 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        if(!auth()) {
+        auth(function() {
             $("#login-prompt").attr("style", "display:block;");
             $("#headcounts").remove();
-        } else {
+        }, function() {
             $("#login-prompt").attr("style", "display:none;");
-        }
+        });
         
         console.log(1);
         

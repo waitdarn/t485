@@ -298,9 +298,9 @@
     </div>
     
     <script>
-        if (!auth()) {
+        auth(function() {}, function() {
             window.location.href = 'login.html?redirect=meeting-minutes.html';
-        }
+        });
         
         function openModal(_this, url) {
             title = $(_this).html();
