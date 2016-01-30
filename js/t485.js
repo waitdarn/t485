@@ -77,14 +77,16 @@ function auth(onAuthed, onUnauthed) {
         });
         console.log(window.response);
         
-        window.result = window.response.responseText.replace(/\n/g, '').split(',');
+        window.result = window.response.split(',');
         console.log(window.result);
+        
         
         var fingerprint = result;
         console.log('fingeprint: ' + fingerprint);
         
         window.authed = (window.result.indexOf(fingerprint) > -1);
         console.log('window.authed: ' + window.authed);
+        
         
         // Execute callback if user is not logged in
         if (window.authed) {

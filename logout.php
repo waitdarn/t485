@@ -9,6 +9,7 @@
     $user_ip = $_POST["fingerprint"];
     
     
+    // Write ip to file
     $myfile = fopen($filename, "w") or die("Unable to open file!");
     
     // Removes user ip
