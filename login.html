@@ -172,9 +172,9 @@
     
     
     
-        if (auth()) {
+        auth(function() {
             handleLoggedIn(redirectUrl);
-        }
+        });
     
     
         var redirectUrl = getVarsFromUrl()['redirect'] || 'index';

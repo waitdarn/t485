@@ -233,12 +233,11 @@
         
         
         
-        if (auth()) {
+        auth(function() {
             $('#search-query').focus();
-        } else {
+        }, function() {
             window.location.href = 'login.html?redirect=directory.html';
-        }
-        
+        });
         
         
         window.globalData = [];
