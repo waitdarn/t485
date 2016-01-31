@@ -117,7 +117,7 @@
                 <hr>
                 <h2 class="intro-text text-center"><strong>Uniform</strong> Guide</h2>
                 <hr>
-                <a onclick="openModal('Uniform Guide', 'img/new-scout_2.pdf')"><img class="img-responsive img-border img-top" src="img/new-scout_1.gif" alt="Uniform Guide"></a>
+                <a onclick="openModal(this, 'img/new-scout_2.pdf')"><img class="img-responsive img-border img-top" src="img/new-scout_1.gif" alt="Uniform Guide"></a>
             </div>
             <div class="box col-sm-6">
                 <hr>
@@ -128,16 +128,7 @@
                     <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1dtMPUhKv6eOfKaxk3iMwnRbovgu0yZt6J0mH8wPdBfY/mobilebasic')">Things to Remember</a></li>
                     <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=15e_mFNG0x4JIhqbCOZ3CDkVm_nrmEnXYE1RFOEQKd-w&start=false&loop=false')">Advancement Presentation (By Calvin Ho)</a></li>
                     <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1ssoNp8eQqNzkeJAefQdLk6aqu5bEMGarUHX9RvpV1BU/mobilebasic')">Resume Template</a></li>
-                    <li>
-                        BSA Fieldbook
-                        <ul>
-                            <li><a href="http://t485.org/img/33104-01.pdf" target="_blank">BSA Fieldbook Part 1</a></li>
-                            <li><a href="http://t485.org/img/33104-02.pdf" target="_blank">BSA Fieldbook Part 2</a></li>
-                            <li><a href="http://t485.org/img/33104-03.pdf" target="_blank">BSA Fieldbook Part 3</a></li>
-                            <li><a href="http://t485.org/img/33104-04.pdf" target="_blank">BSA Fieldbook Part 4</a></li>
-                            <li><a href="http://t485.org/img/BSA_Fieldbook.pdf" target="_blank">BSA Fieldbook Full (67 MB)</a></li>
-                        </ul>
-                    </li>
+                    <li><a onclick="openModal(this, 'https://troop8.org/sites/troop8.org/files/BSA_Fieldbook.pdf')">BSA Fieldbook (67 MB)</a></li>
                     <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=1cqU9DQ0c4RXcm0GJ-gJJ8pRP8Ah3WsYApBlaLbrnRhw&start=false&loop=false')">Year End Party Presentation</a></li>
                     <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1a56ZOlhhT1MT7QGXwLSzmsD5l1cahH44O6kUFNTAJ3I/mobilebasic')">Packing List</a></li>
                     <li><a onclick="openModal(this, 'https://docs.google.com/gview?url=http://www.arcconsultinggroup.com/downloads/finance/Patrol%20Leader%20Handbook%2032502.pdf&embedded=true')">Patrol Leader Handbook</a></li>
@@ -228,10 +219,10 @@
     <script>
         
         function openModal(x, url) {
-            var title = (!$(x).is("img") ? title = x.html() : $(x).attr("data-modal-title") || $(x).attr("alt") );
+            var title = (!$(x).is("img") ? title = x.html() : $(x).attr("alt") );
             $('#myModalLabel').html(title);
             $('#ifr').attr('src', url);
-            $('#mdlk').attr('href', url.replace("moblieview", "edit"));
+            $('#mdlk').attr('href', url);
             $('#myModal').modal('show');
         }
         
