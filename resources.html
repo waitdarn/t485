@@ -226,8 +226,8 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        function openModal(_this, url) {
-            title = $(_this).html();
+        function openModal(x, url) {
+            title = $(x).html();
             $('#myModalLabel').html(title);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("moblieview", "edit"));
