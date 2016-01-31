@@ -117,7 +117,7 @@
                 <hr>
                 <h2 class="intro-text text-center"><strong>Uniform</strong> Guide</h2>
                 <hr>
-                <a onclick="openModal('Uniform Guide', 'img/new-scout_2.pdf')"><img class="img-responsive img-border img-top" src="img/new-scout_1.gif" alt="Uniform Guide"></a>
+                <a onclick="openModal(this, 'img/new-scout_2.pdf')"><img class="img-responsive img-border img-top" src="img/new-scout_1.gif" alt="Uniform Guide"></a>
             </div>
             <div class="box col-sm-6">
                 <hr>
@@ -228,9 +228,14 @@
     <script>
         function openModal(_this, url) {
             title = $(_this).html();
-            $('#myModalLabel').html(title);
+            console.log(title);
+            if (title === '<img class="img-responsive img-border img-top" src="img/new-scout_1.gif" alt="Uniform Guide">') {
+                $('#myModalLabel').html('Uniform Guide');
+            } else {
+                $('#myModalLabel').html(title);
+            }
             $('#ifr').attr('src', url);
-            $('#mdlk').attr('href', url.replace("moblieview", "edit"));
+            $('#mdlk').attr('href', url);
             $('#myModal').modal('show');
         }
         
