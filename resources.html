@@ -217,14 +217,10 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        function openModal(_this, url) {
-            title = $(_this).html();
-            console.log(title);
-            if (title === '<img class="img-responsive img-border img-top" src="img/new-scout_1.gif" alt="Uniform Guide">') {
-                $('#myModalLabel').html('Uniform Guide');
-            } else {
-                $('#myModalLabel').html(title);
-            }
+        
+        function openModal(x, url) {
+            var title = (!$(x).is("img") ? title = x.html() : $(x).attr("alt") );
+            $('#myModalLabel').html(title);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url);
             $('#myModal').modal('show');
