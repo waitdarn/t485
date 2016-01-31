@@ -29,7 +29,7 @@ define('DB_USER', 'wp_user');
 define('DB_PASSWORD', 'GTYHpnbZKbWNKGx1zYQM');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', 't485org.ipagemysql.com');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
