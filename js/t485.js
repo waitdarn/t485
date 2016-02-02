@@ -64,7 +64,7 @@ function getVarsFromUrl() {
 }
 
 
-/* LOGIN FUNCTIONS */
+/* BEGIN LOGIN FUNCTIONS */
 
 // Checks if the user is logged in
 function auth(onAuthed, onUnauthed) {
@@ -77,7 +77,7 @@ function auth(onAuthed, onUnauthed) {
         });
         console.log(window.response);
         
-        window.result = window.response.split(',');
+        window.result = window.response.responseText.split(',');
         console.log(window.result);
         
         
@@ -88,7 +88,7 @@ function auth(onAuthed, onUnauthed) {
         console.log('window.authed: ' + window.authed);
         
         
-        // Execute callback if user is not logged in
+        // Execute callbacks
         if (window.authed) {
             onAuthed();
         } else {
