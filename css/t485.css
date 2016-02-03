@@ -467,7 +467,13 @@ fieldset[disabled] .btn-google.active {
 }
 
 .no-fancy-links a {
-    border: none;
+    border: none !important;
+}
+
+.no-fancy-navbar>li>a {
+    margin: 0px 0px 0px 2px !important;
+    padding: 10px 15px !important;
+    border: none !important;
 }
 
 a, a:visited {

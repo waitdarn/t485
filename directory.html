@@ -156,12 +156,13 @@
 
         <div class="row" id="spreadsheet" style="display: none;">
             <div class="box">
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs no-fancy-navbar">
                     <li class="active"><a data-toggle="tab" href="#cacti">Cacti</a></li>
                     <li><a data-toggle="tab" href="#wildcats">Wildcats</a></li>
                     <li><a data-toggle="tab" href="#hawks">Hawks</a></li>
                     <li><a data-toggle="tab" href="#serpents">Serpents</a></li>
-                    <li><a data-toggle="tab" href="#old-contact">Old Directory</a></li>
+                    <li><a data-toggle="tab" href="#blobfish">Blobfish</a></li>
+                    <li><a data-toggle="tab" href="#dragons">Dragons</a></li>
                 </ul>
 
                 <div class="tab-content" id="spreadsheet-content"></div>
@@ -208,24 +209,28 @@
             $('#spreadsheet-confirm').hide();
             $('#spreadsheet-content').html(
                 '<div id="cacti" class="tab-pane fade in active">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/edit?usp=drive_web" >Edit Spreadsheet</a>' +
+                    '<a href="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
                     '<iframe src="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false"></iframe>' +
                 '</div>' +
                 '<div id="wildcats" class="tab-pane fade">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/edit?usp=drive_web" >Edit Spreadsheet</a>' +
+                    '<a href="https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
                     '<iframe src="https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/pubhtml?widget=true&amp;headers=false"></iframe>' +
                 '</div>' +
                 '<div id="hawks" class="tab-pane fade">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/edit?usp=drive_web" >Edit Spreadsheet</a>' +
+                    '<a href="https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
                     '<iframe src="https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/pubhtml?widget=true&amp;headers=false"></iframe>' +
                 '</div>' +
                 '<div id="serpents" class="tab-pane fade">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/edit?usp=drive_web" >Edit Spreadsheet</a>' +
+                    '<a href="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
                     '<iframe src="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/pubhtml?widget=true&amp;headers=false"></iframe>' +
                 '</div>' +
-                '<div id="old-contact" class="tab-pane fade">' +
-                    '<p>This is the old directory. Use this one until the patrol leaders update their patrol\'s directory.</p>' +
-                    '<iframe src="https://docs.google.com/spreadsheets/d/1vG2y2euWgG3ASuSpBC9oD5ufZ8YiL4Q-HlPYyKaZ_o0/pubhtml?widget=true&amp;headers=false"></iframe>' +
+                '<div id="blobfish" class="tab-pane fade">' +
+                    '<a href="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
+                    '<iframe src="https://docs.google.com/spreadsheets/d/1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo/pubhtml?widget=true&amp;headers=false"></iframe>' +
+                '</div>' +
+                '<div id="dragons" class="tab-pane fade">' +
+                    '<a href="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
+                    '<iframe src="https://docs.google.com/spreadsheets/d/1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A/pubhtml?widget=true&amp;headers=false"></iframe>' +
                 '</div>'
             );
             $('#spreadsheet').show();
@@ -281,23 +286,23 @@
             console.log('initializing tabletop, 6 times');
         }, simpleSheet: true});
         
-        /*// New Patrol 1
-        Tabletop.init({key: 'PUT_NEW_PATROL_KEY_HERE_____________________', callback: function (data, t) {
+        // Blobfish
+        Tabletop.init({key: '1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo', callback: function (data, t) {
             for (var i = 0; i < data.length; i++) {
-                data[i].patrol = 'PUT_NEW_PATROL_NAME_HERE';
+                data[i].patrol = 'Blobfish';
             }
             window.globalData.push.apply(window.globalData, data);
             console.log('initializing tabletop, 6 times');
         }, simpleSheet: true});
         
-        // New Patrol 2
-        Tabletop.init({key: 'PUT_NEW_PATROL_KEY_HERE_____________________', callback: function (data, t) {
+        // Dragons
+        Tabletop.init({key: '1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A', callback: function (data, t) {
             for (var i = 0; i < data.length; i++) {
-                data[i].patrol = 'PUT_NEW_PATROL_NAME_HERE';
+                data[i].patrol = 'Dragons';
             }
             window.globalData.push.apply(window.globalData, data);
             console.log('initializing tabletop, 6 times');
-        }, simpleSheet: true});*/
+        }, simpleSheet: true});
         
         
         
