@@ -70,7 +70,7 @@ function getVarsFromUrl() {
 function auth(onAuthed, onUnauthed) {
     eval(FINGERPRINT_SOURCE);
     
-    new Fingerprint2().get(function(result, components){
+    new Fingerprint2().get(function(fp, components){
         window.response = $.ajax({
             url: 'authorized_ips',
             async: false
@@ -81,7 +81,7 @@ function auth(onAuthed, onUnauthed) {
         console.log(window.result);
         
         
-        var fingerprint = result;
+        var fingerprint = fp;
         console.log('fingeprint: ' + fingerprint);
         
         window.authed = (window.result.indexOf(fingerprint) > -1);
@@ -90,9 +90,9 @@ function auth(onAuthed, onUnauthed) {
         
         // Execute callbacks
         if (window.authed) {
-            onAuthed();
+            if (typeof onAuthed === 'function') onAuthed();
         } else {
-            onUnauthed();
+            if (typeof onUnauthed === 'function') onUnauthed();
         }
     });
 }

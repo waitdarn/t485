@@ -11,8 +11,13 @@
     $user_ip = $_POST["fingerprint"];
     
     
+    // Get timestamp
+    $date = date_create();
+    $time = date_timestamp_get($date);
+    $time += 86400;
+    
     // Add user ip
-    array_push($authorized_ips, $user_ip);
+    array_push($authorized_ips, "$user_ip");
     
     
     // Write ip to file
