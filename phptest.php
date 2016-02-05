@@ -16,7 +16,7 @@
     <?php
         
         // Read authorized ips file
-        $filename = "authorized_ips";
+        $filename = "authorized_ips.nocache";
         
         $authorized_ips = file($filename, FILE_IGNORE_NEW_LINES);
         print_r($authorized_ips);

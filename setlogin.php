@@ -1,6 +1,6 @@
 <?php
     // Read authorized ips file
-    $filename = "authorized_ips";
+    $filename = "authorized_ips.nocache";
     $authorized_ips_string = fgets(fopen($filename, 'r'));
     // Trims trailing commas
     rtrim($string, ",");
