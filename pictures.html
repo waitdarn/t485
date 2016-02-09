@@ -198,11 +198,11 @@
         '</a>';
         
         
-        checkCookie();
+        checkAuth();
         getUrlVars();
         
         
-        function checkCookie() {
+        function checkAuth() {
             auth(function() {
                 $('#content').show();
 
