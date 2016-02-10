@@ -6,7 +6,7 @@
     
     <head>
         <title>Redirecting...</title>
-        <META http-equiv="refresh" content="1;URL=http://t485.org/<?=$redir?>">
+        <META http-equiv="refresh" content="0;URL=http://t485.org/<?=$redir?>">
     </head>
     
     <body>

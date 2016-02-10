@@ -2,7 +2,7 @@
     
     <head>
         <title>Redirecting...</title>
-        <META http-equiv="refresh" content="1;URL=http://t485.org/login.html">
+        <META http-equiv="refresh" content="0;URL=http://t485.org/login.html">
     </head>
     
     <body>

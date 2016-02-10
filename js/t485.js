@@ -103,7 +103,7 @@ function mainAuth(onAuthed, onUnauthed) {
                 }
                 console.log('Authed: ' + authed);
 
-
+                authed = true;
                 // Execute callbacks
                 if (authed) {
                     if (typeof onAuthed === 'function') onAuthed();
