@@ -68,7 +68,7 @@
             var ref = new Firebase('https://t485.firebaseio.com/authorized');
             ref.set(main);
             
-            window.location.href = 'http://t485.org/login.html';
+            window.location.href = 'login.html';
         </script>
     
     </body>

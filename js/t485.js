@@ -53,9 +53,19 @@ function getVarsFromUrl() {
 
 // Checks if the user is logged in
 function auth(onAuthed, onUnauthed) {
-    // Get necessary scripts (Firebase)
-    if (typeof Firebase !== 'function') {
+    // Get necessary scripts (Firebase and Fingerprintjs2)
+    if (typeof Firebase !== 'function' && typeof Fingerprintjs2 !== 'function') {
         $.getScript('https://cdn.firebase.com/js/client/2.4.0/firebase.js', function() {
+            $.getScript('https://cdn.jsdelivr.net/fingerprintjs2/1/fingerprint2.min.js', function() {
+                mainAuth(onAuthed, onUnauthed);
+            });
+        });
+    } else if (typeof Firebase !== 'function') {
+        $.getScript('https://cdn.firebase.com/js/client/2.4.0/firebase.js', function() {
+            mainAuth(onAuthed, onUnauthed);
+        });
+    } else if (typeof Fingerprintjs2 !== 'function') {
+        $.getScript('https://cdn.jsdelivr.net/fingerprintjs2/1/fingerprint2.min.js', function() {
             mainAuth(onAuthed, onUnauthed);
         });
     } else {
@@ -65,55 +75,54 @@ function auth(onAuthed, onUnauthed) {
 
 
 function mainAuth(onAuthed, onUnauthed) {
-    // Get necessary scripts (Fingerprintjs2)
-    $.getScript('https://cdn.jsdelivr.net/fingerprintjs2/1/fingerprint2.min.js', function() {
-        // Get client fingerprint
-        new Fingerprint2().get(function(fingerprint, components) {
-            var ref = new Firebase("https://t485.firebaseio.com/authorized");
+    // Get client fingerprint
+    new Fingerprint2().get(function(fingerprint, components) {
+        var ref = new Firebase("https://t485.firebaseio.com/authorized");
 
-            // Get authed values from firebase
-            ref.on("value", function(snapshot) {
-                console.log(snapshot.val());
-                var response = snapshot.val();
+        // Get authed values from firebase
+        ref.on("value", function(snapshot) {
+            console.log(snapshot.val());
+            var response = snapshot.val();
 
-                // Turn response (object) into an enumeratable array
-                var responseArray = [];
-                for (var key in response) {
-                    // skip loop if the property is from prototype
-                    if (!response.hasOwnProperty(key)) continue;
+            // Turn response (object) into an enumeratable array
+            var responseArray = [];
+            for (var key in response) {
+                // skip loop if the property is from prototype
+                if (!response.hasOwnProperty(key)) continue;
 
-                    console.log(response[key]);
-                    responseArray.push(response[key]);
+                console.log(response[key]);
+                responseArray.push(response[key]);
+            }
+            console.log(responseArray);
+
+
+            // Print client fingerprint
+            console.log('fingeprint: ' + fingerprint);
+
+
+            // Check if client is authed
+            var timestamp = Math.floor(Date.now() / 1000);
+
+            var authed = false;
+            for (var i = 0; i < responseArray.length; i++) {
+                if (responseArray[i].fingerprint == fingerprint && responseArray[i].expire > timestamp) {
+                    authed = true;
                 }
-                console.log(responseArray);
-
-
-                // Print client fingerprint
-                console.log('fingeprint: ' + fingerprint);
-
-
-                // Check if client is authed
-                var timestamp = Math.floor(Date.now() / 1000);
-
-                var authed = false;
-                for (var i = 0; i < responseArray.length; i++) {
-                    if (responseArray[i].fingerprint == fingerprint && responseArray[i].expire > timestamp) {
-                        authed = true;
-                    }
-                }
-                console.log('Authed: ' + authed);
-
-                authed = true;
-                // Execute callbacks
-                if (authed) {
-                    if (typeof onAuthed === 'function') onAuthed();
-                }
-                else {
-                    if (typeof onUnauthed === 'function') onUnauthed();
-                }
-            }, function(errorObject) {
-                console.error("The read failed: " + errorObject.code);
-            });
+            }
+            console.log('Authed: ' + authed);
+            
+            
+            // USE IN EMERGENCY: DISABLE LOGIN
+            // authed = true;
+            // Execute callbacks
+            if (authed) {
+                if (typeof onAuthed === 'function') onAuthed();
+            }
+            else {
+                if (typeof onUnauthed === 'function') onUnauthed();
+            }
+        }, function(errorObject) {
+            console.error("The read failed: " + errorObject.code);
         });
     });
 }

@@ -71,7 +71,7 @@
             var ref = new Firebase('https://t485.firebaseio.com/authorized');
             ref.set(main);
             
-            window.location.href = 'http://t485.org/logout.html';
+            window.location.href = 'index.html';
         </script>
     
     </body>
