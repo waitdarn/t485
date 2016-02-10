@@ -1,11 +1,12 @@
 <html>
     
     <head>
-        <title>Redirecting...</title>
-        <META http-equiv="refresh" content="0;URL=http://t485.org/logout.html">
+        <title>Loggin out...</title>
     </head>
     
     <body>
+        
+        <p>If you don't get redirected within 5 seconds, click <a href="logout.html">here</a>.</p>
         
         <?php
             // Read authorized ips file
@@ -69,6 +70,8 @@
             
             var ref = new Firebase('https://t485.firebaseio.com/authorized');
             ref.set(main);
+            
+            window.location.href = 'http://t485.org/logout.html';
         </script>
     
     </body>
