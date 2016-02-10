@@ -111,8 +111,7 @@ function auth(onAuthed, onUnauthed) {
 // Sets the session storage for login
 function setAuth() {
     $.getScript('https://cdn.jsdelivr.net/fingerprintjs2/1/fingerprint2.min.js', function() {
-        new Fingerprint2().get(function(result, components){
-            var fingerprint = result;
+        new Fingerprint2().get(function(fingerprint, components){
             console.log(fingerprint);
             $.post('setlogin.php', {'fingerprint': fingerprint});
         });
@@ -123,15 +122,14 @@ function setAuth() {
 // Logs out user
 function logout() {
     $.getScript('https://cdn.jsdelivr.net/fingerprintjs2/1/fingerprint2.min.js', function() {
-        new Fingerprint2().get(function(result, components){
-            var fingerprint = result;
+        new Fingerprint2().get(function(fingerprint, components){
             console.log(fingerprint);
             var response = $.post('logout.php', {'fingerprint': fingerprint});
             console.log(response);
             
             // Unauth Firebase
-            var fRef = new Firebase('https://t485auth.firebaseio.com');
-            fRef.unauth();
+            var ref = new Firebase('https://t485auth.firebaseio.com');
+            ref.unauth();
         });
     });
 }
