@@ -1,47 +1,63 @@
 <?php
     // Read authorized ips file
-    $filename = "authorized_ips.nocache";
-    $authorized_ips_string = fgets(fopen($filename, 'r'));
+    $response = file_get_contents("https://t485.firebaseio.com/authorized.json");
+    // echo "<p>$response</p>";
+    $response_decoded = json_decode($response);
+    var_dump($response_decoded);
+    echo "<p></p>";
     
-    // Trims trailing commas
-    $authorized_ips_string = rtrim($authorized_ips_string, ",");
+    $authorized_ips = (Array) $response_decoded;
+    echo "<p></p>";
     
-    // Turn string into array
-    $authorized_ips = explode(",", $authorized_ips_string);
-    foreach ($authorized_ips as $ip) {
-        $authorized_ips = explode("|", $ip);
-    }
     
     
     // Get user ip
     $user_ip = $_POST["fingerprint"];
+    // $user_ip = "07074660851debcf1fb8127875a32270";
+    var_dump($user_ip);
+    echo "<p></p>";
+    
+    // Removes user ip
+    for($i = 0; $i < sizeof($authorized_ips); $i++) {
+        if ($authorized_ips[$i]->{"fingerprint"} == $user_ip) {
+            unset($authorized_ips[$i]);
+        }
+    }
+    var_dump($authorized_ips);
+    echo "<p></p>";
     
     
     // Get timestamp
     $date = date_create();
     
-    
-    // Removes user ip
-    for($i = 0; $i < sizeof($authorized_ips); $i++) {
-        if ($authorized_ips[$i][0] == $user_ip) {
-            unset($authorized_ips[$i]);
-        }
-    }
-    
     // Remove expired ips
-    for($i = 0; i < sizeof($authorized_ips); $i++) {
-        if ($authorized_ips[$i][1] > $curTime) {
+    for($i = 0; $i < sizeof($authorized_ips); $i++) {
+        if ($authorized_ips[$i]->{"expire"} < $curTime) {
             unset($authorized_ips[$i]);
         }
     }
+    var_dump($authorized_ips);
+    echo "<p></p>";
     
     
-    // Write ip to file
-    $myfile = fopen($filename, "w") or die("Unable to open file!");
-    
+    // Turn array into string
+    $str = "";
     foreach($authorized_ips as $ip) {
-        fwrite($myfile, $ip . ",");
+        $str .= "{'expire':";
+        $str .= $ip->{"expire"};
+        $str .= ",'fingerprint':'";
+        $str .= $ip->{"fingerprint"};
+        $str .= "'},";
     }
-    
-    fclose($myfile);
 ?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+
+<script>
+    var main = [ <?=$str?> ];
+    console.log(main);
+    
+    var ref = new Firebase('https://t485.firebaseio.com/authorized');
+    ref.set(main);
+</script>

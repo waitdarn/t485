@@ -63,18 +63,18 @@ function auth(onAuthed, onUnauthed) {
                 // Get authed values from firebase
                 ref.on("value", function(snapshot) {
                     console.log(snapshot.val());
-                    window.response = snapshot.val();
+                    var response = snapshot.val();
                     
                     // Turn response (object) into an enumeratable array
-                    window.responseArray = [];
-                    for (var key in window.response) {
+                    var responseArray = [];
+                    for (var key in response) {
                         // skip loop if the property is from prototype
-                        if (!window.response.hasOwnProperty(key)) continue;
+                        if (!response.hasOwnProperty(key)) continue;
 
-                        console.log(window.response[key]);
-                        window.responseArray.push(window.response[key]);
+                        console.log(response[key]);
+                        responseArray.push(response[key]);
                     }
-                    console.log(window.responseArray);
+                    console.log(responseArray);
                     
                     
                     // Print client fingerprint
@@ -84,17 +84,17 @@ function auth(onAuthed, onUnauthed) {
                     // Check if client is authed
                     var timestamp = Math.floor(Date.now() / 1000);
                 
-                    window.authed = false;
-                    for (var i = 0; i < window.responseArray.length; i++) {
-                        if (window.responseArray[i].fingerprint == fingerprint && window.responseArray[i].expire > timestamp) {
-                            window.authed = true;
+                    var authed = false;
+                    for (var i = 0; i < responseArray.length; i++) {
+                        if (responseArray[i].fingerprint == fingerprint && responseArray[i].expire > timestamp) {
+                            authed = true;
                         }
                     }
-                    console.log('Authed: ' + window.authed);
+                    console.log('Authed: ' + authed);
                     
                     
                     // Execute callbacks
-                    if (window.authed) {
+                    if (authed) {
                         if (typeof onAuthed === 'function') onAuthed();
                     } else {
                         if (typeof onUnauthed === 'function') onUnauthed();

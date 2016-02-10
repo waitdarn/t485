@@ -6,12 +6,13 @@
     var_dump($response_decoded);
     echo "<p></p>";
     
-    $authorized_ips = $response_decoded;
+    $authorized_ips = (Array) $response_decoded;
+    echo "<p></p>";
     
     
     // Get user ip
-    // $user_ip = $_POST["fingerprint"];
-    $user_ip = "airesn4n3e3242";
+    $user_ip = $_POST["fingerprint"];
+    // $user_ip = "07074660851debcf1fb8127875a32270";
     var_dump($user_ip);
     echo "<p></p>";
     
@@ -22,11 +23,13 @@
     
     // Add user ip
     array_push($authorized_ips, (object) array("expire"=>$time, "fingerprint"=>$user_ip));
+    var_dump($authorized_ips);
+    echo "<p></p>";
     
     
     // Remove expired ips
     for($i = 0; $i < sizeof($authorized_ips); $i++) {
-        if ($authorized_ips[$i]["expire"] > $curTime) {
+        if ($authorized_ips[$i]->{"expire"} < $curTime) {
             unset($authorized_ips[$i]);
         }
     }
@@ -38,23 +41,20 @@
     $str = "";
     foreach($authorized_ips as $ip) {
         $str .= "{'expire':";
-        $str .= $ip["expire"];
+        $str .= $ip->{"expire"};
         $str .= ",'fingerprint':'";
-        $str .= $ip["expire"];
+        $str .= $ip->{"fingerprint"};
         $str .= "'},";
     }
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+
 <script>
-    // $.getScript('https://cdn.firebase.com/js/client/2.4.0/firebase.js', function() {
-    //     var ref = new Firebase('https://t485.firebaseio.com/authorized');
-    //     ref.push().set(main);
-    // });
-    
-    var main = [
-        <?=$str?>
-    ]
-    
+    var main = [ <?=$str?> ];
     console.log(main);
     
+    var ref = new Firebase('https://t485.firebaseio.com/authorized');
+    ref.set(main);
 </script>
