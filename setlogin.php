@@ -10,34 +10,38 @@
     echo "<p></p>";
     
     
+    // Get redirect url
+    $redir = htmlspecialchars($_GET["redir"]) || 'index.html';
+    
+    
+    // Get user ip
+    // $user_ip = htmlspecialchars($_GET["fingerprint"]) || '';
+    $user_ip = "07074660851debcf1fb8127875a32270";
+    var_dump($user_ip);
+    echo "<p></p>";
+    
+    
     // Get timestamp
     $date = date_create();
     $curTime = date_timestamp_get($date);
     $time = $curTime + 86400;
     
+    $do_not_add_ip = false;
     
     // Remove expired ips
     for($i = 0; $i < sizeof($authorized_ips); $i++) {
         if ($authorized_ips[$i]->{"expire"} < $curTime) {
             unset($authorized_ips[$i]);
+        } else if ($authorized_ips[$i]->{"fingerprint"} == $user_ip) {
+            $do_not_add_ip = true;
         }
     }
     var_dump($authorized_ips);
     echo "<p></p>";
     
     
-    // Get redirect url
-    $redir = htmlspecialchars($_GET["redir"]);
-    
-    
-    // Get user ip
-    $user_ip = htmlspecialchars($_GET["fingerprint"]);
-    // $user_ip = "07074660851debcf1fb8127875a32270";
-    var_dump($user_ip);
-    echo "<p></p>";
-    
     // Add user ip
-    if (!in_array($user_ip, $authorized_ips)) {
+    if (!$do_not_add_ip) {
         array_push($authorized_ips, (object) array("expire"=>$time, "fingerprint"=>$user_ip));
     }
     var_dump($authorized_ips);
@@ -75,7 +79,7 @@
             
             var ref = new Firebase('https://t485.firebaseio.com/authorized');
             ref.set(main, function(error) {
-                window.location.replace('<?=$redir?>');
+                // window.location.replace('<?=$redir?>');
             });
         </script>
     
