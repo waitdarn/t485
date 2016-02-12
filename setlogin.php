@@ -20,21 +20,10 @@
             echo "<p></p>";
             
             
-            // Get user ip
-            $user_ip = htmlspecialchars($_GET["fingerprint"]);
-            // $user_ip = "07074660851debcf1fb8127875a32270";
-            var_dump($user_ip);
-            echo "<p></p>";
-            
             // Get timestamp
             $date = date_create();
             $curTime = date_timestamp_get($date);
             $time = $curTime + 86400;
-            
-            // Add user ip
-            array_push($authorized_ips, (object) array("expire"=>$time, "fingerprint"=>$user_ip));
-            var_dump($authorized_ips);
-            echo "<p></p>";
             
             
             // Remove expired ips
@@ -42,6 +31,24 @@
                 if ($authorized_ips[$i]->{"expire"} < $curTime) {
                     unset($authorized_ips[$i]);
                 }
+            }
+            var_dump($authorized_ips);
+            echo "<p></p>";
+            
+            
+            // Get redirect url
+            $redir = htmlspecialchars($_GET["redir"]);
+            
+            
+            // Get user ip
+            $user_ip = htmlspecialchars($_GET["fingerprint"]);
+            // $user_ip = "07074660851debcf1fb8127875a32270";
+            var_dump($user_ip);
+            echo "<p></p>";
+            
+            // Add user ip
+            if (!in_array($user_ip, $authorized_ips)) {
+                array_push($authorized_ips, (object) array("expire"=>$time, "fingerprint"=>$user_ip));
             }
             var_dump($authorized_ips);
             echo "<p></p>";
@@ -56,6 +63,7 @@
                 $str .= $ip->{"fingerprint"};
                 $str .= "'},";
             }
+            $str = rtrim($str, ",");
         ?>
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -66,9 +74,9 @@
             console.log(main);
             
             var ref = new Firebase('https://t485.firebaseio.com/authorized');
-            ref.set(main);
-            
-            window.location.href = 'login.html';
+            ref.set(main, function(error) {
+                window.location.replace('<?=$redir?>');
+            });
         </script>
     
     </body>

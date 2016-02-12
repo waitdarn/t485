@@ -161,9 +161,10 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <script>
-        logout();
-    </script>
-    <script>
+        auth(function() {
+            logout();
+        }, function() {});
+        
         if (getQuery("redir") !== null) {
             $("#logout").html('<a href="login.html?redirect=' + getQuery("redir") + '">here</a>')
         }

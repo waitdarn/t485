@@ -20,6 +20,18 @@
             echo "<p></p>";
             
             
+            // Get timestamp
+            $date = date_create();
+            
+            // Remove expired ips
+            for($i = 0; $i < sizeof($authorized_ips); $i++) {
+                if ($authorized_ips[$i]->{"expire"} < $curTime) {
+                    unset($authorized_ips[$i]);
+                }
+            }
+            var_dump($authorized_ips);
+            echo "<p></p>";
+            
             
             // Get user ip
             $user_ip = htmlspecialchars($_GET["fingerprint"]);
@@ -37,19 +49,6 @@
             echo "<p></p>";
             
             
-            // Get timestamp
-            $date = date_create();
-            
-            // Remove expired ips
-            for($i = 0; $i < sizeof($authorized_ips); $i++) {
-                if ($authorized_ips[$i]->{"expire"} < $curTime) {
-                    unset($authorized_ips[$i]);
-                }
-            }
-            var_dump($authorized_ips);
-            echo "<p></p>";
-            
-            
             // Turn array into string
             $str = "";
             foreach($authorized_ips as $ip) {
@@ -59,6 +58,7 @@
                 $str .= $ip->{"fingerprint"};
                 $str .= "'},";
             }
+            $str = rtrim($str, ",");
         ?>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -69,9 +69,9 @@
             console.log(main);
             
             var ref = new Firebase('https://t485.firebaseio.com/authorized');
-            ref.set(main);
-            
-            window.location.href = 'index.html';
+            ref.set(main, function(error) {
+                window.location.replace('index.html');
+            });
         </script>
     
     </body>

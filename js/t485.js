@@ -52,103 +52,119 @@ function getVarsFromUrl() {
 /* BEGIN LOGIN FUNCTIONS */
 
 // Checks if the user is logged in
+/* Not required, but prefered: Firebase and Fingerprintjs2 */
 function auth(onAuthed, onUnauthed) {
     // Get necessary scripts (Firebase and Fingerprintjs2)
-    if (typeof Firebase !== 'function' && typeof Fingerprintjs2 !== 'function') {
+    if (typeof Firebase !== 'function' || typeof Fingerprint2 !== 'function') {
+        console.log('3');
         $.getScript('https://cdn.firebase.com/js/client/2.4.0/firebase.js', function() {
             $.getScript('https://cdn.jsdelivr.net/fingerprintjs2/1/fingerprint2.min.js', function() {
-                mainAuth(onAuthed, onUnauthed);
+                if (getCookie('fingerprint') === '') {
+                    new Fingerprint2().get(function(fingerprint, components) {
+                        mainAuth(onAuthed, onUnauthed, fingerprint);
+                    });
+                } else {
+                    mainAuth(onAuthed, onUnauthed, getCookie('fingerprint'));
+                }
             });
         });
-    } else if (typeof Firebase !== 'function') {
-        $.getScript('https://cdn.firebase.com/js/client/2.4.0/firebase.js', function() {
-            mainAuth(onAuthed, onUnauthed);
-        });
-    } else if (typeof Fingerprintjs2 !== 'function') {
-        $.getScript('https://cdn.jsdelivr.net/fingerprintjs2/1/fingerprint2.min.js', function() {
-            mainAuth(onAuthed, onUnauthed);
-        });
     } else {
-        mainAuth(onAuthed, onUnauthed)
+        if (getCookie('fingerprint') === '') {
+            console.log('1');
+            new Fingerprint2().get(function(fingerprint, components) {
+                mainAuth(onAuthed, onUnauthed, fingerprint);
+            });
+        } else {
+            console.log('2');
+            mainAuth(onAuthed, onUnauthed, getCookie('fingerprint'));
+        }
     }
 }
 
 
-function mainAuth(onAuthed, onUnauthed) {
-    // Get client fingerprint
-    new Fingerprint2().get(function(fingerprint, components) {
-        var ref = new Firebase("https://t485.firebaseio.com/authorized");
+function mainAuth(onAuthed, onUnauthed, fingerprint) {
+    var ref = new Firebase("https://t485.firebaseio.com/authorized");
 
-        // Get authed values from firebase
-        ref.on("value", function(snapshot) {
-            console.log(snapshot.val());
-            var response = snapshot.val();
+    // Get authed values from firebase
+    ref.on("value", function(snapshot) {
+        console.log(snapshot.val());
+        var response = snapshot.val();
 
-            // Turn response (object) into an enumeratable array
-            var responseArray = [];
-            for (var key in response) {
-                // skip loop if the property is from prototype
-                if (!response.hasOwnProperty(key)) continue;
+        // Turn response (object) into an enumeratable array
+        var responseArray = [];
+        for (var key in response) {
+            // skip loop if the property is from prototype
+            if (!response.hasOwnProperty(key)) continue;
 
-                console.log(response[key]);
-                responseArray.push(response[key]);
+            console.log(response[key]);
+            responseArray.push(response[key]);
+        }
+        console.log(responseArray);
+
+
+        // Print client fingerprint
+        console.log('fingeprint: ' + fingerprint);
+
+
+        // Check if client is authed
+        var timestamp = Math.floor(Date.now() / 1000);
+
+        var authed = false;
+        for (var i = 0; i < responseArray.length; i++) {
+            if (responseArray[i].fingerprint == fingerprint && responseArray[i].expire > timestamp) {
+                authed = true;
             }
-            console.log(responseArray);
-
-
-            // Print client fingerprint
-            console.log('fingeprint: ' + fingerprint);
-
-
-            // Check if client is authed
-            var timestamp = Math.floor(Date.now() / 1000);
-
-            var authed = false;
-            for (var i = 0; i < responseArray.length; i++) {
-                if (responseArray[i].fingerprint == fingerprint && responseArray[i].expire > timestamp) {
-                    authed = true;
-                }
-            }
-            console.log('Authed: ' + authed);
-            
-            
-            // USE IN EMERGENCY: DISABLE LOGIN
-            // authed = true;
-            // Execute callbacks
-            if (authed) {
-                if (typeof onAuthed === 'function') onAuthed();
-            }
-            else {
-                if (typeof onUnauthed === 'function') onUnauthed();
-            }
-        }, function(errorObject) {
-            console.error("The read failed: " + errorObject.code);
-        });
+        }
+        console.log('Authed: ' + authed);
+        
+        
+        /* USE IN EMERGENCY: DISABLE LOGIN */
+        // authed = true;
+        // Execute callbacks
+        if (authed) {
+            if (typeof onAuthed === 'function') onAuthed();
+        } else {
+            if (typeof onUnauthed === 'function') onUnauthed();
+        }
+    }, function(errorObject) {
+        console.error("The read failed: " + errorObject.code);
+        // On error run unauthed
+        if (typeof onUnauthed === 'function') onUnauthed();
     });
 }
 
 
 // Sets the session storage for login
-function setAuth() {
-    new Fingerprint2().get(function(fingerprint, components){
-        console.log(fingerprint);
-        // $.post('setlogin.php', {'fingerprint': fingerprint});
-        window.location.href = 'setlogin.php?fingerprint=' + fingerprint;
-    });
+/* Requires: Fingerprintjs2 */
+function setAuth(redir) {
+    if (getCookie('fingerprint') === '') {
+        new Fingerprint2().get(function(fingerprint, components) {
+            window.location.href = 'setlogin.php?fingerprint=' + fingerprint + '&redir=' + redir;
+        });
+    } else {
+        window.location.href = 'setlogin.php?fingerprint=' + getCookie('fingerprint') + '&redir=' + redir;
+    }
 }
 
 
 // Logs out user
+/* Requires: Fingerprintjs2 */
 function logout() {
-    new Fingerprint2().get(function(fingerprint, components){
-        console.log(fingerprint);
-        // var response = $.post('logout.php', {'fingerprint': fingerprint});
-        window.location.href = 'logout.php?fingerprint=' + fingerprint;
+    if (getCookie('fingerprint') === '') {
+        new Fingerprint2().get(function(fingerprint, components) {
+            window.location.href = 'logout.php?fingerprint=' + fingerprint;
+        
+            // Unauth Firebase
+            var ref = new Firebase('https://t485auth.firebaseio.com');
+            ref.unauth();
+        });
+    } else {
+        window.location.href = 'logout.php?fingerprint=' + getCookie('fingerprint');
         
         // Unauth Firebase
         var ref = new Firebase('https://t485auth.firebaseio.com');
         ref.unauth();
-    });
+    }
 }
 
 /* END LOGIN FUNCTIONS */

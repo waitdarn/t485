@@ -172,8 +172,8 @@
         /* global getVarsFromUrl */
         /* global setAuth */
         /* global auth */
-    
-    
+     
+     
     
         auth(function() {
             handleLoggedIn(redirectUrl);
@@ -181,8 +181,8 @@
     
     
         var redirectUrl = getVarsFromUrl()['redirect'] || 'index.html';
-    
         var ref = new Firebase('https://t485auth.firebaseio.com');
+        
         // Updated 2/9/2016, 200 members
         window.members = [
             '12345ryanwang@gmail.com', 'acfkong@yahoo.com', 'albertwang0214@gmail.com', 'alexz12398@gmail.com', 'andrewzheng8@gmail.com', 'anitaylin@yahoo.com',
@@ -221,11 +221,8 @@
         ];
     
     
-    
         // console.log('Members: ' + window.members);
-    
-    
-    
+
         function onAuthCallback(authData) {
             if (authData !== null) {
                 // Login succeeded
@@ -233,8 +230,8 @@
     
                 // Check if email is on approved list
                 if (window.members.indexOf(email) > -1) {
-                    setAuth();
-                    handleLoggedIn(redirectUrl);
+                    setAuth(redirectUrl);
+                    // window.location.href = redirectUrl;
                 }
                 else {
                     alert('Sorry, but you are not authorized to view this page.');
@@ -249,6 +246,7 @@
     
         function signIn() {
             ref.authWithOAuthRedirect('google', function(error) {
+            // ref.authWithOAuthPopup('google', function(error) {
                 if (error) console.log('Login failed! ' + error);
             }, {
                 remember: 'sessionOnly',
@@ -256,18 +254,14 @@
             });
         }
     
-    
+
         function handleLoggedIn(url) {
             if (url !== null) {
                 window.location.href = url;
-            }
-            else {
+            } else {
                 // Handle login without redirect url
                 $('.login').hide();
                 $('.logged-in').show();
-    
-                // Throw errow to end js execution
-                throw '';
             }
         }
     </script>
