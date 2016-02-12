@@ -245,8 +245,8 @@
     
     
         function signIn() {
-            ref.authWithOAuthRedirect('google', function(error) {
-            // ref.authWithOAuthPopup('google', function(error) {
+            // ref.authWithOAuthRedirect('google', function(error) {
+            ref.authWithOAuthPopup('google', function(error) {
                 if (error) console.log('Login failed! ' + error);
             }, {
                 remember: 'sessionOnly',
