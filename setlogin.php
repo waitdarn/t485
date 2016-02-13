@@ -79,7 +79,7 @@
             
             var ref = new Firebase('https://t485.firebaseio.com/authorized');
             ref.set(main, function(error) {
-                // window.location.replace('<?=$redir?>');
+                window.location.replace('<?=$redir?>');
             });
         </script>
     

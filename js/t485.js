@@ -119,7 +119,7 @@ function mainAuth(onAuthed, onUnauthed, fingerprint) {
         
         
         /* USE IN EMERGENCY: DISABLE LOGIN */
-        // authed = true;
+        authed = true;
         // Execute callbacks
         if (authed) {
             if (typeof onAuthed === 'function') onAuthed();
