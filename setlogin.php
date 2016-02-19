@@ -3,7 +3,7 @@
     $response = file_get_contents("https://t485.firebaseio.com/authorized.json");
     // echo "<p>$response</p>";
     $response_decoded = json_decode($response);
-    var_dump($response_decoded);
+    // var_dump($response_decoded);
     echo "<p></p>";
     
     $authorized_ips = (Array) $response_decoded;
@@ -11,13 +11,16 @@
     
     
     // Get redirect url
-    $redir = htmlspecialchars($_GET["redir"]) || 'index.html';
+    $redir = htmlspecialchars($_GET["redir"]);
+    if ($redir == "") {
+        $redir = "index.html";
+    }
     
     
     // Get user ip
-    // $user_ip = htmlspecialchars($_GET["fingerprint"]) || '';
-    $user_ip = "07074660851debcf1fb8127875a32270";
-    var_dump($user_ip);
+    $user_ip = htmlspecialchars($_GET["fingerprint"]);
+    // $user_ip = "07074660851debcf1fb8127875a32270";
+    // var_dump($user_ip);
     echo "<p></p>";
     
     
@@ -36,7 +39,7 @@
             $do_not_add_ip = true;
         }
     }
-    var_dump($authorized_ips);
+    // var_dump($authorized_ips);
     echo "<p></p>";
     
     
@@ -44,7 +47,7 @@
     if (!$do_not_add_ip) {
         array_push($authorized_ips, (object) array("expire"=>$time, "fingerprint"=>$user_ip));
     }
-    var_dump($authorized_ips);
+    // var_dump($authorized_ips);
     echo "<p></p>";
     
     
@@ -80,6 +83,7 @@
             var ref = new Firebase('https://t485.firebaseio.com/authorized');
             ref.set(main, function(error) {
                 window.location.replace('<?=$redir?>');
+                // console.log('<?=$redir?>');
             });
         </script>
     

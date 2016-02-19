@@ -3,7 +3,7 @@
     $response = file_get_contents("https://t485.firebaseio.com/authorized.json");
     // echo "<p>$response</p>";
     $response_decoded = json_decode($response);
-    var_dump($response_decoded);
+    // var_dump($response_decoded);
     echo "<p></p>";
     
     $authorized_ips = (Array) $response_decoded;
@@ -19,18 +19,21 @@
             unset($authorized_ips[$i]);
         }
     }
-    var_dump($authorized_ips);
+    // var_dump($authorized_ips);
     echo "<p></p>";
     
     
     // Get redirect url
     $redir = htmlspecialchars($_GET["redir"]);
+    if ($redir == "") {
+        $redir = "index.html";
+    }
     
     
     // Get user ip
     $user_ip = htmlspecialchars($_GET["fingerprint"]);
     // $user_ip = "07074660851debcf1fb8127875a32270";
-    var_dump($user_ip);
+    // var_dump($user_ip);
     echo "<p></p>";
     
     // Removes user ip
@@ -39,7 +42,7 @@
             unset($authorized_ips[$i]);
         }
     }
-    var_dump($authorized_ips);
+    // var_dump($authorized_ips);
     echo "<p></p>";
     
     
