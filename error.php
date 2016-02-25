@@ -82,7 +82,7 @@
                         <a>Directory <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="directory.html">Directory</a></li>
-                            <li><a href="contact.html">Enter Contact Information</a></li>
+                            <!--<li><a href="contact.html">Enter Contact Information</a></li>-->
                         </ul>
                     </li>
                 </ul>
