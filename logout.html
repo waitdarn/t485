@@ -161,13 +161,12 @@
     <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <script>
-        auth(function() {
-            logout();
-        }, function() {});
+        var redir = getQuery('redir') || 'login.html';
+        $("#logout").html('<a href="login.html?redirect=' + redir + '">here</a>')
         
-        if (getQuery("redir") !== null) {
-            $("#logout").html('<a href="login.html?redirect=' + getQuery("redir") + '">here</a>')
-        }
+        // Unauth Firebase
+        var ref = new Firebase('https://t485auth.firebaseio.com');
+        ref.unauth();
     </script>
 </body>
 

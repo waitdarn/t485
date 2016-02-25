@@ -127,7 +127,6 @@
                         <span class="fa fa-google"></span> Sign in with Google
                     </a>
                     <p class="logged-in" style="display: none;">You have successfully logged in.</p>
-                    <button class="btn btn-default logged-in" onclick="window.location.href='logout.html?redir=index.html'">Logout</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -179,7 +178,7 @@
         }, function() {});
     
     
-        var redirectUrl = getVarsFromUrl()['redirect'] || 'index.html';
+        var redirectUrl = getVarsFromUrl()['redirect'] || '';
         var ref = new Firebase('https://t485auth.firebaseio.com');
         
         // Updated 2/19/2016, 202 members
@@ -229,8 +228,7 @@
     
                 // Check if email is on approved list
                 if (window.members.indexOf(email) > -1) {
-                    setAuth(redirectUrl);
-                    // window.location.href = redirectUrl;
+                    window.location.href = redirectUrl;
                 }
                 else {
                     alert('Sorry, but you are not authorized to view this page.');
@@ -255,7 +253,7 @@
     
 
         function handleLoggedIn(url) {
-            if (url !== null) {
+            if (url !== '') {
                 window.location.href = url;
             } else {
                 // Handle login without redirect url
