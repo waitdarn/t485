@@ -10,4 +10,4 @@ if ( !$user_id and email_exists($user_email) == false ) {
 } else {
 	echo '{"error":"User Created"}';
 }
-?><p>hello</p>
+?>
