@@ -1,16 +1,12 @@
-<?php
-// In PHP versions earlier than 4.1.0, $HTTP_POST_FILES should be used instead
-// of $_FILES.
+<?PHP
+$target_path = "/file/";
 
-$uploaddir = '/file/';
-$uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
 
-// Check if file already exists
-if (file_exists($target_file)) {
-   echo'{"error":100}';
-} else {
-    if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-        echo '{"error":"none"}';
-    }
+if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+    echo "The file ".  basename( $_FILES['uploadedfile']['name']). 
+    " has been uploaded. You can find it at <a href='/file/" . basename( $_FILES['uploadedfile']['name']) . "'>http://t485.org/file/" . basename( $_FILES['uploadedfile']['name']) . "</a>.";
+} else{
+    echo "There was an error uploading the file, please <a href='/upload.html'>try again</a>!";
 }
 ?>
