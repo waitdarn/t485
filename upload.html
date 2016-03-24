@@ -30,7 +30,27 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-
+    <style>
+        .btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+    </style>
 </head>
 
 <body>
@@ -113,18 +133,19 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <form action="upload.php" class="dropzone" id="my-awesome-dropzone" method="post" enctype="multipart/form-data">
-                        <div class="fallback">
-                            <input name="file" type="file" multiple />
-                        </div>
-                        <div class="dz-message">
-                            <p>Drag files here to upload or cilck to choose files. Your files will be automatically uploaded to t485.org/file/YOUR-FILE-NAME. Please name your file a simple name, and check if it already exists.</p>
-                        </div>
-                        <button class="btn btn-primary form-control submit" style="color:white;" type="submit">Upload Files</button>
-
-                    </form>
-                    <p class="text-danger" id="error" style="display:none;">A file with the selected name already exists! Please change the name and try again.</p>
-                </div>
+                    <div id="file-upload">
+                        <form action = "" method = "POST" enctype = "multipart/form-data">
+                             <input type = "file" name = "image" />
+                             <input type = "submit"/>
+                    			
+                             <ul>
+                                <li>Sent file: <?php echo $_FILES['image']['name'];  ?>
+                                <li>File size: <?php echo $_FILES['image']['size'];  ?>
+                                <li>File type: <?php echo $_FILES['image']['type'] ?>
+                             </ul>
+                    			
+                          </form>
+                    </div>
                 <div class="clearfix"></div>
             </div>
         </div>
