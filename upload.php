@@ -1,30 +1,34 @@
 <?php
-   if(isset($_FILES['image'])){
-      $errors= array();
-      if (!empty($_POST['newname'])) {
-    $new_filename = $_POST['newname'];
-} else {
-    $new_filename = $_FILES['image']['name'];
-}
-      $file_size = $_FILES['image']['size'];
-      $file_tmp = $_FILES['image']['tmp_name'];
-      $file_type = $_FILES['image']['type'];
-      $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
-      
+$target_dir = "file/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
-      if($file_ext === "php"){
-         $errors[]="PHP files are not allowed, please do not upload php files.";
-      }
-      if (file_exists($file_name)) {
-        $errors[]="The file http://t485.org/file/$file_name already exists. Please change the name.";
+// Check if file already exists
+if (file_exists($target_file)) {
+    echo "Sorry, file already exists.";
+    $uploadOk = 0;
+}
+
+// Don't allow PHP
+if($imageFileType == "php") {
+    echo "Sorry, PHP files are not allowed.";
+    $uploadOk = 0;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
     }
-      
-      if(empty($errors)==true) {
-         move_uploaded_file($file_tmp,"file/".$file_name);
-         echo "The file has been uploaded to <a href='"."file/".$file_name."'>"."file/".$file_name."</a>";
-      }else{
-         print_r($errors);
-      }
-   }
+}
+if (is_writable($target_dir)) {
+    echo 'The file is writable';
+} else {
+    echo 'The file is not writable';
+}
 ?>
-<a href="upload.html">Click here to upload another file or try again.</a>
