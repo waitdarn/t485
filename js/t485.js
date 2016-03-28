@@ -1,4 +1,3 @@
-/* global Fingerprint2 */
 /* global Firebase */
 
 // Back to top button animation
@@ -72,9 +71,8 @@ function mainAuth(onAuthed, onUnauthed) {
     console.log('running mainAuth');
     var ref = new Firebase("https://t485auth.firebaseio.com");
     
-    var members;
     $.get('members', function(response) {
-        members = response.split('\n');
+        var members = response.split('\n');
     
         ref.onAuth(function(authData) {
             console.log(authData);
@@ -82,8 +80,8 @@ function mainAuth(onAuthed, onUnauthed) {
             
             if (authData === null || authData === undefined) {
                 authed = false;
-            } else if (members.indexOf(authData.google.email) > -1) {
-                if (ref.getAuth() !== null) authed = true;
+            } else if (members.indexOf(authData.google.email) > -1 && ref.getAuth() !== null) {
+                authed = true;
             }
             
             console.log('auth status: ' + authed);
