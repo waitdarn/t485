@@ -135,6 +135,10 @@ footer p {
         float: left;
         margin-right: 25px;
     }
+    .img-right {
+        float: right;
+        margin-left: 25px;
+    }
     .address-bar {
         display: inherit;
         margin: 0;

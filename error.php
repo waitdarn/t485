@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+    <meta name="description" content="Troop 485 will provide an excellent scouting experience right here at Home of Christ 5 in Cupertino.">
     <meta name="author" content="Richard Liu">
     <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
