@@ -94,10 +94,9 @@ hr {
     letter-spacing: 1px;
 }
 
-.img-border {
+.img-center {
     float: none;
     margin: 0 auto;
-    border: #999 solid 1px;
 }
 
 .img-left {
