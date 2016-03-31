@@ -2,18 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Troop 485 will provide an excellent scouting experience right here at Home of Christ 5 in Cupertino.">
-    <meta name="author" content="Richard Liu">
-    <link rel="apple-touch-icon" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="favicons/android-chrome-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="favicons/manifest.json">
-    <meta name="theme-color" content="#008000">
     <title>Page Not Found</title>
     <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -140,7 +133,7 @@
     <!-- Clicky Web Analytics -->
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
-    <noscript><img alt="Clicky" src="https://in.getclicky.com/100869133ns.gif"></noscript>
+    <noscript><img alt="" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <?php
         $ip = $_SERVER["REMOTE_ADDR"];
