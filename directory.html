@@ -440,17 +440,18 @@
         
         
         function showfullinfo(id) {
+            console.log(id);
             $('#results').hide();
             $('#detail').show().html('').append(
-                'Name: '                + window.globalData[id]['Scout\'s Full Name (last name first):'] + '<br>' +
-                'Email: '               + window.globalData[id]['Scout\'s E-mail:'] + '<br>' +
-                'Cell Phone: '          + window.globalData[id]['Scout\'s Cell Phone'] + '<br>' +
-                'Home Phone: '          + window.globalData[id]['Scout\'s Home Phone'] + '<br>' +
-                'Patrol: '              + window.globalData[id]['patrol'] + '<br>' + '<br>' +
-                'Father\'s Cell Phone: ' + window.globalData[id]['Father\'s Cell Phone'] + '<br>' +
-                'Father\'s E-mail: '     + window.globalData[id]['Father\'s E-mail'] + '<br>' + '<br>' +
-                'Mother\'s Cell Phone: ' + window.globalData[id]['Mother\'s Cell Phone'] + '<br>' +
-                'Mother\'s E-mail: '     + window.globalData[id]['Mother\'s E-mail'] + '<br>'
+                'Name: '                    + window.globalData[id]['Scout\'s Full Name (last name first):'] + '<br>' +
+                'Email: <a href="mailto:'   + window.globalData[id]['Scout\'s E-mail:']                 + '">' + window.globalData[id]['Scout\'s E-mail:'] + '</a><br>' +
+                'Cell Phone: <a href="tel:' + window.globalData[id]['Scout\'s Cell Phone']              + '">' + window.globalData[id]['Scout\'s Cell Phone'] + '</a><br>' +
+                'Home Phone: <a href="tel:' + window.globalData[id]['Scout\'s Home Phone']              + '">' + window.globalData[id]['Scout\'s Home Phone'] + '</a><br>' +
+                'Patrol: '                  + window.globalData[id]['patrol']                           + '<br><br>' +
+                'Father\'s Cell Phone: <a href="tel:' + window.globalData[id]['Father\'s Cell Phone']   + '">' + window.globalData[id]['Father\'s Cell Phone'] + '</a><br>' +
+                'Father\'s E-mail: <a href="mailto:'  + window.globalData[id]['Father\'s E-mail']       + '">' + window.globalData[id]['Father\'s E-mail'] + '</a><br>' +
+                'Mother\'s Cell Phone: <a href="tel:' + window.globalData[id]['Mother\'s Cell Phone']   + '">' + window.globalData[id]['Mother\'s Cell Phone'] + '</a><br>' +
+                'Mother\'s E-mail: <a href="mailto:'  + window.globalData[id]['Mother\'s E-mail']       + '">' + window.globalData[id]['Mother\'s E-mail'] + '</a><br>'
             );
         }
         
