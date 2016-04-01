@@ -121,7 +121,7 @@
                 <hr>
                 <h2 class="intro-text text-center">Resources</h2>
                 <hr>
-                <ul id="resources-list">
+                <ul>
                     <li><a onclick="openModal(event, 'https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic')">Council Resource</a></li>
                     <li><a onclick="openModal(event, 'https://docs.google.com/document/d/1dtMPUhKv6eOfKaxk3iMwnRbovgu0yZt6J0mH8wPdBfY/mobilebasic')">Things to Remember</a></li>
                     <li><a onclick="openModal(event, 'https://docs.google.com/presentation/embed?id=15e_mFNG0x4JIhqbCOZ3CDkVm_nrmEnXYE1RFOEQKd-w&start=false&loop=false')">Advancement Presentation (By Calvin Ho)</a></li>
@@ -175,6 +175,7 @@
             </div>
         </div>
     </footer>
+    
     <!-- Modal -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -198,6 +199,8 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+    
+    
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
@@ -215,7 +218,6 @@
     <noscript><img alt="" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        
         function openModal(e, url) {
             var title = (e.target.tagName === 'A' ? title = e.target.innerHTML : e.target.attributes.alt.nodeValue);
             
@@ -226,49 +228,21 @@
         }
         
         
-        
-        var fireRef = new Firebase("https://t485.firebaseio.com/files/resourcefiles");
-
-        // Add file link and info to Firebase
-        $("form").submit(function () {
-            fireRef.push({link: $("#add-link-link").val(), fileName: $("#add-link-file-name").val(), authorName: $("#add-link-author-name").val()});
-            alert("Thank you for adding a link.");
-        });
-
-        var resourceListElement = document.getElementById("resources-list");
-        // For every file link make an li element and append to resource list
-        fireRef.on("child_added", function(snapshot) {
-            var response = snapshot.val();
-            var listElement = document.createElement("li");
-            var linkElement = document.createElement("a");
-            linkElement.href = response.link;
-            linkElement.innerHTML = response.fileName;
-            linkElement.target = "_blank";
-            console.log(listElement);
-            console.log(linkElement);
-            listElement.appendChild(linkElement);
-            resourceListElement.appendChild(listElement);
-        });
         function requestFullScreen() {
-            var el = document.getElementById("ifr")
-          // Supports most browsers and their versions.
-          var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
-          || el.mozRequestFullScreen || el.msRequestFullScreen;
+            var el = document.getElementById("ifr");
+            // Supports most browsers and their versions.
+            var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen;
         
-          if (requestMethod) {
-        
-            // Native full screen.
-            requestMethod.call(el);
-        
-          } else if (typeof window.ActiveXObject !== "undefined") {
-        
+            if (requestMethod) {
+                requestMethod.call(el);
             // Older IE.
-            var wscript = new ActiveXObject("WScript.Shell");
+            } else if (typeof window.ActiveXObject !== "undefined") {
+                var wscript = new ActiveXObject("WScript.Shell");
         
-            if (wscript !== null) {
-              wscript.SendKeys("{F11}");
+                if (wscript !== null) {
+                    wscript.SendKeys("{F11}");
+                }
             }
-          }
         }
     </script>
 
