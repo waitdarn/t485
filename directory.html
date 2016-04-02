@@ -183,18 +183,13 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <!-- Firebase -->
-    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
-
     <!-- Clicky Web Analytics -->
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><img alt="" src="https://in.getclicky.com/100869133ns.gif"></noscript>
 
     <script>
-        /* global getCookie */
         /* global Tabletop */
-        /* global Firebase */
         
         
         $('#spreadsheet-confirm-btn').click(function () {
@@ -351,7 +346,7 @@
                     name = fullname.split(' ');
                 } else if (fullname.search(',') > 0) {
                     name = fullname.split(',');
-                    var temp = name[0];
+                    temp = name[0];
                     name[0] = name[1];
                     name[1] = temp;
                 } else {
@@ -386,7 +381,7 @@
                     break;
                 // First and last name
                 } else {
-                    var diff = compare(query[0], patrolnames[i][0]) + compare(query[1], patrolnames[i][1]);
+                    diff = compare(query[0], patrolnames[i][0]) + compare(query[1], patrolnames[i][1]);
                     if (diff < (query[0].length + query[1].length) / 2) {
                         score.push({id: i, score: diff + 1});
                     }
@@ -399,7 +394,7 @@
             // Make sure scores list has items
             if (!(score[0] === undefined)) {
                 var firstScore = score[0].score;
-                for (var i = 0; i < score.length; i++) {
+                for (i = 0; i < score.length; i++) {
                     // If direct match of query
                     if (score[i].score === firstScore) {
                         results.push(score[i].id);
@@ -458,7 +453,7 @@
         
         // Code from https://gist.github.com/andrei-m/982927
         // Compressed using http://javascript-minifier.com/
-        function compare(t,n){if(0==t.length)return n.length;if(0==n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length]}
+        function compare(t,n){if(0==t.length)return n.length;if(0==n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length];}
     </script>
 
 </body>
