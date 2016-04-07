@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+
     <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
     <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+
     <title>Page Not Found</title>
+
     <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="/css/t485.css" rel="stylesheet">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
 </head>
+
 <body id="skrollr-body">
-    <a href="index.html"><img src="/img/header.gif" id="header" alt="Troop 485"></a>
+    
+    <a href="index.html" style="position: relative;" data-0="top: 0px;" data-150="top: 90%;"><img src="/img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151"></a>
+    
     <!-- Navigation -->
     <nav class="navbar navbar-default">
         <div class="container">
@@ -103,64 +114,6 @@
         <span class="glyphicon glyphicon-info-sign"></span>  Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!
     </div>
     
-    <script>
-        // https://gist.github.com/andrei-m/982927#file-levenshtein-js
-        function distance(a, b) {
-        
-            // Compute the edit distance between the two given strings a and b
-            if (a.length == 0) return b.length;
-            if (b.length == 0) return a.length;
-            var matrix = [];
-        
-            // increment along the first column of each row
-            var i;
-            for (i = 0; i <= b.length; i++) {
-                matrix[i] = [i];
-            }
-        
-            // increment each column in the first row
-            var j;
-            for (j = 0; j <= a.length; j++) {
-                matrix[0][j] = j;
-            }
-        
-            // Fill in the rest of the matrix
-            for (i = 1; i <= b.length; i++) {
-                for (j = 1; j <= a.length; j++) {
-                    if (b.charAt(i - 1) == a.charAt(j - 1)) {
-                        matrix[i][j] = matrix[i - 1][j - 1];
-                    } else {
-                        matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, // substitution
-                            Math.min(matrix[i][j - 1] + 1, // insertion
-                                matrix[i - 1][j] + 1)); // deletion
-                    }
-                }
-            }
-        
-            return matrix[b.length][a.length];
-        };
-        
-        
-        var pages = ["a.html" /*defualt, gets changed to the home page @ index.html*/ , "index.html", "about.html", "books.html", "calendar.html", "contact.html", "directory.html", "eagle.html", "easter-eggs.html", "faq.html", "feedback.html", "headcount.html", "login.html", "logout.html", "meeting-minutes.html", "merit-badges.html", "new-scout.html", "pictures.html", "plc.html", "rescourses.html", "response.html", "smc.html", "template.html", "troop-jobs.html", "home.html", "forum.html", "ranks.html"]
-        
-        function closest(page) {
-            var smallest = -1;
-            var rtn;
-            for (var i = 0; i < pages.length; i++) {
-                var dist = distance(page, pages[i]);
-                if (dist < smallest || smallest == -1) {
-                    smallest = dist;
-                    rtn = pages[i];
-                    if (rtn === "a.html" || rtn === "home.html") {
-                        rtn = "index.html"
-                    }
-                }
-            }
-            return rtn;
-        }
-    </script>
-    
-    
     <div class="container">
         <div class="row">
             <div class="box">
@@ -171,20 +124,10 @@
                 </div>
                 <div class="col-md-12">
                     <p>
-                        The requested page 
-                        <b>
-                            <script>document.write(window.location.pathname)</script>
-                        </b>
-                        was not found on this website!
+                        The requested page <b id="pathname"></b> was not found on this website!
                     </p>
-                    <br>
-                    <script>
-                        document.write("<p>Maybe you wanted to go to the <a href='" + closest(window.location.pathname) + "'>" + closest(window.location.pathname) + " </a> page?");
-                    </script>
-                    <p>If you did not mean the above website, your page was either moved into a diffrent or new folder, deleted, or was never created.</p>
-                    <p><b>If you do nothing, you will be redirected to to the above page in <span id="countdown"></span>.</b></p>
-                    <p>Or click <a href="index.html">here</a> to go to the home page.
-                    <p>
+                    <p>Maybe you wanted to go to the <a id="closest-page"></a> page?
+                    <p>Your page was either moved into a diffrent or new folder, deleted, or was never created.</p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -206,6 +149,8 @@
     
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+    <script src="/js/skrollr-0.6.30.min.js"></script>
     <script src="/js/t485.js"></script>
     
     <!-- Bootstrap Core JavaScript -->
@@ -217,9 +162,37 @@
     <noscript><img alt="" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <script>
-        countdown(15, $("#countdown"), function() {
-            window.location.href = closest(window.location.pathname);
-        });
+        var pages = ['a.html' /*defualt, gets changed to the home page @ index.html*/ , 'index.html', 'about.html', 'books.html', 'calendar.html', 'contact.html',
+        'directory.html', 'eagle.html', 'easter-eggs.html', 'faq.html', 'feedback.html', 'headcount.html', 'login.html', 'logout.html', 'meeting-minutes.html',
+        'merit-badges.html', 'new-scout.html', 'pictures.html', 'plc.html', 'rescourses.html', 'response.html', 'smc.html', 'template.html', 'troop-jobs.html',
+        'home.html', 'forum.html', 'ranks.html'];
+        
+        
+        $('#pathname').html(window.location.pathname);
+        $('#closest-page').html(closest(window.location.pathname));
+        $('#closest-page').attr('href', closest(window.location.pathname));
+        
+        
+        
+        function closest(page) {
+            var smallest = -1;
+            var rtn;
+            
+            for (var i = 0; i < pages.length; i++) {
+                var dist = compare(page, pages[i]);
+                console.log(dist);
+                if (dist < smallest || smallest === -1) {
+                    smallest = dist;
+                    rtn = pages[i];
+                    if (rtn === 'a.html' || rtn === 'home.html') {
+                        rtn = 'index.html';
+                    }
+                }
+            }
+            
+            return rtn;
+        }
     </script>
+    
 </body>
 </html>

@@ -117,6 +117,11 @@ function countdown(n,t,e){function o(){a=n-((Date.now()-c)/1e3|0),u=a/60|0,w=a%6
 // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 function getQuery(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new RegExp("[\\?&]"+e+"=([^&#]*)"),n=c.exec(location.search);return null===n?"":decodeURIComponent(n[1].replace(/\+/g," "))}
 
+
+// Code from https://gist.github.com/andrei-m/982927#file-levenshtein-js
+function compare(t,n){if(0==t.length)return n.length;if(0==n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length];}
+
+
 function checkIfName(name) {
     return /^(?:(([A-Z]{1}[a-z]{1,})|([a-z]{2,})) (([A-Z]{1}[a-z]{1,})|([a-z]{2,})))$/gm.test(name);
 }
