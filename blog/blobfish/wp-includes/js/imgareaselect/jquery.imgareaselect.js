@@ -1112,7 +1112,7 @@ $.imgAreaSelect = function (img, options) {
         safari = /webkit/i.test(ua) && !/chrome/i.test(ua);
 
     /*
-     * Traverse the image's parent elements (up to <body id="skrollr-body">) and find the
+     * Traverse the image's parent elements (up to <body>) and find the
      * highest z-index
      */
     $p = $img;

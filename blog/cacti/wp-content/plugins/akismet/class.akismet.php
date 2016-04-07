@@ -989,7 +989,7 @@ p {
 	font-size: 18px;
 }
 </style>
-<body id="skrollr-body">
+<body>
 <p><?php echo esc_html( $message ); ?></p>
 </body>
 </html>

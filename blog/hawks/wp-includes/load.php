@@ -203,7 +203,7 @@ function wp_maintenance() {
 		<title><?php _e( 'Maintenance' ); ?></title>
 
 	</head>
-	<body id="skrollr-body">
+	<body>
 		<h1><?php _e( 'Briefly unavailable for scheduled maintenance. Check back in a minute.' ); ?></h1>
 	</body>
 	</html>
