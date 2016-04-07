@@ -6,6 +6,10 @@ $(window).scroll(function(){ if ($(this).scrollTop() > 0) { $('#toTop').fadeIn(3
 // Set LESS async to true to prevent warning on Chrome
 less = {async: true};
 
+// Init skrollr
+skrollr.init();
+
+
 
 // Fix dropdown menu bug on iOS
 $('.dropdown a').click(function() {

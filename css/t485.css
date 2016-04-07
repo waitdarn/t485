@@ -162,7 +162,7 @@ footer p {
     .navbar-default {
         border: none;
         background: #fff;
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(240, 255, 240, 1);
     }
     
     .nav>.active {
@@ -500,4 +500,8 @@ a:hover {
 
 a:focus {
     text-decoration: none;
+}
+
+.skrollr {
+    position: relative;
 }

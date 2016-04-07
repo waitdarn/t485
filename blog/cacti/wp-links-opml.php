@@ -37,7 +37,7 @@ echo '<?xml version="1.0"?'.">\n";
 		do_action( 'opml_head' );
 		?>
 	</head>
-	<body>
+	<body id="skrollr-body">
 <?php
 if ( empty($link_cat) )
 	$cats = get_categories(array('taxonomy' => 'link_category', 'hierarchical' => 0));

@@ -104,7 +104,7 @@ text-align: center;
 }
 </style>
 </head>
-<body>
+<body id="skrollr-body">
 <p class="message">%s</p>
 </body>
 </html>' );

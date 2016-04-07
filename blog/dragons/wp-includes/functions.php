@@ -3509,7 +3509,7 @@ function dead_db() {
 	<title><?php _e( 'Database Error' ); ?></title>
 
 </head>
-<body>
+<body id="skrollr-body">
 	<h1><?php _e( 'Error establishing a database connection' ); ?></h1>
 </body>
 </html>

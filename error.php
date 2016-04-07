@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body id="skrollr-body">
     <a href="index.html"><img src="img/header.gif" id="header" alt="Troop 485 banner"></a>
     <!-- Navigation -->
     <nav class="navbar navbar-default">
@@ -125,6 +125,7 @@
     
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="js/skrollr-0.6.30.min.js"></script>
     <script src="js/t485.js"></script>
     
     <!-- Bootstrap Core JavaScript -->

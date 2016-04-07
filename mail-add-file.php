@@ -9,7 +9,7 @@
         <META http-equiv="refresh" content="0;URL=http://t485.org/<?=$redir?>">
     </head>
     
-    <body>
+    <body id="skrollr-body">
         
         <?php
             $to = "richy.liu.2002@gmail.com";

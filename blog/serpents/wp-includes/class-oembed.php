@@ -341,7 +341,7 @@ class WP_oEmbed {
 				'application/xml+oembed' => 'xml',
 			) );
 
-			// Strip <body>
+			// Strip <body id="skrollr-body">
 			$html = substr( $html, 0, stripos( $html, '</head>' ) );
 
 			// Do a quick check
