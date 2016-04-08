@@ -7,7 +7,9 @@ $(window).scroll(function(){ if ($(this).scrollTop() > 0) { $('#toTop').fadeIn(3
 less = {async: true};
 
 // Init skrollr
-skrollr.init();
+skrollr.init({
+    mobileDeceleration: 0.1
+});
 
 
 
@@ -103,6 +105,20 @@ function mainAuth(onAuthed, onUnauthed) {
 }
 
 /* END LOGIN FUNCTIONS */
+
+
+
+window.onscroll = function() {
+    if (window.pageYOffset > 151) {
+        $('.navbar').css('position', 'fixed');
+        $('.navbar').css('top', '0px');
+        $('.navbar').css('background', 'rgba(255, 255, 255, 1)');
+    } else {
+        $('.navbar').css('position', '');
+        $('.navbar').css('top', '');
+        $('.navbar').css('background', 'rgba(255, 255, 255, 0.9)');
+    }
+}
 
 
 

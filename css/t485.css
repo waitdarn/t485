@@ -6,7 +6,7 @@
  
 body {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: green;
+    background-color: #eeeeee;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -162,7 +162,8 @@ footer p {
     .navbar-default {
         border: none;
         background: #fff;
-        background: rgba(240, 255, 240, 1);
+        background: rgba(255, 255, 255, 0.9);
+        z-index: 100;
     }
     
     .nav>.active {
@@ -504,4 +505,48 @@ a:focus {
 
 .skrollr {
     position: relative;
+}
+
+/*#background {*/
+/*    background:*/
+/*        -moz-radial-gradient(green 15%, transparent 16%),*/
+/*        -moz-radial-gradient(green 15%, transparent 16%),*/
+/*        white;*/
+/*    background:*/
+/*        -webkit-radial-gradient(green 15%, transparent 16%),*/
+/*        -webkit-radial-gradient(green 15%, transparent 16%),*/
+/*        white;*/
+/*    background-position: 0 0, 80px 80px;*/
+    
+/*    -webkit-background-size:160px 160px;*/
+/*    -moz-background-size:160px 160px;*/
+/*    background-size:160px 160px;*/
+    
+/*    position: absolute;*/
+/*    top: 0px;*/
+/*    left: 0px;*/
+    
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    z-index: -1;*/
+/*}*/
+
+#bg1, #bg2, #bg3 {
+    position: fixed;
+    z-index: -50;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://prinzhorn.github.io/skrollr/examples/images/bubbles.png') repeat 0 0;
+}
+
+#bg2 {
+    z-index: -51;
+    background: url('https://prinzhorn.github.io/skrollr/examples/images/bubbles2.png');
+}
+
+#bg3 {
+    z-index: -52;
+    background: url('https://prinzhorn.github.io/skrollr/examples/images/bubbles3.png');
 }
