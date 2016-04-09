@@ -7,7 +7,7 @@ $(window).scroll(function(){ if ($(this).scrollTop() > 0) { $('#toTop').fadeIn(3
 less = {async: true};
 
 // Init skrollr
-skrollr.init({
+var skr = skrollr.init({
     mobileDeceleration: 0.1
 });
 
@@ -112,42 +112,21 @@ window.onscroll = updateNavbar;
 $(document).on('touchmove', updateNavbar);
 
 function updateNavbar() {
-    var pageY;
-    var mobile = !($('body').css('transform') === 'none');
-    
-    if (mobile) {
-        pageY = /-[\d\.]{1,8}/.exec($('body').css('transform'));
-        if ($('body').css('transform') === 'matrix(1, 0, 0, 1, 0, 0)') pageY = 0;
-        // turn positive
-        pageY = -1 * parseFloat(pageY);
-    } else {
-        pageY = window.pageYOffset;
-    }
-    
-    // console.log(pageY);
+    var pageY = window.pageYOffset;
+    var mobile = skr.isMobile();
     
     if (pageY > $('#header').height()) {
         $('.navbar').addClass('navbar-fixed-top');
         $('.navbar').removeClass('navbar-static-top');
-        $('.navbar').css('background', 'rgba(255, 255, 255, 1)');
-        console.log('1');
-        if (mobile) {
-            console.log('mobile!');
-            $('.navbar').css('position', 'absolute');
-            $('.navbar').css('top', pageY);
-        } else {
-            $('.navbar').css('top', '0px');
-        }
+        $('.navbar').css('background', 'rgba(255, 255, 255, ' + (mobile ? '1' : '0.9') + ')');
+        $('#filler').css('margin-bottom', '0px');
+        if (mobile) $('.navbar').css('top', window.pageYOffset);
     } else {
         $('.navbar').removeClass('navbar-fixed-top');
         $('.navbar').addClass('navbar-static-top');
-        $('.navbar').css('background', 'rgba(255, 255, 255, 0.9)');
-        if (mobile) {
-            $('.navbar').css('position', '');
-            $('.navbar').css('top', '');
-        } else {
-            $('.navbar').css('top', '');
-        }
+        $('.navbar').css('background', 'rgba(255, 255, 255, ' + (mobile ? '1' : '0.9') + ')');
+        $('#filler').css('margin-bottom', '-' + $('.navbar').height() + 'px');
+        $('.navbar').css('top', '0');
     }
 }
 

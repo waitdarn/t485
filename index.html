@@ -71,6 +71,8 @@
     
     <a href="index.html" class="skrollr" data-0="top: 0px;" data-150="top: 86%;"><img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151"></a>
     
+    <div id="filler" style="width: 100%; background-color: transparent;"></div>
+    
     <!-- Navigation -->
     <nav class="navbar navbar-default">
         <div class="container">
@@ -256,14 +258,10 @@
         </div>
     </footer>
 
-    <div id="bg1" class="skrollr" data-0="background-position: 0px 0px;" data--512-end="background-position: 0px -400%;"></div>
-    <div id="bg2" class="skrollr" data-0="background-position: 0px 0px;" data--512-end="background-position: 0px -300%;"></div>
-    <div id="bg3" class="skrollr" data-0="background-position: 0px 0px;" data--512-end="background-position: 0px -200%;"></div>
-    
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     
-    <script src="js/skrollr-0.6.30.min.js"></script>
+    <script src="js/skrollr-0.6.30.js"></script>
     <script src="js/t485.js"></script>
     
     <!-- Bootstrap Core JavaScript -->
@@ -273,6 +271,11 @@
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><img alt="" src="https://in.getclicky.com/100869133ns.gif"></noscript>
+    
+    <script>
+        $('#filler').css('height', $('.navbar').height() + 'px');
+        $('#filler').css('margin-bottom', '-' + $('.navbar').height() + 'px');
+    </script>
 
 </body>
 
