@@ -4,15 +4,24 @@
 /* Initializers */
 
 // Back to top button animation
-$(window).scroll(function(){ if ($(this).scrollTop() > 0) { $('#toTop').fadeIn(3000); } else { $('#toTop').fadeOut(); }});
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 0) {
+        $('#toTop').fadeIn(3000);
+    } else {
+        $('#toTop').fadeOut();
+    }
+});
+
 
 // Set LESS async to true to prevent warning on Chrome
 less = {async: true};
+
 
 // Init skrollr
 var skr = skrollr.init({
     mobileDeceleration: 0.1
 });
+
 
 // Init navbar filler
 $('#filler').css('height', $('.navbar').height() + 'px');
