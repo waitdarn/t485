@@ -1139,8 +1139,8 @@
 				//That's were we actually "scroll" on mobile.
 				if(_isMobile && _skrollrBody) {
 					//Set the transform ("scroll it").
-					// skrollr.setStyle(_skrollrBody, 'transform', 'translate(0, ' + -(_mobileOffset) + 'px) ' + _translateZ);
-					window.scrollTo(0, Math.floor(_mobileOffset));
+					skrollr.setStyle(_skrollrBody, 'transform', 'translate(0, ' + -(_mobileOffset) + 'px) ' + _translateZ);
+					// window.scrollTo(0, Math.floor(_mobileOffset));
 				}
 
 				//Remember when we last rendered.

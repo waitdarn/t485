@@ -163,7 +163,6 @@ function updateNavbar() {
         $('.navbar').removeClass('navbar-static-top');
         $('.navbar').css('background', 'rgba(255, 255, 255, ' + (mobile ? '1' : '0.9') + ')');
         $('#filler').css('margin-bottom', '0px');
-        if (mobile) $('.navbar').css('top', window.pageYOffset);
     } else {
         $('.navbar').removeClass('navbar-fixed-top');
         $('.navbar').addClass('navbar-static-top');
