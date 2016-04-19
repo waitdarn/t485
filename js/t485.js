@@ -1,6 +1,7 @@
 /* global Firebase */
 
 
+
 /* Initializers */
 
 // Back to top button animation
@@ -18,9 +19,12 @@ less = {async: true};
 
 
 // Init skrollr
-var skr = skrollr.init({
-    mobileDeceleration: 0.1
-});
+var skr;
+if (!isMobile()) {
+    skr = skrollr.init({
+        mobileDeceleration: 0.1
+    });
+}
 
 
 // Init navbar filler
@@ -36,6 +40,7 @@ $('.dropdown a').click(function() {
         $(this).parent().addClass('open');
     }
 });
+
 
 
 
@@ -97,6 +102,10 @@ function mail(recipents, subject, content, from) {
     }, function(result) {});
 }
 
+function isMobile() {
+    return (/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera);
+}
+
 
 
 /* Login */
@@ -151,8 +160,11 @@ function mainAuth(onAuthed, onUnauthed) {
 
 
 /* navbar parallax */
-window.onscroll = updateNavbar;
-$(document).on('touchmove', updateNavbar);
+
+if (!isMobile()) {
+    window.onscroll = updateNavbar;
+    $(document).on('touchmove', updateNavbar);
+}
 
 function updateNavbar() {
     var pageY = window.pageYOffset;
