@@ -113,7 +113,7 @@
 
     <div class="container" style="overflow: none;">
 
-        <iframe src="https://calendar.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=bsa485%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FLos_Angeles" style="border-width: 0; width: 100%;"></iframe>
+        <iframe id="calendar" src="https://calendar.google.com/calendar/embed?mode=AGENDA&height=600&wkst=1&hl=en&bgcolor=%23FFFFFF&src=bsa485%40gmail.com&color=%232952A3&ctz=America%2FLos_Angeles" style="border-width: 0; width: 100%;"></iframe>
 
     </div>
     <!-- /.container -->
@@ -144,9 +144,9 @@
     
     <script>
         if ($(window).width() > 992) {
-            $('iframe').attr('src' , 'https://calendar.google.com/calendar/embed?mode=MONTH&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=bsa485%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FLos_Angeles');
+            $('#calendar').attr('src' , 'https://calendar.google.com/calendar/embed?mode=MONTH&height=600&wkst=1&hl=en&bgcolor=%23FFFFFF&src=bsa485%40gmail.com&color=%232952A3&ctz=America%2FLos_Angeles');
         } else {
-            $('iframe').attr('src' , 'https://calendar.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=bsa485%40gmail.com&amp;color=%232952A3&amp;ctz=America%2FLos_Angeles');
+            $('#calendar').attr('src' , 'https://calendar.google.com/calendar/embed?mode=AGENDA&height=600&wkst=1&hl=en&bgcolor=%23FFFFFF&src=bsa485%40gmail.com&color=%232952A3&ctz=America%2FLos_Angeles');
         }
     </script>
 
