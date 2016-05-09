@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /members
+Disallow: /directory.html
+Disallow: /blog/
+Disallow: /calander.html
+Disallow: /pictures.html
+Disallow /meeting-minutes.html
