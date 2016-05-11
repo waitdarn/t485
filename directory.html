@@ -26,7 +26,7 @@
 
 </head>
 
-<body id="skrollr-body">
+<body>
 
     <a href="index.html" class="skrollr" data-0="top: 0px;" data-150="top: 86%;"><img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151"></a>
     
@@ -179,6 +179,8 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    
+    <script src="https://bitwiseshiftleft.github.io/sjcl/sjcl.js"></script>
 
     <script src="js/skrollr-0.6.30.min.js"></script>
     <script src="js/t485.js"></script>
@@ -196,104 +198,90 @@
         /* global Tabletop */
         
         
-        $('#spreadsheet-confirm-btn').click(function () {
-            $('#spreadsheet-confirm').hide();
-            $('#spreadsheet-content').html(
-                '<div id="cacti" class="tab-pane fade in active">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
-                    '<iframe src="https://docs.google.com/spreadsheets/d/1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU/pubhtml?widget=true&amp;headers=false"></iframe>' +
-                '</div>' +
-                '<div id="wildcats" class="tab-pane fade">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
-                    '<iframe src="https://docs.google.com/spreadsheets/d/1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y/pubhtml?widget=true&amp;headers=false"></iframe>' +
-                '</div>' +
-                '<div id="hawks" class="tab-pane fade">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
-                    '<iframe src="https://docs.google.com/spreadsheets/d/1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk/pubhtml?widget=true&amp;headers=false"></iframe>' +
-                '</div>' +
-                '<div id="serpents" class="tab-pane fade">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
-                    '<iframe src="https://docs.google.com/spreadsheets/d/1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc/pubhtml?widget=true&amp;headers=false"></iframe>' +
-                '</div>' +
-                '<div id="blobfish" class="tab-pane fade">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
-                    '<iframe src="https://docs.google.com/spreadsheets/d/1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo/pubhtml?widget=true&amp;headers=false"></iframe>' +
-                '</div>' +
-                '<div id="dragons" class="tab-pane fade">' +
-                    '<a href="https://docs.google.com/spreadsheets/d/1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A/edit?usp=drive_web" target="_blank">Edit Spreadsheet</a>' +
-                    '<iframe src="https://docs.google.com/spreadsheets/d/1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A/pubhtml?widget=true&amp;headers=false"></iframe>' +
-                '</div>'
-            );
-            $('#spreadsheet').show();
-        });
+        var text = 
+        '{"iv":"Ngd49b+6DN8+0o4vDy+YrA==","v":1,"iter":1000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"zhOhql8OlNU=","ct":"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"}';
+        var secretInfo;
         
         
         
-        auth(function() {
+        auth(function(authData) {
+            text = sjcl.decrypt(authData.token, text);
+            secretInfo = JSON.parse(text);
+            
             $('#search-query').focus();
+            
+            
+            $('#spreadsheet-confirm-btn').click(function () {
+                $('#spreadsheet-confirm').hide();
+                $('#spreadsheet-content').html(secretInfo.spreadsheets);
+                $('#spreadsheet').show();
+            });
+            
+            
+            // Cacti
+            Tabletop.init({key: secretInfo.tabletop.cacti, callback: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    data[i].patrol = 'Cacti';
+                }
+                window.globalData.push.apply(window.globalData, data);
+            }, simpleSheet: true});
+            
+            // Hawks
+            Tabletop.init({key: secretInfo.tabletop.hawks, callback: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    data[i].patrol = 'Hawks';
+                }
+                window.globalData.push.apply(window.globalData, data);
+            }, simpleSheet: true});
+            
+            // Wildcats
+            Tabletop.init({key: secretInfo.tabletop.wildcats, callback: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    data[i].patrol = 'Wildcats';
+                }
+                window.globalData.push.apply(window.globalData, data);
+            }, simpleSheet: true});
+            
+            // Serpents
+            Tabletop.init({key: secretInfo.tabletop.serpents, callback: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    data[i].patrol = 'Serpents';
+                }
+                window.globalData.push.apply(window.globalData, data);
+            }, simpleSheet: true});
+            
+            // Blobfish
+            Tabletop.init({key: secretInfo.tabletop.blobfish, callback: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    data[i].patrol = 'Blobfish';
+                }
+                window.globalData.push.apply(window.globalData, data);
+            }, simpleSheet: true});
+            
+            // Dragons
+            Tabletop.init({key: secretInfo.tabletop.dragons, callback: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    data[i].patrol = 'Dragons';
+                }
+                window.globalData.push.apply(window.globalData, data);
+            }, simpleSheet: true});
         }, function() {
             window.location.href = 'login.html?redirect=directory.html';
         });
+        
         
         
         window.globalData = [];
         $(document).ready(function() {
             $('#password').focus();
         });
-
-        // Cacti
-        Tabletop.init({key: '1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU', callback: function (data, t) {
-            for (var i = 0; i < data.length; i++) {
-                data[i].patrol = 'Cacti';
-            }
-            window.globalData.push.apply(window.globalData, data);
-            console.log('initializing tabletop, 6 times');
-        }, simpleSheet: true});
-        
-        // Hawks
-        Tabletop.init({key: '1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk', callback: function (data, t) {
-            for (var i = 0; i < data.length; i++) {
-                data[i].patrol = 'Hawks';
-            }
-            window.globalData.push.apply(window.globalData, data);
-            console.log('initializing tabletop, 6 times');
-        }, simpleSheet: true});
-        
-        // Wildcats
-        Tabletop.init({key: '1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y', callback: function (data, t) {
-            for (var i = 0; i < data.length; i++) {
-                data[i].patrol = 'Wildcats';
-            }
-            window.globalData.push.apply(window.globalData, data);
-            console.log('initializing tabletop, 6 times');
-        }, simpleSheet: true});
-        
-        // Serpents
-        Tabletop.init({key: '1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc', callback: function (data, t) {
-            for (var i = 0; i < data.length; i++) {
-                data[i].patrol = 'Serpents';
-            }
-            window.globalData.push.apply(window.globalData, data);
-            console.log('initializing tabletop, 6 times');
-        }, simpleSheet: true});
-        
-        // Blobfish
-        Tabletop.init({key: '1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo', callback: function (data, t) {
-            for (var i = 0; i < data.length; i++) {
-                data[i].patrol = 'Blobfish';
-            }
-            window.globalData.push.apply(window.globalData, data);
-            console.log('initializing tabletop, 6 times');
-        }, simpleSheet: true});
-        
-        // Dragons
-        Tabletop.init({key: '1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A', callback: function (data, t) {
-            for (var i = 0; i < data.length; i++) {
-                data[i].patrol = 'Dragons';
-            }
-            window.globalData.push.apply(window.globalData, data);
-            console.log('initializing tabletop, 6 times');
-        }, simpleSheet: true});
         
         
         
@@ -307,15 +295,6 @@
         $('#search-btn').click(function() {
             var userquery = $('#search-query').val();
             if (userquery === '') return;
-            
-            // var firebase = new Firebase("https://t485.firebaseio.com/ee/1");
-            // firebase.once("value", function(snapshot) {
-            //     var data = snapshot.val();
-            //     if ($.inArray(userquery, data)) {
-            //         $('#results > tbody').append(snapshot.child(userquery).val());
-            //         $('#results').show()
-            //     }
-            // });
             
             
             $('#search-query').val('');

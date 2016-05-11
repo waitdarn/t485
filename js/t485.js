@@ -18,15 +18,6 @@ $(window).scroll(function() {
 less = {async: true};
 
 
-// Init skrollr
-var skr;
-if (!isMobile()) {
-    skr = skrollr.init({
-        mobileDeceleration: 0.1
-    });
-}
-
-
 // Init navbar filler
 $('#filler').css('height', $('.navbar').height() + 'px');
 $('#filler').css('margin-bottom', '-' + $('.navbar').height() + 'px');
@@ -113,7 +104,6 @@ function isMobile() {
 // Checks if the user is logged in
 /* Prefered: Firebase */
 function auth(onAuthed, onUnauthed) {
-    console.log('running auth');
     // Get necessary scripts (Firebase)
     if (typeof Firebase !== 'function') {
         $.getScript('https://cdn.firebase.com/js/client/2.4.0/firebase.js', function() {
@@ -126,14 +116,12 @@ function auth(onAuthed, onUnauthed) {
 
 
 function mainAuth(onAuthed, onUnauthed) {
-    console.log('running mainAuth');
     var ref = new Firebase("https://t485auth.firebaseio.com");
     
     $.get('members', function(response) {
         var members = response.split('\n');
     
         ref.onAuth(function(authData) {
-            console.log(authData);
             var authed;
             
             if (authData === null || authData === undefined) {
@@ -143,43 +131,13 @@ function mainAuth(onAuthed, onUnauthed) {
             }
             
             console.log('auth status: ' + authed);
-    
-            /* USE IN EMERGENCY: DISABLE LOGIN */
-            // authed = true;
+            
             // Run callbacks
             if (authed) {
-                if (typeof onAuthed === 'function') onAuthed();
+                if (typeof onAuthed === 'function') onAuthed(authData);
             } else {
-                if (typeof onUnauthed === 'function') onUnauthed();
+                if (typeof onUnauthed === 'function') onUnauthed(authData);
             }
         });
     });
-}
-
-
-
-
-/* navbar parallax */
-
-if (!isMobile()) {
-    window.onscroll = updateNavbar;
-    $(document).on('touchmove', updateNavbar);
-}
-
-function updateNavbar() {
-    var pageY = window.pageYOffset;
-    var mobile = skr.isMobile();
-    
-    if (pageY > $('#header').height()) {
-        $('.navbar').addClass('navbar-fixed-top');
-        $('.navbar').removeClass('navbar-static-top');
-        $('.navbar').css('background', 'rgba(255, 255, 255, ' + (mobile ? '1' : '0.9') + ')');
-        $('#filler').css('margin-bottom', '0px');
-    } else {
-        $('.navbar').removeClass('navbar-fixed-top');
-        $('.navbar').addClass('navbar-static-top');
-        $('.navbar').css('background', 'rgba(255, 255, 255, ' + (mobile ? '1' : '0.9') + ')');
-        $('#filler').css('margin-bottom', '-' + $('.navbar').height() + 'px');
-        $('.navbar').css('top', '0');
-    }
 }
