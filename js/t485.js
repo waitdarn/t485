@@ -134,9 +134,9 @@ function mainAuth(onAuthed, onUnauthed) {
             
             // Run callbacks
             if (authed) {
-                if (typeof onAuthed === 'function') onAuthed(authData);
+                if (typeof onAuthed === 'function') onAuthed();
             } else {
-                if (typeof onUnauthed === 'function') onUnauthed(authData);
+                if (typeof onUnauthed === 'function') onUnauthed();
             }
         });
     });
