@@ -16,8 +16,7 @@ params = urllib.urlencode([
     ('compilation_level', 'SIMPLE_OPTIMIZATIONS'),
     ('language', 'ECMASCRIPT5'),
     ('output_format', 'text'),
-    # ('output_info', 'compiled_code')
-    ('output_info', 'statistics')
+    ('output_info', 'compiled_code')
 ])
 
 
