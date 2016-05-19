@@ -28,6 +28,14 @@
 
 <body>
     
+    <noscript>
+        <div id="noscript-warning">
+            <p>
+                This site requires javascript to be enabled. Here are the <a style="color: white" href="http://www.enable-javascript.com/" target="_blank"> instructions to enable JavaScript in your browser</a>.
+            </p>
+        </div>
+    </noscript>
+    
     <!-- Main page -->
     <div id="1285220"></div>
 
@@ -40,11 +48,9 @@
     <script src="js/t485.js"></script>
 
     <!-- Clicky Web Analytics -->
-    <script src="https://static.getclicky.com/js"></script>
-    <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><img alt="" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
-    <script src="https://rawgit.com/richyliu/singulr/master/singulr.js"></script>
+    <script src="https://rawgit.com/richyliu/singulr/development/singulr.js"></script>
     
     <script>
         /* global Singulr */
@@ -55,17 +61,15 @@
                 var elements = document.getElementsByTagName('a');
                 var page = Singulr.getPage();
                 
-                console.log('page: ' + page);
-                
                 for (var i = 0; i < elements.length; i++) { 
                     if (page === elements[i].getAttribute('href')) {
                         elements[i].classList.add('active');
-                        console.log(elements[i]);
                     } else {
                         elements[i].classList.remove('active');
                     }
                 }
             },
+            analyticsScripts: ['js/clicky.js'],
             PAGE_ID: '1285220',
             CONTENT_ID: '3634157',
             HOME_PAGE: 'index.html'
