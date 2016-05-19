@@ -77,7 +77,7 @@
         if (id === undefined) {
             console.log("id undefined!");
             alert("Please use the url given by your SiC!");
-            window.location = "index.html";
+            window.location = "home.html";
         } else {
             var authFireRef = new Firebase("https://t485auth.firebaseio.com");
             var email = authFireRef.getAuth().google.email;
