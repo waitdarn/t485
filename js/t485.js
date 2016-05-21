@@ -18,9 +18,6 @@ $(window).scroll(function() {
 less = {async: true};
 
 
-// Init navbar filler
-$('#filler').css('height', $('.navbar').height() + 'px');
-$('#filler').css('margin-bottom', '-' + $('.navbar').height() + 'px');
 
 // Fix dropdown menu bug on iOS
 $('.dropdown a').click(function() {
