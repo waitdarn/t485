@@ -244,6 +244,7 @@ textarea {
     display: none;
     z-index: 9999;
     transition: background .2s;
+    border: none !important;
 }
 
 #toTop:hover {
@@ -504,11 +505,9 @@ a:focus {
     text-decoration: none;
 }
 
-.skrollr {
-    position: relative;
-}
-
-#filler {
-     width: 100%;
-     background-color: transparent;
+#noscript-warning {
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+    padding: 10px;
 }

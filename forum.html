@@ -3,110 +3,11 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-
-    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
-
     <title>Forum - Troop 485</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/t485.css" rel="stylesheet">
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
-
-    <img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">T485</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="index.html">Home</a>
-                    <li>
-                        <a href="calendar.html">Calendar</a>
-                    </li>
-                    <li>
-                        <a href="new-scout.html">New Scout</a>
-                    </li>
-                    <li>
-                        <a href="pictures.html">Pictures</a>
-                    </li>
-                    <li class="dropdown">
-                        <a>Blogs <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="blog/dragons/">Dragons</a></li>
-                            <li><a href="blog/blobfish/">Blobfish</a></li>
-                            <li><a href="blog/hawks/">Hawks</a></li>
-                            <li><a href="blog/cacti/">Cacti</a></li>
-                            <li><a href="blog/serpents/">Serpents</a></li>
-                            <li><a href="blog/wildcats/">Wilcats</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a>FAQ <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="merit-badges.html">Merit Badges</a></li>
-                            <li><a href="eagle.html">Path to Eagle</a></li>
-                            <li><a href="smc.html">SMC &amp; BOR</a></li>
-                            <li><a href="plc.html">What is PLC?</a></li>
-                            <li><a href="about.html">About</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown active">
-                        <a>Resources <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="resources.html">Resources</a></li>
-                            <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
-                            <li><a href="books.html">Books</a></li>
-                            <li><a href="troop-jobs.html">Troop Jobs</a></li>
-                            <li><a href="ranks.html">Ranks</a></li>
-                            <li class="active"><a href="forum.html">Forum</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="directory.html">Directory </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <a href="#" id="toTop"></a>
-
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <a class="close" data-dismiss="alert">×</a>
-        <span class="glyphicon glyphicon-info-sign"></span>  Click <a href="feedback.html" style="color: darkred;">here</a> to submit feedback to help me improve the website!
-    </div>
 
     <div class="container">
 
@@ -118,7 +19,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p><button class="btn btn-default" onclick="window.location.href='logout.html?redir=forum.html'">Log out</button></p>
+                    <p><button class="btn btn-default" onclick="loadPage('logout.html?redir=forum.html')">Log out</button></p>
                     <iframe src="https://groups.google.com/forum/embed/?place=forum/t485&showsearch=true&showpopout=true&hideforumtitle=true&showsearch=false&parenturl=http%3A%2F%2Ft485.org%2Fforum" style="overflow: hidden; border: 0;"></iframe>
                 </div>
                 <div class="clearfix"></div>
@@ -127,34 +28,10 @@
 
     </div>
     <!-- /.container -->
-
-    <footer>
-        <div class="container">
-            <div class="box">
-                <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; 2006-2016 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-
-    <script src="js/skrollr-0.6.30.min.js"></script>
-    <script src="js/t485.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <!-- Clicky Web Analytics -->
-    <script src="https://static.getclicky.com/js"></script>
-    <script>try{clicky.init(100869133)}catch(e){}</script>
-    <noscript><img alt="" src="https://in.getclicky.com/100869133ns.gif"></noscript>
     
     <script>
         auth(function() {}, function() {
-            window.location.href = 'login.html?redirect=forum.html';
+            loadPage('login.html?redirect=forum.html');
         });
     </script>
 
