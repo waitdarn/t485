@@ -70,10 +70,10 @@
                 }
             }
         }
-
-    
+        
+        
+        console.log('defining sign in');
         function signIn() {
-            // ref.authWithOAuthRedirect('google', function(error) {
             ref.authWithOAuthPopup('google', function(error) {
                 if (error) console.error('Login failed! ' + error);
             }, {

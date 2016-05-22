@@ -157,7 +157,6 @@ var clicky_obj = clicky_obj || (function() {
                     href = href + (location.search ? '&' : '?') + location.hash.substr(1);
                 }
             }
-            console.log(href);
             // only get foobar in https://t485.org/home.html#foobar
             href = location.hash.slice(1);
             return enc ? _self.enc(href) : href;
