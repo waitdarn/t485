@@ -92,9 +92,9 @@
                 var token = result.credential.accessToken;
                 // The signed-in user info.
                 var user = result.user;
-                console.log(user)
-                $.get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=" + token, "", function(d){console.log(d)}, "json");
-                    // ...
+                console.log(user);
+                $.get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=" + token, "", function (d) {console.log(d);}, "json");
+                // ...
             }).catch(function(error) {
                 // Handle Errors here.
                 var errorCode = error.code;
