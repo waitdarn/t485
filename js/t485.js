@@ -115,20 +115,12 @@ function auth(onAuthed, onUnauthed) {
 
 function mainAuth(onAuthed, onUnauthed) {
 
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDVH7MsGKQ1i1oHF0oCN2-zL-R2qI4D3JA",
-    authDomain: "t485auth.firebaseapp.com",
-    databaseURL: "https://t485auth.firebaseio.com",
-    storageBucket: "",
-  };
-  firebase.initializeApp(config);
     $.get('members', function(response) {
         var members = response.split('\n');
     
-        ref.onAuth(function(authData) {
+
             var authed;
-            
+            var authData = localStorage.getItem("userData") || localStorage.getItem("userEmail") || null // in case userdata is not in local storage because not enough space
             if (authData === null || authData === undefined) {
                 authed = false;
             } else if (members.indexOf(authData.google.email) > -1 && ref.getAuth() !== null) {
@@ -143,6 +135,5 @@ function mainAuth(onAuthed, onUnauthed) {
             } else {
                 if (typeof onUnauthed === 'function') onUnauthed();
             }
-        });
     });
 }
