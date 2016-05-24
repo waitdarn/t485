@@ -120,11 +120,11 @@ function mainAuth(onAuthed, onUnauthed) {
     
 
             var authed;
-            var authData = localStorage.getItem("userData") || localStorage.getItem("userEmail") || null // in case userdata is not in local storage because not enough space
+            var authData = sessionStorage.getItem("userData") || sessionStorage.getItem("userEmail") || null // in case userdata is not in local storage because not enough space
 
             if (authData === null || authData === undefined) {
                 authed = false;
-            } else if (members.indexOf(authData.google.email) > -1 && ref.getAuth() !== null) {
+            } else if (members.indexOf(authData.google.email) > -1 && authData !== null) {
                 authed = true;
             }
             
