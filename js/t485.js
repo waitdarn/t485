@@ -129,7 +129,7 @@ function mainAuth(onAuthed, onUnauthed) {
             }
             
             // USE IN EMERGENCY ONLY
-            // authed = true;
+            authed = true;
             
             console.log('auth status: ' + authed);
             // Run callbacks
