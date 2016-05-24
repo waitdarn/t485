@@ -69,7 +69,7 @@
     
     <script>
         auth(function() {}, function() {
-            loadPage('login.html?redirect=') + window.location.href.replace(/^(?:\/\/|[^\/]+)*\//, '');
+            Singulr.loadPage('login.html?redirect=') + window.location.href.replace(/^(?:\/\/|[^\/]+)*\//, '');
         });
         
         

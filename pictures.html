@@ -19,7 +19,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <button class="btn btn-default" onclick="loadPage('logout.html?redir=pictures.html')">Log out</button>
+                    <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=pictures.html')">Log out</button>
                     <p>These photos are ordered randomly, so refresh the page to get different photos.</p>
                     <p>Want more photos? Go to our <a id='photo-album' href=\"https://www.flickr.com/photos/97925389%40N07/albums\" target=\"_blank\">troop flickr page</a>.</p>
                 </div>
@@ -99,7 +99,7 @@
                 
                 $("#event-links").append(events);
             }, function() {
-                loadPage('login.html?redirect=pictures.html');
+                Singulr.loadPage('login.html?redirect=pictures.html');
             });
         }
     
