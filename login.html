@@ -2,13 +2,13 @@
 <html>
 
 <head>
-    
+
     <title>Log In - Troop 485</title>
-    
+
 </head>
 
 <body>
-    
+
     <div class="container">
 
         <div class="row">
@@ -27,31 +27,38 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
+            
         </div>
 
     </div>
     <!-- /.container -->
-    
-    
+
+
     <script>
         /* global Firebase */
         /* global getVarsFromUrl */
         /* global auth */
-     
-     
-    
+
+
+
         auth(function() {
             redirectUser(redirectUrl);
         });
-    
-    
+
+
         var redirectUrl = getVarsFromUrl()['redirect'] || '';
-        var ref = new Firebase('https://t485auth.firebaseio.com');
-        
+        var config = {
+            apiKey: "AIzaSyDVH7MsGKQ1i1oHF0oCN2-zL-R2qI4D3JA",
+            authDomain: "t485auth.firebaseapp.com",
+            databaseURL: "https://t485auth.firebaseio.com",
+            storageBucket: "",
+        };
+        firebase.initializeApp(config);
+
         var members;
-        $.get('members', function (response) {
+        $.get('members', function(response) {
             members = response.split('\n');
-            
+
             ref.onAuth(onAuthCallback);
         });
 
@@ -60,28 +67,46 @@
             if (authData !== null) {
                 // Login succeeded
                 var email = authData.google.email;
-    
+
                 // Check if email is on approved list
                 if (members.indexOf(email) > -1) {
                     redirectUser(redirectUrl);
-                } else {
+                }
+                else {
                     alert('Sorry, but you are not authorized to view this page.');
                     redirectUser('home.html');
                 }
             }
         }
-        
-        
+
+
         console.log('defining sign in');
+
         function signIn() {
-            ref.authWithOAuthPopup('google', function(error) {
-                if (error) console.error('Login failed! ' + error);
-            }, {
-                remember: 'sessionOnly',
-                scope: 'email'
+            var provider = new firebase.auth.GoogleAuthProvider();
+            provider.addScope('https://www.googleapis.com/auth/userinfo.email');
+            provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                console.log(user);
+                $.get("https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=" + token, "", function (d) {console.log(d);}, "json");
+                // ...
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
             });
         }
-    
+
 
         function redirectUser(url) {
             if (url !== '') {
@@ -89,7 +114,7 @@
             }
         }
     </script>
-    
+
 </body>
 
 </html>

@@ -103,7 +103,8 @@ function isMobile() {
 function auth(onAuthed, onUnauthed) {
     // Get necessary scripts (Firebase)
     if (typeof Firebase !== 'function') {
-        $.getScript('https://cdn.firebase.com/js/client/2.4.0/firebase.js', function() {
+        $.getScript('https://www.gstatic.com/firebasejs/live/3.0/firebase.js', function() {
+            
             mainAuth(onAuthed, onUnauthed);
         });
     } else {
@@ -113,14 +114,21 @@ function auth(onAuthed, onUnauthed) {
 
 
 function mainAuth(onAuthed, onUnauthed) {
-    var ref = new Firebase("https://t485auth.firebaseio.com");
-    
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDVH7MsGKQ1i1oHF0oCN2-zL-R2qI4D3JA",
+        authDomain: "t485auth.firebaseapp.com",
+        databaseURL: "https://t485auth.firebaseio.com",
+        storageBucket: "",
+    };
+    firebase.initializeApp(config);
     $.get('members', function(response) {
         var members = response.split('\n');
-    
+
         ref.onAuth(function(authData) {
             var authed;
-            
+
             if (authData === null || authData === undefined) {
                 authed = false;
             } else if (members.indexOf(authData.google.email) > -1 && ref.getAuth() !== null) {
@@ -131,6 +139,7 @@ function mainAuth(onAuthed, onUnauthed) {
             authed = true;
             console.log('auth status: ' + authed);
             
+            console.log('auth status: ' + authed);
             // Run callbacks
             if (authed) {
                 if (typeof onAuthed === 'function') onAuthed();
