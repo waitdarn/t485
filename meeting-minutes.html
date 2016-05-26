@@ -2,7 +2,9 @@
 <html>
 
 <head>
-
+    
+    <script id="singulr-ignore">var a=window.location.href;window.location.href='/index.html?'+encodeURIComponent(a.match(/[^\/](\/[\w\%\-\_]+(\.[a-zA-Z]+)?)+(?:(?=\#|\?)|$)/)[0].substr(1))</script>
+    
     <title>Meeting Minutes - Troop 485</title>
 
 </head>
@@ -20,7 +22,7 @@
                 </div>
                 <div class="col-md-12">
                     <p>
-                        <button class="btn btn-default" onclick="loadPage('logout.html?redir=meeting-minutes.html')">Log out</button>
+                        <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=meeting-minutes.html')">Log out</button>
                     </p>
                     <p>
                         <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1YO--SYuKL2BRyKjyS3ucLOvIfr2JLRgWZSEQLst_Ruc/')">Meeting Minutes Headcounts</a>
@@ -162,7 +164,7 @@
     
     <script>
         auth(function() {}, function() {
-            loadPage('login.html?redirect=meeting-minutes.html');
+            Singulr.loadPage('login.html?redirect=meeting-minutes.html');
         });
         
         function openModal(_this, url) {

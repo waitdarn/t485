@@ -2,7 +2,9 @@
 <html>
 
 <head>
-
+    
+    <script id="singulr-ignore">var a=window.location.href;window.location.href='/index.html?'+encodeURIComponent(a.match(/[^\/](\/[\w\%\-\_]+(\.[a-zA-Z]+)?)+(?:(?=\#|\?)|$)/)[0].substr(1))</script>
+    
     <title>Pictures - Troop 485</title>
 
 </head>
@@ -19,7 +21,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12" id="more-photos-link">
-                    <button class="btn btn-default" onclick="loadPage('logout.html?redir=pictures.html')">Log out</button>
+                    <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=pictures.html')">Log out</button>
                     <p>These photos are ordered randomly, so refresh the page to get different photos.</p>
                 </div>
                 <div class="col-md-3 col-sm-4 col-xs-6" id="event-links">
@@ -84,7 +86,7 @@
                 }
                 $("#event-links").append(events);
             }, function() {
-                loadPage('login.html?redirect=pictures.html');
+                Singulr.loadPage('login.html?redirect=pictures.html');
             });
         }
     

@@ -2,7 +2,9 @@
 <html>
 
 <head>
-
+    
+    <script id="singulr-ignore">var a=window.location.href;window.location.href='/index.html?'+encodeURIComponent(a.match(/[^\/](\/[\w\%\-\_]+(\.[a-zA-Z]+)?)+(?:(?=\#|\?)|$)/)[0].substr(1))</script>
+    
     <title>Headcounts - Troop 485</title>
 
 </head>
@@ -69,7 +71,7 @@
     
     <script>
         auth(function() {}, function() {
-            loadPage('login.html?redirect=') + window.location.href.replace(/^(?:\/\/|[^\/]+)*\//, '');
+            Singulr.loadPage('login.html?redirect=') + window.location.href.replace(/^(?:\/\/|[^\/]+)*\//, '');
         });
         
         
