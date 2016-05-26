@@ -35,11 +35,16 @@
     
     <script>
         var redir = getQuery('redir') || 'login.html';
-        $("#logout").html('<a href="login.html?redirect=' + redir + '">here</a>')
+        sessionStorage.setItem("auth-redirect", redir);
+        $("#logout").html('<a href="login.html">here</a>')
         
         // Unauth Firebase
         var ref = new Firebase('https://t485auth.firebaseio.com');
         ref.unauth();
+        sessionStorage.setItem("userEmail", null);
+        sessionStorage.setItem("userData", null);
+        localStorage.setItem("userEmail", null);
+        localStorage.setItem("userData", null);
     </script>
 </body>
 

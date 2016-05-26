@@ -165,6 +165,7 @@
             }, simpleSheet: true});
             
         }, function() {
+            sessionStorage.setItem("auth-redirect", "pictures.html");
             Singulr.loadPage('login.html?redirect=directory.html');
         });
         
