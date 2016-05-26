@@ -37,7 +37,7 @@
     </div>
     <!-- /.container -->
   <script>
-  var redirectUrl = getVarsFromUrl()['redirect'] || '';
+  var redirectUrl = sessionStorage.getItem("login-redirect") || 'index.html';
   function redirectUser(url) {
       window.location.href = url;
   }
