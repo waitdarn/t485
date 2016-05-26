@@ -164,6 +164,7 @@
     
     <script>
         auth(function() {}, function() {
+            sessionStorage.setItem("auth-redirect", "pictures.html");
             Singulr.loadPage('login.html?redirect=meeting-minutes.html');
         });
         
