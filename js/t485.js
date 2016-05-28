@@ -131,7 +131,7 @@ function mainAuth(onAuthed, onUnauthed) {
             }
             
 // USE IN EMERGENCY ONLY
-//authed = true;
+authed = true;
 // USE IN EMERGENCY ONLY
             
             if (authed) {

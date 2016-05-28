@@ -44,7 +44,8 @@
         Singulr.init({
             onPageLoaded: function() {
                 var elements = document.getElementsByTagName('a');
-                var page = Singulr.getPage();
+                // remove leading slash
+                var page = Singulr.getPage().substr(1);
                 
                 for (var i = 0; i < elements.length; i++) {
                     if (page === elements[i].getAttribute('href')) {
