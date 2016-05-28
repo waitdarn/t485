@@ -26,24 +26,25 @@
                 <div class="col-md-12">
                     <p>
                         <div id="my-signin2"></div>
-
                     </p>
                 </div>
                 <div class="clearfix"></div>
             </div>
-            
         </div>
-
     </div>
     <!-- /.container -->
-  <script>
-  var redirectUrl = sessionStorage.getItem("auth-redirect") || 'https://t485.org';
-  function redirectUser(url) {
-      window.location.href = url;
-  }
+    
+    
+    <script>
+    var redirectUrl = sessionStorage.getItem("auth-redirect") || 'https://t485.org';
+    
+    function redirectUser(url) {
+        Singulr.loadPage(url);
+    }
+    
     function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
-      var members;
+        console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
+        var members;
         $.get('members', function(response) {
             members = response.split('\n');
             if (googleUser !== null) {
@@ -51,6 +52,7 @@
                 localStorage.setItem("userEmail", googleUser.getBasicProfile().getEmail())
                 localStorage.setItem("userInfo", googleUser)
                 var email = googleUser.getBasicProfile().getEmail();
+                
                 // Check if email is on approved list
                 if (members.indexOf(email) > -1) {
                     redirectUser(redirectUrl);
@@ -61,27 +63,28 @@
                 }
             }
         });
-       
-
+    
+    
     }
+    
     function onFailure(error) {
-      console.log(error);
+        console.log(error);
     }
+    
     function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
+        gapi.signin2.render('my-signin2', {
+            'scope': 'profile email',
+            'width': 240,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+        });
     }
+    
     renderButton();
-  </script>
-
-  
+    </script>
 
 </body>
 
