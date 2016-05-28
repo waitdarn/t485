@@ -130,7 +130,10 @@ function mainAuth(onAuthed, onUnauthed) {
                 authed= false;
             }
             
-            authed = true;
+// USE IN EMERGENCY ONLY
+//authed = true;
+// USE IN EMERGENCY ONLY
+            
             if (authed) {
                 if (typeof onAuthed === 'function') onAuthed();
             } else {
