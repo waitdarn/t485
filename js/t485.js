@@ -130,6 +130,9 @@ function mainAuth(onAuthed, onUnauthed) {
                 authed= false;
             }
 
+            
+            // authed = true
+            
             if (authed) {
                 if (typeof onAuthed === 'function') onAuthed();
             } else {
