@@ -36,54 +36,53 @@
     
     
     <script>
-    var redirectUrl = sessionStorage.getItem("auth-redirect") || 'https://t485.org';
-    
-    function redirectUser(url) {
-        Singulr.loadPage(url);
-    }
-    
-    function onSuccess(googleUser) {
-        console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
-        var members;
-        $.get('members', function(response) {
-            members = response.split('\n');
-            if (googleUser !== null) {
-                // Login succeeded
-                localStorage.setItem("userEmail", googleUser.getBasicProfile().getEmail());
-                localStorage.setItem("userInfo", googleUser);
-                var email = googleUser.getBasicProfile().getEmail();
-                
-                // Check if email is on approved list
-                if (members.indexOf(email) > -1) {
-                    redirectUser(redirectUrl);
+        var redirectUrl = sessionStorage.getItem("auth-redirect") || 'https://t485.org';
+        
+        function redirectUser(url) {
+            Singulr.loadPage(url);
+        }
+        
+        function onSuccess(googleUser) {
+            console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
+            var members;
+            $.get('members', function(response) {
+                members = response.split('\n');
+                if (googleUser !== null) {
+                    // Login succeeded
+                    localStorage.setItem("userEmail", googleUser.getBasicProfile().getEmail());
+                    localStorage.setItem("userInfo", googleUser);
+                    var email = googleUser.getBasicProfile().getEmail();
+                    
+                    // Check if email is on approved list
+                    if (members.indexOf(email) > -1) {
+                        redirectUser(redirectUrl);
+                    } else {
+                        alert('Sorry, but you are not authorized to view this page.');
+                        redirectUser('home.html');
+                    }
                 }
-                else {
-                    alert('Sorry, but you are not authorized to view this page.');
-                    redirectUser('home.html');
-                }
-            }
-        });
-    
-    
-    }
-    
-    function onFailure(error) {
-        console.log(error);
-    }
-    
-    function renderButton() {
-        gapi.signin2.render('my-signin2', {
-            'scope': 'profile email',
-            'width': 240,
-            'height': 50,
-            'longtitle': true,
-            'theme': 'dark',
-            'onsuccess': onSuccess,
-            'onfailure': onFailure
-        });
-    }
-    
-    renderButton();
+            });
+        
+        
+        }
+        
+        function onFailure(error) {
+            console.log(error);
+        }
+        
+        function renderButton() {
+            gapi.signin2.render('my-signin2', {
+                'scope': 'profile email',
+                'width': 240,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+            });
+        }
+        
+        renderButton();
     </script>
 
 </body>

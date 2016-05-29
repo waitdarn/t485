@@ -39,11 +39,9 @@ $('.dropdown a').click(function() {
 function auth(onAuthed, onUnauthed) {
     $.get('members', function(response) {
         var members = response.split('\n');
-        var authed;
-        var email = sessionStorage.getItem("userEmail");
-        
+        var email = localStorage.getItem('userEmail');
         // is email in members
-        authed = members.indexOf(email) > -1;
+        var authed = members.indexOf(email) > -1;
         
 // USE IN EMERGENCY ONLY
 authed = true;
