@@ -34,6 +34,30 @@ $('.dropdown a').click(function() {
 
 /* Helpers */
 
+
+// Checks if the user is logged in
+function auth(onAuthed, onUnauthed) {
+    $.get('members', function(response) {
+        var members = response.split('\n');
+        var authed;
+        var email = sessionStorage.getItem("userEmail");
+        
+        // is email in members
+        authed = members.indexOf(email) > -1;
+        
+// USE IN EMERGENCY ONLY
+authed = true;
+// USE IN EMERGENCY ONLY
+        
+        if (authed) {
+            if (typeof onAuthed === 'function') onAuthed();
+        } else {
+            if (typeof onUnauthed === 'function') onUnauthed();
+        }
+    });
+}
+
+
 // Source: http://www.w3schools.com/js/js_cookies.asp
 function hashPassword(str) {
     var hash = 0;
@@ -77,10 +101,6 @@ function getQuery(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new R
 function compare(t,n){if(0==t.length)return n.length;if(0==n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length];}
 
 
-function checkIfName(name) {
-    return /^(?:(([A-Z]{1}[a-z]{1,})|([a-z]{2,})) (([A-Z]{1}[a-z]{1,})|([a-z]{2,})))$/gm.test(name);
-}
-
 function mail(recipents, subject, content, from) {
     $.post('mail.php', {
         'recipents': recipents,
@@ -88,56 +108,4 @@ function mail(recipents, subject, content, from) {
         'content': content,
         'from': from
     }, function(result) {});
-}
-
-function isMobile() {
-    return (/Android|iPhone|iPad|iPod|BlackBerry/i).test(navigator.userAgent || navigator.vendor || window.opera);
-}
-
-
-
-/* Login */
-
-// Checks if the user is logged in
-/* Prefered: Firebase */
-function auth(onAuthed, onUnauthed) {
-    // Get necessary scripts (Firebase)
-    if (typeof Firebase !== 'function') {
-        $.getScript('https://www.gstatic.com/firebasejs/live/3.0/firebase.js', function() {
-            
-            mainAuth(onAuthed, onUnauthed);
-        });
-    } else {
-        mainAuth(onAuthed, onUnauthed);
-    }
-}
-
-
-function mainAuth(onAuthed, onUnauthed) {
-
-    $.get('members', function(response) {
-        var members = response.split('\n');
-    
-
-            var authed;
-            var authData = sessionStorage.getItem("userEmail");
-
-            if (authData === null || authData === undefined) {
-                authed = false;
-            } else if (members.indexOf(authData) > -1 && authData !== null) {
-                authed = true;
-            } else {
-                authed= false;
-            }
-            
-// USE IN EMERGENCY ONLY
-authed = true;
-// USE IN EMERGENCY ONLY
-            
-            if (authed) {
-                if (typeof onAuthed === 'function') onAuthed();
-            } else {
-                if (typeof onUnauthed === 'function') onUnauthed();
-            }
-    });
 }

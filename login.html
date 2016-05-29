@@ -30,7 +30,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-        </div>
+        </div>r
     </div>
     <!-- /.container -->
     
@@ -49,8 +49,8 @@
             members = response.split('\n');
             if (googleUser !== null) {
                 // Login succeeded
-                localStorage.setItem("userEmail", googleUser.getBasicProfile().getEmail())
-                localStorage.setItem("userInfo", googleUser)
+                localStorage.setItem("userEmail", googleUser.getBasicProfile().getEmail());
+                localStorage.setItem("userInfo", googleUser);
                 var email = googleUser.getBasicProfile().getEmail();
                 
                 // Check if email is on approved list
