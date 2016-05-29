@@ -2,15 +2,18 @@
 <html>
 
 <head>
-    
-    <script id="singulr-ignore">var a=window.location.href;window.location.href='/index.html?'+encodeURIComponent(a.match(/[^\/](\/[\w\%\-\_]+(\.[a-zA-Z]+)?)+(?:(?=\#|\?)|$)/)[0].substr(1))</script>
-    
+
+    <script id="singulr-ignore">
+        var a = window.location.href;
+        window.location.href = '/index.html?' + encodeURIComponent(a.match(/[^\/](\/[\w\%\-\_]+(\.[a-zA-Z]+)?)+(?:(?=\#|\?)|$)/)[0].substr(1))
+    </script>
+
     <title>FAQ - Troop 485</title>
-    
+
 </head>
 
 <body>
-    
+
     <div class="container">
         <div class="row">
             <div class="box">
@@ -177,13 +180,21 @@
 
         </div>
         <!-- /.container -->
-        
+
 
         <script>
-            var fireRef = new Firebase("https://t485.firebaseio.com/faq-questions");
+        /* global firebase $ */
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyDVH7MsGKQ1i1oHF0oCN2-zL-R2qI4D3JA",
+                authDomain: "t485auth.firebaseapp.com",
+                databaseURL: "https://t485auth.firebaseio.com",
+                storageBucket: "t485auth.appspot.com",
+            };
+            firebase.initializeApp(config);
 
             $("form").submit(function() {
-                fireRef.push({
+                firebase.database().ref().push({
                     "name": $("#feedback-name").val(),
                     "email": $("#feedback-email").val(),
                     "text": $("#feedback-text").val()
