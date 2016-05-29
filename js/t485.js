@@ -44,7 +44,7 @@ function auth(onAuthed, onUnauthed) {
         var authed = members.indexOf(email) > -1;
         
 // USE IN EMERGENCY ONLY
-authed = true;
+// authed = true;
 // USE IN EMERGENCY ONLY
         
         if (authed) {
