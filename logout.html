@@ -38,9 +38,6 @@
         sessionStorage.setItem("auth-redirect", redir);
         $("#logout").html('<a href="login.html">here</a>')
         
-        // Unauth Firebase
-        var ref = new Firebase('https://t485auth.firebaseio.com');
-        ref.unauth();
         localStorage.setItem("userEmail", null);
         localStorage.setItem("userData", null);
     </script>
