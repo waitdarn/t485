@@ -3,7 +3,7 @@
 
 <head>
     
-    <script id="singulr-ignore">var a=window.location.href;window.location.href='/index.html?'+encodeURIComponent(a.match(/[^\/](\/[\w\%\-\_]+(\.[a-zA-Z]+)?)+(?:(?=\#|\?)|$)/)[0].substr(1))</script>
+    <script class="singulr-ignore" src="https://rawgit.com/richyliu/singulr/6697a19/singulr-page.min.js"></script>
     
     <title>Resource - Troop 485</title>
 
@@ -18,7 +18,7 @@
                 <hr>
                 <h2 class="intro-text text-center"><strong>Uniform</strong> Guide</h2>
                 <hr>
-                <a onclick="openModal(event, 'img/new-scout_2.pdf')"><img class="img-responsive img-border img-top" src="img/new-scout_1.gif" alt="Uniform Guide"></a>
+                <a onclick="openModal(event, 'img/new-scout_2.pdf')"><img class="img-responsive img-border img-top" src="img/new-scout_1.gif" alt="Uniform Guide" style="margin: auto"></a>
             </div>
             <div class="box col-sm-6">
                 <hr>
@@ -52,6 +52,7 @@
 
     </div>
     <!-- /.container -->
+    
     
     <!-- Modal -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
@@ -87,7 +88,6 @@
             $('#mdlk').attr('href', url);
             $('#myModal').modal('show');
         }
-        
         
         function requestFullScreen() {
             var el = document.getElementById("ifr");
