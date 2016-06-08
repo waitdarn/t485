@@ -47,7 +47,7 @@
                     <h2 class="intro-text text-center">Add <strong>File</strong></h2>
                 <hr>
                 <p>Have something to add? Email it to the webmaster at richy.liu.2002@gmail.com</p>
-                <input type="file" id="file">
+                <input type="file" id="file" style="display: none">
             </div>
         </div>
 
@@ -81,7 +81,15 @@
     
     
     <script>
+        
+        auth(function() {}, function() {
+            sessionStorage.setItem('auth-redirect', 'resources.html');
+            Singulr.loadPage('login.html?redirect=resources.html');
+        });
+        
+        
         var storageRef = firebase.storage().ref();
+        var ref = firebase.database().ref();
         
         
         document.getElementById('file').addEventListener('change', function(e) {
@@ -94,6 +102,9 @@
             }, function() {
                 // Handle successful uploads on complete
                 var downloadURL = uploadTask.snapshot.downloadURL;
+                ref.child('resourceUrls').push({
+                    url: downloadURL
+                })
                 console.log(downloadURL);
             });
         });
