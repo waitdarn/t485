@@ -47,7 +47,7 @@
                     <h2 class="intro-text text-center">Add <strong>File</strong></h2>
                 <hr>
                 <p>Have something to add? Email it to the webmaster at richy.liu.2002@gmail.com</p>
-                <input type="file" id="files" name="files[]" multiple>
+                <input type="file" id="file">
             </div>
         </div>
 
@@ -81,10 +81,21 @@
     
     
     <script>
-        document.getElementById('files').addEventListener('change', function(e) {
-            var files = e.target.files;
-            
-            
+        var storageRef = firebase.storage().ref();
+        
+        
+        document.getElementById('file').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            var uploadTask = storageRef.child('resources/' + file.name).put(file);
+
+            uploadTask.on('state_changed', function() {}, function(error) {
+                // Handle unsuccessful uploads
+                console.error(error.message);
+            }, function() {
+                // Handle successful uploads on complete
+                var downloadURL = uploadTask.snapshot.downloadURL;
+                console.log(downloadURL);
+            });
         });
         
         
