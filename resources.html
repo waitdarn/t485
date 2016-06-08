@@ -47,6 +47,7 @@
                     <h2 class="intro-text text-center">Add <strong>File</strong></h2>
                 <hr>
                 <p>Have something to add? Email it to the webmaster at richy.liu.2002@gmail.com</p>
+                <input type="file" id="files" name="files[]" multiple>
             </div>
         </div>
 
@@ -80,6 +81,13 @@
     
     
     <script>
+        document.getElementById('files').addEventListener('change', function(e) {
+            var files = e.target.files;
+            
+            
+        });
+        
+        
         function openModal(e, url) {
             var title = (e.target.tagName === 'A' ? title = e.target.innerHTML : e.target.attributes.alt.nodeValue);
             

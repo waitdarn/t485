@@ -38,10 +38,17 @@ $('.dropdown a').click(function() {
 // Checks if the user is logged in
 function auth(onAuthed, onUnauthed) {
     $.get('members', function(response) {
+        var user = firebase.auth().currentUser
+        if (user === null) {
+            if (typeof onUnauthed === 'function') onUnauthed();
+            return;
+        }
+        
         var members = response.split('\n');
-        var email = localStorage.getItem('userEmail');
+        var email = firebase.auth().currentUser.email;
         // is email in members
         var authed = members.indexOf(email) > -1;
+        console.log('authed: ' + authed);
         
 // USE IN EMERGENCY ONLY
 // authed = true;

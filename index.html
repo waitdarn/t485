@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    
     <meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
 
     <title>Troop 485</title>
@@ -38,6 +39,7 @@
         */
         
         
+        
         var clicky = document.createElement('script');
         clicky.src = 'js/clicky.min.js';
         
@@ -56,6 +58,15 @@
                 }
                 
                 document.getElementById('bs-example-navbar-collapse-1').classList.remove('in');
+            },
+            onDependenciesLoaded: function() {
+                // Initialize Firebase
+                firebase.initializeApp({
+                    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
+                    authDomain: "t485.firebaseapp.com",
+                    databaseURL: "https://t485.firebaseio.com",
+                    storageBucket: "project-2556333409340273878.appspot.com"
+                });
             },
             analyticNodes: [clicky],
             PAGE_ID: '1285220',
