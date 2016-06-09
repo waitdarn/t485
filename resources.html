@@ -46,8 +46,17 @@
                 <hr>
                     <h2 class="intro-text text-center">Add <strong>File</strong></h2>
                 <hr>
-                <p>Have something to add? Email it to the webmaster at richy.liu.2002@gmail.com</p>
-                <input type="file" id="file" style="display: none">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="event-name">Email address:</label>
+                        <input type="text" class="form-control" id="event-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="files">File upload (you can select multiple)</label>
+                        <input type="file" id="files" name="files[]" multiple class="form-control-file">
+                    </div>
+                    <button type="submit" class="btn btn-default" id="submit">Submit</button>
+                </form>
             </div>
         </div>
 
@@ -92,8 +101,36 @@
         var ref = firebase.database().ref();
         
         
-        document.getElementById('file').addEventListener('change', function(e) {
-            var file = e.target.files[0];
+        document.getElementById('submit').click = function() {
+            var files = document.getElementById('files').files;
+            var loadedFiles = new Array(files.length);
+            var downloadURLs = [];
+            
+            
+            for (var i = 0; i < files.length; i++) {
+                uploadFile(files[i], i, function(downloadURL, i) {
+                    loadedFiles[i] = true;
+                    
+                    downloadURLs.push(downloadURL);
+                    console.log(downloadURL);
+                    
+                    for (var j = 0; j < files.length; j++) {
+                        if (loadedFiles[j] === undefined) return;
+                    }
+                    
+                    // all files are loaded
+                    console.log('all done!');
+                    
+                    ref.child('resourceUrls').push({
+                        event: 'foo',
+                        urls: downloadURLs.toString()
+                    });
+                });
+            }
+        };
+        
+        
+        function uploadFile(file, i, callback) {
             var uploadTask = storageRef.child('resources/' + file.name).put(file);
 
             uploadTask.on('state_changed', function() {}, function(error) {
@@ -101,13 +138,11 @@
                 console.error(error.message);
             }, function() {
                 // Handle successful uploads on complete
-                var downloadURL = uploadTask.snapshot.downloadURL;
-                ref.child('resourceUrls').push({
-                    url: downloadURL
-                })
-                console.log(downloadURL);
+                callback(uploadTask.snapshot.downloadURL, i);
             });
-        });
+        }
+        
+        
         
         
         function openModal(e, url) {
