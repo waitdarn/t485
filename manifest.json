@@ -1,0 +1,8 @@
+{
+    "short_name": "T485",
+    "name": "Troop 485",
+    "icons": [],
+    "start_url": "/app.html",
+    "display": "standalone",
+    "orientation": "landscape"
+}
