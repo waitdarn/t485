@@ -8,7 +8,6 @@
     <title>Log In - Troop 485</title>
     
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-    <script src="js/gapi.js"></script>
 
 </head>
 
@@ -25,7 +24,7 @@
                 </div>
                 <div class="col-md-12">
                     <p>
-                        <div id="my-signin2"></div>
+                        <div id="sign-in"></div>
                     </p>
                 </div>
                 <div class="clearfix"></div>
@@ -36,53 +35,61 @@
     
     
     <script>
-        var redirectUrl = sessionStorage.getItem("auth-redirect") || 'https://t485.org';
+        var redirectUrl = sessionStorage.getItem("auth-redirect") || '/index.html';
+        var email;
+        var password;
         
-        function redirectUser(url) {
-            Singulr.loadPage(url);
-        }
         
-        function onSuccess(googleUser) {
-            console.log('Logged in as: ' + googleUser.getBasicProfile().getEmail());
-            var members;
-            $.get('members', function(response) {
-                members = response.split('\n');
-                if (googleUser !== null) {
+        gapi.signin2.render('sign-in', {
+            'scope': 'email',
+            'width': 240,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': function (googleUser) {
+                email = googleUser.getBasicProfile().getEmail();
+                // change password generation method?
+                password = window.btoa(email);
+                
+                // console.log('email: ' + email + ' password: ' + password);
+                firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
                     // Login succeeded
-                    localStorage.setItem("userEmail", googleUser.getBasicProfile().getEmail());
-                    localStorage.setItem("userInfo", googleUser);
-                    var email = googleUser.getBasicProfile().getEmail();
-                    
-                    // Check if email is on approved list
-                    if (members.indexOf(email) > -1) {
-                        redirectUser(redirectUrl);
-                    } else {
-                        alert('Sorry, but you are not authorized to view this page.');
-                        redirectUser('home.html');
-                    }
-                }
-            });
+                    $.get('members', function(response) {
+                        if (response !== null) {
+                            var members = response.split('\n');
+                            
+                            // Check if email is on approved list
+                            if (members.indexOf(email) > -1) {
+                                Singulr.loadPage(redirectUrl);
+                            } else {
+                                alert('Sorry, but you are not authorized to view this page.');
+                                Singulr.loadPage('home.html');
+                            }
+                        }
+                    });
+                }).catch(function(error) {
+                    console.error(error.message);
+                });
+            },
+            'onfailure': function (error) {
+                console.error(error);
+            }
+        });
         
         
-        }
-        
-        function onFailure(error) {
-            console.log(error);
-        }
-        
-        function renderButton() {
-            gapi.signin2.render('my-signin2', {
-                'scope': 'profile email',
-                'width': 240,
-                'height': 50,
-                'longtitle': true,
-                'theme': 'dark',
-                'onsuccess': onSuccess,
-                'onfailure': onFailure
-            });
-        }
-        
-        renderButton();
+        /* to update directory */
+        /*
+            var emails = '...';
+            emails = emails.split('\n');
+            
+            for (var i = 0; i < emails.length; i++) {
+                var email = emails[i];
+                var password = window.btoa(email);
+                
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+            }
+            
+        */
     </script>
 
 </body>
