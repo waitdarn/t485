@@ -78,11 +78,28 @@
         
         
         /* to update directory */
+        // Updated 6/10/16, 216 members
+        // Regex: ,.+$
         /*
+            // remove old members
             $.get('members', function(response) {
                 var emails = response.split('\n');
-                // remove leading 2 lines
-                emails = emails.slice(2);
+                
+                for (var i = 0; i < emails.length; i++) {
+                    var email = emails[i];
+                    var password = window.btoa(email);
+                    
+                    firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+                        firebase.auth().currentUser.delete().catch(function(e) {
+                            // error happended
+                            console.error(e);
+                        });
+                    });
+                }
+            });
+            // add new members
+            $.get('membersnew', function(response) {
+                var emails = response.split('\n');
                 
                 for (var i = 0; i < emails.length; i++) {
                     var email = emails[i];
