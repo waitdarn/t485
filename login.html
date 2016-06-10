@@ -79,16 +79,18 @@
         
         /* to update directory */
         /*
-            var emails = '...';
-            emails = emails.split('\n');
-            
-            for (var i = 0; i < emails.length; i++) {
-                var email = emails[i];
-                var password = window.btoa(email);
+            $.get('members', function(response) {
+                var emails = response.split('\n');
+                // remove leading 2 lines
+                emails = emails.slice(2);
                 
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-            }
-            
+                for (var i = 0; i < emails.length; i++) {
+                    var email = emails[i];
+                    var password = window.btoa(email);
+                    
+                    firebase.auth().createUserWithEmailAndPassword(email, password);
+                }
+            });
         */
     </script>
 

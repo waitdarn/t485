@@ -37,29 +37,18 @@ $('.dropdown a').click(function() {
 
 // Checks if the user is logged in
 function auth(onAuthed, onUnauthed) {
-    $.get('members', function(response) {
-        var user = firebase.auth().currentUser
-        if (user === null) {
-            if (typeof onUnauthed === 'function') onUnauthed();
-            return;
-        }
-        
-        var members = response.split('\n');
-        var email = firebase.auth().currentUser.email;
-        // is email in members
-        var authed = members.indexOf(email) > -1;
-        console.log('authed: ' + authed);
-        
+    onAuthed = onAuthed || function() {};
+    onUnauthed = onUnauthed || function() {};
+    
+    var user = firebase.auth().currentUser;
+    console.log('user: ' + user);
+    
 // USE IN EMERGENCY ONLY
-// authed = true;
+// user = true;
 // USE IN EMERGENCY ONLY
-        
-        if (authed) {
-            if (typeof onAuthed === 'function') onAuthed();
-        } else {
-            if (typeof onUnauthed === 'function') onUnauthed();
-        }
-    });
+    
+    if (user) onAuthed();
+    else onUnauthed();
 }
 
 
