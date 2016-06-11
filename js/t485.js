@@ -40,15 +40,18 @@ function auth(onAuthed, onUnauthed) {
     onAuthed = onAuthed || function() {};
     onUnauthed = onUnauthed || function() {};
     
-    var user = firebase.auth().currentUser;
-    console.log('user: ' + user);
-    
+    firebase.auth().onAuthStateChanged(function(user) {
 // USE IN EMERGENCY ONLY
 // user = true;
 // USE IN EMERGENCY ONLY
+        if (user) {
+            onAuthed();
+        } else {
+            onUnauthed();
+        }
+    });
     
-    if (user) onAuthed();
-    else onUnauthed();
+
 }
 
 

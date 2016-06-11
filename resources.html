@@ -3,7 +3,7 @@
 
 <head>
     
-    <script class="singulr-ignore" src="https://rawgit.com/richyliu/singulr/6697a19/singulr-page.min.js"></script>
+    <script class="singulr-ignore" src="js/singulr-page.js"></script>
     
     <title>Resource - Troop 485</title>
 
@@ -16,13 +16,13 @@
         <div class="row">
             <div class="box col-sm-6" style="padding-bottom: 37px;">
                 <hr>
-                    <h2 class="intro-text text-center"><strong>Uniform</strong> Guide</h2>
+                <h2 class="intro-text text-center"><strong>Uniform</strong> Guide</h2>
                 <hr>
                 <a onclick="openModal(event, 'img/new-scout_2.pdf')"><img class="img-responsive img-border img-top" src="img/new-scout_1.gif" alt="Uniform Guide" style="margin: auto"></a>
             </div>
             <div class="box col-sm-6">
                 <hr>
-                    <h2 class="intro-text text-center">Resources</h2>
+                <h2 class="intro-text text-center">Resources</h2>
                 <hr>
                 <ul>
                     <li><a onclick="openModal(event, 'https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic')">Council Resource</a></li>
@@ -41,24 +41,31 @@
             </div>
         </div>
         
-        <div class="row" style="display: none;">
+        <div class="row">
             <div class="box col-md-12">
                 <hr>
-                    <h2 class="intro-text text-center">More Resources</h2>
+                <h2 class="intro-text text-center">More Resources</h2>
                 <hr>
                 <div id="resource-list"></div>
             </div>
         </div>
 
-        <div class="row" style="display: none;">
+        <div class="row">
             <div class="box col-md-12">
                 <hr>
-                    <h2 class="intro-text text-center">Add <strong>File</strong></h2>
+                <h2 class="intro-text text-center">Add <strong>FileS</strong></h2>
                 <hr>
+                <p>
+                    You can upload your own resources. Be sure to provide a
+                    meaningful event name or title. Please note that the title
+                    of the file you upload is the name people see. If you want
+                    to delete a file, email the webmaster at
+                    richy.liu.2002@gmail.com with your event name/title.
+                </p>
                 <form>
                     <div class="form-group">
-                        <label for="event-name">Event name:</label>
-                        <input type="text" class="form-control" id="event-name" pattern=".{3,300}" title="Please enter a meaningful event name" required>
+                        <label for="event-name">Event name/title:</label>
+                        <input type="text" class="form-control" id="event-name" pattern=".{3,300}" title="Please enter a meaningful event name/title" required>
                     </div>
                     <div class="form-group">
                         <label for="files">File upload (you can select multiple)</label>
@@ -101,15 +108,16 @@
     
     
     <script>
-        
         auth(function() {}, function() {
             sessionStorage.setItem('auth-redirect', 'resources.html');
             Singulr.loadPage('login.html?redirect=resources.html');
         });
         
         
+        
         var storageRef = firebase.storage().ref();
         var ref = firebase.database().ref();
+        
         
         
         ref.child('resourceUrls').on('child_added', function(snapshot) {
@@ -131,12 +139,15 @@
                 var a = document.createElement('a');
                 a.href = resourceUrls[i];
                 a.innerHTML = resourceNames[i];
-                a.setAttribute('onclick', function(e) {
-                    console.log(resourceUrls[i]);
-                    console.log(resourceNames[i]);
-                    openModal(undefined, resourceUrls[i], resourceNames[i]);
-                    e.preventDefault();
-                });
+                a.addEventListener('click', (function(i) {
+                    return function(e) {
+                        e.preventDefault();
+                        e.stopImmediatePropagation();
+                        
+                        openModal(undefined, resourceUrls[i], resourceNames[i]);
+                    };
+                })(i));
+                    
                 
                 listItem.appendChild(a);
                 list.appendChild(listItem);
@@ -187,7 +198,9 @@
                         urls: downloadURLs.toString()
                     });
                     
-                    alert('File uploaded successfully!')
+                    alert('File(s) uploaded successfully!');
+                    // reload page
+                    Singulr.loadPage('resources.html');
                 });
             }
         };
@@ -199,6 +212,7 @@
             uploadTask.on('state_changed', function() {}, function(error) {
                 // Handle unsuccessful uploads
                 console.error(error.message);
+                alert('An error occures. Files were not uploaded.');
             }, function() {
                 // Handle successful uploads on complete
                 callback(uploadTask.snapshot.downloadURL, i);

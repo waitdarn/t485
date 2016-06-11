@@ -3,7 +3,7 @@
 
 <head>
     
-    <script class="singulr-ignore" src="https://rawgit.com/richyliu/singulr/6697a19/singulr-page.min.js"></script>
+    <script class="singulr-ignore" src="js/singulr-page.js"></script>
     
     <title>Log In - Troop 485</title>
     
@@ -77,7 +77,9 @@
         });
         
         
-        /* to update directory */
+        
+        /* Update directory */
+        
         // Updated 6/10/16, 216 members
         // Regex: ,.+$
         /*
@@ -97,6 +99,7 @@
                     });
                 }
             });
+            
             // add new members
             $.get('membersnew', function(response) {
                 var emails = response.split('\n');
@@ -106,6 +109,26 @@
                     var password = window.btoa(email);
                     
                     firebase.auth().createUserWithEmailAndPassword(email, password);
+                }
+            });
+            
+            // check if all emails have a log in
+            $.get('members', function(response) {
+                var emails = response.split('\n');
+                
+                signIn(0)
+                
+                function signIn(i) {
+                    firebase.auth().signInWithEmailAndPassword(emails[i], window.btoa(emails[i])).then(function() {
+                        firebase.auth().signOut().then(function() {
+                            if (emails.length < i) signIn(i++)
+                            else {
+                                console.log('all done!');
+                            }
+                        })
+                    }).catch(function(e) {
+                        console.error(e);
+                    });
                 }
             });
         */
