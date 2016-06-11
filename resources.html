@@ -71,6 +71,29 @@
                         <label for="files">File upload (you can select multiple)</label>
                         <input type="file" id="files" name="files[]" multiple class="form-control-file" required>
                     </div>
+                    <div id="upload-progress">
+                        <div class="upload-container">
+                            <div class="upload-name">
+                                File number 1
+                            </div>
+                            <div class="upload-progress-bar"></div>
+                            <div class="upload-cancel">X</div>
+                        </div>
+                        <div class="upload-container">
+                            <div class="upload-name">
+                                File number 2
+                            </div>
+                            <div class="upload-progress-bar"></div>
+                            <div class="upload-cancel">X</div>
+                        </div>
+                        <div class="upload-container">
+                            <div class="upload-name">
+                                File number 3
+                            </div>
+                            <div class="upload-progress-bar"></div>
+                            <div class="upload-cancel">X</div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <input type="submit" id="submit" value="Submit" class="btn btn-default">
                     </div>
@@ -200,7 +223,7 @@
                     
                     alert('File(s) uploaded successfully!');
                     // reload page
-                    Singulr.loadPage('resources.html');
+                    // Singulr.loadPage('resources.html');
                 });
             }
         };
@@ -209,7 +232,12 @@
         function uploadFile(file, i, callback) {
             var uploadTask = storageRef.child('resources/' + file.name).put(file);
 
-            uploadTask.on('state_changed', function() {}, function(error) {
+            uploadTask.on('state_changed', (function(i) {
+                return function(snapshot) {
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    updateProgressBar(document.getElementById('up' + i).childNodes[1], progress);
+                };
+            })(i), function(error) {
                 // Handle unsuccessful uploads
                 console.error(error.message);
                 alert('An error occures. Files were not uploaded.');
@@ -217,8 +245,46 @@
                 // Handle successful uploads on complete
                 callback(uploadTask.snapshot.downloadURL, i);
             });
+            
+            
+            
+            // create progress bar
+            var uploadProgress = document.getElementById('upload-progress');
+            
+            
+            var uploadContainer = document.createElement('div');
+            uploadContainer.setAttribute('class', 'upload-container');
+            uploadContainer.setAttribute('id', 'up' + i);
+            
+            var uploadName = document.createElement('div');
+            uploadName.innerHTML = file.name;
+            uploadContainer.appendChild(uploadName);
+            
+            var uploadProgressBar = document.createElement('div');
+            uploadProgressBar.setAttribute('class', 'upload-progress-bar');
+            updateProgressBar(uploadProgressBar, 0);
+            uploadContainer.appendChild(uploadProgressBar);
+            
+            var uploadCancel = document.createElement('div');
+            uploadCancel.setAttribute('class', 'upload-cancel');
+            uploadCancel.innerHTML = 'X';
+            uploadCancel.addEventListener('click', (function(uploadTask) {
+                return function() {
+                    // is this how you cancel it?
+                    uploadTask.cancel();
+                };
+            })(uploadTask));
+            uploadContainer.appendChild(uploadCancel);
+            
+            
+            uploadProgress.appendChild(uploadContainer);
         }
         
+        
+        
+        function updateProgressBar(element, progress) {
+            element.style.width = progress + '%';
+        }
         
         
         

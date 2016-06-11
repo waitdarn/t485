@@ -504,3 +504,34 @@ a:hover {
 a:focus {
     text-decoration: none;
 }
+
+
+
+#upload-progress > .upload-container > .upload-name {
+    
+}
+
+#upload-progress > .upload-container > .upload-progress-bar {
+    display: inline-block;
+    background-color: blue;
+    height: 3px;
+    width: 99%;
+}
+
+#upload-progress > .upload-container > .upload-cancel {
+    position: absolute;
+    display: inline-block;
+    color: grey;
+    text-align: right;
+    right: 5px;
+}
+
+
+#upload-progress > .upload-container{
+    margin-bottom: 10px;
+    border-color: grey;
+    border-width: 2px;
+    border-style: solid;
+    padding: 5px 20px 5px 10px;
+    position: relative;
+}
