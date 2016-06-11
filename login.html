@@ -3,7 +3,7 @@
 
 <head>
     
-    <script class="singulr-ignore" src="https://rawgit.com/richyliu/singulr/6697a19/singulr-page.min.js"></script>
+    <script class="singulr-ignore" src="js/singulr-page.js"></script>
     
     <title>Log In - Troop 485</title>
     
@@ -77,18 +77,60 @@
         });
         
         
-        /* to update directory */
+        
+        /* Update directory */
+        
+        // Updated 6/10/16, 216 members
+        // Regex: ,.+$
         /*
-            var emails = '...';
-            emails = emails.split('\n');
-            
-            for (var i = 0; i < emails.length; i++) {
-                var email = emails[i];
-                var password = window.btoa(email);
+            // remove old members
+            $.get('members', function(response) {
+                var emails = response.split('\n');
                 
-                firebase.auth().createUserWithEmailAndPassword(email, password)
-            }
+                for (var i = 0; i < emails.length; i++) {
+                    var email = emails[i];
+                    var password = window.btoa(email);
+                    
+                    firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+                        firebase.auth().currentUser.delete().catch(function(e) {
+                            // error happended
+                            console.error(e);
+                        });
+                    });
+                }
+            });
             
+            // add new members
+            $.get('membersnew', function(response) {
+                var emails = response.split('\n');
+                
+                for (var i = 0; i < emails.length; i++) {
+                    var email = emails[i];
+                    var password = window.btoa(email);
+                    
+                    firebase.auth().createUserWithEmailAndPassword(email, password);
+                }
+            });
+            
+            // check if all emails have a log in
+            $.get('members', function(response) {
+                var emails = response.split('\n');
+                
+                signIn(0)
+                
+                function signIn(i) {
+                    firebase.auth().signInWithEmailAndPassword(emails[i], window.btoa(emails[i])).then(function() {
+                        firebase.auth().signOut().then(function() {
+                            if (emails.length < i) signIn(i++)
+                            else {
+                                console.log('all done!');
+                            }
+                        })
+                    }).catch(function(e) {
+                        console.error(e);
+                    });
+                }
+            });
         */
     </script>
 
