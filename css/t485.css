@@ -508,7 +508,8 @@ a:focus {
 
 
 #upload-progress > .upload-container > .upload-name {
-    
+    font-weight: 700;
+    margin-bottom: 5px;
 }
 
 #upload-progress > .upload-container > .upload-progress-bar {
