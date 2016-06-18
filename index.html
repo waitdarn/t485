@@ -37,7 +37,6 @@
     <script>
         /*
             - better encryption system for email in login.html
-            - finish file uploads in resource.html
             - t485 offline: directory and resources for events
         */
         
@@ -78,13 +77,11 @@
             INDEX_PAGE: '/index.html',
             dependencies: {
                 javascript: [
-                    'https://code.jquery.com/jquery-2.2.0.min.js',
-                    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js',
-                    'https://www.gstatic.com/firebasejs/3.0.2/firebase.js',
+                    // combined.min.js includes jquery, bootstrap.js, firebase, and google oauth api
+                    'js/combined.min.js',
                     'js/t485.js',
-                    'js/gapi.js'
                 ], css: [
-                    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css',
+                    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
                     'css/t485.css',
                     'https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
                     'https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic'
