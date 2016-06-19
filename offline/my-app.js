@@ -1,6 +1,6 @@
 /*
     TODO:
-    - add drag to refresh directory
+    - add refresh directory
     - resources better download?
 */
 
@@ -93,25 +93,97 @@ function showfullinfo(id) {
 
 
 
-myApp.onPageInit('resources', function() {
-    /*
-    <div class="content-block-title">test title</div>
-    <div class="list-block">
-        <ul>
-            <li>
-                <a href="#" class="item-link">
-                    <div class="item-content">
-                        <div class="item-inner">
-                            <div class="item-title">test link</div>
-                            <div class="item-after">3 MB</div>
-                        </div>
-                    </div>
-                </a>
-            </li>
-        </ul>
-    </div>
-    */
+if (ocalStorage.getItem('directory-info') === null) refreshDirectory();
+$$('.pull-to-refresh-content').on('refresh', function() {
+    refreshDirectory();
+});
+
+
+function refreshDirectory() {
+    var secretInfo = {
+        "cacti": "1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU",
+        "hawks": "1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk",
+        "wildcats": "1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y",
+        "serpents": "1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc",
+        "blobfish": "1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo",
+        "dragons": "1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A"
+    };
+    var allLoaded = [false, false, false, false, false, false];
     
+    
+    // Cacti
+    Tabletop.init({key: secretInfo.cacti, callback: function (data) {
+        for (var i = 0; i < data.length; i++) {
+            data[i].patrol = 'Cacti';
+        }
+        window.globalData.push.apply(window.globalData, data);
+        allLoaded[0] = true;
+    }, simpleSheet: true});
+    
+    // Hawks
+    Tabletop.init({key: secretInfo.hawks, callback: function (data) {
+        for (var i = 0; i < data.length; i++) {
+            data[i].patrol = 'Hawks';
+        }
+        window.globalData.push.apply(window.globalData, data);
+        allLoaded[1] = true;
+        checkLoaded();
+    }, simpleSheet: true});
+    
+    // Wildcats
+    Tabletop.init({key: secretInfo.wildcats, callback: function (data) {
+        for (var i = 0; i < data.length; i++) {
+            data[i].patrol = 'Wildcats';
+        }
+        window.globalData.push.apply(window.globalData, data);
+        allLoaded[2] = true;
+        checkLoaded();
+    }, simpleSheet: true});
+    
+    // Serpents
+    Tabletop.init({key: secretInfo.serpents, callback: function (data) {
+        for (var i = 0; i < data.length; i++) {
+            data[i].patrol = 'Serpents';
+        }
+        window.globalData.push.apply(window.globalData, data);
+        allLoaded[3] = true;
+        checkLoaded();
+    }, simpleSheet: true});
+    
+    // Blobfish
+    Tabletop.init({key: secretInfo.blobfish, callback: function (data) {
+        for (var i = 0; i < data.length; i++) {
+            data[i].patrol = 'Blobfish';
+        }
+        window.globalData.push.apply(window.globalData, data);
+        allLoaded[4] = true;
+        checkLoaded();
+    }, simpleSheet: true});
+    
+    // Dragons
+    Tabletop.init({key: secretInfo.dragons, callback: function (data) {
+        for (var i = 0; i < data.length; i++) {
+            data[i].patrol = 'Dragons';
+        }
+        window.globalData.push.apply(window.globalData, data);
+        allLoaded[5] = true;
+        checkLoaded();
+    }, simpleSheet: true});
+    
+    
+    function checkLoaded() {
+        for (var i = 0; i < allLoaded.length; i++) {
+            if (!allLoaded[i]) return;
+        }
+        // all loaded
+        myApp.pullToRefreshDone();
+    }
+}
+
+
+
+
+myApp.onPageInit('resources', function() {
     var ref = firebase.database().ref();
     
     ref.child('resourceUrls').on('child_added', function(snapshot) {
