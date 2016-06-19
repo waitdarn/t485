@@ -1,3 +1,12 @@
+/*
+    TODO:
+    - add drag to refresh directory
+    - resources better download?
+*/
+
+
+
+
 // Initialize app and store it to myApp variable for futher access to its methods
 var myApp = new Framework7();
 
@@ -8,6 +17,14 @@ var $$ = Dom7;
 var mainView = myApp.addView('.view-main', {
     // Because we want to use dynamic navbar, we need to enable it for this view:
     dynamicNavbar: true
+});
+
+// Initialize Firebase
+firebase.initializeApp({
+    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
+    authDomain: "t485.firebaseapp.com",
+    databaseURL: "https://t485.firebaseio.com",
+    storageBucket: "project-2556333409340273878.appspot.com"
 });
 
 
@@ -78,17 +95,62 @@ function showfullinfo(id) {
 
 myApp.onPageInit('resources', function() {
     /*
-    <li>
-        <a href="#" class="item-link">
-            <div class="item-content">
-                <div class="item-inner">
-                    <div class="item-title">test link</div>
-                    <div class="item-after">3 MB</div>
-                </div>
-            </div>
-        </a>
-    </li>
+    <div class="content-block-title">test title</div>
+    <div class="list-block">
+        <ul>
+            <li>
+                <a href="#" class="item-link">
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title">test link</div>
+                            <div class="item-after">3 MB</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
     */
     
+    var ref = firebase.database().ref();
     
+    ref.child('resourceUrls').on('child_added', function(snapshot) {
+        var response = snapshot.val();
+        var listElement = document.getElementById('upload-list');
+        var eventName = response.event;
+        var resourceUrls = response.urls.split(',');
+        var resourceNames = response.names.split(',');
+        var resourceSizes = response.sizes.split(',');
+        
+        var title = document.createElement('div');
+        title.setAttribute('class', 'content-block-title');
+        title.innerHTML = eventName;
+        listElement.appendChild(title);
+        
+        var listBlock = document.createElement('div');
+        listBlock.setAttribute('class', 'list-block');
+        
+        
+        
+        var list = document.createElement('ul');
+        
+        for (var i = 0; i < resourceUrls.length; i++) {
+            $$(list).append(
+                '<li>' +
+                    '<a href="' + resourceUrls[i] + '" class="item-link external" target="_blank">' +
+                        '<div class="item-content">' +
+                            '<div class="item-inner">' +
+                                '<div class="item-title">' + resourceNames[i] + '</div>' +
+                                '<div class="item-after">' + resourceSizes[i] + '</div>' +
+                            '</div>' +
+                        '</div>' +
+                    '</a>' +
+                '</li>'
+            );
+        }
+        
+        listBlock.appendChild(list);
+        
+        listElement.appendChild(listBlock);
+    });
 });

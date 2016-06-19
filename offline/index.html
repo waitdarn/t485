@@ -11,12 +11,15 @@
     <!-- Your app title -->
     <title>T485 App</title>
     
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../favicons/favicon-16x16.png" sizes="16x16">
+    
     <!-- Path to Framework7 iOS CSS theme styles-->
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.min.css">
     <!-- Path to Framework7 iOS related color styles -->
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.colors.min.css">
-    <!-- Path to your custom app styles-->
-    <!--<link rel="stylesheet" href="path/to/my-app.css">-->
 </head>
 
 <body>
@@ -39,13 +42,8 @@
             <!-- Top Navbar-->
             <div class="navbar">
                 <div class="navbar-inner">
-                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                     <div class="center sliding">T485 App</div>
                     <div class="right">
-                        <!-- 
-                Right link contains only icon - additional "icon-only" class
-                Additional "open-panel" class tells app to open panel when we click on this link
-              -->
                         <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
                     </div>
                 </div>
@@ -60,9 +58,7 @@
                         <div class="content-block">
                             <p>blah blah welcome blah blah</p>
                         </div>
-                        <div class="content-block-title">
-                            Menu
-                        </div>
+                        <div class="content-block-title">Menu</div>
                         <div class="list-block">
                             <ul>
                                 <li>
@@ -86,8 +82,11 @@
                             </ul>
                         </div>
                     </div>
+                    <!--/.page-content-->
                 </div>
+                <!--/.page-->
             </div>
+            <!--/.pages .navbar-through .toolbar-through-->
             
             <!-- Bottom Toolbar-->
             <div class="toolbar">
@@ -103,7 +102,9 @@
     
     <!-- Framework7 Library JS-->
     <script src="bower_components/Framework7/dist/js/framework7.min.js"></script>
-    <!-- Path to your app js-->
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase.js"></script>
+    
     <script src="my-app.js"></script>
     
 </body>
