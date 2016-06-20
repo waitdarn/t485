@@ -93,7 +93,7 @@ function showfullinfo(id) {
 
 
 
-if (ocalStorage.getItem('directory-info') === null) refreshDirectory();
+if (localStorage.getItem('directory-info') === null) refreshDirectory();
 $$('.pull-to-refresh-content').on('refresh', function() {
     refreshDirectory();
 });
@@ -109,6 +109,7 @@ function refreshDirectory() {
         "dragons": "1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A"
     };
     var allLoaded = [false, false, false, false, false, false];
+    var allData = [];
     
     
     // Cacti
@@ -116,7 +117,7 @@ function refreshDirectory() {
         for (var i = 0; i < data.length; i++) {
             data[i].patrol = 'Cacti';
         }
-        window.globalData.push.apply(window.globalData, data);
+        allData.push.apply(allData, data);
         allLoaded[0] = true;
     }, simpleSheet: true});
     
@@ -125,7 +126,7 @@ function refreshDirectory() {
         for (var i = 0; i < data.length; i++) {
             data[i].patrol = 'Hawks';
         }
-        window.globalData.push.apply(window.globalData, data);
+        allData.push.apply(allData, data);
         allLoaded[1] = true;
         checkLoaded();
     }, simpleSheet: true});
@@ -135,7 +136,7 @@ function refreshDirectory() {
         for (var i = 0; i < data.length; i++) {
             data[i].patrol = 'Wildcats';
         }
-        window.globalData.push.apply(window.globalData, data);
+        allData.push.apply(allData, data);
         allLoaded[2] = true;
         checkLoaded();
     }, simpleSheet: true});
@@ -145,7 +146,7 @@ function refreshDirectory() {
         for (var i = 0; i < data.length; i++) {
             data[i].patrol = 'Serpents';
         }
-        window.globalData.push.apply(window.globalData, data);
+        allData.push.apply(allData, data);
         allLoaded[3] = true;
         checkLoaded();
     }, simpleSheet: true});
@@ -155,7 +156,7 @@ function refreshDirectory() {
         for (var i = 0; i < data.length; i++) {
             data[i].patrol = 'Blobfish';
         }
-        window.globalData.push.apply(window.globalData, data);
+        allData.push.apply(allData, data);
         allLoaded[4] = true;
         checkLoaded();
     }, simpleSheet: true});
@@ -165,7 +166,7 @@ function refreshDirectory() {
         for (var i = 0; i < data.length; i++) {
             data[i].patrol = 'Dragons';
         }
-        window.globalData.push.apply(window.globalData, data);
+        allData.push.apply(allData, data);
         allLoaded[5] = true;
         checkLoaded();
     }, simpleSheet: true});
@@ -175,8 +176,10 @@ function refreshDirectory() {
         for (var i = 0; i < allLoaded.length; i++) {
             if (!allLoaded[i]) return;
         }
+        
         // all loaded
         myApp.pullToRefreshDone();
+        localStorage.setItem('directory-info', JSON.stringify(allData));
     }
 }
 
