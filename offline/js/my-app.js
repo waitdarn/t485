@@ -1,6 +1,5 @@
 /*
     TODO:
-    - add refresh directory
     - resources better download?
 */
 
@@ -19,13 +18,17 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-// Initialize Firebase
-firebase.initializeApp({
-    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
-    authDomain: "t485.firebaseapp.com",
-    databaseURL: "https://t485.firebaseio.com",
-    storageBucket: "project-2556333409340273878.appspot.com"
-});
+var online = navigator.onLine;
+
+if (online) {
+    // Initialize Firebase
+    firebase.initializeApp({
+        apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
+        authDomain: "t485.firebaseapp.com",
+        databaseURL: "https://t485.firebaseio.com",
+        storageBucket: "project-2556333409340273878.appspot.com"
+    });
+}
 
 
 
@@ -93,10 +96,12 @@ function showfullinfo(id) {
 
 
 
-if (localStorage.getItem('directory-info') === null) refreshDirectory();
-$$('.pull-to-refresh-content').on('refresh', function() {
-    refreshDirectory();
-});
+if (online) {
+    if (localStorage.getItem('directory-info') === null) refreshDirectory();
+    $$('.pull-to-refresh-content').on('refresh', function() {
+        refreshDirectory();
+    });
+}
 
 
 function refreshDirectory() {
@@ -229,3 +234,7 @@ myApp.onPageInit('resources', function() {
         listElement.appendChild(listBlock);
     });
 });
+
+
+
+if (!online) $$('#resources-link').hide();
