@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html manifest="app.appcache">
+<!--<html manifest="app.appcache">-->
+<html>
 
 <head>
     <!-- Required meta tags-->
@@ -9,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
     <!-- Your app title -->
-    <title>T485 App</title>
+    <title>T485</title>
     
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-touch-icon-152x152.png">
@@ -90,7 +91,28 @@
             </div>
             <!--/.pages .navbar-through .toolbar-through-->
         </div>
+        <!--/.view .view-main-->
     </div>
+    <!--/.views-->
+    
+    <div class="popup info-popup" style="display: none;">
+        <div class="view">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left sliding"><a href="#" class="link close-popup photo-browser-close-link  "><i class="icon icon-back "></i><span>Close</span></a></div>
+                    <div class="center sliding" style="left: -31px;" id="info-popup-name"></div>
+                    <div class="right"></div>
+                </div>
+            </div>
+            
+            <div class="page navbar-through">
+                <div class="page-content">
+                    <div class="content-block" id="info-popup-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.popup .modal-in-->
     
     
     <!-- Framework7 Library JS-->
@@ -101,7 +123,6 @@
     <script src="../js/tabletop.min.js"></script>
     
     <script src="js/my-app.js"></script>
-    
 </body>
 
 </html>

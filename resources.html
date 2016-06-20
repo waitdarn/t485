@@ -64,6 +64,10 @@
                     </div>
                     <div id="upload-progress"></div>
                     <div class="form-group">
+                        <label for="drive-urls">Google Docs url and file name (one url per line) example shown below</label>
+                        <textarea class="form-control" id="drive-urls" rows="5" placeholder="https://docs.google.com/document/d/1W98GkzMbu3MhVX4bq981dyjifWLYr3Bat6ej-iE52Os/mobilebasic,This is a test file"></textarea>
+                    </div>
+                    <div class="form-group">
                         <input type="submit" id="submit" value="Submit" class="btn btn-default">
                     </div>
                 </form>
@@ -166,12 +170,8 @@
             e.preventDefault();
             
             var files = document.getElementById('files').files;
-            if (files.length === 0 || document.getElementById('event-name').value === '') {
-                alert(files.length === 0 ?
-                    'No file provided!' :
-                    (document.getElementById('event-name').value === '' ?
-                        'Please provide a meaningful event name/title!' :
-                        ''));
+            if (document.getElementById('event-name').value === '') {
+                alert('Please provide a meaningful event name/title!');
                 return;
             }
             
@@ -180,6 +180,11 @@
             var downloadNames = [];
             var downloadSizes = [];
             
+            
+            if (files.length < 1) {
+                doAfter();
+                return;
+            }
             
             for (var i = 0; i < files.length; i++) {
                 uploadFile(files[i], i, function(downloadURL, i) {
@@ -202,21 +207,54 @@
                     
                     
                     // all files are loaded
-                    console.log('all done!');
-                    
-                    ref.child('resourceUrls').push({
-                        event: document.getElementById('event-name').value,
-                        names: downloadNames.toString(),
-                        urls: downloadURLs.toString(),
-                        sizes: downloadSizes.toString()
-                    });
-                    
-                    alert('File(s) uploaded successfully!');
-                    // reload page
-                    Singulr.loadPage('resources.html');
+                    doAfter();
                 });
             }
+            
+            function doAfter() {
+                var driveUrls = document.getElementById('drive-urls').value.split('\n');
+                console.log(driveUrls);
+                
+                if (!(driveUrls.length === 1 && driveUrls[0] === '')) {
+                    var driveNames = [];
+                    var driveSizes = [];
+                    
+                    for (var i = 0; i < driveUrls.length; i++) {
+                        // remove end of url
+                        var match = driveUrls[i].split(',')[0].match(/https:\/\/docs\.google\.com\/document\/d\/[\w-_]{44}\//);
+                        if (match === null) {
+                            alert('Url has to be a google docs url!');
+                            return;
+                        }
+                        driveNames.push(driveUrls[i].split(',')[1]);
+                        driveUrls[i] = match[0] + 'mobilebasic';
+                        driveSizes.push('?');
+                    }
+                    
+                    downloadURLs.push.apply(downloadURLs, driveUrls);
+                    downloadNames.push.apply(downloadNames, driveNames);
+                    downloadSizes.push.apply(downloadSizes, driveSizes);
+                }
+                
+                
+                if (downloadURLs.length < 1) {
+                    alert('No files or urls to upload!');
+                    return;
+                }
+                
+                ref.child('resourceUrls').push({
+                    event: document.getElementById('event-name').value,
+                    names: downloadNames.toString(),
+                    urls: downloadURLs.toString(),
+                    sizes: downloadSizes.toString()
+                });
+                
+                alert('File(s) uploaded successfully!');
+                // reload page
+                Singulr.loadPage('resources.html');
+            }
         };
+        
         
         function formatBytes(bytes, decimals) {
             if (bytes == 0) return '0 Byte';

@@ -1,6 +1,6 @@
 /*
     TODO:
-    - resources better download?
+    - directory refresh (bug)
 */
 
 
@@ -82,14 +82,14 @@ function showfullinfo(id) {
         $$('#more-name').html(data[id]['Scout\'s Full Name (last name first):']);
         $$('#more-info').html('').append(
             'Name: '                    + data[id]['Scout\'s Full Name (last name first):'] + '<br>' +
-            'Email: <a href="mailto:'   + data[id]['Scout\'s E-mail:']                 + '">' + data[id]['Scout\'s E-mail:'] + '</a><br>' +
-            'Cell Phone: <a href="tel:' + data[id]['Scout\'s Cell Phone']              + '">' + data[id]['Scout\'s Cell Phone'] + '</a><br>' +
-            'Home Phone: <a href="tel:' + data[id]['Scout\'s Home Phone']              + '">' + data[id]['Scout\'s Home Phone'] + '</a><br>' +
+            'Email: <a href="mailto:'   + data[id]['Scout\'s E-mail:']                 + '" class="external">' + data[id]['Scout\'s E-mail:'] + '</a><br>' +
+            'Cell Phone: <a href="tel:' + data[id]['Scout\'s Cell Phone']              + '" class="external">' + data[id]['Scout\'s Cell Phone'] + '</a><br>' +
+            'Home Phone: <a href="tel:' + data[id]['Scout\'s Home Phone']              + '" class="external">' + data[id]['Scout\'s Home Phone'] + '</a><br>' +
             'Patrol: '                  + data[id]['patrol']                           + '<br><br>' +
-            'Father\'s Cell Phone: <a href="tel:' + data[id]['Father\'s Cell Phone']   + '">' + data[id]['Father\'s Cell Phone'] + '</a><br>' +
-            'Father\'s E-mail: <a href="mailto:'  + data[id]['Father\'s E-mail']       + '">' + data[id]['Father\'s E-mail'] + '</a><br>' +
-            'Mother\'s Cell Phone: <a href="tel:' + data[id]['Mother\'s Cell Phone']   + '">' + data[id]['Mother\'s Cell Phone'] + '</a><br>' +
-            'Mother\'s E-mail: <a href="mailto:'  + data[id]['Mother\'s E-mail']       + '">' + data[id]['Mother\'s E-mail'] + '</a><br>'
+            'Father\'s Cell Phone: <a href="tel:' + data[id]['Father\'s Cell Phone']   + '" class="external">' + data[id]['Father\'s Cell Phone'] + '</a><br>' +
+            'Father\'s E-mail: <a href="mailto:'  + data[id]['Father\'s E-mail']       + '" class="external">' + data[id]['Father\'s E-mail'] + '</a><br>' +
+            'Mother\'s Cell Phone: <a href="tel:' + data[id]['Mother\'s Cell Phone']   + '" class="external">' + data[id]['Mother\'s Cell Phone'] + '</a><br>' +
+            'Mother\'s E-mail: <a href="mailto:'  + data[id]['Mother\'s E-mail']       + '" class="external">' + data[id]['Mother\'s E-mail'] + '</a><br>'
         );
     });
 }
@@ -215,9 +215,22 @@ myApp.onPageInit('resources', function() {
         var list = document.createElement('ul');
         
         for (var i = 0; i < resourceUrls.length; i++) {
+            //https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2Ffoobarbaz.txt?alt=media&token=b8c99be2-639e-4c1a-a52f-018168ed8920
+            var url = resourceUrls[i];
+            var type = '';
+            if (url.match(/\/resources%2F[^\.]+.(jpeg|jpg|gif|png)/) !== null) {
+                type = 'image';
+            } else if (url.match(/\/resources%2F[^\.]+.pdf/) !== null) {
+                type = 'pdf';
+            } else if (url.match(/https:\/\/docs\.google\.com\/document\/d\/[\w-_]{44}\//) !== null) {
+                type = 'docs';
+            } else {
+                type = 'other';
+            }
+            
             $$(list).append(
                 '<li>' +
-                    '<a href="' + resourceUrls[i] + '" class="item-link external" target="_blank">' +
+                    '<a href="#" class="item-link" onclick="resourceClicked(\'' + url + '\', \'' + type + '\', \'' + resourceNames[i] + '\')">' +
                         '<div class="item-content">' +
                             '<div class="item-inner">' +
                                 '<div class="item-title">' + resourceNames[i] + '</div>' +
@@ -236,5 +249,39 @@ myApp.onPageInit('resources', function() {
 });
 
 
-
 if (!online) $$('#resources-link').hide();
+
+
+function resourceClicked(url, type, name) {
+    if (type === 'other') {
+        window.open(url);
+        return;
+    }
+    
+    if (type === 'image') {
+        console.log(url);   
+        var myPhotoBrowserPopup = myApp.photoBrowser({
+            photos : [url],
+            type: 'popup'
+        });
+        myPhotoBrowserPopup.open();
+        return;
+    }
+    
+    
+    var urlMatches = url.match(/\/resources%2F([^\.]+).([^\?]+)/);
+    var content = '';
+    
+    
+    if (type === 'docs') {
+        // height needs to be changed
+        content = '<iframe style="border: 0px; width: 396px; height: ' + (window.innerHeight - 119) + 'px" src="' + url + '"></iframe>';
+    } else if (type === 'pdf') {
+        content = '<iframe src="https://docs.google.com/gview?url=' + window.encodeURIComponent(url) + '&embedded=true" style="border: 0px; width: 396px; height: ' + (window.innerHeight - 119) + 'px"></iframe>';
+    }
+    
+    
+    $$('#info-popup-name').html(name);
+    $$('#info-popup-content').html(content);
+    myApp.popup('.info-popup');
+}

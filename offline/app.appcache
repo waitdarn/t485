@@ -1,14 +1,14 @@
 CACHE MANIFEST
-# 2016-06-19:v4
+# 2016-06-19:v7
 
 CACHE:
-index.html
-js/my-app.js
-js/firebase.min.js
-../js/tabletop.min.js
-bower_components/Framework7/dist/js/framework7.min.js
-bower_components/Framework7/dist/css/framework7.ios.min.css
-bower_components/Framework7/dist/css/framework7.ios.colors.min.css
+#index.html
+#js/my-app.js
+#js/firebase.min.js
+#../js/tabletop.min.js
+#bower_components/Framework7/dist/js/framework7.min.js
+#bower_components/Framework7/dist/css/framework7.ios.min.css
+#bower_components/Framework7/dist/css/framework7.ios.colors.min.css
 
 NETWORK:
 *
