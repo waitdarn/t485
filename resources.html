@@ -14,37 +14,18 @@
     <div class="container">
 
         <div class="row">
-            <div class="box col-sm-6">
+            <div class="box col-md-12">
                 <hr>
                 <h2 class="intro-text text-center">Resources</h2>
-                <hr>
-                <ul>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic')">Council Resource</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/document/d/1dtMPUhKv6eOfKaxk3iMwnRbovgu0yZt6J0mH8wPdBfY/mobilebasic')">Things to Remember</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/presentation/embed?id=15e_mFNG0x4JIhqbCOZ3CDkVm_nrmEnXYE1RFOEQKd-w&start=false&loop=false')">Advancement Presentation (By Calvin Ho)</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/document/d/1ssoNp8eQqNzkeJAefQdLk6aqu5bEMGarUHX9RvpV1BU/mobilebasic')">Resume Template</a></li>
-                    <li><a onclick="openModal(event, 'https://troop8.org/sites/troop8.org/files/BSA_Fieldbook.pdf')">BSA Fieldbook (67 MB)</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/presentation/embed?id=1cqU9DQ0c4RXcm0GJ-gJJ8pRP8Ah3WsYApBlaLbrnRhw&start=false&loop=false')">Year End Party Presentation</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/document/d/1a56ZOlhhT1MT7QGXwLSzmsD5l1cahH44O6kUFNTAJ3I/mobilebasic')">Packing List</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/gview?url=http://www.arcconsultinggroup.com/downloads/finance/Patrol%20Leader%20Handbook%2032502.pdf&embedded=true')">Patrol Leader Handbook</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/document/d/16ft2MS85ZYynyJC9lMIo6Kp8yaJQfcGmY62ayj97_uo/mobilebasic')">TLT 2016 - Lecture Notes</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/presentation/embed?id=16vDoqikgorGn4utl1sHBkMhXqbEbvwtGkJ5xMMfbm-o&start=false&loop=false')">2016 Advancement Update</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/viewer?srcid=0Bz_nBTtnwG9-MkVlS19xNGZpR2pQTG1uU1l0cXNoSkVwS1Jz&pid=explorer&efh=false&a=v&chrome=false&embedded=true')">New Scout Requirements 2016 Insert</a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="box col-sm-6">
-                <hr>
-                <h2 class="intro-text text-center">More Resources</h2>
                 <hr>
                 <div id="resource-list"></div>
             </div>
         </div>
 
         <div class="row">
-            <div class="box col-md-12">
+            <div class="box col-md-12" id="need-login" style="display: none;">
                 <hr>
-                <h2 class="intro-text text-center">Add <strong>FileS</strong></h2>
+                <h2 class="intro-text text-center">Add <strong>Files</strong></h2>
                 <hr>
                 <p>
                     You can upload your own resources. Be sure to provide a
@@ -64,9 +45,21 @@
                     </div>
                     <div id="upload-progress"></div>
                     <div class="form-group">
+                        <label for="drive-urls">Google Docs or Google Slides url and file name (one per line)</label>
+                        <textarea class="form-control" id="drive-urls" rows="5" placeholder="https://docs.google.com/document/d/1W98GkzMbu3MhVX4bq981dyjifWLYr3Bat6ej-iE52Os/mobilebasic,This is a test file"></textarea>
+                    </div>
+                    <div class="form-group">
                         <input type="submit" id="submit" value="Submit" class="btn btn-default">
                     </div>
                 </form>
+            </div>
+            <div class="box col-md-12" id="need-login-form">
+                <hr>
+                <h2 class="intro-text text-center">Add <strong>Files</strong></h2>
+                <hr>
+                <p>
+                    You need to <a href="#" onclick="sessionStorage.setItem('auth-redirect', 'resources.html');Singulr.loadPage('login.html?redirect=resources.html')">login</a> in order to upload files!
+                </p>
             </div>
         </div>
 
@@ -100,9 +93,9 @@
     
     
     <script>
-        auth(function() {}, function() {
-            sessionStorage.setItem('auth-redirect', 'resources.html');
-            Singulr.loadPage('login.html?redirect=resources.html');
+        auth(function() {
+            $('#need-login').css('display', 'block');
+            $('#need-login-form').css('display', 'none');
         });
         
         
@@ -118,11 +111,12 @@
             var eventName = response.event;
             var resourceUrls = response.urls.split(',');
             var resourceNames = response.names.split(',');
+            var resourceSizes = response.sizes.split(',');
             
-            var p = document.createElement('p');
+            var div = document.createElement('div');
             var h4 = document.createElement('h4');
             h4.innerHTML = eventName;
-            p.appendChild(h4);
+            div.appendChild(h4);
             
             var list = document.createElement('ul');
             
@@ -130,7 +124,8 @@
                 var listItem = document.createElement('li');
                 var a = document.createElement('a');
                 a.href = resourceUrls[i];
-                a.innerHTML = resourceNames[i];
+                console.log(resourceSizes[i]);
+                a.innerHTML = resourceNames[i] + (resourceSizes[i] === '?' ? '' : (' (' + resourceSizes[i] + ')'));
                 a.addEventListener('click', (function(i) {
                     return function(e) {
                         e.preventDefault();
@@ -145,9 +140,9 @@
                 list.appendChild(listItem);
             }
             
-            p.appendChild(list);
+            div.appendChild(list);
             
-            listElement.appendChild(p);
+            listElement.appendChild(div);
         });
         
         
@@ -157,19 +152,21 @@
             e.preventDefault();
             
             var files = document.getElementById('files').files;
-            if (files.length === 0 || document.getElementById('event-name').value === '') {
-                alert(files.length === 0 ?
-                    'No file provided!' :
-                    (document.getElementById('event-name').value === '' ?
-                        'Please provide a meaningful event name/title!' :
-                        ''));
+            if (document.getElementById('event-name').value === '') {
+                alert('Please provide a meaningful event name/title!');
                 return;
             }
             
             var loadedFiles = new Array(files.length);
             var downloadURLs = [];
             var downloadNames = [];
+            var downloadSizes = [];
             
+            
+            if (files.length < 1) {
+                doAfter();
+                return;
+            }
             
             for (var i = 0; i < files.length; i++) {
                 uploadFile(files[i], i, function(downloadURL, i) {
@@ -177,6 +174,13 @@
                     
                     downloadURLs.push(downloadURL);
                     downloadNames.push(files[i].name);
+                    // larger than 100 mb
+                    if (files[i].size > 100000000) {
+                        alert('File too large!');
+                        throw new Error('The file is too large (bigger than 100mb)');
+                    }
+                    // 1 decimal place
+                    downloadSizes.push(formatBytes(files[i].size, 0));
                     console.log(downloadURL);
                     
                     for (var j = 0; j < files.length; j++) {
@@ -185,20 +189,73 @@
                     
                     
                     // all files are loaded
-                    console.log('all done!');
-                    
-                    ref.child('resourceUrls').push({
-                        event: document.getElementById('event-name').value,
-                        names: downloadNames.toString(),
-                        urls: downloadURLs.toString()
-                    });
-                    
-                    alert('File(s) uploaded successfully!');
-                    // reload page
-                    Singulr.loadPage('resources.html');
+                    doAfter();
                 });
             }
+            
+            function doAfter() {
+                var driveUrls = document.getElementById('drive-urls').value.trim().split('\n');
+                console.log(driveUrls);
+                
+                if (!(driveUrls.length === 1 && driveUrls[0] === '')) {
+                    var driveNames = [];
+                    var driveSizes = [];
+                    
+                    for (var i = 0; i < driveUrls.length; i++) {
+                        // remove end of url
+                        var match1 = driveUrls[i].split(',')[0].match(/https?:\/\/docs\.google\.com\/document\/d\/[\w-_]{44}\//);
+                        var match2 = driveUrls[i].split(',')[0].match(/[0-9a-zA-Z-_]{44}/);
+                        
+                        if (match1 === null && match2 === null) {
+                            console.log(driveUrls[i]);
+                            alert('Url has to be a Google docs or Google slides url!');
+                            return;
+                        }
+                        
+                        if (match2 === null) {
+                            driveNames.push(driveUrls[i].split(',')[1]);
+                            driveUrls[i] = match1[0] + 'mobilebasic';
+                            driveSizes.push('?');
+                        } else {
+                            driveNames.push(driveUrls[i].split(',')[1]);
+                            driveUrls[i] = 'https://docs.google.com/presentation/embed?id=' + match2[0] + '&start=false&loop=false';
+                            driveSizes.push('?');
+                        }
+                    }
+                    
+                    downloadURLs.push.apply(downloadURLs, driveUrls);
+                    downloadNames.push.apply(downloadNames, driveNames);
+                    downloadSizes.push.apply(downloadSizes, driveSizes);
+                }
+                
+                
+                if (downloadURLs.length < 1) {
+                    alert('No files or urls to upload!');
+                    return;
+                }
+                
+                ref.child('resourceUrls').push({
+                    event: document.getElementById('event-name').value,
+                    names: downloadNames.toString(),
+                    urls: downloadURLs.toString(),
+                    sizes: downloadSizes.toString()
+                });
+                
+                alert('File(s) uploaded successfully!');
+                // reload page
+                Singulr.loadPage('resources.html');
+            }
         };
+        
+        
+        function formatBytes(bytes, decimals) {
+            if (bytes == 0) return '0 Byte';
+            var k = 1000;
+            var dm = decimals + 1 || 3;
+            var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+            var i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
         
         
         function uploadFile(file, i, callback) {

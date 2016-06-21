@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html manifest="app.appcache">
 
 <head>
     <!-- Required meta tags-->
@@ -9,14 +9,17 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
     <!-- Your app title -->
-    <title>T485 App</title>
+    <title>T485</title>
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="../favicons/favicon-16x16.png" sizes="16x16">
     
     <!-- Path to Framework7 iOS CSS theme styles-->
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.min.css">
     <!-- Path to Framework7 iOS related color styles -->
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.colors.min.css">
-    <!-- Path to your custom app styles-->
-    <!--<link rel="stylesheet" href="path/to/my-app.css">-->
 </head>
 
 <body>
@@ -39,13 +42,8 @@
             <!-- Top Navbar-->
             <div class="navbar">
                 <div class="navbar-inner">
-                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                     <div class="center sliding">T485 App</div>
                     <div class="right">
-                        <!-- 
-                Right link contains only icon - additional "icon-only" class
-                Additional "open-panel" class tells app to open panel when we click on this link
-              -->
                         <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
                     </div>
                 </div>
@@ -56,13 +54,13 @@
                 <!-- Page, "data-page" contains page name -->
                 <div data-page="index" class="page">
                     <!-- Scrollable page content -->
-                    <div class="page-content">
-                        <div class="content-block">
-                            <p>blah blah welcome blah blah</p>
+                    <div class="page-content pull-to-refresh-content">
+                        <div class="pull-to-refresh-layer">
+                            <div class="preloader"></div>
+                            <div class="pull-to-refresh-arrow"></div>
                         </div>
-                        <div class="content-block-title">
-                            Menu
-                        </div>
+                        
+                        <div class="content-block-title">Menu</div>
                         <div class="list-block">
                             <ul>
                                 <li>
@@ -74,7 +72,7 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li>
+                                <li id="resources-link">
                                     <a href="resources.html" class="item-link">
                                         <div class="item-content">
                                             <div class="item-inner">
@@ -86,26 +84,44 @@
                             </ul>
                         </div>
                     </div>
+                    <!--/.page-content-->
+                </div>
+                <!--/.page-->
+            </div>
+            <!--/.pages .navbar-through .toolbar-through-->
+        </div>
+        <!--/.view .view-main-->
+    </div>
+    <!--/.views-->
+    
+    <div class="popup info-popup" style="display: none;">
+        <div class="view">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left sliding"><a href="#" class="link close-popup photo-browser-close-link  "><i class="icon icon-back "></i><span>Close</span></a></div>
+                    <div class="center sliding" style="left: -31px;" id="info-popup-name"></div>
+                    <div class="right"></div>
                 </div>
             </div>
             
-            <!-- Bottom Toolbar-->
-            <div class="toolbar">
-                <div class="toolbar-inner">
-                    <!-- Toolbar links -->
-                    <a href="#" class="link">Link 1</a>
-                    <a href="#" class="link">Link 2</a>
+            <div class="page navbar-through">
+                <div class="page-content">
+                    <div class="content-block" id="info-popup-content" style="overflow: auto; -webkit-overflow-scrolling: touch; "></div>
                 </div>
             </div>
         </div>
     </div>
+    <!--/.popup .modal-in-->
     
     
     <!-- Framework7 Library JS-->
     <script src="bower_components/Framework7/dist/js/framework7.min.js"></script>
-    <!-- Path to your app js-->
-    <script src="my-app.js"></script>
+    <!--Firebase-->
+    <script src="js/firebase.min.js"></script>
+    <!--Tabletop-->
+    <script src="../js/tabletop.min.js"></script>
     
+    <script src="js/my-app.js"></script>
 </body>
 
 </html>

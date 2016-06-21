@@ -522,7 +522,7 @@ a:focus {
 #upload-progress > .upload-container > .upload-cancel {
     position: absolute;
     display: inline-block;
-    color: grey;
+    color: red;
     text-align: right;
     right: 5px;
 }

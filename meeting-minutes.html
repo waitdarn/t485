@@ -169,7 +169,7 @@
     
     
     <script>
-        auth(function() {}, function() {
+        auth(null, function() {
             sessionStorage.setItem('auth-redirect', 'meeting-minutes.html');
             Singulr.loadPage('login.html?redirect=meeting-minutes.html');
         });
