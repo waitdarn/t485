@@ -14,20 +14,9 @@
     <div class="container">
 
         <div class="row">
-            <div class="box col-sm-6">
+            <div class="box col-md-12">
                 <hr>
                 <h2 class="intro-text text-center">Resources</h2>
-                <hr>
-                <ul>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/presentation/embed?id=15e_mFNG0x4JIhqbCOZ3CDkVm_nrmEnXYE1RFOEQKd-w&start=false&loop=false')">Advancement Presentation (By Calvin Ho)</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/presentation/embed?id=1cqU9DQ0c4RXcm0GJ-gJJ8pRP8Ah3WsYApBlaLbrnRhw&start=false&loop=false')">Year End Party Presentation</a></li>
-                    <li><a onclick="openModal(event, 'https://docs.google.com/presentation/embed?id=16vDoqikgorGn4utl1sHBkMhXqbEbvwtGkJ5xMMfbm-o&start=false&loop=false')">2016 Advancement Update</a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="box col-sm-6">
-                <hr>
-                <h2 class="intro-text text-center">More Resources</h2>
                 <hr>
                 <div id="resource-list"></div>
             </div>
@@ -56,7 +45,7 @@
                     </div>
                     <div id="upload-progress"></div>
                     <div class="form-group">
-                        <label for="drive-urls">Google Docs url and file name (one url per line) example shown below</label>
+                        <label for="drive-urls">Google Docs or Google Slides url and file name (one per line)</label>
                         <textarea class="form-control" id="drive-urls" rows="5" placeholder="https://docs.google.com/document/d/1W98GkzMbu3MhVX4bq981dyjifWLYr3Bat6ej-iE52Os/mobilebasic,This is a test file"></textarea>
                     </div>
                     <div class="form-group">
@@ -219,7 +208,7 @@
                         
                         if (match1 === null && match2 === null) {
                             console.log(driveUrls[i]);
-                            alert('Url has to be a google docs or google slides url!');
+                            alert('Url has to be a Google docs or Google slides url!');
                             return;
                         }
                         

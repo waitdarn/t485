@@ -268,9 +268,11 @@ function resourceClicked(url, type, name) {
     
     if (type === 'docs') {
         // height needs to be changed
-        content = '<iframe style="border: 0px; background-color: white; width: 396px; height: ' + (window.innerHeight - 119) + 'px" src="' + url + '"></iframe>';
+        content = '<iframe style="border: 0px; background-color: white; width: ' + (window.innerWidth - 30) + 'px; height: ' + (window.innerHeight - 119) + 'px" src="' + url + '"></iframe>';
     } else if (type === 'pdf') {
-        content = '<iframe src="https://docs.google.com/gview?url=' + window.encodeURIComponent(url) + '&embedded=true" style="border: 0px; width: 396px; height: ' + (window.innerHeight - 119) + 'px"></iframe>';
+        content = '<a href="' + url + '" class="external" target="_blank" style="font-size: 20px">Download</a><iframe src="https://docs.google.com/gview?url=' + window.encodeURIComponent(url) + '&embedded=true" style="border: 0px; width: ' + (window.innerWidth - 30) + 'px; height: ' + (window.innerHeight - 119) + 'px"></iframe>';
+        // content = '<object data="' + url + '" style="width: ' + (window.innerWidth - 30) + 'px; height: ' + (window.innerHeight - 119) + 'px"></object>';
+        // return;
     }
     
     
