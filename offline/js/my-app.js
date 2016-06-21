@@ -1,11 +1,3 @@
-/*
-    TODO:
-    - directory refresh (bug)
-*/
-
-
-
-
 // Initialize app and store it to myApp variable for futher access to its methods
 var myApp = new Framework7();
 
@@ -183,6 +175,7 @@ function refreshDirectory() {
         }
         
         // all loaded
+        console.log(allData);
         myApp.pullToRefreshDone();
         localStorage.setItem('directory-info', JSON.stringify(allData));
     }
@@ -215,14 +208,15 @@ myApp.onPageInit('resources', function() {
         var list = document.createElement('ul');
         
         for (var i = 0; i < resourceUrls.length; i++) {
-            //https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2Ffoobarbaz.txt?alt=media&token=b8c99be2-639e-4c1a-a52f-018168ed8920
             var url = resourceUrls[i];
             var type = '';
             if (url.match(/\/resources%2F[^\.]+.(jpeg|jpg|gif|png)/) !== null) {
                 type = 'image';
             } else if (url.match(/\/resources%2F[^\.]+.pdf/) !== null) {
                 type = 'pdf';
-            } else if (url.match(/https:\/\/docs\.google\.com\/document\/d\/[\w-_]{44}\//) !== null) {
+            } else if (url.match(/https?:\/\/docs\.google\.com\/document\/d\/[\w-_]{44}\//) !== null) {
+                type = 'docs';
+            } else if (url.match(/https?:\/\/docs\.google\.com\/presentation\/embed\?id=[\w-_]{44}/) !== null) {
                 type = 'docs';
             } else {
                 type = 'other';
@@ -234,7 +228,7 @@ myApp.onPageInit('resources', function() {
                         '<div class="item-content">' +
                             '<div class="item-inner">' +
                                 '<div class="item-title">' + resourceNames[i] + '</div>' +
-                                '<div class="item-after">' + resourceSizes[i] + '</div>' +
+                                '<div class="item-after">' + (resourceSizes[i] === '?' ? '' : resourceSizes[i]) + '</div>' +
                             '</div>' +
                         '</div>' +
                     '</a>' +
@@ -269,13 +263,12 @@ function resourceClicked(url, type, name) {
     }
     
     
-    var urlMatches = url.match(/\/resources%2F([^\.]+).([^\?]+)/);
     var content = '';
     
     
     if (type === 'docs') {
         // height needs to be changed
-        content = '<iframe style="border: 0px; width: 396px; height: ' + (window.innerHeight - 119) + 'px" src="' + url + '"></iframe>';
+        content = '<iframe style="border: 0px; background-color: white; width: 396px; height: ' + (window.innerHeight - 119) + 'px" src="' + url + '"></iframe>';
     } else if (type === 'pdf') {
         content = '<iframe src="https://docs.google.com/gview?url=' + window.encodeURIComponent(url) + '&embedded=true" style="border: 0px; width: 396px; height: ' + (window.innerHeight - 119) + 'px"></iframe>';
     }
