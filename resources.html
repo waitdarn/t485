@@ -18,12 +18,13 @@
                 <hr>
                 <h2 class="intro-text text-center">Resources</h2>
                 <hr>
+                <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=meeting-minutes.html')">Log out</button>
                 <div id="resource-list"></div>
             </div>
         </div>
 
         <div class="row">
-            <div class="box col-md-12" id="need-login" style="display: none;">
+            <div class="box col-md-12">
                 <hr>
                 <h2 class="intro-text text-center">Add <strong>Files</strong></h2>
                 <hr>
@@ -52,14 +53,6 @@
                         <input type="submit" id="submit" value="Submit" class="btn btn-default">
                     </div>
                 </form>
-            </div>
-            <div class="box col-md-12" id="need-login-form">
-                <hr>
-                <h2 class="intro-text text-center">Add <strong>Files</strong></h2>
-                <hr>
-                <p>
-                    You need to <a href="#" onclick="sessionStorage.setItem('auth-redirect', 'resources.html');Singulr.loadPage('login.html?redirect=resources.html')">login</a> in order to upload files!
-                </p>
             </div>
         </div>
 
@@ -93,9 +86,8 @@
     
     
     <script>
-        auth(function() {
-            $('#need-login').css('display', 'block');
-            $('#need-login-form').css('display', 'none');
+        auth(null, function () {
+            Singulr.loadPage('login.html?redir=resources.html');
         });
         
         
