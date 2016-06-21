@@ -70,7 +70,6 @@ myApp.onPageInit('directory', function() {
 
 function showfullinfo(id) {
     myApp.onPageInit('directory-more', function() {
-        console.log(id);
         $$('#more-name').html(data[id]['Scout\'s Full Name (last name first):']);
         $$('#more-info').html('').append(
             'Name: '                    + data[id]['Scout\'s Full Name (last name first):'] + '<br>' +
@@ -88,15 +87,20 @@ function showfullinfo(id) {
 
 
 
-if (online) {
-    if (localStorage.getItem('directory-info') === null) refreshDirectory();
-    $$('.pull-to-refresh-content').on('refresh', function() {
-        refreshDirectory();
-    });
-}
+
+if (localStorage.getItem('directory-info') === null) refreshDirectory();
+$$('.pull-to-refresh-content').on('refresh', function() {
+    refreshDirectory();
+});
+
 
 
 function refreshDirectory() {
+    if (!online) {
+        myApp.pullToRefreshDone();
+        return;
+    }
+    
     var secretInfo = {
         "cacti": "1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU",
         "hawks": "1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk",
@@ -115,7 +119,7 @@ function refreshDirectory() {
             data[i].patrol = 'Cacti';
         }
         allData.push.apply(allData, data);
-        allLoaded[0] = true;
+        checkLoaded(0);
     }, simpleSheet: true});
     
     // Hawks
@@ -124,8 +128,7 @@ function refreshDirectory() {
             data[i].patrol = 'Hawks';
         }
         allData.push.apply(allData, data);
-        allLoaded[1] = true;
-        checkLoaded();
+        checkLoaded(1);
     }, simpleSheet: true});
     
     // Wildcats
@@ -134,8 +137,7 @@ function refreshDirectory() {
             data[i].patrol = 'Wildcats';
         }
         allData.push.apply(allData, data);
-        allLoaded[2] = true;
-        checkLoaded();
+        checkLoaded(2);
     }, simpleSheet: true});
     
     // Serpents
@@ -144,8 +146,7 @@ function refreshDirectory() {
             data[i].patrol = 'Serpents';
         }
         allData.push.apply(allData, data);
-        allLoaded[3] = true;
-        checkLoaded();
+        checkLoaded(3);
     }, simpleSheet: true});
     
     // Blobfish
@@ -154,8 +155,7 @@ function refreshDirectory() {
             data[i].patrol = 'Blobfish';
         }
         allData.push.apply(allData, data);
-        allLoaded[4] = true;
-        checkLoaded();
+        checkLoaded(4);
     }, simpleSheet: true});
     
     // Dragons
@@ -164,18 +164,18 @@ function refreshDirectory() {
             data[i].patrol = 'Dragons';
         }
         allData.push.apply(allData, data);
-        allLoaded[5] = true;
-        checkLoaded();
+        checkLoaded(5);
     }, simpleSheet: true});
     
     
-    function checkLoaded() {
+    function checkLoaded(i) {
+        allLoaded[i] = true;
         for (var i = 0; i < allLoaded.length; i++) {
             if (!allLoaded[i]) return;
         }
         
         // all loaded
-        console.log(allData);
+        console.log('directory refreshed!');
         myApp.pullToRefreshDone();
         localStorage.setItem('directory-info', JSON.stringify(allData));
     }
@@ -183,67 +183,65 @@ function refreshDirectory() {
 
 
 
-
-myApp.onPageInit('resources', function() {
-    var ref = firebase.database().ref();
-    
-    ref.child('resourceUrls').on('child_added', function(snapshot) {
-        var response = snapshot.val();
-        var listElement = document.getElementById('upload-list');
-        var eventName = response.event;
-        var resourceUrls = response.urls.split(',');
-        var resourceNames = response.names.split(',');
-        var resourceSizes = response.sizes.split(',');
+if (online) {
+    myApp.onPageInit('resources', function() {
+        var ref = firebase.database().ref();
         
-        var title = document.createElement('div');
-        title.setAttribute('class', 'content-block-title');
-        title.innerHTML = eventName;
-        listElement.appendChild(title);
-        
-        var listBlock = document.createElement('div');
-        listBlock.setAttribute('class', 'list-block');
-        
-        
-        
-        var list = document.createElement('ul');
-        
-        for (var i = 0; i < resourceUrls.length; i++) {
-            var url = resourceUrls[i];
-            var type = '';
-            if (url.match(/\/resources%2F[^\.]+.(jpeg|jpg|gif|png)/) !== null) {
-                type = 'image';
-            } else if (url.match(/\/resources%2F[^\.]+.pdf/) !== null) {
-                type = 'pdf';
-            } else if (url.match(/https?:\/\/docs\.google\.com\/document\/d\/[\w-_]{44}\//) !== null) {
-                type = 'docs';
-            } else if (url.match(/https?:\/\/docs\.google\.com\/presentation\/embed\?id=[\w-_]{44}/) !== null) {
-                type = 'docs';
-            } else {
-                type = 'other';
+        ref.child('resourceUrls').on('child_added', function(snapshot) {
+            var response = snapshot.val();
+            var listElement = document.getElementById('upload-list');
+            var eventName = response.event;
+            var resourceUrls = response.urls.split(',');
+            var resourceNames = response.names.split(',');
+            var resourceSizes = response.sizes.split(',');
+            
+            var title = document.createElement('div');
+            title.setAttribute('class', 'content-block-title');
+            title.innerHTML = eventName;
+            listElement.appendChild(title);
+            
+            var listBlock = document.createElement('div');
+            listBlock.setAttribute('class', 'list-block');
+            
+            
+            
+            var list = document.createElement('ul');
+            
+            for (var i = 0; i < resourceUrls.length; i++) {
+                var url = resourceUrls[i];
+                var type = '';
+                if (url.match(/\/resources%2F[^\.]+.(jpeg|jpg|gif|png)/) !== null) {
+                    type = 'image';
+                } else if (url.match(/\/resources%2F[^\.]+.pdf/) !== null) {
+                    type = 'pdf';
+                } else if (url.match(/https?:\/\/docs\.google\.com\/document\/d\/[\w-_]{44}\//) !== null) {
+                    type = 'docs';
+                } else if (url.match(/https?:\/\/docs\.google\.com\/presentation\/embed\?id=[\w-_]{44}/) !== null) {
+                    type = 'docs';
+                } else {
+                    type = 'other';
+                }
+                
+                $$(list).append(
+                    '<li>' +
+                        '<a href="#" class="item-link" onclick="resourceClicked(\'' + url + '\', \'' + type + '\', \'' + resourceNames[i] + '\')">' +
+                            '<div class="item-content">' +
+                                '<div class="item-inner">' +
+                                    '<div class="item-title">' + resourceNames[i] + '</div>' +
+                                    '<div class="item-after">' + (resourceSizes[i] === '?' ? '' : resourceSizes[i]) + '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</a>' +
+                    '</li>'
+                );
             }
             
-            $$(list).append(
-                '<li>' +
-                    '<a href="#" class="item-link" onclick="resourceClicked(\'' + url + '\', \'' + type + '\', \'' + resourceNames[i] + '\')">' +
-                        '<div class="item-content">' +
-                            '<div class="item-inner">' +
-                                '<div class="item-title">' + resourceNames[i] + '</div>' +
-                                '<div class="item-after">' + (resourceSizes[i] === '?' ? '' : resourceSizes[i]) + '</div>' +
-                            '</div>' +
-                        '</div>' +
-                    '</a>' +
-                '</li>'
-            );
-        }
-        
-        listBlock.appendChild(list);
-        
-        listElement.appendChild(listBlock);
+            listBlock.appendChild(list);
+            
+            listElement.appendChild(listBlock);
+        });
     });
-});
-
-
-if (!online) $$('#resources-link').hide();
+}
 
 
 function resourceClicked(url, type, name) {
@@ -253,7 +251,6 @@ function resourceClicked(url, type, name) {
     }
     
     if (type === 'image') {
-        console.log(url);   
         var myPhotoBrowserPopup = myApp.photoBrowser({
             photos : [url],
             type: 'popup'
@@ -280,3 +277,9 @@ function resourceClicked(url, type, name) {
     $$('#info-popup-content').html(content);
     myApp.popup('.info-popup');
 }
+
+
+
+myApp.onPageInit('index', function() {
+    if (!online) $$('#resources-link').hide();
+});

@@ -35,8 +35,7 @@
     
     <script>
         var redir = getQuery('redir') || 'home.html';
-        sessionStorage.setItem("auth-redirect", redir);
-        $("#logout").html('<a href="login.html">here</a>');
+        $("#logout").html('<a href="login.html?redir=' + redir + '">here</a>');
         
         firebase.auth().signOut().then(function() {
             // Sign-out successful.

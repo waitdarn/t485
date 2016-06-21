@@ -32,6 +32,8 @@
                         <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1EF8Bbf0o9GymAdh7kVYLkfuXKHQLaGV-hgs1fIDlM7Y/')">PLC Headcounts 4/25/2016 - </a>
                     </p>
                     <ul id="meeting-minute-list">
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1lyn3eOc0zzJA0kxglPR7BgBGbpE5PkY0ef7uU2cs1bE/mobilebasic')">Troop and PLC Meeting Minutes 6/20/2016</a></li>
+                        <br>
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1Ps-tO-JXMd1X01_AQc87Mg_VCTlhf2mD5wj2YxanDrU/mobilebasic')">Troop Meeting Minutes 6/6/2016</a></li>
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/14VTi5ohoWvDQ2t4AbfGyAPSZY2B6bliZ_4Xn0uxoqwM/mobilebasic')">PLC Meeting Minutes 6/6/2016</a></li>
                         <br>
@@ -170,8 +172,7 @@
     
     <script>
         auth(null, function() {
-            sessionStorage.setItem('auth-redirect', 'meeting-minutes.html');
-            Singulr.loadPage('login.html?redirect=meeting-minutes.html');
+            Singulr.loadPage('login.html?redir=meeting-minutes.html');
         });
         
         function openModal(_this, url) {

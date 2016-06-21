@@ -101,8 +101,7 @@
                 
                 $("#event-links").append(events);
             }, function() {
-                sessionStorage.setItem('auth-redirect', 'pictures.html');
-                Singulr.loadPage('login.html');
+                Singulr.loadPage('login.html?redir=pictures.html');
             });
         }
     
