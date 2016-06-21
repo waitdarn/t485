@@ -212,11 +212,11 @@
                             return;
                         }
                         
-                        if (match2 === null) {
+                        if (match1 !== null) {
                             driveNames.push(driveUrls[i].split(',')[1]);
                             driveUrls[i] = match1[0] + 'mobilebasic';
                             driveSizes.push('?');
-                        } else {
+                        } else if (match2 !== null) {
                             driveNames.push(driveUrls[i].split(',')[1]);
                             driveUrls[i] = 'https://docs.google.com/presentation/embed?id=' + match2[0] + '&start=false&loop=false';
                             driveSizes.push('?');
