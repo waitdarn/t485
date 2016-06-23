@@ -1,10 +1,9 @@
 CACHE MANIFEST
-# 2016-06-22:v2
+# 2016-06-23:v1
 
 CACHE:
 index.html
 directory.html
-directory-more.html
 resources.html
 js/my-app.js
 js/firebase.min.js

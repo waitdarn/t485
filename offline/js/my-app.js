@@ -54,7 +54,7 @@ myApp.onPageInit('directory', function() {
         
         $$('#search-content > ul').append(
             '<li>' +
-                '<a href="directory-more.html" class="item-link" onclick="showfullinfo(' + i + ')">' +
+                '<a href="#" class="item-link" onclick="showfullinfo(' + i + ')">' +
                     '<div class="item-content">' +
                         '<div class="item-inner">' +
                             '<div class="item-title">' + currentName + '</div>' +
@@ -69,20 +69,19 @@ myApp.onPageInit('directory', function() {
 
 
 function showfullinfo(id) {
-    myApp.onPageInit('directory-more', function() {
-        $$('#more-name').html(data[id]['Scout\'s Full Name (last name first):']);
-        $$('#more-info').html('').append(
-            'Name: '                    + data[id]['Scout\'s Full Name (last name first):'] + '<br>' +
-            'Email: <a href="mailto:'   + data[id]['Scout\'s E-mail:']                 + '" class="external">' + data[id]['Scout\'s E-mail:'] + '</a><br>' +
-            'Cell Phone: <a href="tel:' + data[id]['Scout\'s Cell Phone']              + '" class="external">' + data[id]['Scout\'s Cell Phone'] + '</a><br>' +
-            'Home Phone: <a href="tel:' + data[id]['Scout\'s Home Phone']              + '" class="external">' + data[id]['Scout\'s Home Phone'] + '</a><br>' +
-            'Patrol: '                  + data[id]['patrol']                           + '<br><br>' +
-            'Father\'s Cell Phone: <a href="tel:' + data[id]['Father\'s Cell Phone']   + '" class="external">' + data[id]['Father\'s Cell Phone'] + '</a><br>' +
-            'Father\'s E-mail: <a href="mailto:'  + data[id]['Father\'s E-mail']       + '" class="external">' + data[id]['Father\'s E-mail'] + '</a><br>' +
-            'Mother\'s Cell Phone: <a href="tel:' + data[id]['Mother\'s Cell Phone']   + '" class="external">' + data[id]['Mother\'s Cell Phone'] + '</a><br>' +
-            'Mother\'s E-mail: <a href="mailto:'  + data[id]['Mother\'s E-mail']       + '" class="external">' + data[id]['Mother\'s E-mail'] + '</a><br>'
-        );
-    });
+    $$('#directory-more-name').html(data[id]['Scout\'s Full Name (last name first):']);
+    $$('#directory-more-info').html(
+        'Name: '                    + data[id]['Scout\'s Full Name (last name first):'] + '<br>' +
+        'Email: <a href="mailto:'   + data[id]['Scout\'s E-mail:']                 + '" class="external">' + data[id]['Scout\'s E-mail:'] + '</a><br>' +
+        'Cell Phone: <a href="tel:' + data[id]['Scout\'s Cell Phone']              + '" class="external">' + data[id]['Scout\'s Cell Phone'] + '</a><br>' +
+        'Home Phone: <a href="tel:' + data[id]['Scout\'s Home Phone']              + '" class="external">' + data[id]['Scout\'s Home Phone'] + '</a><br>' +
+        'Patrol: '                  + data[id]['patrol']                           + '<br><br>' +
+        'Father\'s Cell Phone: <a href="tel:' + data[id]['Father\'s Cell Phone']   + '" class="external">' + data[id]['Father\'s Cell Phone'] + '</a><br>' +
+        'Father\'s E-mail: <a href="mailto:'  + data[id]['Father\'s E-mail']       + '" class="external">' + data[id]['Father\'s E-mail'] + '</a><br>' +
+        'Mother\'s Cell Phone: <a href="tel:' + data[id]['Mother\'s Cell Phone']   + '" class="external">' + data[id]['Mother\'s Cell Phone'] + '</a><br>' +
+        'Mother\'s E-mail: <a href="mailto:'  + data[id]['Mother\'s E-mail']       + '" class="external">' + data[id]['Mother\'s E-mail'] + '</a><br>'
+    );
+    mainView.router.loadContent($$('#directory-more-template').html());
 }
 
 

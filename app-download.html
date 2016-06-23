@@ -23,13 +23,14 @@
                 <div class="col-md-12">
                     <h3>iOS</h3>
                     <p>
-                        Go to the <a href="#" onclick="openApp()">offline app</a>, click the
-                        <img src="http://forecast.io/images/iphone_share.png" style="width: 18px;margin: 0px 5px 0px 5px"></img> button and choose "Add to home
+                        Go to the <a href="#" onclick="window.open('offline/index.html')">offline app</a>, click the
+                        <img src="http://forecast.io/images/iphone_share.png" style="width: 18px; margin: 0px 5px 0px 5px"></img> button and choose "Add to home
                         screen" in the pop up menu.
                     </p>
                     <h3>Android</h3>
                     <p>
-                        Go to the <a href="#" onclick="openApp()">offline app</a>, click the  menu button and choose "Add to home screen" in the pop up menu.
+                        Go to the <a href="#" onclick="window.open('offline/index.html')">offline app</a>, click the
+                        <img src="http://image0.flaticon.com/icons/svg/61/61140.svg" style="width: 18px"></img> button and choose "Add to Home screen" in the pop up menu.
                     </p>
                 </div>
                 <div class="clearfix"></div>
@@ -40,10 +41,6 @@
     <!-- /.container -->
     
     <script>
-        function openApp() {
-            window.open('offline/index.html');
-        }
-        
         auth(null, function() {
             Singulr.loadPage('login.html?redir=app-download.html');
         });
