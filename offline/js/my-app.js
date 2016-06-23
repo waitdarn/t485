@@ -88,19 +88,17 @@ function showfullinfo(id) {
 
 
 
-if (localStorage.getItem('directory-info') === null) refreshDirectory();
-$$('.pull-to-refresh-content').on('refresh', function() {
+if (online) {
+    // refresh on app startup
     refreshDirectory();
-});
+    $$('.pull-to-refresh-content').on('refresh', function() {
+        refreshDirectory();
+    });
+}
 
 
 
 function refreshDirectory() {
-    if (!online) {
-        myApp.pullToRefreshDone();
-        return;
-    }
-    
     var secretInfo = {
         "cacti": "1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU",
         "hawks": "1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk",
