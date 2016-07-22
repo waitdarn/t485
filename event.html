@@ -8,7 +8,7 @@
     <title>Event - Troop 485</title>
     <style>
         .hidden {
-            display:none;
+            display: none;
         }
     </style>
 </head>
@@ -16,9 +16,8 @@
 <body>
 
     <div class="container">
-        <div data-spy="affix" class="hidden" id="edit-btn" data-offset-top="60" data-offset-bottom="200">
-          <button class="btn btn-defualt"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit this page</button>
-        </div>
+        <div class="alert alert-info" role="alert" id="alert">You can <a id="edit">edit this page</a>.</div>
+
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">
@@ -38,41 +37,46 @@
     <!-- /.container -->
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
-    
-    auth(function(user) {
-        firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
-  var data = snapshot.val();
+        auth(function(user) {
+            firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+                var data = snapshot.val();
 
-  $("#event-title").html(data.title);
-    $("#event-description").html(data.description)
+                $("#event-title").html(data.title);
+                $("#event-description").html(data.description)
 
-});
-                
-            }, function() {
-                Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.search));
             });
-tinymce.init({
-  selector: '.editable',
-  inline: true,
-  plugins: [
-    'advlist autolink lists link image charmap print preview',
-    'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table contextmenu paste'
-  ],
-  setup: function (editor) {
-    editor.addButton('save', {
-      text: 'Save Changes',
-      icon: false,
-      onclick: function () {
-        console.log(editor.getContent());
-        console.log(editor.id);
-        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
-      }
-    });
-  },
-  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save'
-});
+
+        }, function() {
+            Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.search));
+        });
+        $("#edit").click(function() {
+            $("#edit").html("Click on some text to edit it. Or <a id='view'>View this page</a>.");
+            $("#view").click(function() {
+                window.location.reload()
+            });
+            tinymce.init({
+                selector: '.editable',
+                inline: true,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste'
+                ],
+                setup: function(editor) {
+                    editor.addButton('save', {
+                        text: 'Save Changes',
+                        icon: false,
+                        onclick: function() {
+                            console.log(editor.getContent());
+                            console.log(editor.id);
+                            firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                        }
+                    });
+                },
+                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save'
+            });
+        });
     </script>
-    
-</div>
+
+    </div>
 </body>
