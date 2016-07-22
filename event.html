@@ -66,7 +66,7 @@ tinymce.init({
       onclick: function () {
         console.log(editor.getContent());
         console.log(editor.id);
-        firebase.database().ref("/events/" + getQuery("title") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
       }
     });
   },
