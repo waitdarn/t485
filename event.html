@@ -40,13 +40,13 @@
     <script>
     
     auth(function(user) {
-        firebase.database().ref('/events/' + window.location.hash.replace("#", "")).once('value').then(function(snapshot) {
+        firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
   var title = snapshot.val().title;
   $("#event-title").html()
 });
                 
             }, function() {
-                Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.hash));
+                Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.search));
             });
 tinymce.init({
   selector: '.editable',
