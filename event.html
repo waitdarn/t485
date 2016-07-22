@@ -23,11 +23,11 @@
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center"><span id="event-title">Loading...</span></h2>
+                    <h2 class="intro-text text-center"><span id="event-title" class="editable">Loading...</span></h2>
                     <hr>
                 </div>
                 <div class="col-md-12" id="event-description">
-                    <p>Loading...</p>
+                    <p class="editable">Loading...</p>
                 </div>
 
                 <div class="clearfix"></div>
@@ -48,42 +48,26 @@
             }, function() {
                 Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.hash));
             });
-        tinymce.init({
-  selector: '#content-editor',
-  height: 500,
-  theme: 'modern',
+tinymce.init({
+  selector: '.editable',
+  inline: true,
   plugins: [
-    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-    'searchreplace wordcount visualblocks visualchars code fullscreen',
-    'insertdatetime media nonbreaking save table contextmenu directionality',
-    'template paste textcolor colorpicker textpattern imagetools'
+    'advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table contextmenu paste'
   ],
-  toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-  toolbar2: 'print preview media | forecolor backcolor',
-  image_advtab: true,
-
-  content_css: [
-    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-    '//www.tinymce.com/css/codepen.min.css'
-  ]
- });
+  setup: function (editor) {
+    editor.addButton('save', {
+      text: 'Save Changes',
+      icon: false,
+      onclick: function () {
+        editor.insertContent('&nbsp;<b>It\'s my button!</b>&nbsp;');
+      }
+    });
+  },
+  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
+});
     </script>
-    <!-- Modal -->
-<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Content</h4>
-      </div>
-      <div class="modal-body">
-        <textarea id="content-editor"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="save">Save changes</button>
-      </div>
-    </div>
-  </div>
+    
 </div>
 </body>
