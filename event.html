@@ -49,10 +49,10 @@
                 Singulr.loadPage('login.html?redir=event.html' + window.location.hash);
             });
         tinymce.init({
+                        selector: '#content-editor',
               plugins: "image",
-  menubar: "insert",
-  toolbar: "image",
-            selector: '#content-editor'
+            menubar: "insert",
+            toolbar: "image"
         });
         $("#edit-btn").click(function(){
              
