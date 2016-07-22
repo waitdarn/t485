@@ -42,7 +42,7 @@
     auth(function(user) {
         firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
   var title = snapshot.val().title;
-  $("#event-title").html()
+  $("#event-title").html(title)
 });
                 
             }, function() {
