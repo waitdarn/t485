@@ -60,8 +60,8 @@ tinymce.init({
     editor.addButton('save', {
       text: 'Save Changes',
       icon: false,
-      onclick: function () {
-        editor.insertContent('&nbsp;<b>It\'s my button!</b>&nbsp;');
+      onclick: function (editor) {
+        console.log(editor.getContent());
       }
     });
   },
