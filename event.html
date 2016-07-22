@@ -27,7 +27,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12" id="event-description-box">
-                    <p class="editable" id="description">Loading...</p>
+                    <p class="editable" id="event-description">Loading...</p>
                 </div>
 
                 <div class="clearfix"></div>
@@ -41,8 +41,11 @@
     
     auth(function(user) {
         firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
-  var title = snapshot.val().title;
-  $("#event-title").html(title)
+  var data = snapshot.val();
+
+  $("#event-title").html(data.title);
+    $("#event-description").html(data.description)
+
 });
                 
             }, function() {
