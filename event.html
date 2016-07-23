@@ -40,11 +40,17 @@
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
         /* global firebase $ getQuery tinymce btoa auth Singulr*/
+       
         firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
             var data = snapshot.val();
-
+            if (data === null) {
+                $("#event-title").html("Error 404: Event Not Found");
+                $("#event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a like to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
+            } else {
             $("#event-title").html(data.title);
             $("#event-description").html(data.description);
+                
+            }
 
         });
 
