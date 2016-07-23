@@ -66,7 +66,7 @@
                             window.location.reload();
                         });
                         tinymce.init({
-                            selector: 'h2.editable',
+                            selector: "#event-title",//'h2.editable',
                             inline: true,
                             plugins: [
                                 "textcolor colorpicker link"
@@ -87,7 +87,7 @@
                         });
 
                         tinymce.init({
-                            selector: 'div.editable',
+                            selector: "event-description",//'div.editable',
                             inline: true,
                             plugins: [
                                 'advlist autolink lists link image charmap print preview',
