@@ -88,7 +88,7 @@
                         });
 
                         tinymce.init({
-                            selector: "event-description", //'div.editable',
+                            selector: "#event-description", //'div.editable',
                             inline: true,
                             plugins: [
                                 "advlist autolink lists link image charmap print preview",
@@ -173,16 +173,16 @@
                             window.location.reload();
                         });
                         tinymce.init({
-                            selector: 'h2.editable',
+                            selector: "#event-title", //'h2.editable',
                             inline: true,
                             plugins: [
                                 "textcolor colorpicker link"
                             ],
-                            toolbar: 'undo redo | forecolor backcolor | link | save',
+                            toolbar: "undo redo | forecolor backcolor | link | save",
                             menubar: false,
                             setup: function(editor) {
-                                editor.addButton('save', {
-                                    text: 'Save Changes',
+                                editor.addButton("save", {
+                                    text: "Save Changes",
                                     icon: false,
                                     onclick: function() {
                                         console.log(editor.getContent());
@@ -192,19 +192,20 @@
                                 });
                             }
                         });
+
                         tinymce.init({
-                            selector: 'div.editable',
+                            selector: "#event-description", //'div.editable',
                             inline: true,
                             plugins: [
-                                'advlist autolink lists link image charmap print preview',
-                                'searchreplace visualblocks fullscreen textcolor colorpicker',
-                                'insertdatetime media table contextmenu paste imagetools'
+                                "advlist autolink lists link image charmap print preview",
+                                "searchreplace visualblocks fullscreen textcolor colorpicker",
+                                "insertdatetime media table contextmenu paste imagetools"
                             ],
                             link_assume_external_targets: true,
-                            removed_menuitems: 'newdocument',
+                            removed_menuitems: "newdocument",
                             setup: function(editor) {
-                                editor.addButton('save', {
-                                    text: 'Save Changes',
+                                editor.addButton("save", {
+                                    text: "Save Changes",
                                     icon: false,
                                     onclick: function() {
                                         console.log(editor.getContent());
@@ -213,7 +214,7 @@
                                     }
                                 });
                             },
-                            toolbar: 'insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save'
+                            toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save"
                         });
 
 
