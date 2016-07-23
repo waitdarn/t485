@@ -124,6 +124,9 @@
             $("#event-description").html(data.description);
 
         });
+        function deleteLink(id) {
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
+                    }
         auth(function(user) {
             firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
                 var uid = snapshot.val().owner;
@@ -141,9 +144,7 @@
 
                     });
                     
-                    function deleteLink(id) {
-                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
-                    }
+                    
                     $("#new-access-link").click(function() {
                         var id = generateRandomStr();
                         firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
