@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert">
+    <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert" id="edit-alert-box">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>. <a id="share">Allow others to edit this page</a>.</span>
     </div>
@@ -49,7 +49,7 @@
         if (getQuery("password") !== null) {
             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', function(snapshot) {
                 if (snapshot.val() === getQuery("password")) {
-                    $("#edit").removeClass("hidden");
+                    $("#edit-alert-box").removeClass("hidden");
                     $("#edit").click(function() {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
                         $("#view").click(function() {
@@ -135,7 +135,7 @@
             firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
                 var uid = snapshot.val().owner;
                 if (uid === user.uid) {
-                    $("#edit").removeClass("hidden");
+                    $("#edit-alert-box").removeClass("hidden");
                     $("#edit").click(function() {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
                         $("#view").click(function() {
