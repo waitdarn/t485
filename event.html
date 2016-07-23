@@ -51,7 +51,7 @@
             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', function(snapshot) {
                 
                 
-                if (snapshot.val() === encodeURIComponent(getQuery("password"))) {
+                if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
                     $("#edit-alert-box").removeClass("hidden");
                     $("#edit").click(function() {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
@@ -132,7 +132,7 @@
                         firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).once("child_added").then(function(data){
                             console.log(data.val());
                             console.log(data.key);
-                            $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
+                            $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
                         
                         });
                         
