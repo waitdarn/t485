@@ -182,7 +182,7 @@
                             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
                                 $("#links").append("<a href='https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + ">https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "</a>(<a onclick='delete(\"" + data.val() + "\")'>Remove This Link</a>)");
                             });
-                            $("#share-modal").modal("open");
+                            $("#share-modal").modal("show");
                         });
                         $("#new-access-link").click(function() {
                             var id = generateRandomStr();
