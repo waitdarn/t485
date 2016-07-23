@@ -150,7 +150,7 @@
             Singulr.loadPage('login.html?redir=resources.html');
         });
         firebase.database().ref("/events/").on("child_added", function(data) {
-            var name = data.key;
+            var name = data.val().title;
             $("#event-list").prepend("<li><a href='event.html?event=" + name + "'>" + name.replace("-", " ") + "</a></li>");
         });
         
