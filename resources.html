@@ -137,6 +137,7 @@
                             title:name,
                             description:"Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
                         });
+                        window.location.href = "event.html?event=" + name;
                     } else {
                         $("#url").val("");
                         $("#error").html("Please choose another url. The url was already taken")
