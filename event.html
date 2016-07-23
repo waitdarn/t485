@@ -179,10 +179,12 @@
                             toolbar: 'insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save'
                         });
                         $("#share").click(function() {
+                            $("#share-modal").modal("show");
                             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
+                                console.log(data.val());
                                 $("#links").append("<a href='https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + ">https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "</a>(<a onclick='delete(\"" + data.val() + "\")'>Remove This Link</a>)");
                             });
-                            $("#share-modal").modal("show");
+                            
                         });
                         $("#new-access-link").click(function() {
                             var id = generateRandomStr();
