@@ -467,8 +467,8 @@ fieldset[disabled] .btn-google.active {
     color: #dd4b39;
     background-color: #fff;
 }
-
-.alert {
+/* for alerts that arent feedback and should be shown*/
+.alert :not(.alert-visible){
     display: none;
 }
 
