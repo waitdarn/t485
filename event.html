@@ -135,7 +135,8 @@
                         firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("value", function(data) {
                             $("#links").html("");
                             console.log(data.val());
-                            $("#links").append("<li>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "'>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "(<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
+                            console.log(data.key)
+                            $("#links").append("<li>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.key + "'>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.key + "(<a onclick='deleteLink(\"" + data.key + "\")'>Remove This Link</a>)</li><hr>");
                         });
 
                     });
