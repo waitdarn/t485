@@ -14,10 +14,10 @@
 </head>
 
 <body>
-<div class="alert alert-info alert-dismissible alert-visible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.</span>
-</div>
+    <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>. <a id="share">Allow others to edit this page</a>.</span>
+    </div>
     <div class="container">
 
         <div class="row">
@@ -39,69 +39,192 @@
     <!-- /.container -->
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
+        firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+            var data = snapshot.val();
+
+            $("#event-title").html(data.title);
+            $("#event-description").html(data.description)
+
+        });
+        if (getQuery("password") !== null) {
+            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").once('value').then(function(snapshot) {
+                if (snapshot.val() === getQuery("password")) {
+                    $("#edit").removeClass("hidden");
+                    $("#edit").click(function() {
+                        $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
+                        $("#view").click(function() {
+                            window.location.reload();
+                        });
+                        tinymce.init({
+                            selector: 'h2.editable',
+                            inline: true,
+                            plugins: [
+                                "textcolor colorpicker link"
+                            ],
+                            toolbar: 'undo redo | forecolor backcolor | link | save',
+                            menubar: false,
+                            setup: function(editor) {
+                                editor.addButton('save', {
+                                    text: 'Save Changes',
+                                    icon: false,
+                                    onclick: function() {
+                                        console.log(editor.getContent());
+                                        console.log(editor.id);
+                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                    }
+                                });
+                            }
+                        });
+                        tinymce.init({
+                            selector: 'div.editable',
+                            inline: true,
+                            plugins: [
+                                'advlist autolink lists link image charmap print preview',
+                                'searchreplace visualblocks fullscreen textcolor colorpicker',
+                                'insertdatetime media table contextmenu paste imagetools'
+                            ],
+                            link_assume_external_targets: true,
+                            removed_menuitems: 'newdocument',
+                            setup: function(editor) {
+                                editor.addButton('save', {
+                                    text: 'Save Changes',
+                                    icon: false,
+                                    onclick: function() {
+                                        console.log(editor.getContent());
+                                        console.log(editor.id);
+                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                    }
+                                });
+                            },
+                            toolbar: 'insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save'
+                        });
+
+                    });
+                    $("#share").click(function() {
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
+                            $("#links").append(data.val());
+                        });
+                    });
+                    $("#new-access-link").click(function() {
+                        var id = generateRandomStr();
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
+                    });
+                }
+            });
+        }
+
+        function generateRandomStr() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+={}[]|?/>.<,";
+
+            for (var i = 0; i < 40; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return encodeURIComponent(btoa(text));
+        }
+
+
+        firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+            var data = snapshot.val();
+
+            $("#event-title").html(data.title);
+            $("#event-description").html(data.description)
+
+        });
         auth(function(user) {
             firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
-                var data = snapshot.val();
+                var uid = snapshot.val().owner;
+                if (uid === user.uid) {
+                    $("#edit").removeClass("hidden");
+                    $("#edit").click(function() {
+                        $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
+                        $("#view").click(function() {
+                            window.location.reload();
+                        });
+                        tinymce.init({
+                            selector: 'h2.editable',
+                            inline: true,
+                            plugins: [
+                                "textcolor colorpicker link"
+                            ],
+                            toolbar: 'undo redo | forecolor backcolor | link | save',
+                            menubar: false,
+                            setup: function(editor) {
+                                editor.addButton('save', {
+                                    text: 'Save Changes',
+                                    icon: false,
+                                    onclick: function() {
+                                        console.log(editor.getContent());
+                                        console.log(editor.id);
+                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                    }
+                                });
+                            }
+                        });
+                        tinymce.init({
+                            selector: 'div.editable',
+                            inline: true,
+                            plugins: [
+                                'advlist autolink lists link image charmap print preview',
+                                'searchreplace visualblocks fullscreen textcolor colorpicker',
+                                'insertdatetime media table contextmenu paste imagetools'
+                            ],
+                            link_assume_external_targets: true,
+                            removed_menuitems: 'newdocument',
+                            setup: function(editor) {
+                                editor.addButton('save', {
+                                    text: 'Save Changes',
+                                    icon: false,
+                                    onclick: function() {
+                                        console.log(editor.getContent());
+                                        console.log(editor.id);
+                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                    }
+                                });
+                            },
+                            toolbar: 'insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save'
+                        });
+                        $("#share").click(function() {
+                            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
+                                $("#links").append(data.val());
+                            });
+                        });
+                        $("#new-access-link").click(function() {
+                            var id = generateRandomStr();
+                            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
+                        });
 
-                $("#event-title").html(data.title);
-                $("#event-description").html(data.description)
+                    });
+                }
 
             });
+
 
         }, function() {
             Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.search));
         });
-        $("#edit").click(function() {
-            $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
-            $("#view").click(function() {
-                window.location.reload();
-            });
-            tinymce.init({
-              selector: 'h2.editable',
-              inline: true,
-              plugins : [
-                  "textcolor colorpicker link"
-                  ],
-              toolbar: 'undo redo | forecolor backcolor | link | save',
-              menubar: false,
-              setup: function(editor) {
-                    editor.addButton('save', {
-                        text: 'Save Changes',
-                        icon: false,
-                        onclick: function() {
-                            console.log(editor.getContent());
-                            console.log(editor.id);
-                            firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
-                        }
-                    });
-                }
-            });
-            tinymce.init({
-                selector: 'div.editable',
-                inline: true,
-                plugins: [
-                    'advlist autolink lists link image charmap print preview',
-                    'searchreplace visualblocks fullscreen textcolor colorpicker',
-                    'insertdatetime media table contextmenu paste imagetools'
-                ],
-                  link_assume_external_targets: true,
-                removed_menuitems: 'newdocument',
-                setup: function(editor) {
-                    editor.addButton('save', {
-                        text: 'Save Changes',
-                        icon: false,
-                        onclick: function() {
-                            console.log(editor.getContent());
-                            console.log(editor.id);
-                            firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
-                        }
-                    });
-                },
-                toolbar: 'insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save'
-            });
-
-        });
     </script>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Allow other users to edit this page.</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Modify access links: Here you can create new edit links and also delete links</p>
+                    <ul id="links">
 
+                    </ul>
+                    <button class="btn btn-success" id="new-access-link">New Access Link</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </body>
