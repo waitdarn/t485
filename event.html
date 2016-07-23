@@ -39,11 +39,12 @@
     <!-- /.container -->
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
+        /* global firebase $ getQuery tinymce btoa auth Singulr*/
         firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
             var data = snapshot.val();
 
             $("#event-title").html(data.title);
-            $("#event-description").html(data.description)
+            $("#event-description").html(data.description);
 
         });
         if (getQuery("password") !== null) {
@@ -120,7 +121,7 @@
             var data = snapshot.val();
 
             $("#event-title").html(data.title);
-            $("#event-description").html(data.description)
+            $("#event-description").html(data.description);
 
         });
         auth(function(user) {
@@ -186,7 +187,7 @@
                         $("#new-access-link").click(function() {
                             var id = generateRandomStr();
                             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
-                           
+
                         });
 
                     });
