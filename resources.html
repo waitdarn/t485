@@ -127,20 +127,21 @@
 
 
     <script>
+    /* global firebase $ auth Singulr */
         auth(function(user){
             $("#create-event-page").click(function(){
                 var name = $("#url").val();
-                $("#error").html("")
-                firebase().database().ref("/events/" + name + "/").once("vaue").then(function(data){
+                $("#error").html("");
+                firebase.database().ref("/events/" + name + "/").once("vaue").then(function(data){
                     if (data.val() === null) {
-                        firebase().database().ref("/events/" + name + "/").set({
+                        firebase.database().ref("/events/" + name + "/").set({
                             title:name,
                             description:"Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
                         });
                         window.location.href = "event.html?event=" + name;
                     } else {
                         $("#url").val("");
-                        $("#error").html("Please choose another url. The url was already taken")
+                        $("#error").html("Please choose another url. The url was already taken");
                     }
                 });
             });
