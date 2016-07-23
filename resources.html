@@ -128,9 +128,13 @@
 
     <script>
     /* global firebase $ auth Singulr */
+    String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.split(search).join(replacement);
+};
         auth(function(user){
             $("#create-event-page").click(function(){
-                var name = encodeURIComponent($("#url").val().replace(" ", "-"));
+                var name = encodeURIComponent($("#url").val().replaceAll(" ", "-"));
                 $("#error").html("");
                 firebase.database().ref("/events/" + name + "/").once("value").then(function(data){
                     if (data.val() === null) {
