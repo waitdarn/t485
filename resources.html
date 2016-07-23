@@ -132,7 +132,7 @@
             $("#create-event-page").click(function(){
                 var name = $("#url").val().replace("-", "");
                 $("#error").html("");
-                firebase.database().ref("/events/" + name + "/").once("vaue").then(function(data){
+                firebase.database().ref("/events/" + name + "/").once("value").then(function(data){
                     if (data.val() === null) {
                         firebase.database().ref("/events/" + name + "/").set({
                             title:name,
