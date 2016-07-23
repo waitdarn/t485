@@ -48,8 +48,21 @@
             </div>
 
         </div>
-    </div>
-    </div>
+        <div class="row">
+            <div class="box col-md-12">
+                <hr>
+                <h2 class="intro-text text-center">Create New Event Page</h2>
+                <hr>
+                <label for="basic-url">Choose An URL</label>
+                <div class="input-group">
+                  <span class="input-group-addon" for="url">https://t485.org/event.html?event=</span>
+                  <input type="text" class="form-control" id="url" aria-describedby="url">
+                </div>
+                <p id="error" class="text-danger"></p>
+                <button id="create-event-page">Create event page!</button>
+            </div>
+        </div>
+
     <!--
         <div class="row">
             <div class="box col-md-12">
@@ -115,14 +128,29 @@
 
 
     <script>
-        auth(null, function() {
+        auth(function(user){
+            $("#create-event-page").click(function(){
+                var name = $("#url").val();
+                firebase().database().ref("/events/" + name + "/").once("vaue").then(function(data){
+                    if (data.val() === null) {
+                        firebase().database().ref("/events/" + name + "/").set({
+                            title:name,
+                            description:"Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
+                        });
+                    } else {
+                        $("#url").val("");
+                        $("#error").html("Please choose another url. The url was already taken")
+                    }
+                });
+            });
+        }, function() {
             Singulr.loadPage('login.html?redir=resources.html');
         });
         firebase.database().ref("/events/").on("child_added", function(data) {
             var name = data.key;
             $("#event-list").prepend("<li><a href='event.html?event=" + name + "'>" + name.replace("-", " ") + "</a></li>");
         });
-
+        
         /*
         var storageRef = firebase.storage().ref();
         var ref = firebase.database().ref();
