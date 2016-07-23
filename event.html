@@ -64,7 +64,7 @@
                     $("#edit").click(function() {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
                         $("#view").click(function() {
-                            window.location.reload();
+                            reloadPage();
                         });
                         tinymce.init({
                             selector: "#event-title", //'h2.editable',
@@ -138,7 +138,7 @@
 
         function deleteLink(id) {
             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
-            window.location.reload();
+            reloadPage();
 
 
         }
@@ -170,7 +170,7 @@
                     $("#edit").click(function() {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
                         $("#view").click(function() {
-                            window.location.reload();
+                            reloadPage();
                         });
                         tinymce.init({
                             selector: "#event-title", //'h2.editable',
@@ -227,6 +227,10 @@
         }, function() {
             Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.search));
         });
+        
+        function reloadPage() {
+            Singulr.loadPage(window.location.pathname + window.location.hash + window.location.search);
+        }
     </script>
     <!-- Modal -->
     <div class="modal fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
