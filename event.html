@@ -50,9 +50,9 @@
         if (getQuery("password") !== null) {
             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', function(snapshot) {
                 console.log(snapshot.val());
-                console.log(getQuery("password"));
-                console.log(snapshot.val() === getQuery("password"));
-                if (snapshot.val() === getQuery("password")) {
+                console.log(encodeURIComponent(getQuery("password")));
+                console.log(snapshot.val() === encodeURIComponent(("password")));
+                if (snapshot.val() === encodeURIComponent(("password"))) {
                     $("#edit-alert-box").removeClass("hidden");
                     $("#edit").click(function() {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
