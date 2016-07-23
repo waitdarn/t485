@@ -19,6 +19,12 @@
                 <h2 class="intro-text text-center">Resources</h2>
                 <hr>
                 <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=meeting-minutes.html')">Log out</button>
+                <div id="event-list-box">
+                    <h3>View Event Pages</h3>
+                    <ul id="event-list">
+                        
+                    </ul>
+                </div>
                 <div id="resource-list"></div>
             </div>
         </div>
@@ -89,7 +95,10 @@
         auth(null, function () {
             Singulr.loadPage('login.html?redir=resources.html');
         });
-        
+        firebase.database().ref("/events/").on("child_added", function(data){
+            var name = data.key;
+            $("#event-list").prepend("<li><a href='event.html?event=" + name + "'>" + name.replace("-", " ") + "</a></li>");
+        });
         
         
         var storageRef = firebase.storage().ref();
