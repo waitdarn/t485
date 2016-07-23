@@ -54,17 +54,22 @@
                 var currentDay = d.getDate();
                 var currentMonth = d.getMonth() + 1;
                 var currentYear = d.getFullYear();
-                if (snapshot.val().hour >= currentHour || snapshot.val().day >= currentDay || snapshot.val().month >= currentMonth || snapshot.val().year >= currentYear  ) {
+                if (snapshot.val().hour >= currentHour || snapshot.val().day >= currentDay || snapshot.val().month >= currentMonth || snapshot.val().year >= currentYear) {
                     firebase.database().ref("/events/" + getQuery("event") + "/title/").set("INTRO : TESTING PAGE");
                     firebase.database().ref("/events/" + getQuery("event") + "/description/").set("This page is a event page that anyone can edit. This page is just for testing purposes. To edit this page just click here. This page is reset every hour.");
-                    
+                    firebase.database().ref("/events/" + getQuery("event") + "/lastReset/").set({
+                        year: currentYear,
+                        month: currentMonth,
+                        day: currentDay,
+                        hour: currentHour
+                    });
                 }
             });
         }
         if (getQuery("password") !== null) {
             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', function(snapshot) {
-                
-                
+
+
                 if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
                     $("#edit-alert-box").removeClass("hidden");
                     $("#edit").click(function() {
@@ -72,26 +77,28 @@
                         $("#view").click(function() {
                             window.location.reload();
                         });
-                        tinymce.init({
-                            selector: 'h2.editable',
-                            inline: true,
-                            plugins: [
-                                "textcolor colorpicker link"
-                            ],
-                            toolbar: 'undo redo | forecolor backcolor | link | save',
-                            menubar: false,
-                            setup: function(editor) {
-                                editor.addButton('save', {
-                                    text: 'Save Changes',
-                                    icon: false,
-                                    onclick: function() {
-                                        console.log(editor.getContent());
-                                        console.log(editor.id);
-                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
-                                    }
-                                });
-                            }
-                        });
+                        if (getQuery("event") !== "IntroTestingPage") {
+                            tinymce.init({
+                                selector: 'h2.editable',
+                                inline: true,
+                                plugins: [
+                                    "textcolor colorpicker link"
+                                ],
+                                toolbar: 'undo redo | forecolor backcolor | link | save',
+                                menubar: false,
+                                setup: function(editor) {
+                                    editor.addButton('save', {
+                                        text: 'Save Changes',
+                                        icon: false,
+                                        onclick: function() {
+                                            console.log(editor.getContent());
+                                            console.log(editor.id);
+                                            firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                        }
+                                    });
+                                }
+                            });
+                        }
                         tinymce.init({
                             selector: 'div.editable',
                             inline: true,
@@ -140,17 +147,18 @@
             $("#event-description").html(data.description);
 
         });
+
         function deleteLink(id) {
-                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
-                        $("#links").html("");
-                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).once("child_added").then(function(data){
-                            console.log(data.val());
-                            console.log(data.key);
-                            $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
-                        
-                        });
-                        
-                        
+            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
+            $("#links").html("");
+            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).once("child_added").then(function(data) {
+                console.log(data.val());
+                console.log(data.key);
+                $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
+
+            });
+
+
         }
         auth(function(user) {
             firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
@@ -159,19 +167,19 @@
                     $("#edit-alert-box").removeClass("hidden");
                     $("#share").removeClass("hidden");
                     $("#share").click(function() {
-                        
+
                         $("#share-modal").modal("show");
                         firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
-                            
+
                             console.log(data.val());
                             console.log(data.key);
                             $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
                         });
-                        
+
 
                     });
-                    
-                    
+
+
                     $("#new-access-link").click(function() {
                         var id = generateRandomStr();
                         firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
@@ -248,7 +256,7 @@
                 <div class="modal-body col-lg-12">
                     <p>Modify access links: Here you can create new edit links and also delete links. Only you and not other editors can change links.</p>
                     <ul id="links">
-                        
+
                     </ul>
                     <button class="btn btn-success" id="new-access-link">New Access Link</button>
                 </div>

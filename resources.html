@@ -54,15 +54,15 @@
                 <h2 class="intro-text text-center">Create New Event Page</h2>
                 <hr>
                 <label>Choose An Event Name(You can change this later):</label>
-                
-                  <input type="text" class="form-control" id="url">
-                
+
+                <input type="text" class="form-control" id="url">
+
                 <p id="error" class="text-danger"></p>
                 <button class="btn btn-primary form-control" id="create-event-page">Create event page!</button>
             </div>
         </div>
 
-    <!--
+        <!--
         <div class="row">
             <div class="box col-md-12">
                 <hr>
@@ -127,24 +127,25 @@
 
 
     <script>
-    /* global firebase $ auth Singulr */
-    String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.split(search).join(replacement);
-};
-        auth(function(user){
-            $("#create-event-page").click(function(){
+        /* global firebase $ auth Singulr */
+        String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.split(search).join(replacement);
+        };
+        auth(function(user) {
+            $("#create-event-page").click(function() {
                 var name = $("#url").val().replaceAll(/[^a-zA-Z0-9]/g, "");
                 $("#error").html("");
-                firebase.database().ref("/events/" + name + "/").once("value").then(function(data){
+                firebase.database().ref("/events/" + name + "/").once("value").then(function(data) {
                     if (data.val() === null) {
                         firebase.database().ref("/events/" + name + "/").set({
-                            title:$("#url").val(),
-                            owner:user.uid,
-                            description:"Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
+                            title: $("#url").val(),
+                            owner: user.uid,
+                            description: "Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
                         });
                         window.location.href = "event.html?event=" + name;
-                    } else {
+                    }
+                    else {
                         $("#url").val("");
                         $("#error").html("Please choose another name. The name was already taken. Non letter or number charcters are ignored in url's.");
                     }
@@ -157,7 +158,7 @@
             var name = data.val().title;
             $("#event-list").prepend("<li><a href='event.html?event=" + name + "'>" + name.replace("-", " ") + "</a></li>");
         });
-        
+
         /*
         var storageRef = firebase.storage().ref();
         var ref = firebase.database().ref();
