@@ -134,10 +134,14 @@
                         $("#share-modal").modal("show");
                         firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
                             console.log(data.val());
-                            $("#links").append("<a href='https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + ">https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "</a>(<a onclick='delete(\"" + data.val() + "\")'>Remove This Link</a>)");
+                            $("#links").append("<a href='https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "'>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "</a>(<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)");
                         });
 
                     });
+                    
+                    function deleteLink(id) {
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
+                    }
                     $("#new-access-link").click(function() {
                         var id = generateRandomStr();
                         firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
