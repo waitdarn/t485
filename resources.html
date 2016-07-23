@@ -6,11 +6,7 @@
     <script class="singulr-ignore" src="js/singulr-page.js"></script>
 
     <title>Resource - Troop 485</title>
-    <style>
-        .height-control {
-            height:20px;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -57,11 +53,10 @@
                 <hr>
                 <h2 class="intro-text text-center">Create New Event Page</h2>
                 <hr>
-                <label for="url">Choose An URL:</label>
-                <div class="input-group">
-                  <span class="input-group-addon height-control" id="url-label">https://t485.org/event.html?event=</span>
-                  <input type="text" class="form-control" id="url" aria-describedby="url-label">
-                </div>
+                <label>Choose An URL:</label>
+                <p>https://t485.org/event.html?event=</p>
+                  <input type="text" class="form-control" id="url">
+                
                 <p id="error" class="text-danger"></p>
                 <button class="btn btn-primary form-control" id="create-event-page">Create event page!</button>
             </div>
@@ -135,6 +130,7 @@
         auth(function(user){
             $("#create-event-page").click(function(){
                 var name = $("#url").val();
+                $("#error").html("")
                 firebase().database().ref("/events/" + name + "/").once("vaue").then(function(data){
                     if (data.val() === null) {
                         firebase().database().ref("/events/" + name + "/").set({
