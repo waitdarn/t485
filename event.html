@@ -132,9 +132,10 @@
                     $("#share").removeClass("hidden");
                     $("#share").click(function() {
                         $("#share-modal").modal("show");
-                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("value", function(data) {
+                            $("#links").html("");
                             console.log(data.val());
-                            $("#links").append("<a href='https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "'>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "</a>(<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)");
+                            $("#links").append("<li>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "'>https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "(<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
                         });
 
                     });
@@ -208,17 +209,17 @@
         });
     </script>
     <!-- Modal -->
-    <div class="modal fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal modal-lg fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Allow other users to edit this page.</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body col-lg-12">
                     <p>Modify access links: Here you can create new edit links and also delete links. Only you and not other editors can change links.</p>
                     <ul id="links">
-
+                        
                     </ul>
                     <button class="btn btn-success" id="new-access-link">New Access Link</button>
                 </div>
