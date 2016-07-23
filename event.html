@@ -130,6 +130,19 @@
                 if (uid === user.uid) {
                     $("#edit-alert-box").removeClass("hidden");
                     $("#share").removeClass("hidden");
+                    $("#share").click(function() {
+                        $("#share-modal").modal("show");
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
+                            console.log(data.val());
+                            $("#links").append("<a href='https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + ">https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "</a>(<a onclick='delete(\"" + data.val() + "\")'>Remove This Link</a>)");
+                        });
+
+                    });
+                    $("#new-access-link").click(function() {
+                        var id = generateRandomStr();
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
+
+                    });
                     $("#edit").click(function() {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
                         $("#view").click(function() {
@@ -178,19 +191,7 @@
                             },
                             toolbar: 'insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save'
                         });
-                        $("#share").click(function() {
-                            $("#share-modal").modal("show");
-                            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
-                                console.log(data.val());
-                                $("#links").append("<a href='https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + ">https://t485.org/event.html?event=" + getQuery("event") + "&password=" + data.val() + "</a>(<a onclick='delete(\"" + data.val() + "\")'>Remove This Link</a>)");
-                            });
-                            
-                        });
-                        $("#new-access-link").click(function() {
-                            var id = generateRandomStr();
-                            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
 
-                        });
 
                     });
                 }
