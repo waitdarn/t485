@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script class="singulr-ignore" src="js/singulr-page.js"></script>
+
+    <title>Event - Troop 485</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert" id="edit-alert-box">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>. <a id="share" class="hidden alert-link">Allow others to edit this page.</a></span>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center editable" id="event-title">Loading...</h2>
+                    <hr>
+                </div>
+                <div class="col-md-12" id="event-description-box">
+                    <div class="editable" id="event-description">Loading...</div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+    <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script>
+        /* global firebase $ getQuery tinymce btoa auth Singulr*/
+
+        firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+            var data = snapshot.val();
+            if (data === null) {
+                $("#event-title").html("Error 404: Event Not Found");
+                $("#event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
+            }
+            else {
+                $("#event-title").html(data.title);
+                $("#event-description").html(data.description);
+
+            }
+
+        });
+
+        if (getQuery("password") !== null) {
+            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', function(snapshot) {
+
+
+                if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
+                    $("#edit-alert-box").removeClass("hidden");
+                    $("#edit").click(function() {
+                        $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
+                        $("#view").click(function() {
+                            reloadPage();
+                        });
+                        tinymce.init({
+                            selector: "#event-title", //'h2.editable',
+                            inline: true,
+                            plugins: [
+                                "textcolor colorpicker link"
+                            ],
+                            toolbar: "undo redo | forecolor backcolor | link | save",
+                            menubar: false,
+                            setup: function(editor) {
+                                editor.addButton("save", {
+                                    text: "Save Changes",
+                                    icon: false,
+                                    onclick: function() {
+                                        console.log(editor.getContent());
+                                        console.log(editor.id);
+                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                    }
+                                });
+                            }
+                        });
+
+                        tinymce.init({
+                            selector: "#event-description", //'div.editable',
+                            inline: true,
+                            plugins: [
+                                "advlist autolink lists link image charmap print preview",
+                                "searchreplace visualblocks fullscreen textcolor colorpicker",
+                                "insertdatetime media table contextmenu paste imagetools"
+                            ],
+                            link_assume_external_targets: true,
+                            removed_menuitems: "newdocument",
+                            setup: function(editor) {
+                                editor.addButton("save", {
+                                    text: "Save Changes",
+                                    icon: false,
+                                    onclick: function() {
+                                        console.log(editor.getContent());
+                                        console.log(editor.id);
+                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                    }
+                                });
+                            },
+                            toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save"
+                        });
+
+                    });
+
+                }
+            });
+        }
+
+        function generateRandomStr() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+={}[]|?/>.<,";
+
+            for (var i = 0; i < 40; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return encodeURIComponent(btoa(text));
+        }
+
+
+        firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+            var data = snapshot.val();
+
+            $("#event-title").html(data.title);
+            $("#event-description").html(data.description);
+
+        });
+
+        function deleteLink(id) {
+            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
+            reloadPage();
+
+
+        }
+        auth(function(user) {
+            firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+                var uid = snapshot.val().owner;
+                if (uid === user.uid) {
+                    $("#edit-alert-box").removeClass("hidden");
+                    $("#share").removeClass("hidden");
+                    $("#share").click(function() {
+
+                        $("#share-modal").modal("show");
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
+
+                            console.log(data.val());
+                            console.log(data.key);
+                            $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
+                        });
+
+
+                    });
+
+
+                    $("#new-access-link").click(function() {
+                        var id = generateRandomStr();
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
+
+                    });
+                    $("#edit").click(function() {
+                        $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
+                        $("#view").click(function() {
+                            reloadPage();
+                        });
+                        tinymce.init({
+                            selector: "#event-title", //'h2.editable',
+                            inline: true,
+                            plugins: [
+                                "textcolor colorpicker link"
+                            ],
+                            toolbar: "undo redo | forecolor backcolor | link | save",
+                            menubar: false,
+                            setup: function(editor) {
+                                editor.addButton("save", {
+                                    text: "Save Changes",
+                                    icon: false,
+                                    onclick: function() {
+                                        console.log(editor.getContent());
+                                        console.log(editor.id);
+                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                    }
+                                });
+                            }
+                        });
+
+                        tinymce.init({
+                            selector: "#event-description", //'div.editable',
+                            inline: true,
+                            plugins: [
+                                "advlist autolink lists link image charmap print preview",
+                                "searchreplace visualblocks fullscreen textcolor colorpicker",
+                                "insertdatetime media table contextmenu paste imagetools"
+                            ],
+                            link_assume_external_targets: true,
+                            removed_menuitems: "newdocument",
+                            setup: function(editor) {
+                                editor.addButton("save", {
+                                    text: "Save Changes",
+                                    icon: false,
+                                    onclick: function() {
+                                        console.log(editor.getContent());
+                                        console.log(editor.id);
+                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                    }
+                                });
+                            },
+                            toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save"
+                        });
+
+
+                    });
+                }
+
+            });
+
+
+        }, function() {
+            Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.search));
+        });
+        
+        function reloadPage() {
+            Singulr.loadPage(window.location.pathname + window.location.search + window.location.hash);
+        }
+    </script>
+    <!-- Modal -->
+    <div class="modal fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Allow other users to edit this page.</h4>
+                </div>
+                <div class="modal-body col-lg-12">
+                    <p>Modify access links: Here you can create new edit links and also delete links. Only you and not other editors can change links.</p>
+                    <ul id="links">
+
+                    </ul>
+                    <button class="btn btn-success" id="new-access-link">New Access Link</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>

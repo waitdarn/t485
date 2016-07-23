@@ -46,7 +46,7 @@ function auth(onAuthed, onUnauthed) {
 // USE IN EMERGENCY ONLY
     
     if (user) {
-        onAuthed();
+        onAuthed(user);
     } else {
         onUnauthed();
     }
