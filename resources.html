@@ -16,7 +16,10 @@
         <div class="row">
             <div class="box col-md-6">
                 <div id="resource-list">
-                    <h3>Useful Files</h3>
+                    <hr>
+                    <h2 class="intro-text text-center">Resources</h2>
+                    <hr>
+                    <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=meeting-minutes.html')">Log out</button>
                     <ul>
                         <li><a href="https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic">Council Resource</a></li>
                         <li><a href="https://docs.google.com/document/d/1dtMPUhKv6eOfKaxk3iMwnRbovgu0yZt6J0mH8wPdBfY/mobilebasic">Things to Remember</a></li>
@@ -33,18 +36,15 @@
                 </div>
             </div>
             <div class="box col-md-6">
-                <hr>
-                <h2 class="intro-text text-center">Resources</h2>
-                <hr>
-                <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=meeting-minutes.html')">Log out</button>
+
                 <div id="event-list-box">
-                    <h3>View Event Pages</h3>
+                    <h2>Event Pages</h2>
                     <ul id="event-list">
 
                     </ul>
                 </div>
             </div>
-            
+
         </div>
     </div>
     </div>
@@ -365,33 +365,34 @@
             var title;
             if (name === undefined && e !== undefined) {
                 title = (e.target.tagName === 'A' ? title = e.target.innerHTML : e.target.attributes.alt.nodeValue);
-            } else {
+            }
+            else {
                 title = name;
             }
-            
+
             $('#myModalLabel').html(title);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url);
             $('#myModal').modal('show');
         }
-        
+
         function requestFullScreen() {
             var el = document.getElementById("ifr");
             // Supports most browsers and their versions.
             var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen;
-        
+
             if (requestMethod) {
                 requestMethod.call(el);
-            // Older IE.
-            } else if (typeof window.ActiveXObject !== "undefined") {
+                // Older IE.
+            }
+            else if (typeof window.ActiveXObject !== "undefined") {
                 var wscript = new ActiveXObject("WScript.Shell");
-        
+
                 if (wscript !== null) {
                     wscript.SendKeys("{F11}");
                 }
             }
         }
-        
     </script>
 
 </body>
