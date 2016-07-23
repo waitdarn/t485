@@ -135,7 +135,7 @@
                         });
                         
                         
-                    
+        }
         auth(function(user) {
             firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
                 var uid = snapshot.val().owner;
