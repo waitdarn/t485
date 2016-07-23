@@ -47,25 +47,7 @@
             $("#event-description").html(data.description);
 
         });
-        if (getQuery("event") === "IntroTestingPage") {
-            firebase.database().ref('/events/' + getQuery("event") + "/lastreset/").on('child_added', function(snapshot) {
-                var d = new Date();
-                var currentHour = d.getHours();
-                var currentDay = d.getDate();
-                var currentMonth = d.getMonth() + 1;
-                var currentYear = d.getFullYear();
-                if (snapshot.val().hour >= currentHour || snapshot.val().day >= currentDay || snapshot.val().month >= currentMonth || snapshot.val().year >= currentYear) {
-                    firebase.database().ref("/events/" + getQuery("event") + "/title/").set("INTRO : TESTING PAGE");
-                    firebase.database().ref("/events/" + getQuery("event") + "/description/").set("This page is a event page that anyone can edit. This page is just for testing purposes. To edit this page just click here. This page is reset every hour.");
-                    firebase.database().ref("/events/" + getQuery("event") + "/lastReset/").set({
-                        year: currentYear,
-                        month: currentMonth,
-                        day: currentDay,
-                        hour: currentHour
-                    });
-                }
-            });
-        }
+
         if (getQuery("password") !== null) {
             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', function(snapshot) {
 
@@ -77,28 +59,27 @@
                         $("#view").click(function() {
                             window.location.reload();
                         });
-                        if (getQuery("event") !== "IntroTestingPage") {
-                            tinymce.init({
-                                selector: 'h2.editable',
-                                inline: true,
-                                plugins: [
-                                    "textcolor colorpicker link"
-                                ],
-                                toolbar: 'undo redo | forecolor backcolor | link | save',
-                                menubar: false,
-                                setup: function(editor) {
-                                    editor.addButton('save', {
-                                        text: 'Save Changes',
-                                        icon: false,
-                                        onclick: function() {
-                                            console.log(editor.getContent());
-                                            console.log(editor.id);
-                                            firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
-                                        }
-                                    });
-                                }
-                            });
-                        }
+                        tinymce.init({
+                            selector: 'h2.editable',
+                            inline: true,
+                            plugins: [
+                                "textcolor colorpicker link"
+                            ],
+                            toolbar: 'undo redo | forecolor backcolor | link | save',
+                            menubar: false,
+                            setup: function(editor) {
+                                editor.addButton('save', {
+                                    text: 'Save Changes',
+                                    icon: false,
+                                    onclick: function() {
+                                        console.log(editor.getContent());
+                                        console.log(editor.id);
+                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                    }
+                                });
+                            }
+                        });
+
                         tinymce.init({
                             selector: 'div.editable',
                             inline: true,
