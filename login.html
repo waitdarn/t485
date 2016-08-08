@@ -2,11 +2,11 @@
 <html>
 
 <head>
-    
+
     <script class="singulr-ignore" src="js/singulr-page.js"></script>
-    
+
     <title>Log In - Troop 485</title>
-    
+
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
 </head>
@@ -23,63 +23,62 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>
-                        <div id="sign-in"></div>
-                    </p>
+                    <img src="img/google_sign_in.png" onclick="btnClicked()" style="width: 191px; heigth: 46px;"></img>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
     <!-- /.container -->
-    
-    
+
+
     <script>
         var redirectUrl = getQuery('redir') || 'home.html';
-        var email;
-        var password;
+        var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/userinfo.email');
         
         
-        gapi.signin2.render('sign-in', {
-            'scope': 'email',
-            'width': 240,
-            'height': 50,
-            'longtitle': true,
-            'theme': 'dark',
-            'onsuccess': function (googleUser) {
-                email = googleUser.getBasicProfile().getEmail();
-                // change password generation method?
-                password = window.btoa(email);
+        function btnClicked() {
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
                 
-                // console.log('email: ' + email + ' password: ' + password);
-                firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-                    // Login succeeded
-                    $.get('members', function(response) {
-                        if (response !== null) {
-                            var members = response.split('\n');
-                            
-                            // Check if email is on approved list
-                            if (members.indexOf(email) > -1) {
-                                Singulr.loadPage(redirectUrl);
-                            } else {
-                                alert('Sorry, but you are not authorized to view this page.');
-                                Singulr.loadPage('home.html');
-                            }
+                var email = user.providerData[0].email;
+                console.log(user);
+                console.log(email);
+                
+                $.get('members', function(response) {
+                    if (response) {
+                        var members = response.split('\n');
+            
+                        // Check if email is on approved list
+                        if (members.indexOf(email) > -1) {
+                            Singulr.loadPage(redirectUrl);
                         }
-                    });
-                }).catch(function(error) {
-                    console.error(error.message);
+                        else {
+                            alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake.');
+                            // reload page
+                            Singulr.loadPage(window.location.pathname);
+                        }
+                    }
                 });
-            },
-            'onfailure': function (error) {
-                console.error(error);
-            }
-        });
-        
-        
-        
-        // Directory updated 8/7/16, 224 members (222 on Firebase)
-        // Regex: ,.+$
+                // ...
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                console.log(error);
+                
+                // reload page
+                Singulr.loadPage(window.location.pathname);
+            });
+        }
     </script>
 
 </body>
