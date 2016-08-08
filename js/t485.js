@@ -40,17 +40,13 @@ function auth(onAuthed, onUnauthed) {
     onAuthed = onAuthed || function() {};
     onUnauthed = onUnauthed || function() {};
     
-    var user = firebase.auth().currentUser;
-    
-// USE IN EMERGENCY ONLY -------------------------------------------------------
-//user = true;
-// USE IN EMERGENCY ONLY -------------------------------------------------------
-    
-    if (user) {
-        onAuthed(user);
-    } else {
-        onUnauthed();
-    }
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    onAuthed(user);
+  } else {
+   onUnauthed();
+  }
+    });
 }
 
 
@@ -97,11 +93,3 @@ function getQuery(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new R
 function compare(t,n){if(0==t.length)return n.length;if(0==n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length];}
 
 
-function mail(recipents, subject, content, from) {
-    $.post('mail.php', {
-        'recipents': recipents,
-        'subject': subject,
-        'content': content,
-        'from': from
-    }, function(result) {});
-}
