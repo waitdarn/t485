@@ -40,12 +40,12 @@ function auth(onAuthed, onUnauthed) {
     onAuthed = onAuthed || function() {};
     onUnauthed = onUnauthed || function() {};
     
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    onAuthed(user);
-  } else {
-   onUnauthed();
-  }
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            onAuthed(user);
+        } else {
+            onUnauthed();
+        }
     });
 }
 

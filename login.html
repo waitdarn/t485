@@ -37,142 +37,48 @@
     <script>
         var redirectUrl = getQuery('redir') || 'home.html';
         var provider = new firebase.auth.GoogleAuthProvider();
-         provider.addScope('https://www.googleapis.com/auth/userinfo.email');
-firebase.auth().signInWithPopup(provider).then(function(result) {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  var user = result.user;
-//   user.google = user.providerData[0];
-//   user.providerData = undefined;
-
-  var email = user.providerData[0].email;
-  console.log(user);
-  console.log(email);
-  $.get('members', function(response) {
-                        if (response !== null) { 
-                            var members = response.split('\n');
-                            
-                            // Check if email is on approved list
-                            if (members.indexOf(email) > -1) {
-                                Singulr.loadPage(redirectUrl);
-                            } else {
-                                alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake.');
-                                window.location.href = window.location.href;
-                            }
-                        }
-                    });
-  // ...
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  console.log(error);
-  // ...
-  window.location.href = window.location.href;
-});
-       
-
+        provider.addScope('https://www.googleapis.com/auth/userinfo.email');
         
-        /*      
-        var email;
-        var password;
-              gapi.signin2.render('sign-in', {
-                  'scope': 'email',
-                  'width': 240,
-                  'height': 50,
-                  'longtitle': true,
-                  'theme': 'dark',
-                  'onsuccess': function (googleUser) {
-                      email = googleUser.getBasicProfile().getEmail();
-                      // change password generation method?
-                      password = window.btoa(email);
-                      
-                      // console.log('email: ' + email + ' password: ' + password);
-                      firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-                          // Login succeeded
-                          $.get('members', function(response) {
-                              if (response !== null) {
-                                  var members = response.split('\n');
-                                  
-                                  // Check if email is on approved list
-                                  if (members.indexOf(email) > -1) {
-                                      Singulr.loadPage(redirectUrl);
-                                  } else {
-                                      alert('Sorry, but you are not authorized to view this page.');
-                                      Singulr.loadPage('home.html');
-                                  }
-                              }
-                          });
-                      }).catch(function(error) {
-                          console.error(error.message);
-                      });
-                  },
-                  'onfailure': function (error) {
-                      console.error(error);
-                  }
-              });
-              
-           */
-
-        /* Update directory */
-
-        // Updated 8/7/16, 224 members (222 on Firebase)
-        // Regex: ,.+$
-        /*
-            // remove old members
-            $.get('members', function(response) {
-                var emails = response.split('\n');
-                
-                for (var i = 0; i < emails.length; i++) {
-                    var email = emails[i];
-                    var password = window.btoa(email);
-                    
-                    firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-                        firebase.auth().currentUser.delete().catch(function(e) {
-                            // error happended
-                            console.error(e);
-                        });
-                    });
-                }
-            });
+        
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
             
-            // add new members
-            $.get('membersnew', function(response) {
-                var emails = response.split('\n');
-                
-                for (var i = 0; i < emails.length; i++) {
-                    var email = emails[i];
-                    var password = window.btoa(email);
-                    
-                    firebase.auth().createUserWithEmailAndPassword(email, password);
-                }
-            });
+            var email = user.providerData[0].email;
+            console.log(user);
+            console.log(email);
             
-            // check if all emails have a log in
             $.get('members', function(response) {
-                var emails = response.split('\n');
-                
-                signIn(0)
-                
-                function signIn(i) {
-                    firebase.auth().signInWithEmailAndPassword(emails[i], window.btoa(emails[i])).then(function() {
-                        firebase.auth().signOut().then(function() {
-                            if (emails.length < i) signIn(i++)
-                            else {
-                                console.log('all done!');
-                            }
-                        })
-                    }).catch(function(e) {
-                        console.error(e);
-                    });
+                if (response) {
+                    var members = response.split('\n');
+        
+                    // Check if email is on approved list
+                    if (members.indexOf(email) > -1) {
+                        Singulr.loadPage(redirectUrl);
+                    }
+                    else {
+                        alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake.');
+                        // reload page
+                        Singulr.loadPage(window.location.pathname);
+                    }
                 }
             });
-        */
+            // ...
+        }).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            console.log(error);
+            
+            // reload page
+            Singulr.loadPage(window.location.pathname);
+        });
     </script>
 
 </body>
