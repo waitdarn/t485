@@ -41,9 +41,10 @@ function auth(onAuthed, onUnauthed) {
     onUnauthed = onUnauthed || function() {};
     
     var user = firebase.auth().currentUser;
-// USE IN EMERGENCY ONLY
-// user = true;
-// USE IN EMERGENCY ONLY
+    
+// USE IN EMERGENCY ONLY -------------------------------------------------------
+//user = true;
+// USE IN EMERGENCY ONLY -------------------------------------------------------
     
     if (user) {
         onAuthed(user);
