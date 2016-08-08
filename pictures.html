@@ -7,6 +7,8 @@
     
     <title>Pictures - Troop 485</title>
     
+    <link rel="stylesheet" href="https://rawgit.com/lokesh/lightbox2/master/dist/css/lightbox.min.css" type="text/css" />
+    
 </head>
 
 <body>
@@ -39,7 +41,7 @@
     <!-- /.container -->
     
     
-    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="https://rawgit.com/lokesh/lightbox2/master/dist/js/lightbox.min.js"></script>
     
     <!-- Flickr -->
     <script>
@@ -101,7 +103,7 @@
                 
                 $("#event-links").append(events);
             }, function() {
-                Singulr.loadPage('login.html?redir=pictures.html');
+                Singulr.loadPage('login.html?redir=pictures.html&' + window.location.search.slice(1));
             });
         }
     
@@ -131,28 +133,13 @@
                 var medium_url = t_url + 'm.jpg';
                 var large_url = t_url + 'b.jpg';
                 
-                $('#pictures').append('<a class="col-md-4 col-sm-6" href="' + large_url + '" title="' + photo.title + '"><img src="' + medium_url + '"></a>');
+                $('#pictures').append('<a class="col-md-4 col-sm-6" data-lightbox="main-pictures" href="' + large_url + '" title="' + photo.title + '"><img src="' + medium_url + '"></a>');
             }
             
-            // Set up the image popup with Magnific Popup JQuery plugin
-            $(document).ready(function() {
-                $('#pictures').magnificPopup({
-                    delegate: 'a',
-                    type: 'image',
-                    tLoading: 'Loading image #%curr%...',
-                    mainClass: 'mfp-img-mobile',
-                    gallery: {
-                        enabled: true,
-                        navigateByImgClick: true,
-                        preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-                    },
-                    image: {
-                        tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-                        titleSrc: function(item) {
-                            return item.el.attr('title') + '<small>Troop 485 Flickr</small>';
-                        }
-                    }
-                });
+            
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true
             });
         }
     </script>
