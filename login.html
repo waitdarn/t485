@@ -23,9 +23,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>
-                        
-                    </p>
+                    <img src="img/google_sign_in.png" onclick="btnClicked()" style="width: 191px; heigth: 46px;"></img>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -40,45 +38,47 @@
         provider.addScope('https://www.googleapis.com/auth/userinfo.email');
         
         
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
+        function btnClicked() {
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                
+                var email = user.providerData[0].email;
+                console.log(user);
+                console.log(email);
+                
+                $.get('members', function(response) {
+                    if (response) {
+                        var members = response.split('\n');
             
-            var email = user.providerData[0].email;
-            console.log(user);
-            console.log(email);
-            
-            $.get('members', function(response) {
-                if (response) {
-                    var members = response.split('\n');
-        
-                    // Check if email is on approved list
-                    if (members.indexOf(email) > -1) {
-                        Singulr.loadPage(redirectUrl);
+                        // Check if email is on approved list
+                        if (members.indexOf(email) > -1) {
+                            Singulr.loadPage(redirectUrl);
+                        }
+                        else {
+                            alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake.');
+                            // reload page
+                            Singulr.loadPage(window.location.pathname);
+                        }
                     }
-                    else {
-                        alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake.');
-                        // reload page
-                        Singulr.loadPage(window.location.pathname);
-                    }
-                }
+                });
+                // ...
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                console.log(error);
+                
+                // reload page
+                Singulr.loadPage(window.location.pathname);
             });
-            // ...
-        }).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            console.log(error);
-            
-            // reload page
-            Singulr.loadPage(window.location.pathname);
-        });
+        }
     </script>
 
 </body>
