@@ -237,6 +237,17 @@ if (online) {
             
             listElement.appendChild(listBlock);
         });
+        
+        
+        
+        ref.child('events').on('child_added', function(snapshot) {
+            var response = snapshot.val();
+            
+            var title = response.title;
+            var description = response.description;
+            
+            
+        })
     });
 }
 
