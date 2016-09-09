@@ -25,10 +25,15 @@
                 <div class="col-md-12">
                     <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=pictures.html')">Log out</button>
                     <p>These photos are ordered randomly, so refresh the page to get different photos.</p>
-                    <p>Want more photos? Go to our <a id='photo-album' href=\"https://www.flickr.com/photos/97925389%40N07/albums\" target=\"_blank\">troop flickr page</a>.</p>
+                    <p>Troop Flickr page: <a id='photo-album' href="https://www.flickr.com/photos/97925389%40N07/albums" target="_blank">https://www.flickr.com/photos/97925389@N07/albums</a>.</p>
                     <p>
                         Google Photos
                         <ul>
+                            <li><a target="_blank" href="https://photos.google.com/share/AF1QipOXunxs37JJKSFJzz9WFw0tOKElYiW0sHaFLlERnVvpvNuEwS2cwNbCIsYLgoNS1g?key=YUx6RUx2V25xR2trMmNVN2RaSGI0NktmNU9jbU13">Labor Day Backpacking 2016 Crew 1</a></li>
+                            <li><a target="_blank" href="https://photos.google.com/share/AF1QipMZuLLElD0UfLqIjeqFZAcs1LzuHD7enI6OIEvUMPP4RhtyVPnnjRPp31yCrvsCUA?key=bzFjaHpUV0Y4OEdLNlJCcFhRMG1ZaV9HT0UyU1hB">Labor Day Backpacking 2016 Crew 2</a></li>
+                            <li><a target="_blank" href="https://photos.google.com/share/AF1QipPKv_WDDlz0CXKz4BA_KkSPx7JoFv-xN1YlxXQ4yRosW6kX6HJTqOs5FIoVkx2yXw?key=Qzd0dFJUNnpkamFvNWFDbGJIdGs4bzhaOXQxUnZB">Labor Day Backpacking 2016 Crew 3</a></li>
+                            <li><a target="_blank" href="https://photos.google.com/share/AF1QipOxs5LAYFNWbTnxMCu3m5A-xygrVMOMi4sR9nyf-8o5EvnreqT1_ObYxMYnsXmf7Q?key=c2d0S1VZXzRlTHhoRVcxRUhzTFhTTmtaOUZ0bjZR">Labor Day Backpacking 2016 Crew 4</a></li>
+                            <li><a target="_blank" href="https://photos.google.com/share/AF1QipOBX3vzR7Nze8mDtlJiJsm_LkljPZyPM3xZ0PIa8gcp7R4ryCGmgrmS2FPMtTnsQw?key=Y0dqWDlvejFCaW8tbmNhOTBVV2tONUtiOHJia093">Labor Day Backpacking 2016 Crew 5</a></li>
                             <li><a target="_blank" href="https://photos.google.com/share/AF1QipNAxtO6gkBda06Fjl2ujsi-CIe58diy-aA3K4nKBp51xGxuaB1Ii9FdOL87nTV0ZQ?key=U1B3czFVdEtuZGpPdFVRcmIwbU5JbzdvWW54SDVn">Summit High Adventure 2016</a></li>
                             <li><a target="_blank" href="https://photos.google.com/share/AF1QipNu6skbWxDpT5M7yrYVIvLTmasax81Q9pKgg-i-0OYUhomEuRLFmD2D_k8HPdpxoQ?key=TnVZeWVVX3dBUzlkODNBZ0RTalNvTXprNEZFd2pB">Dragon Rendezvous 2016</a></li>
                             <li><a target="_blank" href="https://photos.google.com/share/AF1QipO8t0-ghgG3ZyrunSka7VvCYt70ivNYJGODnykzVo3wq8Cp1bs5tyO-9Zw7DRQ8dA?key=bFlvUjBHWE95RHFIT2I2SlVpRUxMM3ZZS1NJS2F3">Camp Makualla 2016</a></li>
@@ -106,9 +111,6 @@
             auth(function() {
                 $('#content').show();
 
-                // Put all pictures info in javascript so that Google web crawler cannot index photos (for privacy)
-                $("#photo-album").attr('href', 'https://www.flickr.com/photos/97925389%40N07/albums');
-                
                 $("#event-links").append(events);
             }, function() {
                 Singulr.loadPage('login.html?redir=pictures.html&' + window.location.search.slice(1));
