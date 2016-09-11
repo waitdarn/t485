@@ -7,8 +7,6 @@
     
     <title>Pictures - Troop 485</title>
     
-    <link rel="stylesheet" href="https://rawgit.com/lokesh/lightbox2/master/dist/css/lightbox.min.css" type="text/css" />
-    
 </head>
 
 <body>
@@ -24,7 +22,6 @@
                 </div>
                 <div class="col-md-12">
                     <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=pictures.html')">Log out</button>
-                    <p>These photos are ordered randomly, so refresh the page to get different photos.</p>
                     <p>Troop Flickr page: <a id='photo-album' href="https://www.flickr.com/photos/97925389%40N07/albums" target="_blank">https://www.flickr.com/photos/97925389@N07/albums</a>.</p>
                     <p>
                         Google Photos
@@ -40,12 +37,6 @@
                         </ul>
                     </p>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6" id="event-links">
-                    <h3>Events</h3>
-                </div>
-                <div class="col-md-9 col-sm-8 col-xs-6 no-fancy-links" id="pictures">
-                    <h3>Photos</h3>
-                </div>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -53,107 +44,14 @@
     </div>
     <!-- /.container -->
     
-    
-    <script src="https://rawgit.com/lokesh/lightbox2/master/dist/js/lightbox.min.js"></script>
-    
-    <!-- Flickr -->
     <script>
-        var events =
-        '<a href="pictures.html?id=72157669295789676">' +
-            '<figure>' +
-                    '<img src="https://c5.staticflickr.com/8/7214/26882276884_dda22ec57e_m.jpg" alt="">' +
-                    '<figcaption style="text-align: center;"><b>Calvin\'s Eagle COH</b></figcaption>' +
-            '</figure>' +
-        '</a>' +
-        '<a href="pictures.html?id=72157669389404465">' +
-            '<figure>' +
-                    '<img src="https://c8.staticflickr.com/8/7226/27419404591_745e4b67f6_m.jpg" alt="">' +
-                    '<figcaption style="text-align: center;"><b>Memorial Flag Planting</b></figcaption>' +
-            '</figure>' +
-        '</a>' +
-        '<a href="pictures.html?id=72157667455047801">' +
-            '<figure>' +
-                    '<img src="https://farm2.staticflickr.com/1454/26045173604_28ebe6ddac_m.jpg" alt="">' +
-                    '<figcaption style="text-align: center;"><b>COH 2016 and 10th Anniversary</b></figcaption>' +
-            '</figure>' +
-        '</a>' +
-        '<a href="pictures.html?id=72157666317533700">' +
-            '<figure>' +
-                    '<img src="https://farm2.staticflickr.com/1597/26255224536_1270c12182_m.jpg" alt="">' +
-                    '<figcaption style="text-align: center;"><b>Mother and Son Campout</b></figcaption>' +
-            '</figure>' +
-        '</a>' +
-        '<a href="pictures.html?id=72157662623406403">' +
-            '<figure>' +
-                    '<img src="https://farm2.staticflickr.com/1707/25183414385_50a4b7df9d_m.jpg" alt="">' +
-                    '<figcaption style="text-align: center;"><b>Bearpaw 2016 Part 3</b></figcaption>' +
-            '</figure>' +
-        '</a>' +
-        '<a href="pictures.html?id=72157664763530162">' +
-            '<figure>' +
-                    '<img src="https://farm2.staticflickr.com/1669/24556387433_a661b4db53_m.jpg" alt="">' +
-                    '<figcaption style="text-align: center;"><b>Bearpaw 2016 Part 2</b></figcaption>' +
-            '</figure>' +
-        '</a>' +
-        '<a href="pictures.html?id=72157664371486120">' +
-            '<figure>' +
-                    '<img src="https://farm2.staticflickr.com/1650/25156423316_5921f2ddf8_m.jpg" alt="">' +
-                    '<figcaption style="text-align: center;"><b>Bearpaw 2016 Part 1</b></figcaption>' +
-            '</figure>' +
-        '</a>';
-        
-        
-        checkAuth();
-        getUrlVars();
-        
-        
-        function checkAuth() {
-            auth(function() {
-                $('#content').show();
-
-                $("#event-links").append(events);
-            }, function() {
-                Singulr.loadPage('login.html?redir=pictures.html&' + window.location.search.slice(1));
-            });
-        }
-    
-        function getUrlVars() {
-            // If no id use latest
-            var id = getVarsFromUrl()["id"] || events.substr(26, 17);
-
-            $.getScript("https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=3624106015a6a4fa65d62b48dd872655&user_id=97925389%40N07&photoset_id=" + id + "&format=json", function() {
-                console.log("loaded script successfully");
-            });
-        }
-
-        function jsonFlickrApi(rsp) {
-            if (rsp.stat != "ok"){
-                console.log(rsp.message);
-                return;
-            }
-            
-            var randomNums = generateRandomNums(rsp.photoset.photo.length);
-            // 24 is divisible by 3, 2, 1 (can be evenly divided into 3, 2, and 1 columns)
-            var NUM_DISPLAY_PHOTOS = 24;
-            for (var i = 0; i < NUM_DISPLAY_PHOTOS; i++) {
-
-                var photo = rsp.photoset.photo[randomNums[i]];
-                var t_url = "https://farm" + photo.farm + ".static.flickr.com/" + photo.server + "/" + photo.id + "_" + photo.secret + "_";
-                
-                var medium_url = t_url + 'm.jpg';
-                var large_url = t_url + 'b.jpg';
-                
-                $('#pictures').append('<a class="col-md-4 col-sm-6" data-lightbox="main-pictures" href="' + large_url + '" title="' + photo.title + '"><img src="' + medium_url + '"></a>');
-            }
-            
-            
-            lightbox.option({
-                'resizeDuration': 200,
-                'wrapAround': true
-            });
-        }
+        auth(function() {
+            $('#content').show();
+        }, function() {
+            Singulr.loadPage('login.html?redir=pictures.html');
+        });
     </script>
-
+    
 </body>
 
 </html>
