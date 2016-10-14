@@ -45,7 +45,9 @@
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script>
         /* global firebase $ getQuery tinymce btoa auth Singulr*/
-
+        if (getQuery("event") === null || getQuery("event") === "") {
+            window.location.href = "/resources.html";
+        }
         firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
             var data = snapshot.val();
             if (data === null) {
