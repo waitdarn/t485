@@ -21,7 +21,6 @@
                     <h2 class="intro-text text-center">Event Pages</h2>
                     <hr>
                     <ul id="event-list">
-
                     </ul>
                 </div>
             </div>
@@ -57,10 +56,10 @@
                 <label>Choose An Event Name(You can change this later):</label>
 
 
-<div class="input-group">
-  <input type="text" class="form-control" id="url">
-  <span class="input-group-addon" id="year">&nbsp;2016</span>
-</div>
+                <div class="input-group">
+                  <input type="text" id="url" class="form-control" aria-describedby="basic-addon2">
+                  <span class="input-group-addon" id="year">&nbsp;2016</span>
+                </div>
                 <p id="error" class="text-danger"></p>
                 <button class="btn btn-primary form-control" id="create-event-page">Create event page!</button>
             </div>
@@ -137,7 +136,7 @@
 
     <script>
         /* global firebase $ auth Singulr */
-        var year = " " + new Date().getFullYear();
+        var year = "&nbsp;" + new Date().getFullYear();
         $("#year").html(year);
         String.prototype.replaceAll = function(search, replacement) {
             var target = this;
