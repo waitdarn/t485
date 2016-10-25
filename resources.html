@@ -60,6 +60,7 @@
                   <input type="text" id="url" class="form-control" aria-describedby="basic-addon2">
                   <span class="input-group-addon" id="year">&nbsp;2016</span>
                 </div>
+                
                 <p id="error" class="text-danger"></p>
                 <button class="btn btn-primary form-control" id="create-event-page">Create event page!</button>
             </div>
@@ -136,7 +137,7 @@
 
     <script>
         /* global firebase $ auth Singulr */
-        var year = "&nbsp;" + new Date().getFullYear();
+        var year = new Date().getFullYear();
         $("#year").html(year);
         String.prototype.replaceAll = function(search, replacement) {
             var target = this;
@@ -149,7 +150,7 @@
                 firebase.database().ref("/events/" + name + "/").once("value").then(function(data) {
                     if (data.val() === null) {
                         firebase.database().ref("/events/" + name + "/").set({
-                            title: $("#url").val() + year,
+                            title: $("#url").val() + " " + year,
                             owner: user.uid,
                             description: "Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
                         });
@@ -157,7 +158,7 @@
                     }
                     else {
                         $("#url").val("");
-                        $("#error").html("Please choose another name. The name was already taken. Non letter or number charcters are ignored in url's.");
+                        $("#error").html("Please choose another name. The URL for your name was already taken. Non letter or number charcters are ignored in url's.");
                     }
                 });
             });
