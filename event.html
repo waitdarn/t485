@@ -27,17 +27,18 @@
 </head>
 
 <body>
-    <div class="print">
-        <h2 class="text-center event-title">Loading...</h2>
-        <hr>
-        <p class="event-description"></p>
-    </div>
+
     <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert" id="edit-alert-box">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.<a id="export" class="alert-link">Export or Send this page(slack, googlegroups, email, download.).</a> <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
+        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.<a id="export" class="alert-link">Export or Send this page
+        (slack, googlegroups, email, download.).</a> <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
     </div>
     <div class="container">
-
+        <div class="print col-lg-12">
+            <h2 class="text-center event-title">Loading...</h2>
+            <hr>
+            <p class="event-description">Loading...</p>
+        </div>
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">
@@ -78,8 +79,8 @@
                 $("#event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
                 $(".event-title").html("Error 404: Event Not Found");
                 $(".event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
-            
-                
+
+
             }
             else {
                 $("#event-title").html(data.title);
@@ -293,12 +294,66 @@
                 }
 
             });
+
+            function getFirebaseDataThen(callback) {
+                firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+                    var data = snapshot.val();
+
+                    if (data !== null) {
+                        var text = data.description + "\n --- \n Read more at the event page: https://code.jeffkmeng.com/t485/event.html?event=" + getQuery("event");
+                        callback(data.title, text);
+                    }
+                    else {
+                        alert("Unknown error occured. Please try again or notify the webmaster.", "https://code.jeffkmeng.com/t485/event.html?event=" + getQuery("event"));
+                    }
+                });
+            }
             $("#export").click(function() {
                 $("#export-modal").modal("show");
 
                 $("#export-slack").click(function() {
+                    getFirebaseDataThen(function(title, text, url) {
+                        $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
+                                "text": "Event Page shared:",
+                                "attachments": [{
+                                    "fallback": "A event page was shared: <" + title + "|https://t485.org/event.html?event=" + url + ">.",
+                                    "title": title,
+                                    "title_link": url,
+                                    "text": text,
+                                    "footer": "This is a T485 event page automated message"
+                                }]
+                            }),
+                            function(data) {
+                                window.location.href = "event.html?event=" + url;
+                            }
+                        );
+                    });
 
-
+                });
+                $("#export-gmail").click(function(){
+                    getFirebaseDataThen(function(title, text, url){
+                        window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&tf=1&su=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                    });
+                });
+                $("#export-yahoo").click(function(){
+                    getFirebaseDataThen(function(title, text, url){
+                        window.location.href = "http://compose.mail.yahoo.com/?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                    });
+                });
+                $("#export-hotmail").click(function(){
+                    getFirebaseDataThen(function(title, text, url){
+                        window.location.href = "https://dub130.mail.live.com/default.aspx?rru=compose&subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text) + "#page=Compose";
+                    });
+                });
+                $("#export-aol").click(function(){
+                    getFirebaseDataThen(function(title, text, url){
+                        window.location.href = "http://webmail.aol.com/Mail/ComposeMessage.aspx?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                    });
+                });
+                $("#export-email").click(function(){
+                    getFirebaseDataThen(function(title, text, url){
+                        window.location.href = "mailto:?Subject=" + encodeURIComponent(title) + "&Body=" + encodeURIComponent(text);
+                    });
                 });
             });
 
@@ -341,18 +396,19 @@
                 </div>
                 <div class="modal-body col-lg-12">
                     <h3>Choose a export method:</h3>
+                    <p><b>Note: The links below will export the latest SAVED data for this event page. That is the data you see while viewing the event page.</b></p>
                     <p>
-                        <a id="export-googlegroups">T485 Google Group</a><br>
-                        <a id="export-emailapp">Email - Mail App/Defualt mail handler</a><br>
+                        To export to the T485 google group, choose an email export(email - anything), and enter <b>t485@googlegroups.com</b> as the recipient.<br>
+                        <a id="export-email">Email - Mail App/Defualt mail handler</a><br>
                         <a id="export-gmail">Email - Gmail</a><br>
                         <a id="export-yahoo">Email - Yahoo</a><br>
                         <a id="export-hotmail">Email - Hotmail</a><br>
-                        <a id="export-email">Email - AOL</a><br>
+                        <a id="export-aol">Email - AOL</a><br>
                         <a id="export-slack">Slack</a><br>
                         <a id="export-pdf">Download - PDF</a><br>
                         <a id="export-html">Download - Offline Webpage(HTML)</a><br>
-                        <a id="export-simpleprint">Print - Simple</a><br>
-                        <a id="export-styledprint">Print - Styled</a><br>
+                        <a id="export-print">Print</a><br>
+                        
                     </p>
                 </div>
                 <div class="modal-footer">
