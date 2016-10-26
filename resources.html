@@ -181,16 +181,17 @@
 
                         $.ajax({
                             type: "POST",
+                            //contentType:"application/json",
                             url: "https://hooks.slack.com/services/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",
-                            data: encodeURIComponent(JSON.stringify({
+                            data: {
                                 "text": "New Event Page Created:",
                                 "attachments": [{
-                                    "channel":"@jeffrey",
-                                    "fallback": "A new event page was created: <" + $("#url").val() + " " + year + "|https://t485.org/event.html?event=" + "name" + ">.",
-                                    "title": $("#url").val() + " " + year,
-                                    "title_link": "https://t485.org/event.html?event=" + name,
+                                    "fallback": "A new event page was created: <Labor Day 2016|https://t485.org/event.html?event=LaborDay2016>.",
+                                    "title": "Labor Day 2016",
+                                    "title_link": "https://t485.org/event.html?event=LaborDay2016",
+                                    "text": "No content has been created yet."
                                 }]
-                            })),
+                            },
                             //contentType:"application/json",
                             success: function(data) {
                                 window.location.href = "event.html?event=" + name;
