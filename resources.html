@@ -179,14 +179,11 @@
                         });
                         $("#main").addClass("hidden");
                         $("#loading").removeClass("hidden");
-var title = "Labor Day Backpacking 2016";var url = "LaborDayBackpacking2016";
-                        $.ajax({
-                            type: "POST",
-                            
-                            url: "https://hooks.slack.com/services/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",
-                            data: "payload=" + JSON.stringify({
+                        var title = "Labor Day Backpacking 2016";
+                        var url = "LaborDayBackpacking2016";
+                        $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
                                 "text": "New Event Page Created:",
-                                "channel":"@jeffrey",
+                                "channel": "@jeffrey",
                                 "attachments": [{
                                     "fallback": "A new event page was created: <" + title + "|https://t485.org/event.html?event=" + url + ">.",
                                     "title": title,
@@ -194,17 +191,10 @@ var title = "Labor Day Backpacking 2016";var url = "LaborDayBackpacking2016";
                                     "text": "Go to <https://t485.org/event.html?event=" + url + "> to view the content"
                                 }]
                             }),
-                            contentType:"text/plain",
-                            success: function(data) {
+                            function(data) {
                                 window.location.href = "event.html?event=" + url;
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                console.log(jqXHR);
-                                console.log(textStatus);
-                                console.log(errorThrown);
-                            },
-                            dataType: "text/plain"
-                        });
+                            }
+                        );
 
 
                     }
