@@ -179,11 +179,9 @@
                         });
                         $("#main").addClass("hidden");
                         $("#loading").removeClass("hidden");
-                        var title = "Labor Day Backpacking 2016";
-                        var url = "LaborDayBackpacking2016";
+                        
                         $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
                                 "text": "New Event Page Created:",
-                                "channel": "@jeffrey",
                                 "attachments": [{
                                     "fallback": "A new event page was created: <" + title + "|https://t485.org/event.html?event=" + url + ">.",
                                     "title": title,
@@ -209,7 +207,7 @@
         });
         firebase.database().ref("/events/").on("child_added", function(data) {
             var name = data.val().title;
-            $("#event-list").prepend("<li><a href='event.html?event=" + data.key + "'>" + name.replace("-", " ") + "</a></li>");
+            $("#event-list").prepend("<li><a href='event.html?event=" + data.key + "'>" + name + "</a></li>");
         });
 
         /*
