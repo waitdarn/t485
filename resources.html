@@ -167,14 +167,15 @@
         };
         auth(function(user) {
             $("#create-event-page").click(function() {
-                var name = $("#url").val().replaceAll(/[^a-zA-Z0-9]/g, "") + year;
+                var url = $("#url").val().replaceAll(/[^a-zA-Z0-9]/g, "") + year;
                 $("#error").html("");
-                firebase.database().ref("/events/" + name + "/").once("value").then(function(data) {
+                var title = $("#url").val() + " " + year;
+                firebase.database().ref("/events/" + url + "/").once("value").then(function(data) {
                     if (data.val() === null) {
-                        firebase.database().ref("/events/" + name + "/").set({
-                            title: $("#url").val() + " " + year,
+                        firebase.database().ref("/events/" + url + "/").set({
+                            title: title,
                             owner: user.uid,
-                            description: "Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
+                            description: "This event has not been edited yet.<br> <b>Owner</b>: Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
                         });
                         $("#main").addClass("hidden");
                         $("#loading").removeClass("hidden");
@@ -186,15 +187,15 @@
                             data: {
                                 "text": "New Event Page Created:",
                                 "attachments": [{
-                                    "fallback": "A new event page was created: <Labor Day 2016|https://t485.org/event.html?event=LaborDay2016>.",
-                                    "title": "Labor Day 2016",
-                                    "title_link": "https://t485.org/event.html?event=LaborDay2016",
-                                    "text": "No content has been created yet."
+                                    "fallback": "A new event page was created: <" + title + "|https://t485.org/event.html?event=" + url + ">.",
+                                    "title": title,
+                                    "title_link": "https://t485.org/event.html?event=" + url,
+                                    "text": "Go to <https://t485.org/event.html?event=" + url + "> to view the content"
                                 }]
                             },
                             //contentType:"application/json",
                             success: function(data) {
-                                window.location.href = "event.html?event=" + name;
+                                window.location.href = "event.html?event=" + url;
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
                                 console.log(jqXHR);
