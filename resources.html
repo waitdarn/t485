@@ -6,12 +6,27 @@
     <script class="singulr-ignore" src="js/singulr-page.js"></script>
 
     <title>Resource - Troop 485</title>
-
+<style>
+    .hidden {
+        display:none;
+    }
+    </style>
 </head>
 
 <body>
+    <div class="container hidden" id="loading">
+        <div class="box col-md-12">
 
-    <div class="container">
+                <div>
+                    <hr>
+                    <h2 class="intro-text text-center">Loading. Please wait</h2>
+                    <hr>
+                    <p>Your event page is being created. A message is being posted on #general on slack. 
+                        Please wait. This usually takes around 15 seconds or less.</p>
+                </div>
+            </div>
+    </div>
+    <div class="container" id="main">
 
         <div class="row">
             <div class="box col-md-6">
@@ -48,7 +63,8 @@
 
 
         </div>
-        <div class="row">
+        <a name="event"></a>
+        <div class="row" >
             <div class="box col-md-12">
                 <hr>
                 <h2 class="intro-text text-center">Create New Event Page</h2>
@@ -154,7 +170,30 @@
                             owner: user.uid,
                             description: "Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
                         });
-                        window.location.href = "event.html?event=" + name;
+                        $("#main").addClass("hidden");
+                        $("#loading").removeClass("hidden");
+                        
+                        $.ajax({
+  type: "POST",
+  url: "https://hooks.slack.com/services/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",
+  data: {
+    "text": "New Event Page Created:",
+    "attachments": [
+        {
+            "fallback": "A new event page was created: <" + $("#url").val() + " " + year + "|https://t485.org/event.html?event=" + "name" + ">.",
+            "title": $("#url").val() + " " + year,
+            "title_link": "https://t485.org/event.html?event=" + name,
+            
+        }
+    ]
+},
+  success: function(data) {
+      window.location.href = "event.html?event=" + name;
+  },
+  dataType: "text"
+});
+
+                        
                     }
                     else {
                         $("#url").val("");
