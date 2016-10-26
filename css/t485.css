@@ -536,3 +536,14 @@ a:focus {
     padding: 5px 20px 5px 10px;
     position: relative;
 }
+
+
+
+@media screen and (max-width:500px) {
+    .modal-body {
+        padding: 0px;
+    }
+    .modal-dialog {
+        margin: 0px;
+    }
+}
