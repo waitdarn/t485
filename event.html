@@ -16,7 +16,7 @@
 <body>
     <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert" id="edit-alert-box">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>. <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
+        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.<a id="slack" class="alert-link">Send this event page to slack.</a> <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
     </div>
     <div class="container">
 
@@ -181,6 +181,21 @@ window.onload = function() {
         return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
     });
 };
+$("#slack").click(function(){
+    $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
+                                "text": "Event Page Updated:",
+                                "attachments": [{
+                                    "fallback": "Event page updated: <" + title + "|https://t485.org/event.html?event=" + url + ">. Go to <https://t485.org/event.html?event=" + url + "> to view the content",
+                                    "title": $("#event-title").html(),
+                                    "title_link": "https://t485.org/event.html?event=" + url,
+                                    "text": $("#event-description").html()
+                                }]
+                            }),
+                            function(data) {
+                                window.location.href = "event.html?event=" + url;
+                            }
+                        );
+});
                     $("#delete").click(function() {
                         $("#confirm-delete").modal("show");
                         $("#confirm-enter-name").keyup(function() {
