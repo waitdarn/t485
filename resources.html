@@ -6,24 +6,23 @@
     <script class="singulr-ignore" src="js/singulr-page.js"></script>
 
     <title>Resource - Troop 485</title>
-<style>
-    .hidden {
-        display:none;
-    }
+    <style>
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="container hidden" id="loading">
         <div class="row">
-        <div class="box col-md-12">
+            <div class="box col-md-12">
 
                 <div>
                     <hr>
                     <h2 class="intro-text text-center">Loading. Please wait</h2>
                     <hr>
-                    <p>Your event page is being created. A message is being posted on #general on slack. 
-                        Please wait. This usually takes around 15 seconds or less.</p>
+                    <p>Your event page is being created. A message is being posted on #general on slack. Please wait. This usually takes around 15 seconds or less.</p>
                 </div>
             </div>
         </div>
@@ -66,7 +65,7 @@
 
         </div>
         <a name="event"></a>
-        <div class="row" >
+        <div class="row">
             <div class="box col-md-12">
                 <hr>
                 <h2 class="intro-text text-center">Create New Event Page</h2>
@@ -75,10 +74,10 @@
 
 
                 <div class="input-group">
-                  <input type="text" id="url" class="form-control" aria-describedby="basic-addon2">
-                  <span class="input-group-addon" id="year">&nbsp;2016</span>
+                    <input type="text" id="url" class="form-control" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="year">&nbsp;2016</span>
                 </div>
-                
+
                 <p id="error" class="text-danger"></p>
                 <button class="btn btn-primary form-control" id="create-event-page">Create event page!</button>
             </div>
@@ -119,10 +118,15 @@
         </div>
         -->
 
-    <script src="https://static.getclicky.com/js"></script>
-    <script>try{clicky.init(100869133)}catch(e){}</script>
-    <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
-    
+        <script src="https://static.getclicky.com/js"></script>
+        <script>
+            try {
+                clicky.init(100869133)
+            }
+            catch (e) {}
+        </script>
+        <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
+
     </div>
     <!-- /.container -->
 
@@ -174,19 +178,24 @@
                         });
                         $("#main").addClass("hidden");
                         $("#loading").removeClass("hidden");
-                        
-                        $.ajax({
-  type: "POST",
-  url: "https://hooks.slack.com/services/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",
-  data: '{"text": "New Event Page Created:","attachments": [{"fallback": "A new event page was created: <" +'+
-  ' $("#url").val() + " " + year + "|https://t485.org/event.html?event=" + "name" + ">.","title": $("#url").val() + " " + year,"title_link": "https://t485.org/event.html?event=" + name,}]}',
-  success: function(data) {
-      window.location.href = "event.html?event=" + name;
-  },
-  dataType: "text"
-});
 
-                        
+                        $.ajax({
+                            type: "POST",
+                            url: "https://hooks.slack.com/services/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",
+                            data: '{"text": "New Event Page Created:","attachments": [{"fallback": "A new event page was created: <" +' +
+                                ' $("#url").val() + " " + year + "|https://t485.org/event.html?event=" + "name" + ">.","title": $("#url").val() + " " + year,"title_link": "https://t485.org/event.html?event=" + name,}]}',
+                            success: function(data) {
+                                window.location.href = "event.html?event=" + name;
+                            },
+                            error: function(jqXHR, textStatus, errorThrown) {
+                                console.log(jqXHR);
+                                console.log(textStatus);
+                                console.log(errorThrown);
+                            },
+                            dataType: "text"
+                        });
+
+
                     }
                     else {
                         $("#url").val("");
