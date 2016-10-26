@@ -182,8 +182,16 @@
                         $.ajax({
                             type: "POST",
                             url: "https://hooks.slack.com/services/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",
-                            data: '{"text": "New Event Page Created:","attachments": [{"fallback": "A new event page was created: <" +' +
-                                ' $("#url").val() + " " + year + "|https://t485.org/event.html?event=" + "name" + ">.","title": $("#url").val() + " " + year,"title_link": "https://t485.org/event.html?event=" + name,}]}',
+                            data: {
+                                "text": "New Event Page Created:",
+                                "attachments": [{
+                                    "channel":"@jeffrey",
+                                    "fallback": "A new event page was created: <" + $("#url").val() + " " + year + "|https://t485.org/event.html?event=" + "name" + ">.",
+                                    "title": $("#url").val() + " " + year,
+                                    "title_link": "https://t485.org/event.html?event=" + name,
+                                }]
+                            },
+                            contentType:"application/json",
                             success: function(data) {
                                 window.location.href = "event.html?event=" + name;
                             },
