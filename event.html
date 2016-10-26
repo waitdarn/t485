@@ -10,13 +10,31 @@
         .hidden {
             display: none;
         }
+        
+        .print {
+            display: none;
+        }
+        
+        @media print {
+            *:not(.print) {
+                display: none;
+            }
+            .print {
+                display: block;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div class="print">
+        <h2 class="text-center event-title">Loading...</h2>
+        <hr>
+        <p class="event-description"></p>
+    </div>
     <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert" id="edit-alert-box">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.<a id="slack" class="alert-link">Send this event page to slack.</a> <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
+        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.<a id="export" class="alert-link">Export or Send this page(slack, googlegroups, email, download.).</a> <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
     </div>
     <div class="container">
 
@@ -35,10 +53,15 @@
             </div>
         </div>
 
-    <script src="https://static.getclicky.com/js"></script>
-    <script>try{clicky.init(100869133)}catch(e){}</script>
-    <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
-    
+        <script src="https://static.getclicky.com/js"></script>
+        <script>
+            try {
+                clicky.init(100869133)
+            }
+            catch (e) {}
+        </script>
+        <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
+
     </div>
     <!-- /.container -->
 
@@ -53,10 +76,16 @@
             if (data === null) {
                 $("#event-title").html("Error 404: Event Not Found");
                 $("#event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
+                $(".event-title").html("Error 404: Event Not Found");
+                $(".event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
+            
+                
             }
             else {
                 $("#event-title").html(data.title);
                 $("#event-description").html(data.description);
+                $(".event-title").html(data.title);
+                $(".event-description").html(data.description);
 
             }
 
@@ -67,17 +96,7 @@
 
 
                 if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
-                    window.onload = function() {
-    window.addEventListener("beforeunload", function (e) {
-        if (formSubmitting) {
-            return undefined;
-        }
 
-        var confirmationMessage = "Your changes may not be saved. Remeber to press the save button in the toolbar after clicking on a box for editing before leaving. Press 'OK' to leave and 'cancel' to stay";
-        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-        return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
-    });
-};
                     $("#edit-alert-box").removeClass("hidden");
                     $("#edit").click(function() {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
@@ -168,34 +187,20 @@
                     $("#edit-alert-box").removeClass("hidden");
                     $("#share").removeClass("hidden");
                     $("#delete").removeClass("hidden");
-                    
 
-window.onload = function() {
-    window.addEventListener("beforeunload", function (e) {
-        if (formSubmitting) {
-            return undefined;
-        }
 
-        var confirmationMessage = "Your changes may not be saved. Remeber to press the save button in the toolbar after clicking on a box for editing before leaving. Press 'OK' to leave and 'cancel' to stay";
-        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-        return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
-    });
-};
-$("#slack").click(function(){
-    $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
-                                "text": "Event Page Updated:",
-                                "attachments": [{
-                                    "fallback": "Event page updated: <" + title + "|https://t485.org/event.html?event=" + url + ">. Go to <https://t485.org/event.html?event=" + url + "> to view the content",
-                                    "title": $("#event-title").html(),
-                                    "title_link": "https://t485.org/event.html?event=" + url,
-                                    "text": $("#event-description").html()
-                                }]
-                            }),
-                            function(data) {
-                                window.location.href = "event.html?event=" + url;
+                    window.onload = function() {
+                        window.addEventListener("beforeunload", function(e) {
+                            if (formSubmitting) {
+                                return undefined;
                             }
-                        );
-});
+
+                            var confirmationMessage = "Your changes may not be saved. Remeber to press the save button in the toolbar after clicking on a box for editing before leaving. Press 'OK' to leave and 'cancel' to stay";
+                            (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+                            return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+                        });
+                    };
+
                     $("#delete").click(function() {
                         $("#confirm-delete").modal("show");
                         $("#confirm-enter-name").keyup(function() {
@@ -288,7 +293,14 @@ $("#slack").click(function(){
                 }
 
             });
+            $("#export").click(function() {
+                $("#share-modal").modal("show");
 
+                $("#export-slack").click(function() {
+
+
+                });
+            });
 
         }, function() {
             Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.search));
@@ -312,6 +324,36 @@ $("#slack").click(function(){
 
                     </ul>
                     <button class="btn btn-success" id="new-access-link">New Access Link</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="export-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Export or Send this page.(Google Groups, slack, and more)</h4>
+                </div>
+                <div class="modal-body col-lg-12">
+                    <h3>Choose a export method:</h3>
+                    <p>
+                        <a id="export-googlegroups">T485 Google Group</a><br>
+                        <a id="export-emailapp">Email - Mail App/Defualt mail handler</a><br>
+                        <a id="export-gmail">Email - Gmail</a><br>
+                        <a id="export-yahoo">Email - Yahoo</a><br>
+                        <a id="export-hotmail">Email - Hotmail</a><br>
+                        <a id="export-email">Email - AOL</a><br>
+                        <a id="export-slack">Slack</a><br>
+                        <a id="export-pdf">Download - PDF</a><br>
+                        <a id="export-html">Download - Offline Webpage(HTML)</a><br>
+                        <a id="export-simpleprint">Print - Simple</a><br>
+                        <a id="export-styledprint">Print - Styled</a><br>
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
