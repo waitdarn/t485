@@ -73,7 +73,7 @@
 
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script src="js/jspdf.min.js"></script>
-
+<script src="js/printthis.js"></script>
     <script>
         /* global firebase $ getQuery tinymce btoa auth Singulr*/
         $(".at").html("@");
@@ -308,8 +308,8 @@
                     var data = snapshot.val();
 
                     if (data !== null) {
-                        var text = data.description + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
-                        callback(data.title, text.replace(/<\s*br[^>]?>/, '\n').replace(/(<([^>]+)>)/g, ""));
+                        var text = $("#export-description").html() + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
+                        callback(data.title, text, "https://t485.org/event.html?event=" + getQuery("event"), data.description);
                     }
                     else {
                         alert("Unknown error occured. Please try again or notify the webmaster.", "https://t485.org/event.html?event=" + getQuery("event"));
@@ -394,15 +394,11 @@
                 });
                 $("#export-html").click(function() {
                     getFirebaseDataThen(function(title, text, url) {
-
-                        var elHtml = document.getElementById("print").innerHTML;
-                        var link = document.createElement('a');
-
-                        link.setAttribute('download', title + ".html");
-                        link.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(elHtml));
-                        link.click();
-                        $("export-modal").modal("hide");
+                        $('#print').printThis({
+                        pageTitle: title
                     });
+                    });
+                    
 
                 });
 
@@ -469,7 +465,7 @@
                     <h3>Choose a export method:</h3>
                     <p>
                         To export to the T485 google group, choose any email export and enter send it to the T485 google groups. t485<span class="at"> [at] </span>googlegroups.com as the recipient.<br>
-                        <b>Enter a description of the event:</b>
+                        <b>Enter a description of the event(Required for all options except for download and print. Ignored for download and print. This will be exported):</b>
                         <textarea id="export-description" class="form-control"></textarea>
                         <a id="export-email">Email - Mail App/Defualt mail handler</a><br>
                         <a id="export-gmail">Email - Gmail</a><br>
@@ -477,7 +473,7 @@
                         <a id="export-hotmail">Email - Hotmail</a><br>
                         <a id="export-aol">Email - AOL</a><br>
                         <a id="export-slack">Slack</a><br>
-
+                        
                         <a id="export-pdf">Download - PDF</a><br>
                         <a id="export-html" href="." download>Download - Offline Webpage(HTML)</a><br>
                         <a id="export-print">Print</a><br>
