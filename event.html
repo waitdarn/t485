@@ -309,6 +309,7 @@
                     }
                 });
             }
+            
             $("#export").click(function() {
                 $("#export-modal").modal("show");
 
@@ -357,6 +358,11 @@
                     getFirebaseDataThen(function(title, text, url){
                         window.location.href = "mailto:?Subject=" + encodeURIComponent(title) + "&Body=" + encodeURIComponent(text);
                     });
+                });
+                //html export is in the link
+                $("#export-print").click(function(){
+                    $("#export-modal").modal("hide");
+                    window.print();
                 });
             });
 
@@ -415,7 +421,7 @@
                         <a id="export-aol">Email - AOL</a><br>
                         <a id="export-slack">Slack</a><br>
                         <a id="export-pdf">Download - PDF</a><br>
-                        <a id="export-html">Download - Offline Webpage(HTML)</a><br>
+                        <a id="export-html" href="." download>Download - Offline Webpage(HTML)</a><br>
                         <a id="export-print">Print</a><br>
                         
                     </p>
