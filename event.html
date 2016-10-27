@@ -398,32 +398,17 @@
                     });
 
                 });
-                $("#export-html").click(function() {
-                    getFirebaseDataThen(function(title, text, url) {
-                        $('#print').printThis({
-                            pageTitle: title
-                        });
-                    });
-
-
-                });
+                $("#export-html").attr(download, title + ".html");
+                $("#export-html").attr("href", "data:text/html," + document.getElementById("print").innerHTML);
 
 
                 $("#export-print").click(function() {
                     getFirebaseDataThen(function(title, text, url) {
-                        var mywindow = window.open('', 'my div', 'height=400,width=600');
-                        mywindow.document.write("<html><head><title>" + title + "</title>");
-                        /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
-                        mywindow.document.write('</head><body >');
-                        mywindow.document.write($("#print").html());
-                        mywindow.document.write('</body></html>');
-
-                        mywindow.document.close(); // necessary for IE >= 10
-                        mywindow.focus(); // necessary for IE >= 10
-
-                        mywindow.print();
-                        mywindow.close();
-                        $("export-modal").modal("hide");
+                        getFirebaseDataThen(function(title) {
+                            $("#print").printThis({
+                                pageTitle: title
+                            });
+                        });
                     })
                 });
 
@@ -481,7 +466,7 @@
                         <a id="export-slack">Slack</a><br>
 
                         <a id="export-pdf">Download - PDF</a><br>
-                        <a id="export-html" href="." download>Download - Offline Webpage(HTML)</a><br>
+                        <a id="export-html">Download - Offline Webpage(HTML)</a><br>
                         <a id="export-print">Print</a><br>
 
                     </p>
