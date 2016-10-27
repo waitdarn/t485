@@ -174,7 +174,7 @@
 
         function deleteLink(id) {
             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
-            reloadPage();
+            $("#share-modal").modal("hide");
 
 
         }
