@@ -403,8 +403,7 @@
 
             });
             getFirebaseDataThen(function(title, text, url, realtext) {
-                var bootstrapCSS = $("#bootstrap").html();
-                $("#export-html").attr("href", "data:text/html,<html><head></head><body><div class='container col-lg-12'><h1>" + title + "</h1><div>" + realtext + "</div><br><br><br><hr><p>Read more at the event page.</p></div></body></html>");
+                $("#export-html").attr("href", "data:text/html,<html><head></head><body><h1>" + title + "</h1><div>" + realtext + "</div><br><br><br><hr><p>Read more at the <a href='" + url + "'>event page</a>.</p></body></html>");
                 $("#export-html").attr("download", title + ".html");
             }, false);
 
