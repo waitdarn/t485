@@ -394,9 +394,8 @@
                 });
 
             });
-            $("#export-html").attr("download", "event.html");
-            $("#export-html").attr("href", "data:text/html," + document.getElementById("print").innerHTML);
-            getFirebaseDataThen(function(title, text, url) {
+            getFirebaseDataThen(function(title, text, url, realtext) {
+                $("#export-html").attr("href", "data:text/html," + realtext);
                 $("#export-html").attr("download", title + ".html");
             }, false);
 
