@@ -404,18 +404,16 @@
 
             $("#export-print").click(function() {
                 getFirebaseDataThen(function(title, text, url) {
-                    getFirebaseDataThen(function(title) {
+                    
                         $("#print").printThis({
                             pageTitle: title
                         });
-                    });
-                })
+                    
+                });
             }, false);
 
             $("#export").click(function() {
                 $("#export-modal").modal("show");
-
-
             });
 
         }, function() {
