@@ -19,6 +19,9 @@
             * {
                 visibility: hidden;
             }
+            #main {
+                display: none;
+            }
             .print,
             .print * {
                 visibility: visible;
@@ -41,7 +44,7 @@
             <hr>
             <p class="event-description">Loading...</p>
         </div>
-        <div class="row">
+        <div class="row" id="main">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
@@ -69,6 +72,8 @@
     <!-- /.container -->
 
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script src="js/jspdf.min.js"></script>
+
     <script>
         /* global firebase $ getQuery tinymce btoa auth Singulr*/
         $(".at").html("@");
@@ -339,26 +344,32 @@
                 $("#export-gmail").click(function() {
                     getFirebaseDataThen(function(title, text, url) {
                         window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&tf=1&su=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                        $("export-modal").modal("hide");
                     });
                 });
                 $("#export-yahoo").click(function() {
                     getFirebaseDataThen(function(title, text, url) {
                         window.location.href = "http://compose.mail.yahoo.com/?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                        $("export-modal").modal("hide");
                     });
                 });
                 $("#export-hotmail").click(function() {
                     getFirebaseDataThen(function(title, text, url) {
                         window.location.href = "https://dub130.mail.live.com/default.aspx?rru=compose&subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text) + "#page=Compose";
+                        $("export-modal").modal("hide");
                     });
                 });
                 $("#export-aol").click(function() {
                     getFirebaseDataThen(function(title, text, url) {
                         window.location.href = "http://webmail.aol.com/Mail/ComposeMessage.aspx?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                        $("export-modal").modal("hide");
+
                     });
                 });
                 $("#export-email").click(function() {
                     getFirebaseDataThen(function(title, text, url) {
                         window.location.href = "mailto:?Subject=" + encodeURIComponent(title) + "&Body=" + encodeURIComponent(text);
+                        $("export-modal").modal("hide");
                     });
                 });
                 $("#export-pdf").click(function() {
@@ -377,6 +388,7 @@
                             });
                             doc.save(title + '.pdf');
                         });
+                        $("export-modal").modal("hide");
                     });
 
                 });
@@ -389,14 +401,30 @@
                         link.setAttribute('download', title + ".html");
                         link.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(elHtml));
                         link.click();
+                        $("export-modal").modal("hide");
                     });
+
                 });
 
 
                 $("#export-print").click(function() {
-                    $("#export-modal").modal("hide");
-                    window.print();
+                    getFirebaseDataThen(function(title, text, url) {
+                    var mywindow = window.open('', 'my div', 'height=400,width=600');
+                    mywindow.document.write("<html><head><title>" + title + "</title>");
+                    /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+                    mywindow.document.write('</head><body >');
+                    mywindow.document.write($("#print").html());
+                    mywindow.document.write('</body></html>');
+
+                    mywindow.document.close(); // necessary for IE >= 10
+                    mywindow.focus(); // necessary for IE >= 10
+
+                    mywindow.print();
+                    mywindow.close();
+                    $("export-modal").modal("hide");
+                })
                 });
+
             });
 
         }, function() {
@@ -442,9 +470,7 @@
                     <p>
                         To export to the T485 google group, choose any email export and enter send it to the T485 google groups. t485<span class="at"> [at] </span>googlegroups.com as the recipient.<br>
                         <b>Enter a description of the event:</b>
-                        <textarea id="export-description" class="form-control">
-                            
-                        </textarea>
+                        <textarea id="export-description" class="form-control"></textarea>
                         <a id="export-email">Email - Mail App/Defualt mail handler</a><br>
                         <a id="export-gmail">Email - Gmail</a><br>
                         <a id="export-yahoo">Email - Yahoo</a><br>
