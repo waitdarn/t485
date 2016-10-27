@@ -434,7 +434,7 @@
             });
             getFirebaseDataThen(function(title, text, url, realtext) {
                 var bootstrapCSS = $("#bootstrap").html();
-                $("#export-html").attr("href", "data:text/html,<html><head><style>" + bootstrapCSS + "</style></head><body><h1>" + title + "</h1><div>" + realtext + "</div><br><br><br><hr><p>Read more at the event page.");
+                $("#export-html").attr("href", "data:text/html,<html><head><style>" + bootstrapCSS + "</style></head><body><div class='container col-lg-12'><h1>" + title + "</h1><div>" + realtext + "</div><br><br><br><hr><p>Read more at the event page.</p></div></body></html>");
                 $("#export-html").attr("download", title + ".html");
             }, false);
 
@@ -495,7 +495,7 @@
 
                     <h3>Choose a export method:</h3>
                     <p>
-                        To export to the T485 google group, choose any email export and enter send it to the T485 google groups. t485<span class="at"> [at] </span>googlegroups.com as the recipient.<br>
+                        To export to the T485 google group, choose any email export and enter send it to the T485 google groups. <b>t485<span class="at"> [a t ]] </span>googlegroups.com</b> as the recipient.<br>
                         <b>Enter a description of the event(Required for all options except for download and print. Ignored for download and print. This will be exported):</b>
                         <textarea id="export-description" class="form-control"></textarea>
                         <a id="export-email">Email - Mail App/Defualt mail handler</a><br>
