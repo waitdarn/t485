@@ -21,7 +21,7 @@
             }
             .print,
             .print * {
-                visibility:visible;
+                visibility: visible;
                 display: block;
             }
         }
@@ -364,24 +364,35 @@
                 $("#export-pdf").click(function() {
                     getFirebaseDataThen(function(title, text, url) {
                         var doc = new jsPDF();
-                    var specialElementHandlers = {
-                        '#editor': function(element, renderer) {
-                            return true;
-                        }
-                    };
+                        var specialElementHandlers = {
+                            '#editor': function(element, renderer) {
+                                return true;
+                            }
+                        };
 
-                    $('#cmd').click(function() {
-                        doc.fromHTML($('#print').html(), 15, 15, {
-                            'width': 170,
-                            'elementHandlers': specialElementHandlers
+                        $('#cmd').click(function() {
+                            doc.fromHTML($('#print').html(), 15, 15, {
+                                'width': 170,
+                                'elementHandlers': specialElementHandlers
+                            });
+                            doc.save(title + '.pdf');
                         });
-                        doc.save(title + '.pdf');
                     });
+
+                });
+                $("#export-html").click(function() {
+                    getFirebaseDataThen(function(title, text, url) {
+
+                        var elHtml = document.getElementById("print").innerHTML;
+                        var link = document.createElement('a');
+
+                        link.setAttribute('download', title + ".html");
+                        link.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(elHtml));
+                        link.click();
                     });
-                    
                 });
 
-                //html export is in the link
+
                 $("#export-print").click(function() {
                     $("#export-modal").modal("hide");
                     window.print();
@@ -440,7 +451,7 @@
                         <a id="export-hotmail">Email - Hotmail</a><br>
                         <a id="export-aol">Email - AOL</a><br>
                         <a id="export-slack">Slack</a><br>
-                        
+
                         <a id="export-pdf">Download - PDF</a><br>
                         <a id="export-html" href="." download>Download - Offline Webpage(HTML)</a><br>
                         <a id="export-print">Print</a><br>
