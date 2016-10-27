@@ -441,8 +441,9 @@
 
 
             $("#export-print").click(function() {
+                console.log(1);
                 getFirebaseDataThen(function(title, text, url) {
-
+console.log(2);
                     $("#print").printThis({
                         pageTitle: title
                     });
