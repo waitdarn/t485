@@ -303,12 +303,12 @@
 
             });
 
-            function getFirebaseDataThen(callback) {
+            function getFirebaseDataThen(callback, requireDescription) {
                 firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
                     var data = snapshot.val();
 
                     if (data !== null) {
-                        if ($("#export-description").val().replace(" ", "") === "") {
+                        if ($("#export-description").val().replace(" ", "") === "" && !!requireDescription) {
                             alert("You must write a description. (You can just copy/paste from the event page. Note links and formatting will be removed)");
                         }
                         else {
@@ -402,7 +402,7 @@
                 $("#export-html").attr("href", "data:text/html," + document.getElementById("print").innerHTML);
                 getFirebaseDataThen(function(title, text, url) {
                     $("#export-html").attr("download", title + ".html");
-                });
+                }, false);
                 
 
 
@@ -414,7 +414,7 @@
                             });
                         });
                     })
-                });
+                }, false);
 
             });
 
