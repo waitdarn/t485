@@ -16,11 +16,11 @@
         }
         
         @media print {
-            *:not(.print) {
-                display: none;
+            *, body {
+                visibility: hidden;
             }
             .print {
-                display: block;
+                visibility: visible;
             }
         }
     </style>
@@ -31,7 +31,7 @@
     <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert" id="edit-alert-box">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.<a id="export" class="alert-link">Export or Send this page
-        (slack, googlegroups, email, download.).</a> <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
+        (slack, googlegroups, email, download).</a> <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
     </div>
     <div class="container">
         <div class="print col-lg-12">
@@ -301,7 +301,7 @@
 
                     if (data !== null) {
                         var text = data.description + "\n --- \n Read more at the event page: https://code.jeffkmeng.com/t485/event.html?event=" + getQuery("event");
-                        callback(data.title, text);
+                        callback(data.title,text.replace(/<\s*br[^>]?>/,'\n').replace(/(<([^>]+)>)/g, ""));
                     }
                     else {
                         alert("Unknown error occured. Please try again or notify the webmaster.", "https://code.jeffkmeng.com/t485/event.html?event=" + getQuery("event"));
@@ -312,6 +312,7 @@
                 $("#export-modal").modal("show");
 
                 $("#export-slack").click(function() {
+                    
                     getFirebaseDataThen(function(title, text, url) {
                         $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
                                 "text": "Event Page shared:",
@@ -327,6 +328,7 @@
                                 window.location.href = "event.html?event=" + url;
                             }
                         );
+                        $("#export-slack").html("Exported to slack - Export again");
                     });
 
                 });
@@ -395,10 +397,16 @@
                     <h4 class="modal-title" id="myModalLabel">Export or Send this page.(Google Groups, slack, and more)</h4>
                 </div>
                 <div class="modal-body col-lg-12">
+                    
                     <h3>Choose a export method:</h3>
-                    <p><b>Note: The links below will export the latest SAVED data for this event page. That is the data you see while viewing the event page.</b></p>
+                    <p><b>Note: Due to compatibility issues, exported text will not contain links, images, or any other special features.
+                    You will have to manual add these, except for download, print, and pdf export options. Slack exported text will contain links and text, but nothing else.</b></p>
                     <p>
                         To export to the T485 google group, choose an email export(email - anything), and enter <b>t485@googlegroups.com</b> as the recipient.<br>
+                        <b>Enter a description of the event:</b>
+                        <textarea id="export-description">
+                            
+                        </textarea>
                         <a id="export-email">Email - Mail App/Defualt mail handler</a><br>
                         <a id="export-gmail">Email - Gmail</a><br>
                         <a id="export-yahoo">Email - Yahoo</a><br>
