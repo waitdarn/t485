@@ -298,11 +298,11 @@
                     var data = snapshot.val();
 
                     if (data !== null) {
-                        var text = data.description + "\n --- \n Read more at the event page: https://code.jeffkmeng.com/t485/event.html?event=" + getQuery("event");
+                        var text = data.description + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
                         callback(data.title,text.replace(/<\s*br[^>]?>/,'\n').replace(/(<([^>]+)>)/g, ""));
                     }
                     else {
-                        alert("Unknown error occured. Please try again or notify the webmaster.", "https://code.jeffkmeng.com/t485/event.html?event=" + getQuery("event"));
+                        alert("Unknown error occured. Please try again or notify the webmaster.", "https://t485.org/event.html?event=" + getQuery("event"));
                     }
                 });
             }
