@@ -61,6 +61,11 @@
                 </div>
                 <div class="col-md-12" id="event-description-box">
                     <div class="editable" id="event-description">Loading...</div>
+                    <br>
+                    <br>
+                    <br>
+                    <hr>
+                    <p>Read more at the event page:<span id="print-url"></span></p>
                 </div>
 
                 <div class="clearfix"></div>
@@ -103,6 +108,7 @@
                 $("#event-description").html(data.description);
                 $(".event-title").html(data.title);
                 $(".event-description").html(data.description);
+                $("#print-url").html("<a href='" + "https://t485.org/event.html?event=" + getQuery("event") + "'>" + "https://t485.org/event.html?event=" + getQuery("event") + "</a>");
 
             }
 
