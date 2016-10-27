@@ -7,15 +7,18 @@
 
     <title>Event - Troop 485</title>
     <style>
-        .hidden, .print {
+        .hidden{
             display: none;
+        }
+        .print {
+            display:none;
         }
         
           
         
         @media print {
             *:not(.print) {
-                display: none;
+                visibility: none;
             }
             .print, .print * {
                 display: block;
