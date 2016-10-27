@@ -308,11 +308,11 @@
                     var data = snapshot.val();
 
                     if (data !== null) {
-                        if ($("#export-description").html().replace(" ", "") === "") {
+                        if ($("#export-description").val().replace(" ", "") === "") {
                             alert("You must write a description. (You can just copy/paste from the event page. Note links and formatting will be removed)");
                         }
                         else {
-                            var text = $("#export-description").html() + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
+                            var text = $("#export-description").val() + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
                             callback(data.title, text, "https://t485.org/event.html?event=" + getQuery("event"), data.description);
                         }
 
