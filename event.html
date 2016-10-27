@@ -412,13 +412,11 @@
             $("#export-print").click(function() {
                 console.log(1);
                 getFirebaseDataThen(function(title, text, url) {
-console.log(2);
-                    $("#print").printThis({
-                        pageTitle: title
-                    });
+                    console.log(2);
+                    $("#print").printThis();
 
-                });
-            }, false);
+                }, false);
+            });
 
             $("#export").click(function() {
                 $("#export-modal").modal("show");
