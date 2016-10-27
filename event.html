@@ -16,11 +16,12 @@
         }
         
         @media print {
-            *:not(.print) {
+            * {
                 visibility: hidden;
             }
             .print,
             .print * {
+                visibility:visible;
                 display: block;
             }
         }
