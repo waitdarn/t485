@@ -28,6 +28,11 @@
                 display: block;
             }
         }
+        
+        #export-description {
+            resize: vertical;
+            /* user can resize vertically, but width is fixed */
+        }
     </style>
 </head>
 
@@ -403,11 +408,11 @@
 
             $("#export-print").click(function() {
                 getFirebaseDataThen(function(title, text, url) {
-                    
-                        $("#print").printThis({
-                            pageTitle: title
-                        });
-                    
+
+                    $("#print").printThis({
+                        pageTitle: title
+                    });
+
                 });
             }, false);
 
