@@ -19,52 +19,57 @@
             <ul class="nav navbar-nav">
                 <li>
                     <a href="home.html">Home</a>
-                <li>
-                    <a href="calendar.html">Calendar</a>
-                </li>
-                <li>
-                    <a href="new-scout.html">New Scout</a>
-                </li>
-                <li>
-                    <a href="pictures.html">Pictures</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <li>
+                        <a href="calendar.html">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="new-scout.html">New Scout</a>
+                    </li>
+                    <li>
+                        <a href="pictures.html">Pictures</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         FAQ <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="merit-badges.html">Merit Badges</a></li>
-                        <li><a href="eagle.html">Path to Eagle</a></li>
-                        <li><a href="smc.html">SMC &amp; BOR</a></li>
-                        <li><a href="plc.html">What is PLC?</a></li>
-                        <li><a href="about.html">About</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <ul class="dropdown-menu">
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="merit-badges.html">Merit Badges</a></li>
+                            <li><a href="eagle.html">Path to Eagle</a></li>
+                            <li><a href="smc.html">SMC &amp; BOR</a></li>
+                            <li><a href="plc.html">What is PLC?</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Resources <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="resources.html">Resources</a></li>
-                        <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
-                        <li><a href="app-download.html">Download App</a></li>
-                        <li><a href="books.html">Books</a></li>
-                        <li><a href="troop-jobs.html">Troop Jobs</a></li>
-                        <li><a href="ranks.html">Ranks</a></li>
-                        <li><a href="forum.html">Forum</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="directory.html">Directory </a>
-                </li>
+                        <ul class="dropdown-menu">
+                            <li><a href="resources.html">Resources</a></li>
+                            <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
+                            <li><a href="app-download.html">Download App</a></li>
+                            <li><a href="books.html">Books</a></li>
+                            <li><a href="troop-jobs.html">Troop Jobs</a></li>
+                            <li><a href="ranks.html">Ranks</a></li>
+                            <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="directory.html">Directory </a>
+                    </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
-    <script src="https://static.getclicky.com/js"></script>
-    <script>try{clicky.init(100869133)}catch(e){}</script>
-    <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
-    
+        <script src="https://static.getclicky.com/js"></script>
+        <script>
+            try {
+                clicky.init(100869133)
+            }
+            catch (e) {}
+        </script>
+        <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
+
     </div>
     <!-- /.container -->
 
@@ -82,8 +87,13 @@
         <div class="box">
             <div class="col-lg-12 text-center">
                 <p>Copyright &copy; 2006-2016 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America. | <span id="eel-289371845">Easter Eggs</span></p>
-                
+
             </div>
         </div>
     </div>
 </footer>
+<script>
+    $("#eel-289371845").click(function() {
+        window.location.href = "easter-eggs.html";
+    });
+</script>
