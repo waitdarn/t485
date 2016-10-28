@@ -467,10 +467,7 @@ fieldset[disabled] .btn-google.active {
     color: #dd4b39;
     background-color: #fff;
 }
-/* for alerts that arent feedback and should be shown*/
-.alert:not(.alert-visible){
-    display: none;
-}
+
 
 .no-fancy-links a {
     border: none !important;
@@ -546,4 +543,22 @@ a:focus {
     .modal-dialog {
         margin: 0px;
     }
+}
+
+    
+/* text link */
+.t-l {
+    color:black;
+    text-decoration:none;
+    transition: none;
+}
+.t-l:hover {
+    color:black;
+    text-decoration:none;
+    transition: none;
+}
+.t-l:visited {
+    color:black;
+    text-decoration:none;
+    transition: none;
 }

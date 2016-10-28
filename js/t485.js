@@ -1,4 +1,4 @@
-/* global Firebase */
+/* global Firebase $*/
 
 
 
@@ -49,7 +49,9 @@ function auth(onAuthed, onUnauthed) {
     });
 }
 
-
+$("#eel-289371845").click(function(){
+    window.location.href = "easter-eggs.html";
+});
 // Source: http://www.w3schools.com/js/js_cookies.asp
 function hashPassword(str) {
     var hash = 0;

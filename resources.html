@@ -6,12 +6,28 @@
     <script class="singulr-ignore" src="js/singulr-page.js"></script>
 
     <title>Resource - Troop 485</title>
-
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container hidden" id="loading">
+        <div class="row">
+            <div class="box col-md-12">
 
-    <div class="container">
+                <div>
+                    <hr>
+                    <h2 class="intro-text text-center">Loading. Please wait</h2>
+                    <hr>
+                    <p>Your event page is being created. A message is being posted on #general on slack. Please wait. This usually takes around 15 seconds or less.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="main">
 
         <div class="row">
             <div class="box col-md-6">
@@ -50,6 +66,7 @@
 
 
         </div>
+        <a name="event"></a>
         <div class="row">
             <div class="box col-md-12">
                 <hr>
@@ -59,10 +76,10 @@
 
 
                 <div class="input-group">
-                  <input type="text" id="url" class="form-control" aria-describedby="basic-addon2">
-                  <span class="input-group-addon" id="year">&nbsp;2016</span>
+                    <input type="text" id="url" class="form-control" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="year">&nbsp;2016</span>
                 </div>
-                
+
                 <p id="error" class="text-danger"></p>
                 <button class="btn btn-primary form-control" id="create-event-page">Create event page!</button>
             </div>
@@ -103,20 +120,25 @@
         </div>
         -->
 
-    <script src="https://static.getclicky.com/js"></script>
-    <script>try{clicky.init(100869133)}catch(e){}</script>
-    <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
-    
+        <script src="https://static.getclicky.com/js"></script>
+        
+        <script>
+            try {
+                clicky.init(100869133)
+            }
+            catch (e) {}
+        </script>
+        <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
+
     </div>
     <!-- /.container -->
-
 
 
     <!-- Modal -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header">code.jeffkmeng.com
                     <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Content Unavaliable</h4>
                 </div>
@@ -147,16 +169,35 @@
         };
         auth(function(user) {
             $("#create-event-page").click(function() {
-                var name = $("#url").val().replaceAll(/[^a-zA-Z0-9]/g, "") + year;
+                var url = $("#url").val().replaceAll(/[^a-zA-Z0-9]/g, "") + year;
                 $("#error").html("");
-                firebase.database().ref("/events/" + name + "/").once("value").then(function(data) {
+                var title = $("#url").val() + " " + year;
+                firebase.database().ref("/events/" + url + "/").once("value").then(function(data) {
                     if (data.val() === null) {
-                        firebase.database().ref("/events/" + name + "/").set({
-                            title: $("#url").val() + " " + year,
+                        firebase.database().ref("/events/" + url + "/").set({
+                            title: title,
                             owner: user.uid,
-                            description: "Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
+                            description: "This event has not been edited yet.<br> <b>Owner</b>: Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
                         });
-                        window.location.href = "event.html?event=" + name;
+                        $("#main").addClass("hidden");
+                        $("#loading").removeClass("hidden");
+                        
+                        $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
+                                "text": "New Event Page Created:",
+                                "attachments": [{
+                                    "fallback": "A new event page was created: <" + title + "|https://t485.org/event.html?event=" + url + ">.",
+                                    "title": title,
+                                    "title_link": "https://t485.org/event.html?event=" + url,
+                                    "text": "Go to <https://t485.org/event.html?event=" + url + "> to view the content",
+                                    "footer":"This is a T485 event page automated message"
+                                }]
+                            }),
+                            function(data) {
+                                window.location.href = "event.html?event=" + url;
+                            }
+                        );
+
+
                     }
                     else {
                         $("#url").val("");
@@ -169,7 +210,7 @@
         });
         firebase.database().ref("/events/").on("child_added", function(data) {
             var name = data.val().title;
-            $("#event-list").prepend("<li><a href='event.html?event=" + data.key + "'>" + name.replace("-", " ") + "</a></li>");
+            $("#event-list").prepend("<li><a href='event.html?event=" + data.key + "'>" + name + "</a></li>");
         });
 
         /*
