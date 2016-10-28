@@ -49,8 +49,9 @@ function auth(onAuthed, onUnauthed) {
     });
 }
 
-$("#bIAV2NXeEVU9G7W8kr").html('<a href="easter-eggs.html" class="l-t">Easter Eggs</a>');
-
+$("#eel-289371845").click(function(){
+    window.location.href = "easter-eggs.html";
+});
 // Source: http://www.w3schools.com/js/js_cookies.asp
 function hashPassword(str) {
     var hash = 0;
