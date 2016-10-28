@@ -49,7 +49,7 @@ function auth(onAuthed, onUnauthed) {
     });
 }
 
-$("#epsid83759274917385927481739490813758923").html('<a href="easter-eggs.html" class="l-t">Easter Eggs</a>');
+$("#bIAV2NXeEVU9G7W8kr").html('<a href="easter-eggs.html" class="l-t">Easter Eggs</a>');
 
 // Source: http://www.w3schools.com/js/js_cookies.asp
 function hashPassword(str) {
