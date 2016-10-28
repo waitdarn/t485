@@ -10,17 +10,54 @@
         .hidden {
             display: none;
         }
+        
+        .print {
+            display: none;
+        }
+        
+        @media print {
+            * {
+                visibility: hidden;
+            }
+            #main {
+                display: none;
+            }
+            .print,
+            .print * {
+                visibility: visible;
+                display: block;
+            }
+        }
+        
+        #export-description {
+            resize: vertical;
+            /* user can resize vertically, but width is fixed */
+        }
     </style>
 </head>
 
 <body>
+    
     <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert" id="edit-alert-box">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>. <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
+        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.<a id="export" class="alert-link">Export or Send this page
+        (slack, googlegroups, email, download).</a> <a id="share" class="hidden alert-link">Allow others to edit this page.</a><a id="delete" class="hidden alert-link"> Delete this page.</a></span>
     </div>
+    
+    </div>
+    </p>
     <div class="container">
-
-        <div class="row">
+        <div class="print col-lg-12" id="print">
+            <h2 class="text-center event-title">Loading...</h2>
+            <hr>
+            <p class="event-description">Loading...</p>
+            <br>
+                    <br>
+                    <br>
+                    <hr>
+                    <p>Read more at the event page:<span id="print-url"></span></p>
+        </div>
+        <div class="row" id="main">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
@@ -29,22 +66,31 @@
                 </div>
                 <div class="col-md-12" id="event-description-box">
                     <div class="editable" id="event-description">Loading...</div>
+                    
                 </div>
 
                 <div class="clearfix"></div>
             </div>
         </div>
 
-    <script src="https://static.getclicky.com/js"></script>
-    <script>try{clicky.init(100869133)}catch(e){}</script>
-    <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
-    
+        <script src="https://static.getclicky.com/js"></script>
+        <script>
+            try {
+                clicky.init(100869133)
+            }
+            catch (e) {}
+        </script>
+        <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
+
     </div>
     <!-- /.container -->
 
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+    <script src="js/jspdf.min.js"></script>
+    <script src="js/printthis.js"></script>
     <script>
         /* global firebase $ getQuery tinymce btoa auth Singulr*/
+        $(".at").html("@");
         if (getQuery("event") === null || getQuery("event") === "") {
             window.location.href = "/resources.html";
         }
@@ -53,10 +99,17 @@
             if (data === null) {
                 $("#event-title").html("Error 404: Event Not Found");
                 $("#event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
+                $(".event-title").html("Error 404: Event Not Found");
+                $(".event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
+
+
             }
             else {
                 $("#event-title").html(data.title);
                 $("#event-description").html(data.description);
+                $(".event-title").html(data.title);
+                $(".event-description").html(data.description);
+                $("#print-url").html("<a href='" + "https://t485.org/event.html?event=" + getQuery("event") + "'>" + "https://t485.org/event.html?event=" + getQuery("event") + "</a>");
 
             }
 
@@ -67,17 +120,7 @@
 
 
                 if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
-                    window.onload = function() {
-    window.addEventListener("beforeunload", function (e) {
-        if (formSubmitting) {
-            return undefined;
-        }
 
-        var confirmationMessage = "Your changes may not be saved. Remeber to press the save button in the toolbar after clicking on a box for editing before leaving. Press 'OK' to leave and 'cancel' to stay";
-        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-        return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
-    });
-};
                     $("#edit-alert-box").removeClass("hidden");
                     $("#edit").click(function() {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
@@ -156,7 +199,7 @@
 
         function deleteLink(id) {
             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
-            reloadPage();
+            $("#share-modal").modal("hide");
 
 
         }
@@ -168,19 +211,20 @@
                     $("#edit-alert-box").removeClass("hidden");
                     $("#share").removeClass("hidden");
                     $("#delete").removeClass("hidden");
-                    
 
-window.onload = function() {
-    window.addEventListener("beforeunload", function (e) {
-        if (formSubmitting) {
-            return undefined;
-        }
 
-        var confirmationMessage = "Your changes may not be saved. Remeber to press the save button in the toolbar after clicking on a box for editing before leaving. Press 'OK' to leave and 'cancel' to stay";
-        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-        return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
-    });
-};
+                    window.onload = function() {
+                        window.addEventListener("beforeunload", function(e) {
+                            if (formSubmitting) {
+                                return undefined;
+                            }
+
+                            var confirmationMessage = "Your changes may not be saved. Remeber to press the save button in the toolbar after clicking on a box for editing before leaving. Press 'OK' to leave and 'cancel' to stay";
+                            (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+                            return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+                        });
+                    };
+
                     $("#delete").click(function() {
                         $("#confirm-delete").modal("show");
                         $("#confirm-enter-name").keyup(function() {
@@ -274,6 +318,116 @@ window.onload = function() {
 
             });
 
+            function getFirebaseDataThen(callback, requireDescription) {
+                firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+                    var data = snapshot.val();
+
+                    if (data !== null) {
+                        if ($("#export-description").val().replace(" ", "") === "" && requireDescription !== false) {
+                            alert("You must write a description. (You can just copy/paste from the event page. Note links and formatting will be removed)");
+                        }
+                        else {
+                            var text = $("#export-description").val() + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
+                            callback(data.title, text, "https://t485.org/event.html?event=" + getQuery("event"), data.description);
+                        }
+
+                    }
+                    else {
+                        alert("Unknown error occured. Please try again or notify the webmaster.", "https://t485.org/event.html?event=" + getQuery("event"));
+                    }
+                });
+            }
+            $("#export-slack").click(function() {
+
+                getFirebaseDataThen(function(title, text, url) {
+                    $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
+                            "text": "Event Page shared:",
+                            "attachments": [{
+                                "fallback": "A event page was shared: <" + title + "|https://t485.org/event.html?event=" + url + ">.",
+                                "title": title,
+                                "title_link": url,
+                                "text": text,
+                                "footer": "This is a T485 event page automated message"
+                            }]
+                        }),
+                        function(data) {
+                            window.location.href = "event.html?event=" + url;
+                        }
+                    );
+                    $("#export-slack").html("Exported to slack - Export again");
+                });
+
+            });
+            $("#export-gmail").click(function() {
+                getFirebaseDataThen(function(title, text, url) {
+                    window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&tf=1&su=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                    $("export-modal").modal("hide");
+                });
+            });
+            $("#export-yahoo").click(function() {
+                getFirebaseDataThen(function(title, text, url) {
+                    window.location.href = "http://compose.mail.yahoo.com/?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                    $("export-modal").modal("hide");
+                });
+            });
+            $("#export-hotmail").click(function() {
+                getFirebaseDataThen(function(title, text, url) {
+                    window.location.href = "https://dub130.mail.live.com/default.aspx?rru=compose&subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text) + "#page=Compose";
+                    $("export-modal").modal("hide");
+                });
+            });
+            $("#export-aol").click(function() {
+                getFirebaseDataThen(function(title, text, url) {
+                    window.location.href = "http://webmail.aol.com/Mail/ComposeMessage.aspx?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                    $("export-modal").modal("hide");
+
+                });
+            });
+            $("#export-email").click(function() {
+                getFirebaseDataThen(function(title, text, url) {
+                    window.location.href = "mailto:?Subject=" + encodeURIComponent(title) + "&Body=" + encodeURIComponent(text);
+                    $("export-modal").modal("hide");
+                });
+            });
+            $("#export-pdf").click(function() {
+                getFirebaseDataThen(function(title, text, url) {
+                    var doc = new jsPDF();
+                    var specialElementHandlers = {
+                        '#editor': function(element, renderer) {
+                            return true;
+                        }
+                    };
+
+
+                    doc.fromHTML($('#print').html(), 15, 15, {
+                        'width': 170,
+                        'elementHandlers': specialElementHandlers
+                    });
+                    doc.save(title + '.pdf');
+
+                    $("export-modal").modal("hide");
+                });
+
+            });
+            getFirebaseDataThen(function(title, text, url, realtext) {
+                $("#export-html").attr("href", "data:text/html,<html><head></head><body><h1>" + title + "</h1><div>" + realtext + "</div><br><br><br><hr><p>Read more at the <a href='" + url + "'>event page</a>.</p></body></html>");
+                $("#export-html").attr("download", title + ".html");
+            }, false);
+
+
+
+            $("#export-print").click(function() {
+                console.log(1);
+                getFirebaseDataThen(function(title, text, url) {
+                    console.log(2);
+                    $("#print").printThis();
+
+                }, false);
+            });
+
+            $("#export").click(function() {
+                $("#export-modal").modal("show");
+            });
 
         }, function() {
             Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.search));
@@ -305,6 +459,40 @@ window.onload = function() {
             </div>
         </div>
     </div>
+    <div class="modal fade" id="export-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Export or Send this page.(Google Groups, slack, and more)</h4>
+                </div>
+                <div class="modal-body col-lg-12">
+
+                    <h3>Choose a export method:</h3>
+                    <p>
+                        To export to the T485 google group, choose any email export and enter send it to the T485 google groups. <b>t485<span class="at"> [a t ]] </span>googlegroups.com</b> as the recipient.<br>
+                        <b>Enter a description of the event(Required for all options except for download and print. Ignored for download and print. This will be exported):</b>
+                        <textarea id="export-description" class="form-control"></textarea>
+                        <a id="export-email">Email - Mail App/Defualt mail handler</a><br>
+                        <a id="export-gmail">Email - Gmail</a><br>
+                        <a id="export-yahoo">Email - Yahoo</a><br>
+                        <a id="export-hotmail">Email - Hotmail</a><br>
+                        <a id="export-aol">Email - AOL</a><br>
+                        <a id="export-slack">Slack</a><br>
+
+                        <a id="export-pdf">Download - PDF</a><br>
+                        <a id="export-html">Download - Offline Webpage(HTML)</a><br>
+                        <a id="export-print">Print</a><br>
+
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" onclick="window.location.hash = '';" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -325,4 +513,5 @@ window.onload = function() {
         </div>
     </div>
     </div>
+    
 </body>

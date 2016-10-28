@@ -34,6 +34,8 @@
                         <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1YO--SYuKL2BRyKjyS3ucLOvIfr2JLRgWZSEQLst_Ruc/')">PLC Headcounts 6/27/2016 - </a>
                     </p>
                     <ul id="meeting-minute-list">
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1uJ-GPNJUxZeFomFXGhv-1_at7CshIk8Gj08VQ_QG1ek/mobilebasic')">Troop and PLC Meeting Minutes 10/25/2016</a></li>
+                        <br>
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1wMeX_6Ko9gKU2EHOLXcjIllNX_GP-11vvC36RvJ6c0g/mobilebasic')">Troop and PLC Meeting Minutes 10/10/2016</a></li>
                         <br>
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1TFALuBmcG8NBB5-pOqaA4cG9hfk2KWfUzoz76qpZsuc/mobilebasic')">PLC Meeting Minutes 10/3/2016</a></li>
@@ -199,7 +201,7 @@
         auth(null, function() {
             Singulr.loadPage('login.html?redir=meeting-minutes.html');
         });
-        
+
         function openModal(_this, url) {
             title = $(_this).html();
             $('#myModalLabel').html(title);
@@ -207,27 +209,29 @@
             $('#mdlk').attr('href', url);
             $('#myModal').modal('show');
         }
+
         function requestFullScreen() {
-            var el = document.getElementById("ifr")
-          // Supports most browsers and their versions.
-          var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
-          || el.mozRequestFullScreen || el.msRequestFullScreen;
-        
-          if (requestMethod) {
-        
-            // Native full screen.
-            requestMethod.call(el);
-        
-          } else if (typeof window.ActiveXObject !== "undefined") {
-        
-            // Older IE.
-            var wscript = new ActiveXObject("WScript.Shell");
-        
-            if (wscript !== null) {
-              wscript.SendKeys("{F11}");
+            var el = document.getElementById("ifr");
+            // Supports most browsers and their versions.
+            var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen ||
+                el.mozRequestFullScreen || el.msRequestFullScreen;
+
+            if (requestMethod) {
+
+                // Native full screen.
+                requestMethod.call(el);
+
+            } else if (typeof window.ActiveXObject !== "undefined") {
+
+                // Older IE.
+                var wscript = new ActiveXObject("WScript.Shell");
+
+                if (wscript !== null) {
+                    wscript.SendKeys("{F11}");
+                }
             }
-          }
         }
+        
         $('.viewmore').click(function() {
             var $this = $(this);
             $this.toggleClass('viewmore');

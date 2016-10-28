@@ -6,12 +6,28 @@
     <script class="singulr-ignore" src="js/singulr-page.js"></script>
 
     <title>Resource - Troop 485</title>
-
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container hidden" id="loading">
+        <div class="row">
+            <div class="box col-md-12">
 
-    <div class="container">
+                <div>
+                    <hr>
+                    <h2 class="intro-text text-center">Loading. Please wait</h2>
+                    <hr>
+                    <p>Your event page is being created. A message is being posted on #general on slack. Please wait. This usually takes around 15 seconds or less.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="main">
 
         <div class="row">
             <div class="box col-md-6">
@@ -31,23 +47,26 @@
                     <hr>
                     <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=meeting-minutes.html')">Log out</button>
                     <ul>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic', 'Council Rescources');">Council Resource</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1dtMPUhKv6eOfKaxk3iMwnRbovgu0yZt6J0mH8wPdBfY/mobilebasic', 'Things to Remeber');">Things to Remember</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1ssoNp8eQqNzkeJAefQdLk6aqu5bEMGarUHX9RvpV1BU/mobilebasic', 'Resume Template');">Resume Template</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1a56ZOlhhT1MT7QGXwLSzmsD5l1cahH44O6kUFNTAJ3I/mobilebasic', 'Packing List');">Packing List</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/16ft2MS85ZYynyJC9lMIo6Kp8yaJQfcGmY62ayj97_uo/mobilebasic', 'TLT2016 - Lecture Notes');">TLT2016 - Lecture Notes</a></li>
-                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FNew%20Boy%20Scout%20Requirements%202016%20Insert.pdf?alt=media&amp;token=3782b26b-c79c-49f3-bc35-a32f0ce0a7a9', 'New Boy Scout Requirements');">New Boy Scout Requirements 2016 Insert.pdf (343.8 KB)</a></li>
-                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FPatrol%20Leader%20Handbook.pdf?alt=media&amp;token=2c696c57-719e-4c23-9e70-d1154bd3f55e', 'Patrol Leader Handbook');">Patrol Leader Handbook.pdf (3.2 MB)</a></li>
-                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FBSA%20Fieldbook.pdf?alt=media&amp;token=06cf3993-def1-4e2d-b461-373ce77712a2', 'BSA Fieldbook');">BSA Fieldbook.pdf (69.8 MB)</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=1cqU9DQ0c4RXcm0GJ-gJJ8pRP8Ah3WsYApBlaLbrnRhw&amp;start=false&amp;loop=false', 'Year End Party Presentation');">Year End Party Presentation</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=16vDoqikgorGn4utl1sHBkMhXqbEbvwtGkJ5xMMfbm-o&amp;start=false&amp;loop=false', '2016 Advancement Updates');">2016 Advancement Update</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=15e_mFNG0x4JIhqbCOZ3CDkVm_nrmEnXYE1RFOEQKd-w&amp;start=false&amp;loop=false', 'Advancement Presentation');">Advancement Presentation</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic');">Council Resource</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1dtMPUhKv6eOfKaxk3iMwnRbovgu0yZt6J0mH8wPdBfY/mobilebasic');">Things to Remember</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1ssoNp8eQqNzkeJAefQdLk6aqu5bEMGarUHX9RvpV1BU/mobilebasic');">Resume Template</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1a56ZOlhhT1MT7QGXwLSzmsD5l1cahH44O6kUFNTAJ3I/mobilebasic');">Packing List</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/16ft2MS85ZYynyJC9lMIo6Kp8yaJQfcGmY62ayj97_uo/mobilebasic');">TLT2016 - Lecture Notes</a></li>
+                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FNew%20Boy%20Scout%20Requirements%202016%20Insert.pdf?alt=media&amp;token=3782b26b-c79c-49f3-bc35-a32f0ce0a7a9');">New Boy Scout Requirements 2016 Insert.pdf (343.8 KB)</a></li>
+                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FPatrol%20Leader%20Handbook.pdf?alt=media&amp;token=2c696c57-719e-4c23-9e70-d1154bd3f55e');">Patrol Leader Handbook.pdf (3.2 MB)</a></li>
+                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FBSA%20Fieldbook.pdf?alt=media&amp;token=06cf3993-def1-4e2d-b461-373ce77712a2');">BSA Fieldbook.pdf (69.8 MB)</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=1cqU9DQ0c4RXcm0GJ-gJJ8pRP8Ah3WsYApBlaLbrnRhw&amp;start=false&amp;loop=false');">Year End Party Presentation</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=16vDoqikgorGn4utl1sHBkMhXqbEbvwtGkJ5xMMfbm-o&amp;start=false&amp;loop=false');">2016 Advancement Update</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=15e_mFNG0x4JIhqbCOZ3CDkVm_nrmEnXYE1RFOEQKd-w&amp;start=false&amp;loop=false');">Advancement Presentation</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1fjrkSV_svlleL1ltqJGgozIvEafzmmiMPCe7xEqnngI/pubhtml?widget=true&headers=false');">2016 Events</a></li>
+                        <li><a onclick="openModal(this, 'https://drive.google.com/embeddedfolderview?id=0BygadbpNuUSXUXhRMUlycW0yNGs#' + (window.innerWidth > 767 ? 'grid' : 'list'));">Event Cheatsheets</a></li>
                     </ul>
                 </div>
             </div>
 
 
         </div>
+        <a name="event"></a>
         <div class="row">
             <div class="box col-md-12">
                 <hr>
@@ -57,10 +76,10 @@
 
 
                 <div class="input-group">
-                  <input type="text" id="url" class="form-control" aria-describedby="basic-addon2">
-                  <span class="input-group-addon" id="year">&nbsp;2016</span>
+                    <input type="text" id="url" class="form-control" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="year">&nbsp;2016</span>
                 </div>
-                
+
                 <p id="error" class="text-danger"></p>
                 <button class="btn btn-primary form-control" id="create-event-page">Create event page!</button>
             </div>
@@ -101,20 +120,25 @@
         </div>
         -->
 
-    <script src="https://static.getclicky.com/js"></script>
-    <script>try{clicky.init(100869133)}catch(e){}</script>
-    <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
-    
+        <script src="https://static.getclicky.com/js"></script>
+        
+        <script>
+            try {
+                clicky.init(100869133)
+            }
+            catch (e) {}
+        </script>
+        <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
+
     </div>
     <!-- /.container -->
-
 
 
     <!-- Modal -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header">code.jeffkmeng.com
                     <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Content Unavaliable</h4>
                 </div>
@@ -145,16 +169,35 @@
         };
         auth(function(user) {
             $("#create-event-page").click(function() {
-                var name = $("#url").val().replaceAll(/[^a-zA-Z0-9]/g, "") + year;
+                var url = $("#url").val().replaceAll(/[^a-zA-Z0-9]/g, "") + year;
                 $("#error").html("");
-                firebase.database().ref("/events/" + name + "/").once("value").then(function(data) {
+                var title = $("#url").val() + " " + year;
+                firebase.database().ref("/events/" + url + "/").once("value").then(function(data) {
                     if (data.val() === null) {
-                        firebase.database().ref("/events/" + name + "/").set({
-                            title: $("#url").val() + " " + year,
+                        firebase.database().ref("/events/" + url + "/").set({
+                            title: title,
                             owner: user.uid,
-                            description: "Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
+                            description: "This event has not been edited yet.<br> <b>Owner</b>: Click the above edit button and then click on this paragraph or the page title to edit that element. After editing a paragraph, click save changes in the toolbar that pops up to save your changes."
                         });
-                        window.location.href = "event.html?event=" + name;
+                        $("#main").addClass("hidden");
+                        $("#loading").removeClass("hidden");
+                        
+                        $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
+                                "text": "New Event Page Created:",
+                                "attachments": [{
+                                    "fallback": "A new event page was created: <" + title + "|https://t485.org/event.html?event=" + url + ">.",
+                                    "title": title,
+                                    "title_link": "https://t485.org/event.html?event=" + url,
+                                    "text": "Go to <https://t485.org/event.html?event=" + url + "> to view the content",
+                                    "footer":"This is a T485 event page automated message"
+                                }]
+                            }),
+                            function(data) {
+                                window.location.href = "event.html?event=" + url;
+                            }
+                        );
+
+
                     }
                     else {
                         $("#url").val("");
@@ -167,7 +210,7 @@
         });
         firebase.database().ref("/events/").on("child_added", function(data) {
             var name = data.val().title;
-            $("#event-list").prepend("<li><a href='event.html?event=" + data.key + "'>" + name.replace("-", " ") + "</a></li>");
+            $("#event-list").prepend("<li><a href='event.html?event=" + data.key + "'>" + name + "</a></li>");
         });
 
         /*
@@ -413,7 +456,7 @@
         function openModal(e, url, name) {
             var title;
             if (name === undefined && e !== undefined) {
-                title = (e.target.tagName === 'A' ? title = e.target.innerHTML : e.target.attributes.alt.nodeValue);
+                title = (e.tagName === 'A' ? title = e.innerHTML : e.attributes.alt.nodeValue);
             }
             else {
                 title = name;
