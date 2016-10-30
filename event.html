@@ -91,7 +91,8 @@
         if (getQuery("event") === null || getQuery("event") === "") {
             window.location.href = "/resources.html";
         }
-        firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+        firebase.database().ref('/events/' + encodeURIComponent(getQuery("event"))/*URL is url safe anyways, this is to trigger the data = null 404
+        when the event contains non URL safe charcters*/).once('value').then(function(snapshot) {
             var data = snapshot.val();
             if (data === null || data === 0) {
                 $("#event-title").html("Error 404: Event Not Found");
