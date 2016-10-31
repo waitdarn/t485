@@ -18,6 +18,19 @@
     <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
     
     <link rel="manifest" href="/manifest.json">
+    
+    <script>
+        try {
+            localStorage.setItem('foo', 'bar');
+        } catch (e) {
+            if (e.message === 'The quota has been exceeded.') {
+                // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
+                // firebase will throw error, so better to alert user now
+                alert('Private browsing is not supported!');
+            }
+        }
+        throw '';
+    </script>
 
 </head>
 
