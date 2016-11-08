@@ -213,6 +213,7 @@ myApp.onPageInit('events', function() {
 function showEventInfo(name, description) {
     $$('#event-more-name').html(decodeURIComponent(name));
     $$('#event-more-info').html(decodeURIComponent(description));
+    $$('#event-more-info a').addClass('external');
     mainView.router.loadContent($$('#event-more-template').html());
 }
 
