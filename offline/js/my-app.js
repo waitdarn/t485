@@ -221,6 +221,7 @@ function showEventInfo(name, description) {
 
 myApp.onPageInit('calendar', function() {
     // updated 11/07/2016
+    // TODO: get way to update calendar in real time
     var info = [
         ["Troop and ASM Meeting","2016-11-07T19:30:00-08:00"],
         ["District Roundtable","2016-11-09T19:30:00-08:00"],
