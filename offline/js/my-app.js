@@ -215,3 +215,10 @@ function showEventInfo(name, description) {
     $$('#event-more-info').html(decodeURIComponent(description));
     mainView.router.loadContent($$('#event-more-template').html());
 }
+
+
+
+
+myApp.onPageInit('calendar', function() {
+    
+});
