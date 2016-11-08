@@ -212,7 +212,8 @@
 
             var name = data.val().title;
             $("#event-list").prepend("<li><a class='name' href='event.html?event=" + data.key + "'>" + name + "</a></li>");
-
+            
+            Singulr.bindEventHandlers();
         });
 
 
