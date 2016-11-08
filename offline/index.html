@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html manifest="app.appcache">
+<!-- <html> -->
 
 <head>
     <!-- Required meta tags-->
@@ -22,6 +23,8 @@
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.min.css">
     <!-- Path to Framework7 iOS related color styles -->
     <link rel="stylesheet" href="bower_components/Framework7/dist/css/framework7.ios.colors.min.css">
+    
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
@@ -74,11 +77,11 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li id="resources-link">
-                                    <a href="resources.html" class="item-link">
+                                <li id="events-link">
+                                    <a href="events.html" class="item-link">
                                         <div class="item-content">
                                             <div class="item-inner">
-                                                <div class="item-title">Resources</div>
+                                                <div class="item-title">Events</div>
                                             </div>
                                         </div>
                                     </a>
@@ -140,6 +143,34 @@
         </div>
     </div>
     <!--/#directory-more-template-->
+    
+    
+    <div id="event-more-template" style="display: none">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="back link">
+                        <i class="icon icon-back"></i>
+                        <span>Back</span>
+                    </a>
+                </div>
+                <div class="center sliding" id="event-more-name"></div>
+                <div class="right">
+                    <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="pages">
+            <div data-page="event-more" class="page">
+                <div class="page-content">
+                    <div class="content-block" id="event-more-info"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/#event-more-template-->
+    
     
     
     <!-- Framework7 Library JS-->
