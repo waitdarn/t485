@@ -220,5 +220,72 @@ function showEventInfo(name, description) {
 
 
 myApp.onPageInit('calendar', function() {
+    // updated 11/07/2016
+    var info = [
+        ["Troop and ASM Meeting","2016-11-07T19:30:00-08:00"],
+        ["District Roundtable","2016-11-09T19:30:00-08:00"],
+        ["Scouting for Food","2016-11-12T09:00:00-08:00"],
+        ["BOR","2016-11-14T19:30:00-08:00"],
+        ["Scouting for Food","2016-11-19T09:00:00-08:00"],
+        ["Troop and Committee Meeting","2016-11-21T19:30:00-08:00"],
+        ["PLC","2016-11-28T19:30:00-08:00"],
+        ["Troop and ASM Meeting","2016-12-05T19:30:00-08:00"],
+        ["Year End Party","2016-12-11T13:30:00-08:00"],
+        ["BOR","2016-12-12T19:30:00-08:00"],
+        ["District Roundtable","2016-12-14T19:30:00-08:00"],
+        ["Father and Son Campout","2016-12-17"],
+        ["Troop and Committee Meeting","2016-12-19T19:30:00-08:00"],
+        ["PLC","2016-12-26T19:30:00-08:00"],
+        ["Troop and ASM Meeting","2017-01-02T19:30:00-08:00"],
+        ["BOR","2017-01-09T19:30:00-08:00"],
+        ["District Roundtable","2017-01-11T19:30:00-08:00"],
+        ["TLT( Troop Leadership Training)","2017-01-14T06:00:00-08:00"],
+        ["Troop and Committee Meeting","2017-01-16T19:30:00-08:00"],
+        ["PLC","2017-01-23T19:30:00-08:00"],
+        ["Troop and ASM Meeting","2017-02-06T19:30:00-08:00"],
+        ["District Roundtable","2017-02-08T19:30:00-08:00"],
+        ["BOR","2017-02-13T19:30:00-08:00"],
+        ["Troop and Committee Meeting","2017-02-20T19:30:00-08:00"],
+        ["Bear Paw","2017-02-24T17:00:00-08:00"],
+        ["PLC","2017-02-27T19:30:00-08:00"],
+        ["Troop and ASM Meeting","2017-03-06T19:30:00-08:00"],
+        ["District Roundtable","2017-03-08T19:30:00-08:00"],
+        ["BOR","2017-03-13T19:30:00-07:00"],
+        ["Troop and Committee Meeting","2017-03-20T19:30:00-07:00"],
+        ["PLC","2017-03-27T19:30:00-07:00"],
+        ["Troop and ASM Meeting","2017-04-03T19:30:00-07:00"],
+        ["BOR","2017-04-10T19:30:00-07:00"],
+        ["District Roundtable","2017-04-12T19:30:00-07:00"],
+        ["Troop and Committee Meeting","2017-04-17T19:30:00-07:00"],
+        ["PLC","2017-04-24T19:30:00-07:00"],
+        ["Troop and ASM Meeting","2017-05-01T19:30:00-07:00"],
+        ["BOR","2017-05-08T19:30:00-07:00"],
+        ["District Roundtable","2017-05-10T19:30:00-07:00"],
+        ["Troop and Committee Meeting","2017-05-15T19:30:00-07:00"],
+        ["PLC","2017-05-22T19:30:00-07:00"],
+        ["Troop and ASM Meeting","2017-06-05T19:30:00-07:00"],
+        ["BOR","2017-06-12T19:30:00-07:00"],
+        ["District Roundtable","2017-06-14T19:30:00-07:00"],
+        ["Troop and Committee Meeting","2017-06-19T19:30:00-07:00"],
+        ["PLC","2017-06-26T19:30:00-07:00"],
+        ["Summer Camp","2017-06-30"],
+        ["Troop and ASM Meeting","2017-07-03T19:30:00-07:00"],
+        ["BOR","2017-07-10T19:30:00-07:00"],
+        ["District Roundtable","2017-07-12T19:30:00-07:00"],
+    ];
     
+    let calList = document.getElementById('cal-list');
+    
+    for (let i = 0; i < info.length; i++) {
+        let listElement = document.createElement('li');
+        listElement.innerHTML =
+        `<div class="item-content">
+            <div class="item-inner">
+                <div class="item-title">${info[i][0]}</div>
+                <div class="item-after">${info[i][1].replace('T', ' ')}</div>
+            </div>
+        </div>`;
+        
+        calList.appendChild(listElement);
+    }
 });
