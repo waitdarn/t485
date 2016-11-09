@@ -48,9 +48,6 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <div class="center sliding">T485</div>
-                    <div class="right">
-                        <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-                    </div>
                 </div>
             </div>
             
@@ -114,7 +111,6 @@
                 <div class="navbar-inner">
                     <div class="left sliding"><a href="#" class="link close-popup photo-browser-close-link  "><i class="icon icon-back "></i><span>Close</span></a></div>
                     <div class="center sliding" style="left: -31px;" id="info-popup-name"></div>
-                    <div class="right"></div>
                 </div>
             </div>
             
@@ -137,9 +133,6 @@
                     </a>
                 </div>
                 <div class="center sliding" id="directory-more-name"></div>
-                <div class="right">
-                    <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-                </div>
             </div>
         </div>
         
@@ -164,9 +157,6 @@
                     </a>
                 </div>
                 <div class="center sliding" id="event-more-name"></div>
-                <div class="right">
-                    <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-                </div>
             </div>
         </div>
         
@@ -181,13 +171,39 @@
     <!--/#event-more-template-->
     
     
+    <div id="calendar-more-template" style="display: none">
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="left">
+                    <a href="#" class="back link">
+                        <i class="icon icon-back"></i>
+                        <span>Back</span>
+                    </a>
+                </div>
+                <div class="center sliding" id="calendar-more-name"></div>
+            </div>
+        </div>
+        
+        <div class="pages">
+            <div data-page="calendar-more" class="page">
+                <div class="page-content">
+                    <div class="content-block" id="calendar-more-info"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/#calendar-more-template-->
     
-    <!-- Framework7 Library JS-->
+    
+    <!-- Clicky -->
+    <script src="https://static.getclicky.com/js"></script>
+    <script>try{clicky.init(100869133)}catch(e){}</script>
+    <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
+    
     <script src="bower_components/Framework7/dist/js/framework7.min.js"></script>
-    <!--Firebase-->
     <script src="js/firebase.min.js"></script>
-    <!--Tabletop-->
     <script src="../js/tabletop.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment.js"></script>
     
     <script src="js/my-app.js"></script>
 </body>
