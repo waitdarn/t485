@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2016-11-08:v1
+# 2016-11-08:v2
 
 CACHE:
 index.html
@@ -9,6 +9,7 @@ calendar.html
 main.css
 js/my-app.js
 js/firebase.min.js
+js/moment.js
 ../js/tabletop.min.js
 bower_components/Framework7/dist/js/framework7.min.js
 bower_components/Framework7/dist/css/framework7.ios.min.css
