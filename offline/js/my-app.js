@@ -35,6 +35,7 @@ if (online) {
     updateCache();
     $$('.pull-to-refresh-content').on('refresh', function() {
         updateCache();
+        setTimeout(() => myApp.pullToRefreshDone(), 2000);
     });
 }
 
