@@ -82,9 +82,9 @@
         
         
         auth(function() {
-            var text = '{"iv":"u94eK78S4EOGQqpYNDLrGw==","v":1,"iter":1000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"g17ODbhwHcY=","ct":"66YjjNZp1zkWyBjPUD4XTHy2aHx8v2wPxywiPhbCxjCF8YWkhLzYnVgojeMZV2zbuQHjmrRLVbR+DTdeJzy0Xv70w1ez/eX4uX5nfiBCzi2kO4NwSLXUvJiIcuPGL7BLnXXXw893c0ADbqJUj6fS2nCfi0n9BT' +
+            let text = '{"iv":"u94eK78S4EOGQqpYNDLrGw==","v":1,"iter":1000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"g17ODbhwHcY=","ct":"66YjjNZp1zkWyBjPUD4XTHy2aHx8v2wPxywiPhbCxjCF8YWkhLzYnVgojeMZV2zbuQHjmrRLVbR+DTdeJzy0Xv70w1ez/eX4uX5nfiBCzi2kO4NwSLXUvJiIcuPGL7BLnXXXw893c0ADbqJUj6fS2nCfi0n9BT' +
             'koU9U8fDNXrsnRUkD0Oqd7khInVvOBoa4c1hjGx1P8cI3WXn29l0ezln2GPH1xqDenWQJTC+tAZ12a2e0uIb+zHIHJkTtjiZPGPBlZDe5/mFeqzr3e6qvZyawlOyI+NlrlQ3a10txli8P9M65UgfPhRDSMdGmeTuhiYkOhvUayWXg/DqMzabBem7cBcflxl8EzNuneoQ43E3ACqr/PdWyC5FBeNKTktyUQR6ypHQIWQwng0d5D7N9ZdfhGTzBDr3IYFaczaBATUuTnlMnBvhF/Jxvs5Rf8uiobblIrP1J25p9kzLe8acU="}';
-            var secretInfo = JSON.parse(sjcl.decrypt('XH7uDeHIOFaJvizWBhA', text));
+            let secretInfo = JSON.parse(sjcl.decrypt('XH7uDeHIOFaJvizWBhA', text));
             
             
             $('#search-query').focus();
@@ -123,48 +123,48 @@
             
             // Cacti
             Tabletop.init({key: secretInfo.cacti, callback: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    data[i].patrol = 'Cacti';
+                for (let curData of data) {
+                    curData.patrol = 'Cacti';
                 }
                 window.globalData.push.apply(window.globalData, data);
             }, simpleSheet: true});
             
             // Hawks
             Tabletop.init({key: secretInfo.hawks, callback: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    data[i].patrol = 'Hawks';
+                for (let curData of data) {
+                    curData.patrol = 'Hawks';
                 }
                 window.globalData.push.apply(window.globalData, data);
             }, simpleSheet: true});
             
             // Wildcats
             Tabletop.init({key: secretInfo.wildcats, callback: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    data[i].patrol = 'Wildcats';
+                for (let curData of data) {
+                    curData.patrol = 'Wildcats';
                 }
                 window.globalData.push.apply(window.globalData, data);
             }, simpleSheet: true});
             
             // Serpents
             Tabletop.init({key: secretInfo.serpents, callback: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    data[i].patrol = 'Serpents';
+                for (let curData of data) {
+                    curData.patrol = 'Serpents';
                 }
                 window.globalData.push.apply(window.globalData, data);
             }, simpleSheet: true});
             
             // Blobfish
             Tabletop.init({key: secretInfo.blobfish, callback: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    data[i].patrol = 'Blobfish';
+                for (let curData of data) {
+                    curData.patrol = 'Blobfish';
                 }
                 window.globalData.push.apply(window.globalData, data);
             }, simpleSheet: true});
             
             // Dragons
             Tabletop.init({key: secretInfo.dragons, callback: function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    data[i].patrol = 'Dragons';
+                for (let curData of data) {
+                    curData.patrol = 'Dragons';
                 }
                 window.globalData.push.apply(window.globalData, data);
             }, simpleSheet: true});
@@ -190,14 +190,14 @@
         
         
         $('#search-btn').click(function() {
-            var userquery = $('#search-query').val();
+            let userquery = $('#search-query').val();
             if (userquery === '') return;
             
             
             $('#search-query').val('');
             userquery = userquery.toLowerCase();
             //console.log(userquery);
-            var query = [];
+            let query = [];
             
             if (userquery.search(' ') > 0) {
                 query = userquery.split(' ');
@@ -213,20 +213,20 @@
             //console.log(query);
             
             // Split the names into first and last names
-            var patrolnames = [];
-            for (var i = 0; i < window.globalData.length; i++) {
-                var fullname = window.globalData[i]['Scout\'s Full Name (last name first):'];
-                var name;
+            let patrolnames = [];
+            for (let curGlobalData of window.globalData) {
+                let fullname = curGlobalData['Scout\'s Full Name (last name first):'];
+                let name;
                 if (fullname.search(', ') > 0) {
                     name = fullname.split(', ');
-                    var temp = name[0];
+                    let temp = name[0];
                     name[0] = name[1];
                     name[1] = temp;
                 } else if (fullname.search(' ') > 0) {
                     name = fullname.split(' ');
                 } else if (fullname.search(',') > 0) {
                     name = fullname.split(',');
-                    temp = name[0];
+                    let temp = name[0];
                     name[0] = name[1];
                     name[1] = temp;
                 } else {
@@ -240,16 +240,16 @@
             //console.log(patrolnames);
             
             // Search for patrolnames for query
-            var results = [];
+            let results = [];
             // score lower is better
-            var score = [];
-            for (i = 0; i < patrolnames.length; i++) {
+            let score = [];
+            for (let i = 0; i < patrolnames.length; i++) {
                 // Only first/last name
                 if (query[1] === null) {
                     if (patrolnames[i][0] === query[0] || patrolnames[i][1] === query[0]) {
                         score.push({id: i, score: 0});
                     } else {
-                        var diff = compare(query[0], patrolnames[i][0]) < compare(query[0], patrolnames[i][1]) ?
+                        let diff = compare(query[0], patrolnames[i][0]) < compare(query[0], patrolnames[i][1]) ?
                                    compare(query[0], patrolnames[i][0]) : compare(query[0], patrolnames[i][1]);
                         if (diff < query[0].length / 2) {
                             score.push({id: i, score: diff + 1});
@@ -261,7 +261,7 @@
                     break;
                 // First and last name
                 } else {
-                    diff = compare(query[0], patrolnames[i][0]) + compare(query[1], patrolnames[i][1]);
+                    let diff = compare(query[0], patrolnames[i][0]) + compare(query[1], patrolnames[i][1]);
                     if (diff < (query[0].length + query[1].length) / 2) {
                         score.push({id: i, score: diff + 1});
                     }
@@ -272,9 +272,9 @@
             });
             
             // Make sure scores list has items
-            if (!(score[0] === undefined)) {
-                var firstScore = score[0].score;
-                for (i = 0; i < score.length; i++) {
+            if (score[0]) {
+                let firstScore = score[0].score;
+                for (let i = 0; i < score.length; i++) {
                     // If direct match of query
                     if (score[i].score === firstScore) {
                         results.push(score[i].id);
@@ -302,11 +302,11 @@
           	    console.log('2');
                 $('#no-result').hide();
                 $('#results > tbody').html('');
-                for (var i = 0; i < results.length; i++) {
-                    var name = window.globalData[results[i]]['Scout\'s Full Name (last name first):'];
+                for (let result of results) {
+                    let name = window.globalData[result]['Scout\'s Full Name (last name first):'];
                     $('#results > tbody').append(
-                        '<tr><td><a onclick="showfullinfo(' + results[i] + ')">' + name
-                     + '</a></td><td>'  + window.globalData[results[i]]['Scout\'s Cell Phone'] + '</td></tr>');
+                        '<tr><td><a onclick="showfullinfo(' + result + ')">' + name +
+                        '</a></td><td>'  + window.globalData[result['Scout\'s Cell Phone']] + '</td></tr>');
                 }
                 $('#results').show();
           	}
@@ -322,7 +322,7 @@
                 'Email: <a href="mailto:'   + window.globalData[id]['Scout\'s E-mail:']                 + '">' + window.globalData[id]['Scout\'s E-mail:'] + '</a><br>' +
                 'Cell Phone: <a href="tel:' + window.globalData[id]['Scout\'s Cell Phone']              + '">' + window.globalData[id]['Scout\'s Cell Phone'] + '</a><br>' +
                 'Home Phone: <a href="tel:' + window.globalData[id]['Scout\'s Home Phone']              + '">' + window.globalData[id]['Scout\'s Home Phone'] + '</a><br>' +
-                'Patrol: '                  + window.globalData[id]['patrol']                           + '<br><br>' +
+                'Patrol: '                  + window.globalData[id].patrol                              + '<br><br>' +
                 'Father\'s Cell Phone: <a href="tel:' + window.globalData[id]['Father\'s Cell Phone']   + '">' + window.globalData[id]['Father\'s Cell Phone'] + '</a><br>' +
                 'Father\'s E-mail: <a href="mailto:'  + window.globalData[id]['Father\'s E-mail']       + '">' + window.globalData[id]['Father\'s E-mail'] + '</a><br>' +
                 'Mother\'s Cell Phone: <a href="tel:' + window.globalData[id]['Mother\'s Cell Phone']   + '">' + window.globalData[id]['Mother\'s Cell Phone'] + '</a><br>' +

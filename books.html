@@ -403,7 +403,7 @@
     <script>
     /* global firebase */
         // Initialize Firebase
-        var config = {
+        let config = {
             apiKey: "AIzaSyDVH7MsGKQ1i1oHF0oCN2-zL-R2qI4D3JA",
             authDomain: "t485auth.firebaseapp.com",
             databaseURL: "https://t485auth.firebaseio.com",
@@ -412,10 +412,10 @@
         firebase.initializeApp(config);
 
         function hold(book) {
-            var d = new Date();
+            let d = new Date();
             // Month starts at 0 for January
-            var date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
-            var name = prompt("Please enter your first and last name");
+            let date = (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
+            let name = prompt("Please enter your first and last name");
             // Shortest name: Hi Le
             // If name is invalid ask again
             while (name === "" || name.length < 5 || name.length > 30 ||

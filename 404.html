@@ -38,7 +38,7 @@
     
     
     <script>
-        var pages = [
+        let pages = [
             'home.html',
             'about.html',
             'books.html',
@@ -73,15 +73,15 @@
         
         
         function closest(page) {
-            var smallest = -1;
-            var rtn;
+            let smallest = -1;
+            let rtn;
             
-            for (var i = 0; i < pages.length; i++) {
-                var dist = compare(page, pages[i]);
+            for (let page of pages) {
+                let dist = compare(page, page);
                 console.log(dist);
                 if (dist < smallest || smallest === -1) {
                     smallest = dist;
-                    rtn = pages[i];
+                    rtn = page;
                     if (rtn === 'a.html' || rtn === 'home.html') {
                         rtn = 'home.html';
                     }

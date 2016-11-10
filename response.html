@@ -46,21 +46,21 @@
 
 
     <script>
-        var id = getUrlVars()["id"];
+        let id = getUrlVars()["id"];
         
         if (id === undefined) {
             console.log("id undefined!");
             alert("Lost your url? Email the webmaster");
         } else {
-            var fireRef = new Firebase("https://t485.firebaseio.com/headcount/" + id + "/responses");
+            let fireRef = new Firebase("https://t485.firebaseio.com/headcount/" + id + "/responses");
         }
 
-        var table = document.getElementById("response-table");
+        let table = document.getElementById("response-table");
 
         fireRef.on("child_added", function(snapshot) {
-            var response = snapshot.val();
+            let response = snapshot.val();
 
-            var row = table.insertRow(-1);
+            let row = table.insertRow(-1);
             if (response.name === undefined) {
                 row.insertCell(0).innerHTML = "";
             } else {
@@ -80,8 +80,8 @@
         });
 
         function getUrlVars() {
-            var vars = {};
-            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            let vars = {};
+            let parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
                 vars[key] = value;
             });
             return vars;

@@ -38,25 +38,25 @@
 
 
     <script>
-        var redirectUrl = getQuery('redir') || 'home.html';
-        var provider = new firebase.auth.GoogleAuthProvider();
+        let redirectUrl = getQuery('redir') || 'home.html';
+        let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.email');
         
         
         function btnClicked() {
             firebase.auth().signInWithPopup(provider).then(function(result) {
                 // This gives you a Google Access Token. You can use it to access the Google API.
-                var token = result.credential.accessToken;
+                let token = result.credential.accessToken;
                 // The signed-in user info.
-                var user = result.user;
+                let user = result.user;
                 
-                var email = user.providerData[0].email;
+                let email = user.providerData[0].email;
                 console.log(user);
                 console.log(email);
                 
                 $.get('members', function(response) {
                     if (response) {
-                        var members = response.split('\n');
+                        let members = response.split('\n');
             
                         // Check if email is on approved list
                         if (members.indexOf(email) > -1) {
@@ -72,12 +72,12 @@
                 // ...
             }).catch(function(error) {
                 // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
+                let errorCode = error.code;
+                let errorMessage = error.message;
                 // The email of the user's account used.
-                var email = error.email;
+                let email = error.email;
                 // The firebase.auth.AuthCredential type that was used.
-                var credential = error.credential;
+                let credential = error.credential;
                 console.log(error);
                 
                 // reload page
