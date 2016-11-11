@@ -76,17 +76,17 @@
             let smallest = -1;
             let rtn;
             
-            for (let page of pages) {
-                let dist = compare(page, page);
+            pages.forEach((curPage) => {
+                let dist = compare(page, curPage);
                 console.log(dist);
                 if (dist < smallest || smallest === -1) {
                     smallest = dist;
-                    rtn = page;
+                    rtn = curPage;
                     if (rtn === 'a.html' || rtn === 'home.html') {
                         rtn = 'home.html';
                     }
                 }
-            }
+            });
             
             return rtn;
         }

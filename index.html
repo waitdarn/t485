@@ -61,13 +61,13 @@
                 // remove leading slash
                 let page = Singulr.getPage().substr(1);
                 
-                for (let element of elements) {
+                elements.forEach((element) => {
                     if (page === element.getAttribute('href')) {
                         element.parentElement.classList.add('active');
                     } else {
                         element.parentElement.classList.remove('active');
                     }
-                }
+                });
                 
                 document.getElementById('bs-example-navbar-collapse-1').classList.remove('in');
             },

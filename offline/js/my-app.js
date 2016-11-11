@@ -50,49 +50,49 @@ function updateCache() {
     
     // Cacti
     Tabletop.init({key: '1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU', callback: function (data) {
-        for (let curData of data) {
+        data.forEach((curData) => {
             curData.patrol = 'Cacti';
-        }
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Hawks
     Tabletop.init({key: '1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk', callback: function (data) {
-        for (let curData of data) {
+        data.forEach((curData) => {
             curData.patrol = 'Hawks';
-        }
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Wildcats
     Tabletop.init({key: '1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y', callback: function (data) {
-        for (let curData of data) {
+        data.forEach((curData) => {
             curData.patrol = 'Wildcats';
-        }
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Serpents
     Tabletop.init({key: '1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc', callback: function (data) {
-        for (let curData of data) {
+        data.forEach((curData) => {
             curData.patrol = 'Serpents';
-        }
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Blobfish
     Tabletop.init({key: '1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo', callback: function (data) {
-        for (let curData of data) {
+        data.forEach((curData) => {
             curData.patrol = 'Blobfish';
-        }
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Dragons
     Tabletop.init({key: '1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A', callback: function (data) {
-        for (let curData of data) {
+        data.forEach((curData) => {
             curData.patrol = 'Dragons';
-        }
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
@@ -129,7 +129,7 @@ function updateCache() {
 let data = [];
 myApp.onPageInit('directory', function() {
     data = JSON.parse(localStorage.getItem('directory-info'));
-    for (let curData of data) {
+    data.forEach((curData) => {
         let currentName = curData['Scout\'s Full Name (last name first):'];
         
         // if name is in format: last, first --> turn into --> first last
@@ -141,7 +141,7 @@ myApp.onPageInit('directory', function() {
             }
         }
         curData['Scout\'s Full Name (last name first):'] = currentName;
-    }
+    });
     
     // sort data according to name
     data = data.sort(function(a, b) {
@@ -150,7 +150,7 @@ myApp.onPageInit('directory', function() {
     });
     
     
-    for (let curData of data) {
+    data.forEach((curData) => {
         let currentName = curData['Scout\'s Full Name (last name first):'];
         
         $$('#search-content > ul').append(`
@@ -165,7 +165,7 @@ myApp.onPageInit('directory', function() {
                 </a>
             </li>
         `);
-    }
+    });
 });
 
 
@@ -200,8 +200,8 @@ function showfullinfo(data) {
 myApp.onPageInit('events', function() {
     let events = JSON.parse(localStorage.getItem('event-info'));
     
-    for (let event in events) {
-        if (!events.hasOwnProperty(event)) continue;
+    events.forEach((event) => {
+        if (!events.hasOwnProperty(event)) return;
         
         // get event from key
         event = events[event];
@@ -214,7 +214,7 @@ myApp.onPageInit('events', function() {
                 </a>
             </li>
         `);
-    }
+    });
     
 });
 
@@ -242,7 +242,7 @@ myApp.onPageInit('calendar', function() {
     let data = JSON.parse(localStorage.getItem('calendar-info'));
     console.log(data);
     
-    for (let curDat of data) {
+    data.forEach((curData) => {
         curData.start = new Date(curData.start.dateTime || curData.start.date);
         curData.end = new Date(curData.end.dateTime || curData.end.date);
         curData.description = curData.description || '';
@@ -262,7 +262,7 @@ myApp.onPageInit('calendar', function() {
                 </a>
             </li>
         `);
-    }
+    });
 });
 
 
