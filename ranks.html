@@ -953,7 +953,7 @@
             });
 
             // go to the latest tab, if it exists:
-            var lastTab = window.location.hash;
+            let lastTab = window.location.hash;
             if (lastTab) {
                 $('[href="' + lastTab + '"]').tab('show');
             } else {

@@ -189,9 +189,9 @@
         }
 
         function requestFullScreen() {
-            var el = document.getElementById("ifr");
+            let el = document.getElementById("ifr");
             // Supports most browsers and their versions.
-            var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen ||
+            let requestMethod = el.requestFullScreen || el.webkitRequestFullScreen ||
                 el.mozRequestFullScreen || el.msRequestFullScreen;
 
             if (requestMethod) {
@@ -202,7 +202,7 @@
             } else if (typeof window.ActiveXObject !== "undefined") {
 
                 // Older IE.
-                var wscript = new ActiveXObject("WScript.Shell");
+                let wscript = new ActiveXObject("WScript.Shell");
 
                 if (wscript !== null) {
                     wscript.SendKeys("{F11}");
@@ -211,7 +211,7 @@
         }
         
         $('.viewmore').click(function() {
-            var $this = $(this);
+            let $this = $(this);
             $this.toggleClass('viewmore');
             if ($this.hasClass('viewmore')) {
                 $this.text('View More');

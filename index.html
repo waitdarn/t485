@@ -57,17 +57,17 @@
         
         Singulr.init({
             onPageLoaded: function() {
-                var elements = document.getElementsByTagName('a');
+                let elements = document.getElementsByTagName('a');
                 // remove leading slash
-                var page = Singulr.getPage().substr(1);
+                let page = Singulr.getPage().substr(1);
                 
-                for (var i = 0; i < elements.length; i++) {
-                    if (page === elements[i].getAttribute('href')) {
-                        elements[i].parentElement.classList.add('active');
+                elements.forEach((element) => {
+                    if (page === element.getAttribute('href')) {
+                        element.parentElement.classList.add('active');
                     } else {
-                        elements[i].parentElement.classList.remove('active');
+                        element.parentElement.classList.remove('active');
                     }
-                }
+                });
                 
                 document.getElementById('bs-example-navbar-collapse-1').classList.remove('in');
             },

@@ -43,15 +43,15 @@
 
     
     <script>
-        var crawlerHide = document.getElementsByClassName('crawler-hide');
+        let crawlerHide = document.getElementsByClassName('crawler-hide');
         console.log(crawlerHide);
         
-        for (var i = 0; i < crawlerHide.length; i++) {
-            console.log(crawlerHide[i]);
-            var hideName = crawlerHide[i].dataset.crawlerHide;
+        crawlerHide.forEach((curCrawlerHide) => {
+            console.log(curCrawlerHide);
+            let hideName = curCrawlerHide.dataset.crawlerHide;
             
-            crawlerHide[i].innerHTML = hideName;
-        }
+            curCrawlerHide.innerHTML = hideName;
+        });
     </script>
 
 </body>

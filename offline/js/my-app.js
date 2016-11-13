@@ -1,3 +1,5 @@
+// TODO: fix localStorage on Safari private
+
 let myApp = new Framework7();
 let $$ = Dom7;
 let online = navigator.onLine;
@@ -48,49 +50,49 @@ function updateCache() {
     
     // Cacti
     Tabletop.init({key: '1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU', callback: function (data) {
-        for (let i = 0; i < data.length; i++) {
-            data[i].patrol = 'Cacti';
-        }
+        data.forEach((curData) => {
+            curData.patrol = 'Cacti';
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Hawks
     Tabletop.init({key: '1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk', callback: function (data) {
-        for (let i = 0; i < data.length; i++) {
-            data[i].patrol = 'Hawks';
-        }
+        data.forEach((curData) => {
+            curData.patrol = 'Hawks';
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Wildcats
     Tabletop.init({key: '1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y', callback: function (data) {
-        for (let i = 0; i < data.length; i++) {
-            data[i].patrol = 'Wildcats';
-        }
+        data.forEach((curData) => {
+            curData.patrol = 'Wildcats';
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Serpents
     Tabletop.init({key: '1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc', callback: function (data) {
-        for (let i = 0; i < data.length; i++) {
-            data[i].patrol = 'Serpents';
-        }
+        data.forEach((curData) => {
+            curData.patrol = 'Serpents';
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Blobfish
     Tabletop.init({key: '1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo', callback: function (data) {
-        for (let i = 0; i < data.length; i++) {
-            data[i].patrol = 'Blobfish';
-        }
+        data.forEach((curData) => {
+            curData.patrol = 'Blobfish';
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
     // Dragons
     Tabletop.init({key: '1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A', callback: function (data) {
-        for (let i = 0; i < data.length; i++) {
-            data[i].patrol = 'Dragons';
-        }
+        data.forEach((curData) => {
+            curData.patrol = 'Dragons';
+        });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
     }, simpleSheet: true});
@@ -127,8 +129,8 @@ function updateCache() {
 let data = [];
 myApp.onPageInit('directory', function() {
     data = JSON.parse(localStorage.getItem('directory-info'));
-    for (let i = 0; i < data.length; i++) {
-        let currentName = data[i]['Scout\'s Full Name (last name first):'];
+    data.forEach((curData) => {
+        let currentName = curData['Scout\'s Full Name (last name first):'];
         
         // if name is in format: last, first --> turn into --> first last
         if (currentName.indexOf(',') > -1) {
@@ -138,8 +140,8 @@ myApp.onPageInit('directory', function() {
                 currentName = currentName.split(',')[1] + ' ' + currentName.split(',')[0];
             }
         }
-        data[i]['Scout\'s Full Name (last name first):'] = currentName;
-    }
+        curData['Scout\'s Full Name (last name first):'] = currentName;
+    });
     
     // sort data according to name
     data = data.sort(function(a, b) {
@@ -148,28 +150,29 @@ myApp.onPageInit('directory', function() {
     });
     
     
-    for (i = 0; i < data.length; i++) {
-        let currentName = data[i]['Scout\'s Full Name (last name first):'];
+    data.forEach((curData) => {
+        let currentName = curData['Scout\'s Full Name (last name first):'];
         
         $$('#search-content > ul').append(`
             <li>
-                <a href="#" class="item-link" onclick="showfullinfo(${JSON.stringify(data[i])})">
+                <a href="#" class="item-link" onclick="showfullinfo(\`${encodeURIComponent(JSON.stringify(curData))}\`)">
                     <div class="item-content">
                         <div class="item-inner">
                             <div class="item-title">${currentName}</div>
-                            <div class="item-after">${data[i].patrol}</div>
+                            <div class="item-after">${curData.patrol}</div>
                         </div>
                     </div>
                 </a>
             </li>
         `);
-    }
+    });
 });
 
 
 function showfullinfo(data) {
+    data = JSON.parse(decodeURIComponent(data));
     $$('#directory-more-name').html(data[`Scout's Full Name (last name first):`]);
-    $$('#directory-more-info').html(`
+    $$('#directory-more-info').css('font-size', '18px').html(`
         Name: ${data['Scout\'s Full Name (last name first):']}<br>
         Email: <a href="mailto:${data['Scout\'s E-mail:']}" class="external">${data['Scout\'s E-mail:']}</a><br>
         Cell Phone: <a href="tel:${data['Scout\'s Cell Phone']}" class="external">${data['Scout\'s Cell Phone']}</a><br>
@@ -177,8 +180,8 @@ function showfullinfo(data) {
         Patrol: ${data.patrol}<br><br>
         Father's Cell Phone: <a href="tel:${['Father\'s Cell Phone']}" class="external">${data['Father\'s Cell Phone']}</a><br>
         Father's E-mail: <a href="mailto:${data['Father\'s E-mail']}" class="external">${data['Father\'s E-mail']}</a><br>
-        Mother's Cell Phone: <a href="tel:d${ata['Mother\'s Cell Phone']}" class="external">${data['Mother\'s Cell Phone']}</a><br>
-        Mother's E-mail: <a href="mailto:${data['Mother\'s E-mail']}" class="external">${data['Mother\'s E-mail']}</a><br>'
+        Mother's Cell Phone: <a href="tel:${data['Mother\'s Cell Phone']}" class="external">${data['Mother\'s Cell Phone']}</a><br>
+        Mother's E-mail: <a href="mailto:${data['Mother\'s E-mail']}" class="external">${data['Mother\'s E-mail']}</a><br>
     `);
     mainView.router.loadContent($$('#directory-more-template').html());
 }
@@ -198,7 +201,7 @@ function showfullinfo(data) {
 myApp.onPageInit('events', function() {
     let events = JSON.parse(localStorage.getItem('event-info'));
     
-    for (let event in events) {
+    for (let event in events){
         if (!events.hasOwnProperty(event)) continue;
         
         // get event from key
@@ -240,8 +243,7 @@ myApp.onPageInit('calendar', function() {
     let data = JSON.parse(localStorage.getItem('calendar-info'));
     console.log(data);
     
-    for (let i = 0; i < data.length; i++) {
-        curData = data[i];
+    data.forEach((curData) => {
         curData.start = new Date(curData.start.dateTime || curData.start.date);
         curData.end = new Date(curData.end.dateTime || curData.end.date);
         curData.description = curData.description || '';
@@ -261,7 +263,7 @@ myApp.onPageInit('calendar', function() {
                 </a>
             </li>
         `);
-    }
+    });
 });
 
 

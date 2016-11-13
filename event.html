@@ -93,7 +93,7 @@
         }
         firebase.database().ref('/events/' + encodeURIComponent(getQuery("event"))/*URL is url safe anyways, this is to trigger the data = null 404
         when the event contains non URL safe charcters*/).once('value').then(function(snapshot) {
-            var data = snapshot.val();
+            let data = snapshot.val();
             if (data === null || data === 0) {
                 $("#event-title").html("Error 404: Event Not Found");
                 $("#event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
@@ -178,18 +178,19 @@
         }
 
         function generateRandomStr() {
-            var text = "";
-            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+={}[]|?/>.<,";
+            let text = "";
+            let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+={}[]|?/>.<,";
 
-            for (var i = 0; i < 40; i++)
+            Array(40).fill(0).forEach(() => {
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
+            });
 
             return encodeURIComponent(btoa(text));
         }
 
 
         firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
-            var data = snapshot.val();
+            let data = snapshot.val();
 
             $("#event-title").html(data.title);
             $("#event-description").html(data.description);
@@ -204,7 +205,7 @@
         }
         auth(function(user) {
             firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
-                var uid = snapshot.val().owner;
+                let uid = snapshot.val().owner;
                 if (uid === user.uid) {
 
                     $("#edit-alert-box").removeClass("hidden");
@@ -247,7 +248,7 @@
 
 
                     $("#new-access-link").click(function() {
-                        var id = generateRandomStr();
+                        let id = generateRandomStr();
                         firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
 
                     });
@@ -309,14 +310,14 @@
 
             function getFirebaseDataThen(callback, requireDescription) {
                 firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
-                    var data = snapshot.val();
+                    let data = snapshot.val();
 
                     if (data !== null) {
                         if ($("#export-description").val().replace(" ", "") === "" && requireDescription !== false) {
                             alert("You must write a description. (You can just copy/paste from the event page. Note links and formatting will be removed)");
                         }
                         else {
-                            var text = $("#export-description").val() + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
+                            let text = $("#export-description").val() + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
                             callback(data.title, text, "https://t485.org/event.html?event=" + getQuery("event"), data.description);
                         }
 
@@ -380,8 +381,8 @@
             });
             $("#export-pdf").click(function() {
                 getFirebaseDataThen(function(title, text, url) {
-                    var doc = new jsPDF();
-                    var specialElementHandlers = {
+                    let doc = new jsPDF();
+                    let specialElementHandlers = {
                         '#editor': function(element, renderer) {
                             return true;
                         }
