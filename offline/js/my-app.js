@@ -155,7 +155,7 @@ myApp.onPageInit('directory', function() {
         
         $$('#search-content > ul').append(`
             <li>
-                <a href="#" class="item-link" onclick="showfullinfo(${JSON.stringify(curData)})">
+                <a href="#" class="item-link" onclick="showfullinfo(\`${encodeURIComponent(JSON.stringify(curData))}\`)">
                     <div class="item-content">
                         <div class="item-inner">
                             <div class="item-title">${currentName}</div>
@@ -170,8 +170,9 @@ myApp.onPageInit('directory', function() {
 
 
 function showfullinfo(data) {
+    data = JSON.parse(decodeURIComponent(data));
     $$('#directory-more-name').html(data[`Scout's Full Name (last name first):`]);
-    $$('#directory-more-info').html(`
+    $$('#directory-more-info').css('font-size', '18px').html(`
         Name: ${data['Scout\'s Full Name (last name first):']}<br>
         Email: <a href="mailto:${data['Scout\'s E-mail:']}" class="external">${data['Scout\'s E-mail:']}</a><br>
         Cell Phone: <a href="tel:${data['Scout\'s Cell Phone']}" class="external">${data['Scout\'s Cell Phone']}</a><br>
@@ -179,8 +180,8 @@ function showfullinfo(data) {
         Patrol: ${data.patrol}<br><br>
         Father's Cell Phone: <a href="tel:${['Father\'s Cell Phone']}" class="external">${data['Father\'s Cell Phone']}</a><br>
         Father's E-mail: <a href="mailto:${data['Father\'s E-mail']}" class="external">${data['Father\'s E-mail']}</a><br>
-        Mother's Cell Phone: <a href="tel:d${ata['Mother\'s Cell Phone']}" class="external">${data['Mother\'s Cell Phone']}</a><br>
-        Mother's E-mail: <a href="mailto:${data['Mother\'s E-mail']}" class="external">${data['Mother\'s E-mail']}</a><br>'
+        Mother's Cell Phone: <a href="tel:${data['Mother\'s Cell Phone']}" class="external">${data['Mother\'s Cell Phone']}</a><br>
+        Mother's E-mail: <a href="mailto:${data['Mother\'s E-mail']}" class="external">${data['Mother\'s E-mail']}</a><br>
     `);
     mainView.router.loadContent($$('#directory-more-template').html());
 }
@@ -200,8 +201,8 @@ function showfullinfo(data) {
 myApp.onPageInit('events', function() {
     let events = JSON.parse(localStorage.getItem('event-info'));
     
-    events.forEach((event) => {
-        if (!events.hasOwnProperty(event)) return;
+    for (let event in events){
+        if (!events.hasOwnProperty(event)) continue;
         
         // get event from key
         event = events[event];
@@ -214,7 +215,7 @@ myApp.onPageInit('events', function() {
                 </a>
             </li>
         `);
-    });
+    }
     
 });
 

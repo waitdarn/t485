@@ -181,8 +181,9 @@
             let text = "";
             let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+={}[]|?/>.<,";
 
-            for (let i = 0; i < 40; i++)
+            Array(40).fill(0).forEach(() => {
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
+            });
 
             return encodeURIComponent(btoa(text));
         }
