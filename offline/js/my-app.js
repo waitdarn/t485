@@ -50,7 +50,7 @@ function updateCache() {
     
     // Cacti
     Tabletop.init({key: '1FUlVVgMz1IgP68LExESAFwokIGc5zWUq6mEk5auKiSU', callback: function (data) {
-        data.forEach((curData) => {
+        data.forEach(curData => {
             curData.patrol = 'Cacti';
         });
         directoryData.push.apply(directoryData, data);
@@ -58,7 +58,7 @@ function updateCache() {
     }, simpleSheet: true});
     // Hawks
     Tabletop.init({key: '1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk', callback: function (data) {
-        data.forEach((curData) => {
+        data.forEach(curData => {
             curData.patrol = 'Hawks';
         });
         directoryData.push.apply(directoryData, data);
@@ -66,7 +66,7 @@ function updateCache() {
     }, simpleSheet: true});
     // Wildcats
     Tabletop.init({key: '1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y', callback: function (data) {
-        data.forEach((curData) => {
+        data.forEach(curData => {
             curData.patrol = 'Wildcats';
         });
         directoryData.push.apply(directoryData, data);
@@ -74,7 +74,7 @@ function updateCache() {
     }, simpleSheet: true});
     // Serpents
     Tabletop.init({key: '1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc', callback: function (data) {
-        data.forEach((curData) => {
+        data.forEach(curData => {
             curData.patrol = 'Serpents';
         });
         directoryData.push.apply(directoryData, data);
@@ -82,7 +82,7 @@ function updateCache() {
     }, simpleSheet: true});
     // Blobfish
     Tabletop.init({key: '1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo', callback: function (data) {
-        data.forEach((curData) => {
+        data.forEach(curData => {
             curData.patrol = 'Blobfish';
         });
         directoryData.push.apply(directoryData, data);
@@ -90,7 +90,7 @@ function updateCache() {
     }, simpleSheet: true});
     // Dragons
     Tabletop.init({key: '1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A', callback: function (data) {
-        data.forEach((curData) => {
+        data.forEach(curData => {
             curData.patrol = 'Dragons';
         });
         directoryData.push.apply(directoryData, data);
@@ -129,7 +129,7 @@ function updateCache() {
 let data = [];
 myApp.onPageInit('directory', function() {
     data = JSON.parse(localStorage.getItem('directory-info'));
-    data.forEach((curData) => {
+    data.forEach(curData => {
         let currentName = curData['Scout\'s Full Name (last name first):'];
         
         // if name is in format: last, first --> turn into --> first last
@@ -150,7 +150,7 @@ myApp.onPageInit('directory', function() {
     });
     
     
-    data.forEach((curData) => {
+    data.forEach(curData => {
         let currentName = curData['Scout\'s Full Name (last name first):'];
         
         $$('#search-content > ul').append(`
@@ -243,7 +243,7 @@ myApp.onPageInit('calendar', function() {
     let data = JSON.parse(localStorage.getItem('calendar-info'));
     console.log(data);
     
-    data.forEach((curData) => {
+    data.forEach(curData => {
         curData.start = new Date(curData.start.dateTime || curData.start.date);
         curData.end = new Date(curData.end.dateTime || curData.end.date);
         curData.description = curData.description || '';
