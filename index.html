@@ -57,11 +57,10 @@
         
         Singulr.init({
             onPageLoaded: function() {
-                let elements = document.getElementsByTagName('a');
                 // remove leading slash
                 let page = Singulr.getPage().substr(1);
                 
-                elements.forEach(element => {
+                Array.from(document.getElementsByTagName('a')).forEach(element => {
                     if (page === element.getAttribute('href')) {
                         element.parentElement.classList.add('active');
                     } else {
