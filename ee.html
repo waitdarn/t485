@@ -12,7 +12,6 @@
 <body>
     
     <div class="container">
-
         <div class="row">
             <div class="box" id="notloggedin">
                 <div class="col-lg-12">
@@ -34,7 +33,7 @@
                 </div>
                 <div class="col-md-12">
                     <p>Easter eggs are being added all the time. Below, there is a live number that reflects the number of easter eggs on this site.
-                    Easter eggs can be found throughout the entire website(t485.org), on any page. Each easter egg has an id formatted like this: 
+                    Easter eggs can be found throughout the entire website(t485.org), on any page. Each easter egg has an id formatted like this:
                     <b>xxxxxx-xxxxxx-xxxxxx-xxxxxx</b>. A scout is trusworthy, so do not share your easter egg id or locations. If you find
                     an ID, enter it below to add it to your account.</p>
                     <p id="join-load">Loading join link...</p>
@@ -57,12 +56,13 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-
+    </div>
+    <!-- /.container -->
+    
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
     
-    </div>
     <script>
         /* global $ auth getQuery firebase Singulr history */
         auth(function(user){
@@ -103,6 +103,7 @@
                 Singulr.loadPage(window.location.pathname.substring(1) + query);
     
             }
+
         }
     
         function generateRandomStr() {
@@ -111,13 +112,10 @@
     
             for (let i = 0; i < 4; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
-    
+
             return text.split('');
         }
     </script>
-    <!-- /.container -->
-
-    
 </body>
 
 </html>
