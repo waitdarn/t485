@@ -56,7 +56,7 @@
         
         
         Singulr.init({
-            onPageLoaded: function() {
+            onPageLoaded: () => {
                 // remove leading slash
                 let page = Singulr.getPage().substr(1);
                 
@@ -70,7 +70,7 @@
                 
                 document.getElementById('bs-example-navbar-collapse-1').classList.remove('in');
             },
-            onDependenciesLoaded: function() {
+            onDependenciesLoaded: () => {
                 // Initialize Firebase
                 firebase.initializeApp({
                     apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",

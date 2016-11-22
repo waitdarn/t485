@@ -81,7 +81,7 @@
         
         
         
-        auth(function() {
+        auth(() => {
             let text = '{"iv":"u94eK78S4EOGQqpYNDLrGw==","v":1,"iter":1000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"g17ODbhwHcY=","ct":"66YjjNZp1zkWyBjPUD4XTHy2aHx8v2wPxywiPhbCxjCF8YWkhLzYnVgojeMZV2zbuQHjmrRLVbR+DTdeJzy0Xv70w1ez/eX4uX5nfiBCzi2kO4NwSLXUvJiIcuPGL7BLnXXXw893c0ADbqJUj6fS2nCfi0n9BT' +
             'koU9U8fDNXrsnRUkD0Oqd7khInVvOBoa4c1hjGx1P8cI3WXn29l0ezln2GPH1xqDenWQJTC+tAZ12a2e0uIb+zHIHJkTtjiZPGPBlZDe5/mFeqzr3e6qvZyawlOyI+NlrlQ3a10txli8P9M65UgfPhRDSMdGmeTuhiYkOhvUayWXg/DqMzabBem7cBcflxl8EzNuneoQ43E3ACqr/PdWyC5FBeNKTktyUQR6ypHQIWQwng0d5D7N9ZdfhGTzBDr3IYFaczaBATUuTnlMnBvhF/Jxvs5Rf8uiobblIrP1J25p9kzLe8acU="}';
             let secretInfo = JSON.parse(sjcl.decrypt('XH7uDeHIOFaJvizWBhA', text));
@@ -169,14 +169,14 @@
                 window.globalData.push.apply(window.globalData, data);
             }, simpleSheet: true});
             
-        }, function() {
+        }, () => {
             Singulr.loadPage('login.html?redir=directory.html');
         });
         
         
         
         window.globalData = [];
-        $(document).ready(function() {
+        $(document).ready(() => {
             $('#password').focus();
         });
         
@@ -189,7 +189,7 @@
         });
         
         
-        $('#search-btn').click(function() {
+        $('#search-btn').click(() => {
             let userquery = $('#search-query').val();
             if (userquery === '') return;
             
@@ -266,7 +266,7 @@
                     }
                 }
             }
-            score.sort(function(a, b) {
+            score.sort((a, b) => {
                 return parseFloat(a.score) - parseFloat(b.score);
             });
             

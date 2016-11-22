@@ -52,7 +52,7 @@
             if (authResult && !authResult.error) {
                 // Hide auth UI, then load client library.
                 authorizeDiv.style.display = 'none';
-                gapi.client.load('calendar', 'v3', function() {
+                gapi.client.load('calendar', 'v3', () => {
                     let request = gapi.client.calendar.events.list({
                         'calendarId': 'bsa485@gmail.com',
                         'timeMin': (new Date()).toISOString(),
@@ -62,7 +62,7 @@
                         'orderBy': 'startTime'
                     });
 
-                    request.execute(function(resp) {
+                    request.execute((resp) => {
                         let events = resp.items;
                         if (events.length > 0) {
                             events.forEach(event => {
