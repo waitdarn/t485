@@ -38,7 +38,7 @@
                     an ID, enter it below to add it to your account.</p>
                     <p id="join-load">Loading join link...</p>
                     <a class="hidden" id="join-link">Click here to join the easter egg hunt.</a>
-                    <b class="hidden" id="joined-text">You already joined the easter egg hunt.</b>
+                    <b class="hidden" id="joined-text">You joined the easter egg hunt.</b>
                     <p>Number of easter eggs on this website(reload to refresh): <b id="ee-count"></b></p>
                 </div>
                 <div class="clearfix"></div>
@@ -73,14 +73,16 @@
                 $("#notloggedin").addClass("hidden");
                 $(".main").removeClass("hidden");
                 updateURLQuery("?token=92FHIUSDHFALJDJOSasduifhae8239jcdnsuzjykHDJSHFOIJSOIUao-ic9A6M7vHef4");
-                firebase.database().ref("/ee/u/" + user.uid + "/ueeid/").once("value", function(snapshot){
+                console.log(1);
+                firebase.database().ref("/ee/u/" + user.uid + "/ueeid/").once("value").then(function(snapshot){
                     var data = snapshot.val();
+                    console.log(2);
                     if (data === null) {
                         $("#join-load").addClass("hidden");
-                        $("#join-link").removeClass("hiden");
+                        $("#join-link").removeClass("hidden");
                     } else {
                         $("#join-load").addClass("hidden");
-                        $("#joined-text").removeClass("hiden");
+                        $("#joined-text").removeClass("hidden");
                     }
                 });
                 $("#join-link").click(function(){
@@ -90,7 +92,9 @@
                 });
             }
         }, function() {
-            
+            if (getQuery("token") !== "1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4") {
+                Singulr.loadPage('404.html');
+            }
         });
         function updateURLQuery(query) {
             if (history.pushState) {

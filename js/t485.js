@@ -1,8 +1,8 @@
-/* global Firebase $*/
 
 
 
 /* Initializers */
+/* global firebase $ Singulr */
 
 // Back to top button animation
 $(window).scroll(function() {
@@ -49,6 +49,7 @@ function auth(onAuthed = () => {}, onUnauthed = () => {}) {
 $('#eel-289371845').click(() => {
     Singulr.loadPage('easter-eggs.html');
 });
+$("#eel-2891409832478273094").click(() => Singulr.loadPage('ee.html?token=1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4'));
 // Source: http://www.w3schools.com/js/js_cookies.asp
 function hashPassword(str) {
     let hash = 0;
@@ -75,6 +76,13 @@ function getVarsFromUrl() {
     return vars;
 }
 
+function generateEEID(s1, s2, s3, s4, callback, uid) {
+
+    firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot){
+        var data = snapshot.val();
+        callback(s1 + data[1] + "-" + s2 + data[2] + "-" + s3 + data[3] + "-" + s4 + data[4]); 
+    });
+}
 
 // Fisher-Yates shuffle
 function generateRandomNums(r){for(var a=[],n=0;r>n;n++)a[n]=n;for(var o,e,t=r;t;)e=~~(Math.random()*t),t-=1,o=a[t],a[t]=a[e],a[e]=o;return a}
@@ -90,5 +98,4 @@ function getQuery(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new R
 
 // Code from https://gist.github.com/andrei-m/982927#file-levenshtein-js
 function compare(t,n){if(0==t.length)return n.length;if(0==n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length];}
-
 
