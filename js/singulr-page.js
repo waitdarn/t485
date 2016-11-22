@@ -1,3 +1,2 @@
-var INDEX_PAGE = 'index.html';
-
-window.location.href = INDEX_PAGE + '?' + encodeURIComponent(window.location.pathname + window.location.hash + window.location.search);
+const l = window.location;
+l.href = 'index.html?' + encodeURIComponent(l.pathname + l.hash + l.search);

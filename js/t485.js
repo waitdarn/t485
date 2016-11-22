@@ -36,11 +36,8 @@ $('.dropdown a').click(function() {
 
 
 // Checks if the user is logged in
-function auth(onAuthed, onUnauthed) {
-    onAuthed = onAuthed || function() {};
-    onUnauthed = onUnauthed || function() {};
-    
-    firebase.auth().onAuthStateChanged(function(user) {
+function auth(onAuthed = () => {}, onUnauthed = () => {}) {
+    firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             onAuthed(user);
         } else {
@@ -49,14 +46,14 @@ function auth(onAuthed, onUnauthed) {
     });
 }
 
-$("#eel-289371845").click(function(){
-    window.location.href = "easter-eggs.html";
+$('#eel-289371845').click(() => {
+    Singulr.loadPage('easter-eggs.html');
 });
 // Source: http://www.w3schools.com/js/js_cookies.asp
 function hashPassword(str) {
-    var hash = 0;
+    let hash = 0;
     if (str.length === 0) return 0;
-    for (var i = 0; i < str.length; i++) {
+    for (let i = 0; i < str.length; i++) {
         hash = ((hash<<5) - hash) + str.charCodeAt(i);
         hash |= 0; // Convert to 32bit integer
     }
