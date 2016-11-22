@@ -904,13 +904,13 @@
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
 
     <script>
-        $(window).on('hashchange', function() {
+        $(window).on('hashchange', () => {
             $(document).scrollTop(0);
         });
         //http://stackoverflow.com/questions/10523433/how-do-i-keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload/10524697
-        $(function() {
+        $(() => {
             // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', (e) => {
                 // save the latest tab
                 window.location.hash = $(this).attr('href');
             });

@@ -211,7 +211,7 @@
             };
             firebase.initializeApp(config);
 
-            $("form").submit(function() {
+            $("form").submit(() => {
                 firebase.database().ref().push({
                     "name": $("#feedback-name").val(),
                     "email": $("#feedback-email").val(),

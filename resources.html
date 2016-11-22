@@ -166,12 +166,12 @@
     <script>
         /* global firebase $ auth Singulr */
 
-        String.prototype.replaceAll = function(search, replacement) {
+        String.prototype.replaceAll = (search, replacement) => {
             let target = this;
             return target.split(search).join(replacement);
         };
-        auth(function(user) {
-            $("#create-event-page").click(function() {
+        auth((user) => {
+            $("#create-event-page").click(() => {
 
                 $("#error").html("");
                 let title = $("#name").val();
@@ -196,7 +196,7 @@
                             "footer": "This is a T485 event page automated message"
                         }]
                     }),
-                    function(data) {
+                    (data) => {
                         window.location.href = "event.html?event=" + url;
                     }
                 );
@@ -205,10 +205,10 @@
 
 
             });
-        }, function() {
+        }, () => {
             Singulr.loadPage('login.html?redir=resources.html');
         });
-        firebase.database().ref("/events/").on("child_added", function(data) {
+        firebase.database().ref("/events/").on("child_added", (data) => {
 
             let name = data.val().title;
             $("#event-list").prepend("<li><a class='name' href='event.html?event=" + data.key + "'>" + name + "</a></li>");

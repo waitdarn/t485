@@ -50,9 +50,9 @@
 
     
     <script>
-        auth(function() {
+        auth(() => {
             $('#content').show();
-        }, function() {
+        }, () => {
             Singulr.loadPage('login.html?redir=pictures.html');
         });
     </script>

@@ -44,7 +44,7 @@
         
         
         function btnClicked() {
-            firebase.auth().signInWithPopup(provider).then(function(result) {
+            firebase.auth().signInWithPopup(provider).then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 let token = result.credential.accessToken;
                 // The signed-in user info.
@@ -54,7 +54,7 @@
                 console.log(user);
                 console.log(email);
                 
-                $.get('members', function(response) {
+                $.get('members', (response) => {
                     if (response) {
                         let members = response.split('\n');
             
@@ -70,7 +70,7 @@
                     }
                 });
                 // ...
-            }).catch(function(error) {
+            }).catch((error) => {
                 // Handle Errors here.
                 let errorCode = error.code;
                 let errorMessage = error.message;

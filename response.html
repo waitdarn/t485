@@ -57,7 +57,7 @@
 
         let table = document.getElementById("response-table");
 
-        fireRef.on("child_added", function(snapshot) {
+        fireRef.on("child_added", (snapshot) => {
             let response = snapshot.val();
 
             let row = table.insertRow(-1);
@@ -81,7 +81,7 @@
 
         function getUrlVars() {
             let vars = {};
-            let parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            let parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m,key,value) => {
                 vars[key] = value;
             });
             return vars;

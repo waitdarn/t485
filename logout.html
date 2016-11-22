@@ -42,9 +42,9 @@
         let redir = getQuery('redir') || 'home.html';
         $("#logout").html('<a href="login.html?redir=' + redir + '">here</a>');
         
-        firebase.auth().signOut().then(function() {
+        firebase.auth().signOut().then(() => {
             // Sign-out successful.
-        }, function(error) {
+        }, (error) => {
             console.error(error);
         });
     </script>
