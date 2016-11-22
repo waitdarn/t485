@@ -56,12 +56,11 @@
         
         
         Singulr.init({
-            onPageLoaded: function() {
-                let elements = document.getElementsByTagName('a');
+            onPageLoaded: () => {
                 // remove leading slash
                 let page = Singulr.getPage().substr(1);
                 
-                elements.forEach((element) => {
+                Array.from(document.getElementsByTagName('a')).forEach(element => {
                     if (page === element.getAttribute('href')) {
                         element.parentElement.classList.add('active');
                     } else {
@@ -71,7 +70,7 @@
                 
                 document.getElementById('bs-example-navbar-collapse-1').classList.remove('in');
             },
-            onDependenciesLoaded: function() {
+            onDependenciesLoaded: () => {
                 // Initialize Firebase
                 firebase.initializeApp({
                     apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",

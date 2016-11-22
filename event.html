@@ -92,7 +92,7 @@
             window.location.href = "/resources.html";
         }
         firebase.database().ref('/events/' + encodeURIComponent(getQuery("event"))/*URL is url safe anyways, this is to trigger the data = null 404
-        when the event contains non URL safe charcters*/).once('value').then(function(snapshot) {
+        when the event contains non URL safe charcters*/).once('value').then((snapshot) => {
             let data = snapshot.val();
             if (data === null || data === 0) {
                 $("#event-title").html("Error 404: Event Not Found");
@@ -115,15 +115,15 @@
 
        function main() {
             if (getQuery("password") !== null) {
-            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', function(snapshot) {
+            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', (snapshot) => {
 
 
                 if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
 
                     $("#edit-alert-box").removeClass("hidden");
-                    $("#edit").click(function() {
+                    $("#edit").click(() => {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
-                        $("#view").click(function() {
+                        $("#view").click(() => {
                             reloadPage();
                         });
                         tinymce.init({
@@ -134,11 +134,11 @@
                             ],
                             toolbar: "undo redo | forecolor backcolor | link | save",
                             menubar: false,
-                            setup: function(editor) {
+                            setup: (editor) => {
                                 editor.addButton("save", {
                                     text: "Save Changes",
                                     icon: false,
-                                    onclick: function() {
+                                    onclick: () => {
                                         console.log(editor.getContent());
                                         console.log(editor.id);
                                         firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
@@ -157,11 +157,11 @@
                             ],
                             link_assume_external_targets: true,
                             removed_menuitems: "newdocument",
-                            setup: function(editor) {
+                            setup: (editor) => {
                                 editor.addButton("save", {
                                     text: "Save Changes",
                                     icon: false,
-                                    onclick: function() {
+                                    onclick: () => {
                                         console.log(editor.getContent());
                                         console.log(editor.id);
                                         firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
@@ -189,7 +189,7 @@
         }
 
 
-        firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+        firebase.database().ref('/events/' + getQuery("event")).once('value').then((snapshot) => {
             let data = snapshot.val();
 
             $("#event-title").html(data.title);
@@ -203,8 +203,8 @@
 
 
         }
-        auth(function(user) {
-            firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+        auth((user) => {
+            firebase.database().ref('/events/' + getQuery("event")).once('value').then((snapshot) => {
                 let uid = snapshot.val().owner;
                 if (uid === user.uid) {
 
@@ -215,12 +215,12 @@
 
                     
 
-                    $("#delete").click(function() {
+                    $("#delete").click(() => {
                         $("#confirm-delete").modal("show");
-                        $("#confirm-enter-name").keyup(function() {
+                        $("#confirm-enter-name").keyup(() => {
                             if (($("#confirm-enter-name").val().toLowerCase() === snapshot.val().title.toLowerCase()) && getQuery("event") !== null) {
                                 $("#confirm-delete-button").removeClass("disabled");
-                                $("#confirm-delete-button").on("click", function() {
+                                $("#confirm-delete-button").on("click", () => {
                                     firebase.database().ref('/events/' + getQuery("event")).set(null);
                                     $("#confirm-delete").modal("hide");
                                     Singulr.loadPage("resources.html");
@@ -233,10 +233,10 @@
                         });
 
                     });
-                    $("#share").click(function() {
+                    $("#share").click(() => {
 
                         $("#share-modal").modal("show");
-                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", function(data) {
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", (data) => {
 
                             console.log(data.val());
                             console.log(data.key);
@@ -247,14 +247,14 @@
                     });
 
 
-                    $("#new-access-link").click(function() {
+                    $("#new-access-link").click(() => {
                         let id = generateRandomStr();
                         firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
 
                     });
-                    $("#edit").click(function() {
+                    $("#edit").click(() => {
                         $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
-                        $("#view").click(function() {
+                        $("#view").click(() => {
                             reloadPage();
                         });
                         tinymce.init({
@@ -265,11 +265,11 @@
                             ],
                             toolbar: "undo redo | forecolor backcolor | link | save",
                             menubar: false,
-                            setup: function(editor) {
+                            setup: (editor) => {
                                 editor.addButton("save", {
                                     text: "Save Changes",
                                     icon: false,
-                                    onclick: function() {
+                                    onclick: () => {
                                         console.log(editor.getContent());
                                         console.log(editor.id);
                                         firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
@@ -288,11 +288,11 @@
                             ],
                             link_assume_external_targets: true,
                             removed_menuitems: "newdocument",
-                            setup: function(editor) {
+                            setup: (editor) => {
                                 editor.addButton("save", {
                                     text: "Save Changes",
                                     icon: false,
-                                    onclick: function() {
+                                    onclick: () => {
                                         console.log(editor.getContent());
                                         console.log(editor.id);
                                         firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
@@ -309,7 +309,7 @@
             });
 
             function getFirebaseDataThen(callback, requireDescription) {
-                firebase.database().ref('/events/' + getQuery("event")).once('value').then(function(snapshot) {
+                firebase.database().ref('/events/' + getQuery("event")).once('value').then((snapshot) => {
                     let data = snapshot.val();
 
                     if (data !== null) {
@@ -327,9 +327,9 @@
                     }
                 });
             }
-            $("#export-slack").click(function() {
+            $("#export-slack").click(() => {
 
-                getFirebaseDataThen(function(title, text, url) {
+                getFirebaseDataThen((title, text, url) => {
                     $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
                             "text": "Event Page shared:",
                             "attachments": [{
@@ -340,7 +340,7 @@
                                 "footer": "This is a T485 event page automated message"
                             }]
                         }),
-                        function(data) {
+                        (data) => {
                             window.location.href = url;
                         }
                     );
@@ -348,42 +348,42 @@
                 });
 
             });
-            $("#export-gmail").click(function() {
-                getFirebaseDataThen(function(title, text, url) {
+            $("#export-gmail").click(() => {
+                getFirebaseDataThen((title, text, url) => {
                     window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&tf=1&su=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
                     $("export-modal").modal("hide");
                 });
             });
-            $("#export-yahoo").click(function() {
-                getFirebaseDataThen(function(title, text, url) {
+            $("#export-yahoo").click(() => {
+                getFirebaseDataThen((title, text, url) => {
                     window.location.href = "http://compose.mail.yahoo.com/?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
                     $("export-modal").modal("hide");
                 });
             });
-            $("#export-hotmail").click(function() {
-                getFirebaseDataThen(function(title, text, url) {
+            $("#export-hotmail").click(() => {
+                getFirebaseDataThen((title, text, url) => {
                     window.location.href = "https://dub130.mail.live.com/default.aspx?rru=compose&subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text) + "#page=Compose";
                     $("export-modal").modal("hide");
                 });
             });
-            $("#export-aol").click(function() {
-                getFirebaseDataThen(function(title, text, url) {
+            $("#export-aol").click(() => {
+                getFirebaseDataThen((title, text, url) => {
                     window.location.href = "http://webmail.aol.com/Mail/ComposeMessage.aspx?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
                     $("export-modal").modal("hide");
 
                 });
             });
-            $("#export-email").click(function() {
-                getFirebaseDataThen(function(title, text, url) {
+            $("#export-email").click(() => {
+                getFirebaseDataThen((title, text, url) => {
                     window.location.href = "mailto:?Subject=" + encodeURIComponent(title) + "&Body=" + encodeURIComponent(text);
                     $("export-modal").modal("hide");
                 });
             });
-            $("#export-pdf").click(function() {
-                getFirebaseDataThen(function(title, text, url) {
+            $("#export-pdf").click(() => {
+                getFirebaseDataThen((title, text, url) => {
                     let doc = new jsPDF();
                     let specialElementHandlers = {
-                        '#editor': function(element, renderer) {
+                        '#editor': (element, renderer) => {
                             return true;
                         }
                     };
@@ -399,27 +399,27 @@
                 });
 
             });
-            getFirebaseDataThen(function(title, text, url, realtext) {
+            getFirebaseDataThen((title, text, url, realtext) => {
                 $("#export-html").attr("href", "data:text/html,<html><head></head><body><h1>" + title + "</h1><div>" + realtext + "</div><br><br><br><hr><p>Read more at the <a href='" + url + "'>event page</a>.</p></body></html>");
                 $("#export-html").attr("download", title + ".html");
             }, false);
 
 
 
-            $("#export-print").click(function() {
+            $("#export-print").click(() => {
                 console.log(1);
-                getFirebaseDataThen(function(title, text, url) {
+                getFirebaseDataThen((title, text, url) => {
                     console.log(2);
                     $("#print").printThis();
 
                 }, false);
             });
 
-            $("#export").click(function() {
+            $("#export").click(() => {
                 $("#export-modal").modal("show");
             });
 
-        }, function() {
+        }, () => {
             Singulr.loadPage('login.html?redir=event.html' + encodeURIComponent(window.location.search));
         });
        }

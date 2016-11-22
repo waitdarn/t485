@@ -176,7 +176,7 @@
     
     
     <script>
-        auth(null, function() {
+        auth(null, () => {
             Singulr.loadPage('login.html?redir=meeting-minutes.html');
         });
 
@@ -210,7 +210,7 @@
             }
         }
         
-        $('.viewmore').click(function() {
+        $('.viewmore').click(() => {
             let $this = $(this);
             $this.toggleClass('viewmore');
             if ($this.hasClass('viewmore')) {

@@ -81,7 +81,7 @@
         
         
         
-        auth(function() {
+        auth(() => {
             let text = '{"iv":"u94eK78S4EOGQqpYNDLrGw==","v":1,"iter":1000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"g17ODbhwHcY=","ct":"66YjjNZp1zkWyBjPUD4XTHy2aHx8v2wPxywiPhbCxjCF8YWkhLzYnVgojeMZV2zbuQHjmrRLVbR+DTdeJzy0Xv70w1ez/eX4uX5nfiBCzi2kO4NwSLXUvJiIcuPGL7BLnXXXw893c0ADbqJUj6fS2nCfi0n9BT' +
             'koU9U8fDNXrsnRUkD0Oqd7khInVvOBoa4c1hjGx1P8cI3WXn29l0ezln2GPH1xqDenWQJTC+tAZ12a2e0uIb+zHIHJkTtjiZPGPBlZDe5/mFeqzr3e6qvZyawlOyI+NlrlQ3a10txli8P9M65UgfPhRDSMdGmeTuhiYkOhvUayWXg/DqMzabBem7cBcflxl8EzNuneoQ43E3ACqr/PdWyC5FBeNKTktyUQR6ypHQIWQwng0d5D7N9ZdfhGTzBDr3IYFaczaBATUuTnlMnBvhF/Jxvs5Rf8uiobblIrP1J25p9kzLe8acU="}';
             let secretInfo = JSON.parse(sjcl.decrypt('XH7uDeHIOFaJvizWBhA', text));
@@ -123,7 +123,7 @@
             
             // Cacti
             Tabletop.init({key: secretInfo.cacti, callback: function (data) {
-                data.forEach((curData) => {
+                data.forEach(curData => {
                     curData.patrol = 'Cacti';
                 });
                 window.globalData.push.apply(window.globalData, data);
@@ -131,7 +131,7 @@
             
             // Hawks
             Tabletop.init({key: secretInfo.hawks, callback: function (data) {
-                data.forEach((curData) => {
+                data.forEach(curData => {
                     curData.patrol = 'Hawks';
                 });
                 window.globalData.push.apply(window.globalData, data);
@@ -139,7 +139,7 @@
             
             // Wildcats
             Tabletop.init({key: secretInfo.wildcats, callback: function (data) {
-                data.forEach((curData) => {
+                data.forEach(curData => {
                     curData.patrol = 'Wildcats';
                 });
                 window.globalData.push.apply(window.globalData, data);
@@ -147,7 +147,7 @@
             
             // Serpents
             Tabletop.init({key: secretInfo.serpents, callback: function (data) {
-                data.forEach((curData) => {
+                data.forEach(curData => {
                     curData.patrol = 'Serpents';
                 });
                 window.globalData.push.apply(window.globalData, data);
@@ -155,7 +155,7 @@
             
             // Blobfish
             Tabletop.init({key: secretInfo.blobfish, callback: function (data) {
-                data.forEach((curData) => {
+                data.forEach(curData => {
                     curData.patrol = 'Blobfish';
                 });
                 window.globalData.push.apply(window.globalData, data);
@@ -163,20 +163,20 @@
             
             // Dragons
             Tabletop.init({key: secretInfo.dragons, callback: function (data) {
-                data.forEach((curData) => {
+                data.forEach(curData => {
                     curData.patrol = 'Dragons';
                 });
                 window.globalData.push.apply(window.globalData, data);
             }, simpleSheet: true});
             
-        }, function() {
+        }, () => {
             Singulr.loadPage('login.html?redir=directory.html');
         });
         
         
         
         window.globalData = [];
-        $(document).ready(function() {
+        $(document).ready(() => {
             $('#password').focus();
         });
         
@@ -189,12 +189,11 @@
         });
         
         
-        $('#search-btn').click(function() {
+        $('#search-btn').click(() => {
             let userquery = $('#search-query').val();
             if (userquery === '') return;
             
             
-            $('#search-query').val('');
             userquery = userquery.toLowerCase();
             //console.log(userquery);
             let query = [];
@@ -267,7 +266,7 @@
                     }
                 }
             }
-            score.sort(function(a, b) {
+            score.sort((a, b) => {
                 return parseFloat(a.score) - parseFloat(b.score);
             });
             
@@ -303,10 +302,14 @@
                 $('#no-result').hide();
                 $('#results > tbody').html('');
                 for (let result of results) {
+                    console.log(result);
                     let name = window.globalData[result]['Scout\'s Full Name (last name first):'];
-                    $('#results > tbody').append(
-                        '<tr><td><a onclick="showfullinfo(' + result + ')">' + name +
-                        '</a></td><td>'  + window.globalData[result['Scout\'s Cell Phone']] + '</td></tr>');
+                    $('#results > tbody').append(`
+                        <tr>
+                            <td><a onclick="showfullinfo(${result})">${name}</a></td>
+                            <td>${window.globalData[result]['Scout\'s Cell Phone']}</td>
+                        </tr>
+                    `);
                 }
                 $('#results').show();
           	}
@@ -316,18 +319,20 @@
         
         function showfullinfo(id) {
             console.log(id);
+            
             $('#results').hide();
-            $('#detail').show().html('').append(
-                'Name: '                    + window.globalData[id]['Scout\'s Full Name (last name first):'] + '<br>' +
-                'Email: <a href="mailto:'   + window.globalData[id]['Scout\'s E-mail:']                 + '">' + window.globalData[id]['Scout\'s E-mail:'] + '</a><br>' +
-                'Cell Phone: <a href="tel:' + window.globalData[id]['Scout\'s Cell Phone']              + '">' + window.globalData[id]['Scout\'s Cell Phone'] + '</a><br>' +
-                'Home Phone: <a href="tel:' + window.globalData[id]['Scout\'s Home Phone']              + '">' + window.globalData[id]['Scout\'s Home Phone'] + '</a><br>' +
-                'Patrol: '                  + window.globalData[id].patrol                              + '<br><br>' +
-                'Father\'s Cell Phone: <a href="tel:' + window.globalData[id]['Father\'s Cell Phone']   + '">' + window.globalData[id]['Father\'s Cell Phone'] + '</a><br>' +
-                'Father\'s E-mail: <a href="mailto:'  + window.globalData[id]['Father\'s E-mail']       + '">' + window.globalData[id]['Father\'s E-mail'] + '</a><br>' +
-                'Mother\'s Cell Phone: <a href="tel:' + window.globalData[id]['Mother\'s Cell Phone']   + '">' + window.globalData[id]['Mother\'s Cell Phone'] + '</a><br>' +
-                'Mother\'s E-mail: <a href="mailto:'  + window.globalData[id]['Mother\'s E-mail']       + '">' + window.globalData[id]['Mother\'s E-mail'] + '</a><br>'
-            );
+            $('#detail').show().html('').append(`
+                <a onclick="$('#results').show();$('#detail').hide();">Back</a><br><br>
+                Name:                               ${window.globalData[id]['Scout\'s Full Name (last name first):']}<br>
+                Email: <a href="mailto:             ${window.globalData[id]['Scout\'s E-mail:']}">     ${window.globalData[id]['Scout\'s E-mail:']}</a><br>
+                Cell Phone: <a href="tel:           ${window.globalData[id]['Scout\'s Cell Phone']}">  ${window.globalData[id]['Scout\'s Cell Phone']}</a><br>
+                Home Phone: <a href="tel:           ${window.globalData[id]['Scout\'s Home Phone']}">  ${window.globalData[id]['Scout\'s Home Phone']}</a><br>
+                Patrol:                             ${window.globalData[id].patrol}<br><br>
+                Father\'s Cell Phone: <a href="tel: ${window.globalData[id]['Father\'s Cell Phone']}"> ${window.globalData[id]['Father\'s Cell Phone']}</a><br>
+                Father\'s E-mail: <a href="mailto:  ${window.globalData[id]['Father\'s E-mail']}">     ${window.globalData[id]['Father\'s E-mail']}</a><br>
+                Mother\'s Cell Phone: <a href="tel: ${window.globalData[id]['Mother\'s Cell Phone']}"> ${window.globalData[id]['Mother\'s Cell Phone']}</a><br>
+                Mother\'s E-mail: <a href="mailto:  ${window.globalData[id]['Mother\'s E-mail']}">     ${window.globalData[id]['Mother\'s E-mail']}</a><br>
+            `);
         }
     </script>
 
