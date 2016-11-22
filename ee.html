@@ -20,7 +20,7 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>You must be logged in to view the easter eggs page. 
+                    <p>You must be logged in to view the easter eggs page.
                     <a href="login.html?redir=https%3A%2F%2Ft485.org%2Fee.html%3Ftoken%3D1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4">Login.</a></p>
                 </div>
                 <div class="clearfix"></div>
@@ -67,7 +67,7 @@
         /* global $ auth getQuery firebase Singulr history */
         auth(function(user){
             if (getQuery("token") !== "1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4") {
-                window.location.href = "404.html";
+                Singulr.loadPage('404.html');
             }
             else {
                 $("#notloggedin").addClass("hidden");
@@ -98,12 +98,10 @@
                 window.history.pushState({
                     path: newurl
                 }, '', newurl);
-            }
-            else {
+            } else {
                 Singulr.loadPage(window.location.pathname.substring(1) + query);
     
             }
-
         }
     
         function generateRandomStr() {
