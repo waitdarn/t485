@@ -14,7 +14,19 @@
     <div class="container">
 
         <div class="row">
-            <div class="box">
+            <div class="box" id="notloggedin">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Error: Not Logged In</h2>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <p>You must be logged in to view the easter eggs page. 
+                    <a href="login.html?redir=https%3A%2F%2Ft485.org%2Fee.html%3Ftoken%3D1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4">Login.</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="box hidden main">
                 <div class="col-lg-12">
                     <hr>
                     <h2 class="intro-text text-center">Easter Eggs - More Info</h2>
@@ -25,13 +37,14 @@
                     Easter eggs can be found throughout the entire website(t485.org), on any page. Each easter egg has an id formatted like this: 
                     <b>xxxxxx-xxxxxx-xxxxxx-xxxxxx</b>. A scout is trusworthy, so do not share your easter egg id or locations. If you find
                     an ID, enter it below to add it to your account.</p>
+                    <p id="join-load">Loading join link...</p>
                     <a class="hidden" id="join-link">Click here to join the easter egg hunt.</a>
-                    <b class="hidden" id="join-link">You already joined the easter egg hunt.</b>
+                    <b class="hidden" id="joined-text">You already joined the easter egg hunt.</b>
                     <p>Number of easter eggs on this website(reload to refresh): <b id="ee-count"></b></p>
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="box">
+            <div class="box hidden main">
                 <div class="col-lg-12">
                     <hr>
                     <h2 class="intro-text text-center">Easter Eggs Submission</h2>
@@ -51,21 +64,55 @@
     
     </div>
     <script>
-        if (getQuery("token") !== "1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4") {
-            window.location.href = "404.html";
+        /* global $ auth getQuery firebase Singulr history */
+        auth(function(user){
+            if (getQuery("token") !== "1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4") {
+                window.location.href = "404.html";
+            }
+            else {
+                $("#notloggedin").addClass("hidden");
+                $(".main").removeClass("hidden");
+                updateURLQuery("?token=92FHIUSDHFALJDJOSasduifhae8239jcdnsuzjykHDJSHFOIJSOIUao-ic9A6M7vHef4");
+                firebase.database().ref("/ee/u/" + user.uid + "/ueeid/").once("value", function(snapshot){
+                    var data = snapshot.val();
+                    if (data === null) {
+                        $("#join-load").addClass("hidden");
+                        $("#join-link").removeClass("hiden");
+                    } else {
+                        $("#join-load").addClass("hidden");
+                        $("#joined-text").removeClass("hiden");
+                    }
+                });
+                $("#join-link").click(function(){
+                     firebase.database().ref("/ee/u/" + user.uid + "/ueeid/").set(generateRandomStr());
+                     $("#join-link").addClass("hidden");
+                     $("#joined-text").removeClass("hidden");
+                });
+            }
+        }, function() {
+            
+        });
+        function updateURLQuery(query) {
+            if (history.pushState) {
+                var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + query;
+                window.history.pushState({
+                    path: newurl
+                }, '', newurl);
+            }
+            else {
+                Singulr.loadPage(window.location.pathname.substring(1) + query);
+    
+            }
         }
-        else {
-
-        }
-
+    
         function generateRandomStr() {
             let text = "";
             const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
+    
             for (let i = 0; i < 4; i++)
                 text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-            return text;
+    
+            return text.split('');
         }
     </script>
     <!-- /.container -->
