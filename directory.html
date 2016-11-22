@@ -28,7 +28,7 @@
                         </button>
                     </span>
                 </div>
-                
+                <p style="display: none" id="loading">Loading...</p>
                 <table class="table" id="results" style="display: none;">
                     <thead>
                         <tr>
@@ -77,7 +77,7 @@
     <script src="js/tabletop.min.js"></script>
     
     <script>
-        /* global Tabletop */
+        /* global Tabletop $ auth sjcl getQuery Singulr history compare*/
         
         
         
@@ -127,6 +127,7 @@
                     curData.patrol = 'Cacti';
                 });
                 window.globalData.push.apply(window.globalData, data);
+                alphabetize();
             }, simpleSheet: true});
             
             // Hawks
@@ -135,6 +136,7 @@
                     curData.patrol = 'Hawks';
                 });
                 window.globalData.push.apply(window.globalData, data);
+                alphabetize();
             }, simpleSheet: true});
             
             // Wildcats
@@ -143,6 +145,7 @@
                     curData.patrol = 'Wildcats';
                 });
                 window.globalData.push.apply(window.globalData, data);
+                alphabetize();
             }, simpleSheet: true});
             
             // Serpents
@@ -151,6 +154,7 @@
                     curData.patrol = 'Serpents';
                 });
                 window.globalData.push.apply(window.globalData, data);
+                alphabetize();
             }, simpleSheet: true});
             
             // Blobfish
@@ -159,6 +163,7 @@
                     curData.patrol = 'Blobfish';
                 });
                 window.globalData.push.apply(window.globalData, data);
+                alphabetize();
             }, simpleSheet: true});
             
             // Dragons
@@ -167,7 +172,16 @@
                     curData.patrol = 'Dragons';
                 });
                 window.globalData.push.apply(window.globalData, data);
+                alphabetize();
             }, simpleSheet: true});
+            
+            function alphabetize() {
+                window.globalData.sort((a, b) => {
+                    if (a['Scout\'s Full Name (last name first):'] < b['Scout\'s Full Name (last name first):']) return -1;
+                    if (a['Scout\'s Full Name (last name first):'] > b['Scout\'s Full Name (last name first):']) return 1;
+                    return 0;
+                });
+            }
             
         }, function() {
             Singulr.loadPage('login.html?redir=directory.html');
@@ -189,8 +203,41 @@
         });
         
         
-        $('#search-btn').click(function() {
-            let userquery = $('#search-query').val();
+        $('#search-btn').click(function(){
+            let userquery = $("#search-query").val();
+            updateURLQuery("?type=list&query=" + encodeURIComponent(userquery));
+            console.log(userquery);
+            showSearchResults(userquery);
+        });
+        
+        
+        if (getQuery("type") === "list" && getQuery("query") !== null && getQuery("query") !== "") {
+            $("#search-query").val(getQuery("query"));
+            showSearchResults(getQuery("query"));
+        } else if (getQuery("type") === "profile" && getQuery("id") !== null && getQuery("id") !== "") {
+            console.log(parseInt(getQuery("id"), 10));
+                $("#loading").show();
+                setTimeout(() => {
+                    showfullinfo(parseInt(getQuery("id"), 10), false);
+                    $("#loading").hide();
+                }, 1500);
+        }
+        function updateURLQuery(query) {
+            if (history.pushState) {
+                var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + query;
+                window.history.pushState({
+                    path: newurl
+                }, '', newurl);
+            }
+            else {
+                Singulr.loadPage(window.location.protocol + "//" + window.location.host + window.location.pathname + query);
+        
+            }
+        }
+        
+        function showSearchResults(userquery) {
+            
+            
             if (userquery === '') return;
             
             
@@ -314,12 +361,13 @@
                 $('#results').show();
           	}
       	    console.log('3');
-        });
+        }
         
-        
-        function showfullinfo(id) {
-            console.log(id);
-            
+        function showfullinfo(id, updateQuery) {
+            console.log(window.globalData);
+            if (updateQuery !== false) {
+                updateURLQuery("?type=profile&id=" + encodeURIComponent(id));
+            }
             $('#results').hide();
             $('#detail').show().html('').append(`
                 <a onclick="$('#results').show();$('#detail').hide();">Back</a><br><br>
