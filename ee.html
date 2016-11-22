@@ -21,7 +21,25 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>This page is work-in-progress. Please wait for this to be finished!</p>
+                    <p>Easter eggs are being added all the time. Below, there is a live number that reflects the number of easter eggs on this site.
+                    Easter eggs can be found throughout the entire website(t485.org), on any page. Each easter egg has an id formatted like this: 
+                    <b>xxxxxx-xxxxxx-xxxxxx-xxxxxx</b>. A scout is trusworthy, so do not share your easter egg id or locations. If you find
+                    an ID, enter it below to add it to your account.</p>
+                    <a class="hidden" id="join-link">Click here to join the easter egg hunt.</a>
+                    <b class="hidden" id="join-link">You already joined the easter egg hunt.</b>
+                    <p>Number of easter eggs on this website(reload to refresh): <b id="ee-count"></b></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Easter Eggs Submission</h2>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <p>If you find any easter egg id's, submit them here to add them to your account.</p>
+                    
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -35,6 +53,19 @@
     <script>
         if (getQuery("token") !== "1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4") {
             window.location.href = "404.html";
+        }
+        else {
+
+        }
+
+        function generateRandomStr() {
+            let text = "";
+            const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+            for (let i = 0; i < 4; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text;
         }
     </script>
     <!-- /.container -->
