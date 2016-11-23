@@ -39,7 +39,7 @@
                     <p id="join-load">Loading join link...</p>
                     <a class="hidden" id="join-link">Click here to join the easter egg hunt.</a>
                     <b class="hidden" id="joined-text">You joined the easter egg hunt.</b>
-                    <p>Number of easter eggs on this website(reload to refresh): <b id="ee-count"></b></p>
+                    <p>Number of easter eggs on this website that give you easter egg id's(reload to refresh): <b id="ee-count"></b></p>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -72,10 +72,11 @@
             else {
                 $("#notloggedin").addClass("hidden");
                 $(".main").removeClass("hidden");
-                updateURLQuery("?token=92FHIUSDHFALJDJOSasduifhae8239jcdnsuzjykHDJSHFOIJSOIUao-ic9A6M7vHef4");
+                
                 console.log(1);
-                firebase.database().ref("/ee/u/" + user.uid + "/ueeid/").once("value").then(function(snapshot){
-                    var data = snapshot.val();
+                firebase.database().ref("/ee/").once("value").then(function(snapshot){
+                    $("#ee-count").html(snapshot.val().count);
+                    var data = snapshot.val().u[user.uid].ueeid;
                     console.log(2);
                     if (data === null) {
                         $("#join-load").addClass("hidden");
