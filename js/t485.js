@@ -49,7 +49,6 @@ function auth(onAuthed = () => {}, onUnauthed = () => {}) {
 $('#eel-289371845').click(() => {
     Singulr.loadPage('easter-eggs.html');
 });
-$("#eel-2891409832478273094").click(() => Singulr.loadPage('ee.html?token=1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4'));
 
 
 // Source: http://www.w3schools.com/js/js_cookies.asp
