@@ -76,32 +76,39 @@ function getVarsFromUrl() {
     return vars;
 }
 
-function generateEEID(s1, s2, s3, s4, callback, uid) {
-
+function generateEEID(s1, s2, s3, s4, callback2 = () => {}, uid) {
+console.log(uid)
     firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot){
         var data = snapshot.val();
-        callback(s1 + data[1] + "-" + s2 + data[2] + "-" + s3 + data[3] + "-" + s4 + data[4]); 
+        console.log(callback2);
+        callback2(data[0] + s1 + "-" + data[1] + s2 + "-" + data[2] + s3 + "-" + data[3] + s4); 
     });
 }
-function showEEIDModal(s1, s2, s3, s4, user, callback) {
+function showEEIDModal(s1, s2, s3, s4, user, callback1 = () => {}) {
+    console.log(user);
     if (user === null || user === undefined) {
         auth(function(user) {
-            generateEEID(s1, s2, s3, s4, user.uid, function(EEID) {
+            console.log(user);
+            generateEEID(s1, s2, s3, s4, function(EEID) {
+                
                 $("#ee-modal-eeid-result").html(EEID);
+                $("#ee-modal-eeid-load").addClass("hidden");
                 $("#ee-modal-eeid-show").removeClass("hidden");
                 $('#ee-modal').modal('show');
-                callback();
-            });
+                callback1();
+            }, user.uid);
         }, function() {
-            callback(".ERROR/User-Not-Logged-In");
+            callback1(".ERROR/User-Not-Logged-In");
         })
     }
     else {
         generateEEID(s1, s2, s3, s4, user.uid, function(EEID) {
             $("#ee-modal-eeid-result").html(EEID);
+            $("#ee-modal-eeid-load").addClass("hidden");
             $("#ee-modal-eeid-show").removeClass("hidden");
+            
             $('#ee-modal').modal('show');
-            callback();
+            callback1();
         });
     }
 
