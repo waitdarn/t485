@@ -221,8 +221,13 @@
         });
         
         if (getQuery("type") === "list" && getQuery("query") !== null && getQuery("query") !== "") {
-            $("#search-query").val(getQuery("query"));
+            $("#loading").show();
+                setTimeout(() => {
+                    $("#search-query").val(getQuery("query"));
             showSearchResults(getQuery("query"));
+                    $("#loading").hide();
+                }, 1500);
+            
         } else if (getQuery("type") === "profile" && getQuery("id") !== null && getQuery("id") !== "") {
             console.log(parseInt(getQuery("id"), 10));
                 $("#loading").show();
