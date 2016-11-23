@@ -68,42 +68,30 @@ function getVarsFromUrl() {
 }
 
 function generateEEID(s1, s2, s3, s4, callback2 = () => {}, uid) {
-    firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot){
+    firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot) {
         var data = snapshot.val();
-        callback2(data[0] + s1 + "-" + data[1] + s2 + "-" + data[2] + s3 + "-" + data[3] + s4); 
-        
+        if (data === null) {
+            callback2(".ERROR/User-Not-Registered");
+        }
+        else {
+            callback2(data[0] + s1 + "-" + data[1] + s2 + "-" + data[2] + s3 + "-" + data[3] + s4);
+        }
     });
 }
-function userEERegistered(callback, user) {
-    if (user === null || user === undefined) {
-        auth(function(user) {
-            firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot) {
-                var data = snapshot.val();
-                callback(data === null);
 
-            });
-        }, function() {
-            callback(".ERROR/User-Not-Logged-In");
-        });
-    }
-    else {
-        firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot) {
-            var data = snapshot.val();
-
-            callback(data === null);
-
-        });
-    }
-
-}
 function showEEIDModal(s1, s2, s3, s4, user, callback1 = () => {}) {
+
     if (user === null || user === undefined) {
         auth(function(user) {
             generateEEID(s1, s2, s3, s4, function(EEID) {
-                
-                $("#ee-modal-eeid-result").html(EEID);
-                $("#ee-modal-eeid-load").addClass("hidden");
-                $("#ee-modal-eeid-show").removeClass("hidden");
+                if (EEID = ".ERROR/User-Not-Registered") {
+                    $("#ee-modal-nr").removeClass("hidden");
+                }
+                else {
+                    $("#ee-modal-eeid-result").html(EEID);
+                    $("#ee-modal-eeid-load").addClass("hidden");
+                    $("#ee-modal-eeid-show").removeClass("hidden");
+                }
                 $('#ee-modal').modal('show');
                 callback1();
             }, user.uid);
@@ -113,10 +101,14 @@ function showEEIDModal(s1, s2, s3, s4, user, callback1 = () => {}) {
     }
     else {
         generateEEID(s1, s2, s3, s4, user.uid, function(EEID) {
-            $("#ee-modal-eeid-result").html(EEID);
-            $("#ee-modal-eeid-load").addClass("hidden");
-            $("#ee-modal-eeid-show").removeClass("hidden");
-            
+            if (EEID = ".ERROR/User-Not-Registered") {
+                $("#ee-modal-nr").removeClass("hidden");
+            }
+            else {
+                $("#ee-modal-eeid-result").html(EEID);
+                $("#ee-modal-eeid-load").addClass("hidden");
+                $("#ee-modal-eeid-show").removeClass("hidden");
+            }
             $('#ee-modal').modal('show');
             callback1();
         });

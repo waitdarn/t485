@@ -204,7 +204,14 @@
         $('#search-btn').click(() => {
             let userquery = $("#search-query").val();
             if (userquery.toLowerCase() === "john cena") {
-                showEEIDModal("1WW4Q", "mVKvb", "JmIF6", "8GLu8");
+                
+                        showEEIDModal("1WW4Q", "mVKvb", "JmIF6", "8GLu8");
+                   
+                console.log(userquery);
+                showSearchResults(userquery);
+                    }
+                })
+                
             } else {
                 updateURLQuery("?type=list&query=" + encodeURIComponent(userquery));
                 console.log(userquery);
