@@ -84,7 +84,7 @@ function showEEIDModal(s1, s2, s3, s4, user, callback1 = () => {}) {
     if (user === null || user === undefined) {
         auth(function(user) {
             generateEEID(s1, s2, s3, s4, function(EEID) {
-                if (EEID = ".ERROR/User-Not-Registered") {
+                if (EEID === ".ERROR/User-Not-Registered") {
                     $("#ee-modal-nr").removeClass("hidden");
                 }
                 else {
@@ -101,7 +101,7 @@ function showEEIDModal(s1, s2, s3, s4, user, callback1 = () => {}) {
     }
     else {
         generateEEID(s1, s2, s3, s4, user.uid, function(EEID) {
-            if (EEID = ".ERROR/User-Not-Registered") {
+            if (EEID === ".ERROR/User-Not-Registered") {
                 $("#ee-modal-nr").removeClass("hidden");
             }
             else {
