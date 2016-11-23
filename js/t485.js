@@ -50,18 +50,9 @@ $('#eel-289371845').click(() => {
     Singulr.loadPage('easter-eggs.html');
 });
 $("#eel-2891409832478273094").click(() => Singulr.loadPage('ee.html?token=1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4'));
+
+
 // Source: http://www.w3schools.com/js/js_cookies.asp
-function hashPassword(str) {
-    let hash = 0;
-    if (str.length === 0) return 0;
-    for (let i = 0; i < str.length; i++) {
-        hash = ((hash<<5) - hash) + str.charCodeAt(i);
-        hash |= 0; // Convert to 32bit integer
-    }
-    return hash;
-}
-
-
 function setCookie(e,o,i){if(null===i||''===i||'browser'===i||0===i)document.cookie=e+'='+o+'; ';else{var t=new Date;t.setTime(t.getTime()+24*i*60*60*1e3);var n='expires='+t.toUTCString();document.cookie=e+'='+o+'; '+n}}
 
 
@@ -77,18 +68,37 @@ function getVarsFromUrl() {
 }
 
 function generateEEID(s1, s2, s3, s4, callback2 = () => {}, uid) {
-console.log(uid)
     firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot){
         var data = snapshot.val();
-        console.log(callback2);
         callback2(data[0] + s1 + "-" + data[1] + s2 + "-" + data[2] + s3 + "-" + data[3] + s4); 
+        
     });
 }
-function showEEIDModal(s1, s2, s3, s4, user, callback1 = () => {}) {
-    console.log(user);
+function userEERegistered(callback, user) {
     if (user === null || user === undefined) {
         auth(function(user) {
-            console.log(user);
+            firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot) {
+                var data = snapshot.val();
+                callback(data === null);
+
+            });
+        }, function() {
+            callback(".ERROR/User-Not-Logged-In");
+        });
+    }
+    else {
+        firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot) {
+            var data = snapshot.val();
+
+            callback(data === null);
+
+        });
+    }
+
+}
+function showEEIDModal(s1, s2, s3, s4, user, callback1 = () => {}) {
+    if (user === null || user === undefined) {
+        auth(function(user) {
             generateEEID(s1, s2, s3, s4, function(EEID) {
                 
                 $("#ee-modal-eeid-result").html(EEID);
