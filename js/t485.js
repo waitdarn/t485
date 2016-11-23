@@ -83,6 +83,29 @@ function generateEEID(s1, s2, s3, s4, callback, uid) {
         callback(s1 + data[1] + "-" + s2 + data[2] + "-" + s3 + data[3] + "-" + s4 + data[4]); 
     });
 }
+function showEEIDModal(s1, s2, s3, s4, user, callback) {
+    if (user === null || user === undefined) {
+        auth(function(user) {
+            generateEEID(s1, s2, s3, s4, user.uid, function(EEID) {
+                $("#ee-modal-eeid-result").html(EEID);
+                $("#ee-modal-eeid-show").removeClass("hidden");
+                $('#ee-modal').modal('show');
+                callback();
+            });
+        }, function() {
+            callback(".ERROR/User-Not-Logged-In");
+        })
+    }
+    else {
+        generateEEID(s1, s2, s3, s4, user.uid, function(EEID) {
+            $("#ee-modal-eeid-result").html(EEID);
+            $("#ee-modal-eeid-show").removeClass("hidden");
+            $('#ee-modal').modal('show');
+            callback();
+        });
+    }
+
+}
 
 // Fisher-Yates shuffle
 function generateRandomNums(r){for(var a=[],n=0;r>n;n++)a[n]=n;for(var o,e,t=r;t;)e=~~(Math.random()*t),t-=1,o=a[t],a[t]=a[e],a[e]=o;return a}
