@@ -80,7 +80,6 @@
         /* global Tabletop $ auth sjcl getQuery Singulr history compare*/
         
         
-        
         auth(() => {
             let text = '{"iv":"u94eK78S4EOGQqpYNDLrGw==","v":1,"iter":1000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"g17ODbhwHcY=","ct":"66YjjNZp1zkWyBjPUD4XTHy2aHx8v2wPxywiPhbCxjCF8YWkhLzYnVgojeMZV2zbuQHjmrRLVbR+DTdeJzy0Xv70w1ez/eX4uX5nfiBCzi2kO4NwSLXUvJiIcuPGL7BLnXXXw893c0ADbqJUj6fS2nCfi0n9BT' +
             'koU9U8fDNXrsnRUkD0Oqd7khInVvOBoa4c1hjGx1P8cI3WXn29l0ezln2GPH1xqDenWQJTC+tAZ12a2e0uIb+zHIHJkTtjiZPGPBlZDe5/mFeqzr3e6qvZyawlOyI+NlrlQ3a10txli8P9M65UgfPhRDSMdGmeTuhiYkOhvUayWXg/DqMzabBem7cBcflxl8EzNuneoQ43E3ACqr/PdWyC5FBeNKTktyUQR6ypHQIWQwng0d5D7N9ZdfhGTzBDr3IYFaczaBATUuTnlMnBvhF/Jxvs5Rf8uiobblIrP1J25p9kzLe8acU="}';
@@ -204,15 +203,31 @@
         
         $('#search-btn').click(() => {
             let userquery = $("#search-query").val();
-            updateURLQuery("?type=list&query=" + encodeURIComponent(userquery));
-            console.log(userquery);
-            showSearchResults(userquery);
+            if (userquery.toLowerCase() === "john cena") {
+        
+                showEEIDModal("1WW4Q", "mVKvb", "JmIF6", "8GLu8");
+        
+                console.log(userquery);
+                showSearchResults(userquery);
+        
+        
+        
+            }
+            else {
+                updateURLQuery("?type=list&query=" + encodeURIComponent(userquery));
+                console.log(userquery);
+                showSearchResults(userquery);
+            }
         });
         
-        
         if (getQuery("type") === "list" && getQuery("query") !== null && getQuery("query") !== "") {
-            $("#search-query").val(getQuery("query"));
+            $("#loading").show();
+                setTimeout(() => {
+                    $("#search-query").val(getQuery("query"));
             showSearchResults(getQuery("query"));
+                    $("#loading").hide();
+                }, 1500);
+            
         } else if (getQuery("type") === "profile" && getQuery("id") !== null && getQuery("id") !== "") {
             console.log(parseInt(getQuery("id"), 10));
                 $("#loading").show();
@@ -367,7 +382,7 @@
             }
             $('#results').hide();
             $('#detail').show().html('').append(`
-                <a onclick="$('#results').show();$('#detail').hide();">Back</a><br><br>
+                <a onclick="$('#results').show();$('#detail').hide();">Back to search results</a><br><br>
                 Name:                               ${window.globalData[id]['Scout\'s Full Name (last name first):']}<br>
                 Email: <a href="mailto:             ${window.globalData[id]['Scout\'s E-mail:']}">     ${window.globalData[id]['Scout\'s E-mail:']}</a><br>
                 Cell Phone: <a href="tel:           ${window.globalData[id]['Scout\'s Cell Phone']}">  ${window.globalData[id]['Scout\'s Cell Phone']}</a><br>

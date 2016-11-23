@@ -12,34 +12,114 @@
 <body>
     
     <div class="container">
-
         <div class="row">
-            <div class="box">
+            <div class="box" id="notloggedin">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Error: Not Logged In</h2>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <p>You must be logged in to view the easter eggs page.
+                    <a href="login.html?redir=https%3A%2F%2Ft485.org%2Fee.html%3Ftoken%3D1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4">Login.</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="box hidden main">
                 <div class="col-lg-12">
                     <hr>
                     <h2 class="intro-text text-center">Easter Eggs - More Info</h2>
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>This page is work-in-progress. Please wait for this to be finished!</p>
+                    <p>Easter eggs are being added all the time. Below, there is a live number that reflects the number of easter eggs on this site.
+                    Easter eggs can be found throughout the entire website(t485.org), on any page. Each easter egg has an id formatted like this:
+                    <b>xxxxxx-xxxxxx-xxxxxx-xxxxxx</b>. A scout is trusworthy, so do not share your easter egg id or locations. If you find
+                    an ID, enter it below to add it to your account.</p>
+                    <p id="join-load">Loading join link...</p>
+                    <a class="hidden" id="join-link">Click here to join the easter egg hunt.</a>
+                    <b class="hidden" id="joined-text">You joined the easter egg hunt.</b>
+                    <p>Number of easter eggs on this website that give you easter egg id's(reload to refresh): <b id="ee-count"></b></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="box hidden main">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Easter Eggs Submission</h2>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <p>If you find any easter egg id's, submit them here to add them to your account, one at a time.</p>
+                    <input type="text" class="form-control" id="eeid-txt"><br>
+                    <button class="btn btn-primary form-control" id="eeid=submit">Sbbmit</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
         </div>
-
+    </div>
+    <!-- /.container -->
+    
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
     
-    </div>
     <script>
-        if (getQuery("token") !== "1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4") {
-            window.location.href = "404.html";
+        /* global $ auth getQuery firebase Singulr history */
+        auth(function(user){
+            if (getQuery("token") !== "1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4") {
+                Singulr.loadPage('404.html');
+            }
+            else {
+                $("#notloggedin").addClass("hidden");
+                $(".main").removeClass("hidden");
+                
+                console.log(1);
+                firebase.database().ref("/ee/").once("value").then(function(snapshot){
+                    $("#ee-count").html(snapshot.val().count);
+                    var data = snapshot.val().u[user.uid].ueeid;
+                    console.log(2);
+                    if (data === null) {
+                        $("#join-load").addClass("hidden");
+                        $("#join-link").removeClass("hidden");
+                    } else {
+                        $("#join-load").addClass("hidden");
+                        $("#joined-text").removeClass("hidden");
+                    }
+                });
+                $("#join-link").click(function(){
+                     firebase.database().ref("/ee/u/" + user.uid + "/ueeid/").set(generateRandomStr());
+                     $("#join-link").addClass("hidden");
+                     $("#joined-text").removeClass("hidden");
+                });
+            }
+        }, function() {
+            if (getQuery("token") !== "1XAYiBDXGb6MouIrPZJHBk2ykV6fK2T-ic9A6M7vHef4") {
+                Singulr.loadPage('404.html');
+            }
+        });
+        function updateURLQuery(query) {
+            if (history.pushState) {
+                var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + query;
+                window.history.pushState({
+                    path: newurl
+                }, '', newurl);
+            } else {
+                Singulr.loadPage(window.location.pathname.substring(1) + query);
+    
+            }
+        }
+    
+        function generateRandomStr() {
+            let text = "";
+            const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    
+            for (let i = 0; i < 4; i++)
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+            return text.split('');
         }
     </script>
-    <!-- /.container -->
-
-    
 </body>
 
 </html>
