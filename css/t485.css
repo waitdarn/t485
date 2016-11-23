@@ -556,6 +556,7 @@ a:focus {
     color:black;
     text-decoration:none;
     transition: none;
+    border-color: transparent;
 }
 .t-l:visited {
     color:black;
