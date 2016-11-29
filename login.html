@@ -38,12 +38,11 @@
 
 
     <script>
-        let redirectUrl = getQuery('redir') || 'home.html';
-        let provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/userinfo.email');
-        
-        
         function btnClicked() {
+            let redirectUrl = getQuery('redir') || 'home.html';
+            let provider = new firebase.auth.GoogleAuthProvider();
+            provider.addScope('https://www.googleapis.com/auth/userinfo.email');
+            
             firebase.auth().signInWithPopup(provider).then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 let token = result.credential.accessToken;
@@ -51,8 +50,6 @@
                 let user = result.user;
                 
                 let email = user.providerData[0].email;
-                console.log(user);
-                console.log(email);
                 
                 $.get('members', (response) => {
                     if (response) {
