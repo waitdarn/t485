@@ -38,6 +38,7 @@ $('.dropdown a').click(function() {
 // Checks if the user is logged in
 function auth(onAuthed = () => {}, onUnauthed = () => {}) {
     firebase.auth().onAuthStateChanged((user) => {
+        console.log(onUnauthed);
         if (user) {
             onAuthed(user);
         } else {
@@ -46,9 +47,7 @@ function auth(onAuthed = () => {}, onUnauthed = () => {}) {
     });
 }
 
-$('#eel-289371845').click(() => {
-    Singulr.loadPage('easter-eggs.html');
-});
+$('#eel-289371845').click(() => Singulr.loadPage('easter-eggs.html'));
 
 
 // Source: http://www.w3schools.com/js/js_cookies.asp
