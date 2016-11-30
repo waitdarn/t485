@@ -170,7 +170,7 @@
             let target = this;
             return target.split(search).join(replacement);
         };
-        auth((user) => {
+        auth(user => {
             $("#create-event-page").click(() => {
 
                 $("#error").html("");
@@ -196,7 +196,7 @@
                             "footer": "This is a T485 event page automated message"
                         }]
                     }),
-                    (data) => {
+                    data => {
                         window.location.href = "event.html?event=" + url;
                     }
                 );
@@ -208,7 +208,7 @@
         }, () => {
             Singulr.loadPage('login.html?redir=resources.html');
         });
-        firebase.database().ref("/events/").on("child_added", (data) => {
+        firebase.database().ref("/events/").on("child_added", data => {
 
             let name = data.val().title;
             $("#event-list").prepend("<li><a class='name' href='event.html?event=" + data.key + "'>" + name + "</a></li>");

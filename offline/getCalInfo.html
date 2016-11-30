@@ -62,7 +62,7 @@
                         'orderBy': 'startTime'
                     });
 
-                    request.execute((resp) => {
+                    request.execute(resp => {
                         let events = resp.items;
                         if (events.length > 0) {
                             // events.forEach(event => {

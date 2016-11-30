@@ -92,7 +92,7 @@
             window.location.href = "/resources.html";
         }
         firebase.database().ref('/events/' + encodeURIComponent(getQuery("event"))/*URL is url safe anyways, this is to trigger the data = null 404
-        when the event contains non URL safe charcters*/).once('value').then((snapshot) => {
+        when the event contains non URL safe charcters*/).once('value').then(snapshot => {
             let data = snapshot.val();
             if (data === null || data === 0) {
                 $("#event-title").html("Error 404: Event Not Found");
@@ -115,7 +115,7 @@
 
        function main() {
             if (getQuery("password") !== null) {
-            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', (snapshot) => {
+            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', snapshot => {
 
 
                 if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
@@ -134,7 +134,7 @@
                             ],
                             toolbar: "undo redo | forecolor backcolor | link | save",
                             menubar: false,
-                            setup: (editor) => {
+                            setup: editor => {
                                 editor.addButton("save", {
                                     text: "Save Changes",
                                     icon: false,
@@ -157,7 +157,7 @@
                             ],
                             link_assume_external_targets: true,
                             removed_menuitems: "newdocument",
-                            setup: (editor) => {
+                            setup: editor => {
                                 editor.addButton("save", {
                                     text: "Save Changes",
                                     icon: false,
@@ -189,7 +189,7 @@
         }
 
 
-        firebase.database().ref('/events/' + getQuery("event")).once('value').then((snapshot) => {
+        firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
             let data = snapshot.val();
 
             $("#event-title").html(data.title);
@@ -203,8 +203,8 @@
 
 
         }
-        auth((user) => {
-            firebase.database().ref('/events/' + getQuery("event")).once('value').then((snapshot) => {
+        auth(user => {
+            firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
                 let uid = snapshot.val().owner;
                 if (uid === user.uid) {
 
@@ -236,7 +236,7 @@
                     $("#share").click(() => {
 
                         $("#share-modal").modal("show");
-                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", (data) => {
+                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", data => {
 
                             console.log(data.val());
                             console.log(data.key);
@@ -265,7 +265,7 @@
                             ],
                             toolbar: "undo redo | forecolor backcolor | link | save",
                             menubar: false,
-                            setup: (editor) => {
+                            setup: editor => {
                                 editor.addButton("save", {
                                     text: "Save Changes",
                                     icon: false,
@@ -288,7 +288,7 @@
                             ],
                             link_assume_external_targets: true,
                             removed_menuitems: "newdocument",
-                            setup: (editor) => {
+                            setup: editor => {
                                 editor.addButton("save", {
                                     text: "Save Changes",
                                     icon: false,
@@ -309,7 +309,7 @@
             });
 
             function getFirebaseDataThen(callback, requireDescription) {
-                firebase.database().ref('/events/' + getQuery("event")).once('value').then((snapshot) => {
+                firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
                     let data = snapshot.val();
 
                     if (data !== null) {
@@ -340,7 +340,7 @@
                                 "footer": "This is a T485 event page automated message"
                             }]
                         }),
-                        (data) => {
+                        data => {
                             window.location.href = url;
                         }
                     );

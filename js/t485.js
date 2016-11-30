@@ -37,7 +37,7 @@ $('.dropdown a').click(function() {
 
 // Checks if the user is logged in
 function auth(onAuthed = () => {}, onUnauthed = () => {}) {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(user => {
         console.log(onUnauthed);
         if (user) {
             onAuthed(user);

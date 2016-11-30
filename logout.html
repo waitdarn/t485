@@ -44,7 +44,7 @@
         
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
-        }, (error) => {
+        }, error => {
             console.error(error);
         });
     </script>
