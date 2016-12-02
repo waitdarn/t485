@@ -57,7 +57,7 @@
 
         let table = document.getElementById("response-table");
 
-        fireRef.on("child_added", (snapshot) => {
+        fireRef.on("child_added", snapshot => {
             let response = snapshot.val();
 
             let row = table.insertRow(-1);

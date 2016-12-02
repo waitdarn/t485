@@ -37,9 +37,7 @@
 
     
     <script>
-        auth(null, () => {
-            Singulr.loadPage('login.html?redir=forum.html');
-        });
+        auth(undefined, () => Singulr.loadPage('login.html?redir=forum.html'));
     </script>
 
 </body>

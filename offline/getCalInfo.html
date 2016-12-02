@@ -62,14 +62,15 @@
                         'orderBy': 'startTime'
                     });
 
-                    request.execute((resp) => {
+                    request.execute(resp => {
                         let events = resp.items;
                         if (events.length > 0) {
-                            events.forEach(event => {
-                                console.log(event);
-                            });
+                            // events.forEach(event => {
+                            //     console.log(event);
+                            // });
 
                             firebase.database().ref('/calendar').set(events);
+                            alert('Sucessfully update Firebase!');
                         } else {
                             throw new Error('No upcoming events found!');
                         }

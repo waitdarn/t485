@@ -52,9 +52,7 @@
 
     
     <script>
-        auth(null, () => {
-            Singulr.loadPage('login.html?redir=app-download.html');
-        });
+        auth(undefined, () => Singulr.loadPage('login.html?redir=app-download.html'));
     </script>
     
 </body>
