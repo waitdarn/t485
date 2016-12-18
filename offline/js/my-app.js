@@ -178,7 +178,7 @@ function showfullinfo(data) {
         Cell Phone: <a href="tel:${data['Scout\'s Cell Phone']}" class="external">${data['Scout\'s Cell Phone']}</a><br>
         Home Phone: <a href="tel:${data['Scout\'s Home Phone']}" class="external">${data['Scout\'s Home Phone']}</a><br>
         Patrol: ${data.patrol}<br><br>
-        Father's Cell Phone: <a href="tel:${['Father\'s Cell Phone']}" class="external">${data['Father\'s Cell Phone']}</a><br>
+        Father's Cell Phone: <a href="tel:${data['Father\'s Cell Phone']}" class="external">${data['Father\'s Cell Phone']}</a><br>
         Father's E-mail: <a href="mailto:${data['Father\'s E-mail']}" class="external">${data['Father\'s E-mail']}</a><br>
         Mother's Cell Phone: <a href="tel:${data['Mother\'s Cell Phone']}" class="external">${data['Mother\'s Cell Phone']}</a><br>
         Mother's E-mail: <a href="mailto:${data['Mother\'s E-mail']}" class="external">${data['Mother\'s E-mail']}</a><br>
