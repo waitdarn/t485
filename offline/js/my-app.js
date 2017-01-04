@@ -58,12 +58,13 @@ function updateCache() {
     }, simpleSheet: true});
     // Hawks
     Tabletop.init({key: '1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk', callback: function (data) {
+        data = data.Sheet1.elements;
         data.forEach(curData => {
             curData.patrol = 'Hawks';
         });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
-    }, simpleSheet: true});
+    }, simpleSheet: false}); // has 3 sheets, so only use 1st one
     // Wildcats
     Tabletop.init({key: '1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y', callback: function (data) {
         data.forEach(curData => {
@@ -82,12 +83,13 @@ function updateCache() {
     }, simpleSheet: true});
     // Blobfish
     Tabletop.init({key: '1peBfMWQb0CGOhTwDDN5IQ-Xpvctucr9XqRji7sViKLo', callback: function (data) {
+        data = data.Sheet1.elements;
         data.forEach(curData => {
             curData.patrol = 'Blobfish';
         });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
-    }, simpleSheet: true});
+    }, simpleSheet: false}); // has 2 sheets, so only use 1st one
     // Dragons
     Tabletop.init({key: '1BDqSGHtNsa_pt6FHq40NS02sHcwsfh36QVTpwoykL_A', callback: function (data) {
         data.forEach(curData => {

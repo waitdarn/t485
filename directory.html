@@ -88,7 +88,7 @@
             
             $('#search-query').focus();
             
-            $('#spreadsheet-confirm-btn').click(function () {
+            $('#spreadsheet-confirm-btn').click(() => {
                 $('#spreadsheet-confirm').hide();
                 $('#spreadsheet-content').html(
                     '<div id="cacti" class="tab-pane fade in active">' +
@@ -121,7 +121,7 @@
             
             
             // Cacti
-            Tabletop.init({key: secretInfo.cacti, callback: function (data) {
+            Tabletop.init({key: secretInfo.cacti, callback: data => {
                 data.forEach(curData => {
                     curData.patrol = 'Cacti';
                 });
@@ -130,7 +130,7 @@
             }, simpleSheet: true});
             
             // Hawks
-            Tabletop.init({key: secretInfo.hawks, callback: function (data) {
+            Tabletop.init({key: secretInfo.hawks, callback: data => {
                 data.forEach(curData => {
                     curData.patrol = 'Hawks';
                 });
@@ -139,16 +139,17 @@
             }, simpleSheet: true});
             
             // Wildcats
-            Tabletop.init({key: secretInfo.wildcats, callback: function (data) {
+            Tabletop.init({key: secretInfo.wildcats, callback: data => {
+                data = data.Sheet1.elements;
                 data.forEach(curData => {
                     curData.patrol = 'Wildcats';
                 });
                 window.globalData = window.globalData.concat(data);
                 alphabetize();
-            }, simpleSheet: true});
+            }, simpleSheet: false}); // has 3 sheets, so only use 1st one
             
             // Serpents
-            Tabletop.init({key: secretInfo.serpents, callback: function (data) {
+            Tabletop.init({key: secretInfo.serpents, callback: data => {
                 data.forEach(curData => {
                     curData.patrol = 'Serpents';
                 });
@@ -157,16 +158,17 @@
             }, simpleSheet: true});
             
             // Blobfish
-            Tabletop.init({key: secretInfo.blobfish, callback: function (data) {
+            Tabletop.init({key: secretInfo.blobfish, callback: data => {
+                data = data.Sheet1.elements;
                 data.forEach(curData => {
                     curData.patrol = 'Blobfish';
                 });
                 window.globalData = window.globalData.concat(data);
                 alphabetize();
-            }, simpleSheet: true});
+            }, simpleSheet: false}); // has 2 sheets, so only use 1st one
             
             // Dragons
-            Tabletop.init({key: secretInfo.dragons, callback: function (data) {
+            Tabletop.init({key: secretInfo.dragons, callback: data => {
                 data.forEach(curData => {
                     curData.patrol = 'Dragons';
                 });
