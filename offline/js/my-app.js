@@ -64,7 +64,7 @@ function updateCache() {
         });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
-    }, simpleSheet: false}); // has 3 sheets, so only use 1st one
+    }, simpleSheet: true});
     // Wildcats
     Tabletop.init({key: '1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y', callback: function (data) {
         data.forEach(curData => {
@@ -72,7 +72,7 @@ function updateCache() {
         });
         directoryData.push.apply(directoryData, data);
         localStorage.setItem('directory-info', JSON.stringify(directoryData));
-    }, simpleSheet: true});
+    }, simpleSheet: false}); // has 3 sheets, so only use 1st one
     // Serpents
     Tabletop.init({key: '1GHWUQD86AGYW5H4M-YnU3c97gFMayzmdVLf2iG8ioEc', callback: function (data) {
         data.forEach(curData => {
