@@ -208,8 +208,6 @@
             if (userquery.toLowerCase() === "john cena") {
         
                 showEEIDModal("1WW4Q", "mVKvb", "JmIF6", "8GLu8");
-        
-                console.log(userquery);
                 showSearchResults(userquery);
         
         
@@ -217,7 +215,6 @@
             }
             else {
                 updateURLQuery("?type=list&query=" + encodeURIComponent(userquery));
-                console.log(userquery);
                 showSearchResults(userquery);
             }
         });
@@ -231,7 +228,6 @@
                 }, 1500);
             
         } else if (getQuery("type") === "profile" && getQuery("id") !== null && getQuery("id") !== "") {
-            console.log(parseInt(getQuery("id"), 10));
                 $("#loading").show();
                 setTimeout(() => {
                     showfullinfo(parseInt(getQuery("id"), 10), false);
@@ -275,14 +271,19 @@
             // Split the names into first and last names
             let patrolnames = [];
             for (let curGlobalData of window.globalData) {
-                let fullname = curGlobalData['Scout\'s Full Name (last name first):'];
-                let name;
-                if (fullname.search(', ') > 0) {
+                let fullname = curGlobalData['Scout\'s Full Name (last name first):'].trim();
+                let name = [];
+                if ((fullname.match(/\s/g) || []).length === 2) {
+                    // has middle name
+                    let temp = fullname.split(' ');
+                    name[0] = temp[2];
+                    name[1] = temp[0].slice(0, -1);
+                } else if (fullname.search(', ') > 0) {
                     name = fullname.split(', ');
                     let temp = name[0];
                     name[0] = name[1];
                     name[1] = temp;
-                } else if (fullname.search(' ') > 0) {
+                } else if ((fullname.match(/\s/g) || []).length === 1) {
                     name = fullname.split(' ');
                 } else if (fullname.search(',') > 0) {
                     name = fullname.split(',');
@@ -355,15 +356,12 @@
 			
       	    $('#results').hide();
           	if (results.length === 0) {
-          	    console.log('1');
           	    $('#no-result').html('Your search - <b>' + userquery + '</b> - did not match any names.');
           	    $('#no-result').show();
           	} else {
-          	    console.log('2');
                 $('#no-result').hide();
                 $('#results > tbody').html('');
                 for (let result of results) {
-                    console.log(result);
                     let name = window.globalData[result]['Scout\'s Full Name (last name first):'];
                     $('#results > tbody').append(`
                         <tr>
@@ -374,11 +372,9 @@
                 }
                 $('#results').show();
           	}
-      	    console.log('3');
         }
         
         function showfullinfo(id, updateQuery) {
-            console.log(window.globalData);
             if (updateQuery !== false) {
                 updateURLQuery("?type=profile&id=" + encodeURIComponent(id));
             }
