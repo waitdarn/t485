@@ -58,7 +58,6 @@ function updateCache() {
     }, simpleSheet: true});
     // Hawks
     Tabletop.init({key: '1NUCXRoB3Z2Su-KCG5bTNna3nxNEYHO3KK3n3lIL0wTk', callback: function (data) {
-        data = data.Sheet1.elements;
         data.forEach(curData => {
             curData.patrol = 'Hawks';
         });
@@ -67,6 +66,7 @@ function updateCache() {
     }, simpleSheet: true});
     // Wildcats
     Tabletop.init({key: '1pEWKoQjXaekpDKfZSkAuKt0WCDKNfBIckMbDV-5m31Y', callback: function (data) {
+        data = data.Sheet1.elements;
         data.forEach(curData => {
             curData.patrol = 'Wildcats';
         });
