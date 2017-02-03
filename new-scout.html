@@ -2,17 +2,121 @@
 <html>
 
 <head>
-    
-    <script class="singulr-ignore" src="js/singulr-page.js"></script>
-    
+
+
+
     <title>New Scout - Troop 485</title>
+
+<script src="js/combined.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="js/t485.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/t485.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+
+<link rel="manifest" href="/manifest.json">
+
+<script>
+    try {
+        localStorage.setItem('foo', 'bar');
+    } catch (e) {
+        if (e.message === 'The quota has been exceeded.') {
+            // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
+            // firebase will throw error, so better to alert user now
+            alert('Private browsing is not supported!');
+        }
+        throw '';
+    }
+</script>
 
 </head>
 
-<body>
+<body><img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
 
+<!-- Navigation -->
+<nav class="navbar navbar-default">
     <div class="container">
-    
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+            <a class="navbar-brand" href="home.html">T485</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="calendar.html">Calendar</a>
+                </li>
+                <li>
+                    <a href="directory.html">Directory </a>
+                </li>
+                <li>
+                    <a href="resources.html">Resources</a>
+                </li>
+                <li>
+                    <a href="new-scout.html">New Scout</a>
+                </li>
+                <li>
+                    <a href="app-download.html">Download App</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
+                        <li><a href="pictures.html">Pictures</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="troop-jobs.html">Troop Jobs</a></li>
+                        <li><a href="ranks.html">Ranks</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        FAQ <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="merit-badges.html">Merit Badges</a></li>
+                        <li><a href="eagle.html">Path to Eagle</a></li>
+                        <li><a href="smc.html">SMC &amp; BOR</a></li>
+                        <li><a href="plc.html">What is PLC?</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a onclick="showEEIDModal('2lRDo', 'PKyFj', 'e3WIk', 'zerFK')">Easter Egg</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<a id="toTop" onclick="window.location.hash='#'"></a>
+
+<div class="container">
+
         <div class="row">
             <div class="box col-xs-12">
                 <hr>
@@ -31,7 +135,7 @@
                 </ol>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="box col-xs-6">
                 <hr>
@@ -49,7 +153,7 @@
                 </a>
             </div>
         </div>
-    
+
         <div class="row">
             <div class="box col-md-6">
                 <hr>
@@ -70,7 +174,7 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-    
+
         <div class="row">
             <div class="box col-lg-12">
                 <hr>
@@ -101,13 +205,23 @@
                     <br>TLT = Troop Leader Training</p>
             </div>
         </div>
-    
+
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
-    
+
     </div>
     <!-- /.container -->
+<footer>
+    <div class="container">
+        <div class="box">
+            <div class="col-lg-12 text-center">
+                <p>Copyright &copy; 2006-2016 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
+
+            </div>
+        </div>
+    </div>
+</footer>
 
 
 </body>
