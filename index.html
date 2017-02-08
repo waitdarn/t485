@@ -2,103 +2,264 @@
 <html>
 
 <head>
-    
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    
-    <meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
+
+
 
     <title>Troop 485</title>
-    
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
-    
-    <link rel="manifest" href="/manifest.json">
-    
-    <script>
-        try {
-            localStorage.setItem('foo', 'bar');
-        } catch (e) {
-            if (e.message === 'The quota has been exceeded.') {
-                // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
-                // firebase will throw error, so better to alert user now
-                alert('Private browsing is not supported!');
-            }
-            throw '';
+
+<script src="js/combined.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="js/t485.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/t485.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+
+<link rel="manifest" href="/manifest.json">
+
+<script>
+    try {
+        localStorage.setItem('foo', 'bar');
+    } catch (e) {
+        if (e.message === 'The quota has been exceeded.') {
+            // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
+            // firebase will throw error, so better to alert user now
+            alert('Private browsing is not supported!');
         }
-    </script>
+        throw '';
+    }
+</script>
 
 </head>
 
 <body>
-    
-    <noscript>
-        This site requires javascript to be enabled. Here are the <a href="http://www.enable-javascript.com/" target="_blank">instructions</a> to enable JavaScript in your browser.
-    </noscript>
-    
-    <!-- Main page -->
-    <div id="1285220"></div>
 
+    <img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
 
-    <!-- Singulr -->
-    <script src="https://rawgit.com/richyliu/singulr/4a1f8115d271eb9fafda08b45357ebc752c3cd39/singulr.min.js"></script>
-    
-    <script>
-        /*
-            - better encryption system for email in login.html
-            - t485 offline: directory and resources for events
-        */
-        
-        
-        
-        Singulr.init({
-            onPageLoaded: () => {
-                // remove leading slash
-                let page = Singulr.getPage().substr(1);
-                
-                Array.from(document.getElementsByTagName('a')).forEach(element => {
-                    if (page === element.getAttribute('href')) {
-                        element.parentElement.classList.add('active');
-                    } else {
-                        element.parentElement.classList.remove('active');
-                    }
-                });
-                
-                document.getElementById('bs-example-navbar-collapse-1').classList.remove('in');
-            },
-            onDependenciesLoaded: () => {
-                // Initialize Firebase
-                firebase.initializeApp({
-                    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
-                    authDomain: "t485.firebaseapp.com",
-                    databaseURL: "https://t485.firebaseio.com",
-                    storageBucket: "project-2556333409340273878.appspot.com"
-                });
-            },
-            PAGE_ID: '1285220',
-            CONTENT_ID: '3634157',
-            INDEX_PATH: '/',
-            INDEX_PAGE: '/index.html',
-            dependencies: {
-                javascript: [
-                    // combined.min.js includes jquery, bootstrap.js, and firebase
-                    'js/combined.min.js',
-                    'js/t485.js',
-                    'https://apis.google.com/js/platform.js'
-                ], css: [
-                    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
-                    'css/t485.css',
-                    'https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800',
-                    'https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic'
-                ]
-            }
-        });
-    </script>
-    
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="home.html">T485</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="home.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="calendar.html">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="directory.html">Directory </a>
+                    </li>
+                    <li>
+                        <a href="resources.html">Resources</a>
+                    </li>
+                    <li>
+                        <a href="new-scout.html">New Scout</a>
+                    </li>
+                    <li>
+                        <a href="app-download.html">Download App</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Resources <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
+                            <li><a href="pictures.html">Pictures</a></li>
+                            <li><a href="books.html">Books</a></li>
+                            <li><a href="troop-jobs.html">Troop Jobs</a></li>
+                            <li><a href="ranks.html">Ranks</a></li>
+                            <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            FAQ <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="merit-badges.html">Merit Badges</a></li>
+                            <li><a href="eagle.html">Path to Eagle</a></li>
+                            <li><a href="smc.html">SMC &amp; BOR</a></li>
+                            <li><a href="plc.html">What is PLC?</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a onclick="showEEIDModal('2lRDo', 'PKyFj', 'e3WIk', 'zerFK')">Easter Egg</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <a id="toTop" onclick="window.location.hash='#'"></a>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                        <h2 class="intro-text text-center">
+                            Welcome to <b>Scouting</b>!
+                        </h2>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        <img class="img-responsive img-left" src="img/index_4.jpg" alt=""> Join scouting today with Troop 485! Scouting is a fun experience for boys 11 to 18 years old. We do all kinds of outdoor activities such as camping, swimming, hiking,
+                        and rafting. Come to one of our troop meetings to join!
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Troop Meetings</h2>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <p>
+                        <img class="img-responsive img-right" src="img/index_5.jpg" alt=""> We meet the 1st and 3rd Monday of every month at
+                        <a href="https://www.google.com/maps/place/The+Home+of+Christ+Church+in+Cupertino/@37.3176117,-122.0492569,17z/">Home of Christ 5</a> from 7:30pm to 9:30pm.
+                    </p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Troop Cheer</h2>
+                    <hr>
+                </div>
+                <div class="col-sm-6">
+                    <ol>
+                        <li>
+                            <h4>Sick Rhymes</h4>
+                            Only ASPL/SPL say anything <br>
+                            Get hyped after
+                        </li>
+                        <li>
+                            <h4>Motivational</h4>
+                            485! <br>
+                            485! <br>
+                            485 of BSA! <br>
+                            Hear us Fear us Bow before us! <br>
+                            We’re the best in the bay! <br>
+                            Again, get hyped
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-sm-6">
+                    <ol start="3">
+                        <li>
+                            <h4>Normal</h4>
+                            SPL/ASPL: Troop! <br>
+                            Rest: 4 <br>
+                            SPL/ASPL: 8 <br>
+                            Rest: 5 <br>
+                            *repeat faster and faster* <br>
+                            End: <br>
+                            SPL/ASPL: Who are We! <br>
+                            Rest: 485 <br>
+                            SPL/ASPL: What do we do? <br>
+                            Rest: Stay Alive!
+                        </li>
+                    </ol>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="box col-lg-4">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Join
+                        <strong>T485</strong> and start your adventure today!</h2>
+                    <hr>
+                    <a href="./new-scout.html">
+                        <img class="img-responsive img-center img-top" src="img/index_1.gif" alt="How do I join?" width=270 height=120>
+                    </a>
+                    <hr class="visible-xs">
+                    <p class="text-center">If you are 11 years old, or have completed the 5th grade but not yet 18 years old, you are welcome to join us!</p>
+                </div>
+            </div>
+            <div class="box col-lg-4">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Scouting is a game with
+                        <strong>purpose!</strong>
+                    </h2>
+                    <hr>
+                    <a href="./calendar.html">
+                        <img class="img-responsive img-center img-top" src="img/index_2.jpg" alt="Troop events" width="270" height="120">
+                    </a>
+                    <p class="text-center">We have all types of events: camping, hiking, rafting, fun games, etc. Click to see what's coming!</p>
+                </div>
+            </div>
+            <div class="box col-lg-4">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Frequently Asked Questions
+                        <strong>(FAQ)</strong>
+                    </h2>
+                    <hr>
+                    <a href="./faq.html">
+                        <img class="img-responsive img-center img-top" src="img/index_3.jpg" alt="FAQ" width="270" height="120">
+                    </a>
+                    <p class="text-center">You have questions, we have answers! Check out our FAQs page and let your us know if you still need help.</p>
+                </div>
+            </div>
+        </div>
+
+    <script src="https://static.getclicky.com/js"></script>
+    <script>try{clicky.init(100869133)}catch(e){}</script>
+    <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
+
+    </div>
+    <!-- /.container -->
+<footer>
+    <div class="container">
+        <div class="box">
+            <div class="col-lg-12 text-center">
+                <p>Copyright &copy; 2006-2016 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
 </body>
 
 </html>

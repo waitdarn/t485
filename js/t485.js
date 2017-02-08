@@ -1,8 +1,27 @@
+firebase.initializeApp({
+    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
+    authDomain: "t485.firebaseapp.com",
+    databaseURL: "https://t485.firebaseio.com",
+    storageBucket: "project-2556333409340273878.appspot.com"
+});
 
+(() => {
+    // remove leading slash
+    let page = window.location.pathname.substr(1);
+
+    Array.from(document.getElementsByTagName('a')).forEach(element => {
+        if (page === element.getAttribute('href')) {
+            element.parentElement.classList.add('active');
+        } else {
+            element.parentElement.classList.remove('active');
+        }
+    });
+
+    document.getElementById('bs-example-navbar-collapse-1').classList.remove('in');
+})
 
 
 /* Initializers */
-/* global firebase $ Singulr */
 
 // Back to top button animation
 $(window).scroll(function() {
@@ -46,7 +65,7 @@ function auth(onAuthed = () => {}, onUnauthed = () => {}) {
     });
 }
 
-$('#eel-289371845').click(() => Singulr.loadPage('easter-eggs.html'));
+$('#eel-289371845').click(() => window.location.href = 'easter-eggs.html');
 
 
 // Source: http://www.w3schools.com/js/js_cookies.asp
@@ -82,11 +101,11 @@ function showEEIDModal(s1, s2, s3, s4, user, callback1 = () => {}) {
         auth(function(user) {
             generateEEID(s1, s2, s3, s4, function(EEID) {
                 if (EEID === ".ERROR/User-Not-Registered") {
-                    
+
                     $("#ee-modal-nr").removeClass("hidden");
                 }
                 else {
-                    
+
                     $("#ee-modal-eeid-result").html(EEID);
                     $("#ee-modal-eeid-load").addClass("hidden");
                     $("#ee-modal-eeid-show").removeClass("hidden");
@@ -101,11 +120,11 @@ function showEEIDModal(s1, s2, s3, s4, user, callback1 = () => {}) {
     else {
         generateEEID(s1, s2, s3, s4, user.uid, function(EEID) {
             if (EEID === ".ERROR/User-Not-Registered") {
-                
+
                 $("#ee-modal-nr").removeClass("hidden");
             }
             else {
-                
+
                 $("#ee-modal-eeid-result").html(EEID);
                 $("#ee-modal-eeid-load").addClass("hidden");
                 $("#ee-modal-eeid-show").removeClass("hidden");

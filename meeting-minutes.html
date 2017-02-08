@@ -2,17 +2,123 @@
 <html>
 
 <head>
-    
-    <script class="singulr-ignore" src="js/singulr-page.js"></script>
-    
+
+
+
     <title>Meeting Minutes - Troop 485</title>
+
+<script src="js/combined.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="js/t485.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/t485.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+
+<link rel="manifest" href="/manifest.json">
+
+<script>
+    try {
+        localStorage.setItem('foo', 'bar');
+    } catch (e) {
+        if (e.message === 'The quota has been exceeded.') {
+            // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
+            // firebase will throw error, so better to alert user now
+            alert('Private browsing is not supported!');
+        }
+        throw '';
+    }
+</script>
 
 </head>
 
 <body>
-    
+
+    <img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="home.html">T485</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="home.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="calendar.html">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="directory.html">Directory </a>
+                    </li>
+                    <li>
+                        <a href="resources.html">Resources</a>
+                    </li>
+                    <li>
+                        <a href="new-scout.html">New Scout</a>
+                    </li>
+                    <li>
+                        <a href="app-download.html">Download App</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Resources <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
+                            <li><a href="pictures.html">Pictures</a></li>
+                            <li><a href="books.html">Books</a></li>
+                            <li><a href="troop-jobs.html">Troop Jobs</a></li>
+                            <li><a href="ranks.html">Ranks</a></li>
+                            <li><a href="forum.html">Forum</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            FAQ <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="merit-badges.html">Merit Badges</a></li>
+                            <li><a href="eagle.html">Path to Eagle</a></li>
+                            <li><a href="smc.html">SMC &amp; BOR</a></li>
+                            <li><a href="plc.html">What is PLC?</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a onclick="showEEIDModal('2lRDo', 'PKyFj', 'e3WIk', 'zerFK')">Easter Egg</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <a id="toTop" onclick="window.location.hash='#'"></a>
+
     <div class="container">
-        
+
         <div class="row">
             <div class="box col-sm-6">
                 <div class="col-lg-12">
@@ -22,7 +128,7 @@
                 </div>
                 <div class="col-md-12">
                     <p>
-                        <button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=meeting-minutes.html')">Log out</button>
+                        <button class="btn btn-default" onclick="window.location.href = 'logout.html?redir=meeting-minutes.html'">Log out</button>
                     </p>
                     <p>
                         <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1zFwKPGARFbVPxOO5U4CKolL_8qZPDTZgyVuO1K6ev8Q/')">PLC Headcounts 8/24/2015 - 4/25/2016</a><br>
@@ -62,7 +168,7 @@
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1QmY_57flLXb9qZ2x3dSVcRteqTFM4pC6ftzCgn6NFjY/mobilebasic')">PLC Meeting Minutes 1/18/2016</a></li>
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1O7dsg1Mi8hpxzQQyNIx2z2cP267K08TDoVkjQNg6N-k/mobilebasic')">Troop Meeting Minutes 1/4/2016</a></li>
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1OPION0-JLbRnTEefD-Q2tminoHL9lFCaGbOym6x0UgU/mobilebasic')">PLC Meeting Minutes 1/4/2016</a></li>
-                        
+
                         <div class="accordion-group">
                             <div id="collapse" class="accordion-body collapse">
                                 <div class="accordion-inner">
@@ -109,12 +215,12 @@
                             </div>
                             <button class="viewmore btn btn-default" data-toggle="collapse" href="#collapse">View More</button>
                         </div>
-        
+
                     </ul>
                 </div>
                 <div class="clearfix"></div>
             </div>
-            
+
             <div class="box col-sm-6">
                 <hr>
                 <h2 class="intro-text text-center">Reflections</h2>
@@ -142,15 +248,25 @@
                 </ul>
             </div>
         </div>
-        
+
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
-    
+
     </div>
     <!-- /.container -->
+<footer>
+    <div class="container">
+        <div class="box">
+            <div class="col-lg-12 text-center">
+                <p>Copyright &copy; 2006-2016 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
 
-    
+            </div>
+        </div>
+    </div>
+</footer>
+
+
     <!-- Modal -->
     <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
         <div class="modal-dialog modal-lg">
@@ -159,11 +275,11 @@
                     <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Content Unavaliable</h4>
                 </div>
-                
+
                 <div class="modal-body">
                     <iframe frameborder="0" height="90%" id="ifr" name="ifr" src="" width="90%">Unfortunately, this content is unavaliable at this time. Please give feedback for this bug, and view the document on your google drive.</iframe>
                 </div>
-                
+
                 <div class="modal-footer">
                     <a class="btn btn-primary" href="https://google.com" id="mdlk" target="_blank" type="button">Open in new tab</a>
                     <button class="btn btn-primary" onclick="requestFullScreen();">Fullscreen mode</button>
@@ -174,10 +290,10 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    
-    
+
+
     <script>
-        auth(undefined, () => Singulr.loadPage('login.html?redir=meeting-minutes.html'));
+        auth(undefined, () => window.location.href = 'login.html?redir=meeting-minutes.html');
 
         function openModal(_this, url) {
             title = $(_this).html();
@@ -208,7 +324,7 @@
                 }
             }
         }
-        
+
         $('.viewmore').click(() => {
             let $this = $(this);
             $this.toggleClass('viewmore');
@@ -219,7 +335,7 @@
             }
         });
     </script>
-    
+
 </body>
 
 </html>

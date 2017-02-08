@@ -2,23 +2,127 @@
 <html>
 
 <head>
-    
-    <script class="singulr-ignore" src="js/singulr-page.js"></script>
-    
+
+
+
     <title>Directory - Troop 485</title>
+
+<script src="js/combined.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="js/t485.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/t485.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+
+<link rel="manifest" href="/manifest.json">
+
+<script>
+    try {
+        localStorage.setItem('foo', 'bar');
+    } catch (e) {
+        if (e.message === 'The quota has been exceeded.') {
+            // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
+            // firebase will throw error, so better to alert user now
+            alert('Private browsing is not supported!');
+        }
+        throw '';
+    }
+</script>
 
 </head>
 
-<body>
+<body><img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
 
+<!-- Navigation -->
+<nav class="navbar navbar-default">
     <div class="container">
-        
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+            <a class="navbar-brand" href="home.html">T485</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="home.html">Home</a>
+                </li>
+                <li>
+                    <a href="calendar.html">Calendar</a>
+                </li>
+                <li>
+                    <a href="directory.html">Directory </a>
+                </li>
+                <li>
+                    <a href="resources.html">Resources</a>
+                </li>
+                <li>
+                    <a href="new-scout.html">New Scout</a>
+                </li>
+                <li>
+                    <a href="app-download.html">Download App</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
+                        <li><a href="pictures.html">Pictures</a></li>
+                        <li><a href="books.html">Books</a></li>
+                        <li><a href="troop-jobs.html">Troop Jobs</a></li>
+                        <li><a href="ranks.html">Ranks</a></li>
+                        <li><a href="forum.html">Forum</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        FAQ <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="merit-badges.html">Merit Badges</a></li>
+                        <li><a href="eagle.html">Path to Eagle</a></li>
+                        <li><a href="smc.html">SMC &amp; BOR</a></li>
+                        <li><a href="plc.html">What is PLC?</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a onclick="showEEIDModal('2lRDo', 'PKyFj', 'e3WIk', 'zerFK')">Easter Egg</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<a id="toTop" onclick="window.location.hash='#'"></a>
+
+<div class="container">
+
         <div class="row" id="search">
             <div class="box col-xs-12">
                 <hr>
                 <h2 class="intro-text text-center">Search</h2>
                 <hr>
-                <p><button class="btn btn-default" onclick="Singulr.loadPage('logout.html?redir=directory.html')">Log out</button></p>
+                <p><button class="btn btn-default" onclick="window.location.href = 'logout.html?redir=directory.html'">Log out</button></p>
                 <p>Click on the name for more information.</p>
                 <div class="input-group col-xs-12">
                     <input type="text" id="search-query" class="form-control" placeholder="Type a name...">
@@ -63,31 +167,41 @@
                 <div class="tab-content" id="spreadsheet-content"></div>
             </div>
         </div>
-        
+
     <script src="https://static.getclicky.com/js"></script>
     <script>try{clicky.init(100869133)}catch(e){}</script>
     <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
-    
+
     </div>
     <!-- /.container -->
+<footer>
+    <div class="container">
+        <div class="box">
+            <div class="col-lg-12 text-center">
+                <p>Copyright &copy; 2006-2016 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
 
-    
-    
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
     <script src="js/sjcl.min.js"></script>
     <script src="js/tabletop.min.js"></script>
-    
+
     <script>
-        /* global Tabletop $ auth sjcl getQuery Singulr history compare*/
-        
-        
+        /* global Tabletop $ auth sjcl getQuery history compare*/
+
+
         auth(() => {
             let text = '{"iv":"u94eK78S4EOGQqpYNDLrGw==","v":1,"iter":1000,"ks":128,"ts":64,"mode":"ccm","adata":"","cipher":"aes","salt":"g17ODbhwHcY=","ct":"66YjjNZp1zkWyBjPUD4XTHy2aHx8v2wPxywiPhbCxjCF8YWkhLzYnVgojeMZV2zbuQHjmrRLVbR+DTdeJzy0Xv70w1ez/eX4uX5nfiBCzi2kO4NwSLXUvJiIcuPGL7BLnXXXw893c0ADbqJUj6fS2nCfi0n9BT' +
             'koU9U8fDNXrsnRUkD0Oqd7khInVvOBoa4c1hjGx1P8cI3WXn29l0ezln2GPH1xqDenWQJTC+tAZ12a2e0uIb+zHIHJkTtjiZPGPBlZDe5/mFeqzr3e6qvZyawlOyI+NlrlQ3a10txli8P9M65UgfPhRDSMdGmeTuhiYkOhvUayWXg/DqMzabBem7cBcflxl8EzNuneoQ43E3ACqr/PdWyC5FBeNKTktyUQR6ypHQIWQwng0d5D7N9ZdfhGTzBDr3IYFaczaBATUuTnlMnBvhF/Jxvs5Rf8uiobblIrP1J25p9kzLe8acU="}';
             let secretInfo = JSON.parse(sjcl.decrypt('XH7uDeHIOFaJvizWBhA', text));
-            
-            
+
+
             $('#search-query').focus();
-            
+
             $('#spreadsheet-confirm-btn').click(() => {
                 $('#spreadsheet-confirm').hide();
                 $('#spreadsheet-content').html(
@@ -118,8 +232,8 @@
                 );
                 $('#spreadsheet').show();
             });
-            
-            
+
+
             // Cacti
             Tabletop.init({key: secretInfo.cacti, callback: data => {
                 data.forEach(curData => {
@@ -128,7 +242,7 @@
                 window.globalData = window.globalData.concat(data);
                 alphabetize();
             }, simpleSheet: true});
-            
+
             // Hawks
             Tabletop.init({key: secretInfo.hawks, callback: data => {
                 data.forEach(curData => {
@@ -137,7 +251,7 @@
                 window.globalData = window.globalData.concat(data);
                 alphabetize();
             }, simpleSheet: true});
-            
+
             // Wildcats
             Tabletop.init({key: secretInfo.wildcats, callback: data => {
                 data = data.Sheet1.elements;
@@ -147,7 +261,7 @@
                 window.globalData = window.globalData.concat(data);
                 alphabetize();
             }, simpleSheet: false}); // has 3 sheets, so only use 1st one
-            
+
             // Serpents
             Tabletop.init({key: secretInfo.serpents, callback: data => {
                 data.forEach(curData => {
@@ -156,7 +270,7 @@
                 window.globalData = window.globalData.concat(data);
                 alphabetize();
             }, simpleSheet: true});
-            
+
             // Blobfish
             Tabletop.init({key: secretInfo.blobfish, callback: data => {
                 data = data.Sheet1.elements;
@@ -166,7 +280,7 @@
                 window.globalData = window.globalData.concat(data);
                 alphabetize();
             }, simpleSheet: false}); // has 2 sheets, so only use 1st one
-            
+
             // Dragons
             Tabletop.init({key: secretInfo.dragons, callback: data => {
                 data.forEach(curData => {
@@ -175,7 +289,7 @@
                 window.globalData = window.globalData.concat(data);
                 alphabetize();
             }, simpleSheet: true});
-            
+
             function alphabetize() {
                 window.globalData.sort((a, b) => {
                     if (a['Scout\'s Full Name (last name first):'] < b['Scout\'s Full Name (last name first):']) return -1;
@@ -184,41 +298,41 @@
                 });
             }
         }, () => {
-            Singulr.loadPage('login.html?redir=directory.html');
+            window.location.href = 'login.html?redir=directory.html';
         });
-        
-        
-        
+
+
+
         window.globalData = [];
         $(document).ready(() => {
             $('#password').focus();
         });
-        
-        
-        
+
+
+
         $('#search-query').keypress(function(e){
             if(e.keyCode === 13) {
                 $('#search-btn').click();
             }
         });
-        
-        
+
+
         $('#search-btn').click(() => {
             let userquery = $("#search-query").val();
             if (userquery.toLowerCase() === "john cena") {
-        
+
                 showEEIDModal("1WW4Q", "mVKvb", "JmIF6", "8GLu8");
                 showSearchResults(userquery);
-        
-        
-        
+
+
+
             }
             else {
                 updateURLQuery("?type=list&query=" + encodeURIComponent(userquery));
                 showSearchResults(userquery);
             }
         });
-        
+
         if (getQuery("type") === "list" && getQuery("query") !== null && getQuery("query") !== "") {
             $("#loading").show();
                 setTimeout(() => {
@@ -226,7 +340,7 @@
             showSearchResults(getQuery("query"));
                     $("#loading").hide();
                 }, 1500);
-            
+
         } else if (getQuery("type") === "profile" && getQuery("id") !== null && getQuery("id") !== "") {
                 $("#loading").show();
                 setTimeout(() => {
@@ -242,19 +356,19 @@
                 }, '', newurl);
             }
             else {
-                Singulr.loadPage(window.location.protocol + "//" + window.location.host + window.location.pathname + query);
-        
+                window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname + query);
+
             }
         }
-        
-        function showSearchResults(userquery) {
+
+        function showSearchResults(userquery {
             if (userquery === '') return;
-            
-            
+
+
             userquery = userquery.toLowerCase();
             //console.log(userquery);
             let query = [];
-            
+
             if (userquery.search(' ') > 0) {
                 query = userquery.split(' ');
             } else {
@@ -264,10 +378,10 @@
                 if (query[2] !== undefined) query = query.splice(0, 2);
             }
             if (query[1] === '') query[1] = null;
-            
+
             //console.log(window.globalData);
             //console.log(query);
-            
+
             // Split the names into first and last names
             let patrolnames = [];
             for (let curGlobalData of window.globalData) {
@@ -299,7 +413,7 @@
                 patrolnames.push(name);
             }
             //console.log(patrolnames);
-            
+
             // Search for patrolnames for query
             let results = [];
             // score lower is better
@@ -331,7 +445,7 @@
             score.sort((a, b) => {
                 return parseFloat(a.score) - parseFloat(b.score);
             });
-            
+
             // Make sure scores list has items
             if (score[0]) {
                 let firstScore = score[0].score;
@@ -347,13 +461,13 @@
                     }
                 }
             }
-            
+
             //console.log(window.globalData);
-            
-            
+
+
             // Display search results
             $('#detail').hide();
-			
+
       	    $('#results').hide();
           	if (results.length === 0) {
           	    $('#no-result').html('Your search - <b>' + userquery + '</b> - did not match any names.');
@@ -373,7 +487,7 @@
                 $('#results').show();
           	}
         }
-        
+
         function showfullinfo(id, updateQuery) {
             if (updateQuery !== false) {
                 updateURLQuery("?type=profile&id=" + encodeURIComponent(id));
