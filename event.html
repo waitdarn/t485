@@ -282,7 +282,7 @@
                     $("#share").click(() => {
 
                         $("#share-modal").modal("show");
-                        firebase.database(.ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", data => {
+                        firebase.database.ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", data => {
 
                             console.log(data.val());
                             console.log(data.key);
