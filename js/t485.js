@@ -1,9 +1,3 @@
-firebase.initializeApp({
-    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
-    authDomain: "t485.firebaseapp.com",
-    databaseURL: "https://t485.firebaseio.com",
-    storageBucket: "project-2556333409340273878.appspot.com"
-});
 
 (() => {
     // remove leading slash
