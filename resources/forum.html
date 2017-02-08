@@ -164,7 +164,7 @@
 
     
     <script>
-        auth(undefined, () => window.location.href = 'login.html?redir=forum.html');
+        auth(undefined, () => window.location.href = 'login.html?redir=' + encodeURIComponent(window.location.pathname));
     </script>
 
 </body>

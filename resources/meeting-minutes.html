@@ -307,7 +307,7 @@
 
 
     <script>
-        auth(undefined, () => window.location.href = 'login.html?redir=meeting-minutes.html');
+        auth(undefined, () => window.location.href = 'login.html?redir=' + encodeURIComponent(window.location.pathname));
 
         function openModal(_this, url) {
             title = $(_this).html();
