@@ -8,7 +8,18 @@
     <title>FAQ - Troop 485</title>
 
 <script src="js/combined.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
+    authDomain: "t485.firebaseapp.com",
+    databaseURL: "https://t485.firebaseio.com",
+    storageBucket: "project-2556333409340273878.appspot.com",
+    messagingSenderId: "510743665020"
+  };
+  firebase.initializeApp(config);
+</script>
 <script src="js/t485.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/t485.css">
@@ -73,39 +84,40 @@
                     <a href="directory.html">Directory </a>
                 </li>
                 <li>
-                    <a href="resources.html">Resources</a>
+                    <a href="files.html">Files</a>
                 </li>
                 <li>
-                    <a href="new-scout.html">New Scout</a>
+                    <a href="new-scout.html">New Scouts</a>
                 </li>
                 <li>
-                    <a href="app-download.html">Download App</a>
+                    <a href="search.html">Search</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Resources <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="meeting-minutes.html">Meeting Minutes</a></li>
-                        <li><a href="pictures.html">Pictures</a></li>
-                        <li><a href="books.html">Books</a></li>
-                        <li><a href="troop-jobs.html">Troop Jobs</a></li>
-                        <li><a href="ranks.html">Ranks</a></li>
-                        <li><a href="forum.html">Forum</a></li>
+                        <li><a href="/resources/meeting-minutes.html">Meeting Minutes</a></li>
+                        <li><a href="/resources/pictures.html">Pictures</a></li>
+                        <li><a href="/resources/troop-jobs.html">Troop Jobs</a></li>
+                        <li><a href="/resources/ranks.html">Ranks</a></li>
+                        <li><a href="/resources/forum.html">Forum</a></li>
+                        <li>
+                    <a href="app-download.html">Download App</a>
+                </li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        FAQ <span class="caret"></span>
+                        About <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="faq.html">FAQ</a></li>
-                        <li><a href="merit-badges.html">Merit Badges</a></li>
-                        <li><a href="eagle.html">Path to Eagle</a></li>
-                        <li><a href="smc.html">SMC &amp; BOR</a></li>
-                        <li><a href="plc.html">What is PLC?</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a onclick="showEEIDModal('2lRDo', 'PKyFj', 'e3WIk', 'zerFK')">Easter Egg</a></li>
+                        <li><a href="/about/faq.html">FAQ</a></li>
+                        <li><a href="/about/merit-badges.html">Merit Badges</a></li>
+                        <li><a href="/about/eagle.html">Path to Eagle</a></li>
+                        <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
+                        <li><a href="/about/plc.html">PLC</a></li>
+                        <li><a href="/about/troop-info.html">Troop Information</a></li>
                     </ul>
                 </li>
             </ul>
@@ -259,17 +271,6 @@
                             <div class="panel-body">You can buy them at the Silicon Valley Montery Bay Council Scout Shop at <a href="https://www.google.com/maps/dir/''/970+W+Julian+St,+San+Jose,+CA+95126/@37.3332331,-121.9795888,12z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x808fcb677d3701a5:0xb30b2e1b3cb65696!2m2!1d-121.9095488!2d37.3332537">970 West Julian Street, San Jose, CA 95126</a>.</div>
                         </div>
                     </div>
-                <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse14">14. What are easter eggs?</a>
-                            </h4>
-                        </div>
-                        <div id="collapse14" class="panel-collapse collapse">
-                            <div class="panel-body">Easter eggs are found on the t485 website. Each one will either redirect you to a page, or somehow give you an easter egg id like this one: <b>xxxxxx-xxxxxx-xxxxxx-xxxxxx</b>.
-                            In order to join the hunt, you must first find a link to the easter egg submission page. You must be a member of t485 and logged in to join.</div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -306,7 +307,7 @@
     <div class="container">
         <div class="box">
             <div class="col-lg-12 text-center">
-                <p>Copyright &copy; 2006-2016 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
+                <p>Copyright &copy; 2006-2017 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
 
             </div>
         </div>
