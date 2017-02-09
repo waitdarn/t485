@@ -330,18 +330,10 @@
 
         $('#search-btn').click(() => {
             window.userquery = $("#search-query").val();
-            if (window.userquery.toLowerCase() === "john cena") {
-
-                showEEIDModal("1WW4Q", "mVKvb", "JmIF6", "8GLu8");
-                showSearchResults(window.userquery);
-
-
-
-            }
-            else {
+            
                 updateURLQuery("?type=list&query=" + encodeURIComponent(window.userquery));
                 showSearchResults(window.userquery);
-            }
+            
         });
 
         if (getQuery("type") === "list" && getQuery("query") !== null && getQuery("query") !== "") {
