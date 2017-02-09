@@ -329,18 +329,18 @@
 
 
         $('#search-btn').click(() => {
-            let userquery = $("#search-query").val();
-            if (userquery.toLowerCase() === "john cena") {
+            window.userquery = $("#search-query").val();
+            if (window.userquery.toLowerCase() === "john cena") {
 
                 showEEIDModal("1WW4Q", "mVKvb", "JmIF6", "8GLu8");
-                showSearchResults(userquery);
+                showSearchResults(window.userquery);
 
 
 
             }
             else {
-                updateURLQuery("?type=list&query=" + encodeURIComponent(userquery));
-                showSearchResults(userquery);
+                updateURLQuery("?type=list&query=" + encodeURIComponent(window.userquery));
+                showSearchResults(window.userquery);
             }
         });
 
@@ -505,7 +505,7 @@
             }
             $('#results').hide();
             $('#detail').show().html('').append(`
-                <a onclick="$('#results').show();$('#detail').hide();">Back to search results</a><br><br>
+                <a onclick="$('#results').show(); $('#detail').hide(); updateURLQuery("?type=list&query=" + encodeURIComponent(window.userquery));">Back to search results</a><br><br>
                 Name:                               ${window.globalData[id]['Scout\'s Full Name (last name first):']}<br>
                 Email: <a href="mailto:             ${window.globalData[id]['Scout\'s E-mail:']}">     ${window.globalData[id]['Scout\'s E-mail:']}</a><br>
                 Cell Phone: <a href="tel:           ${window.globalData[id]['Scout\'s Cell Phone']}">  ${window.globalData[id]['Scout\'s Cell Phone']}</a><br>
