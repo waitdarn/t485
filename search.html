@@ -135,18 +135,8 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <script>
-                        (function() {
-                            var cx = '009750217224331502083:wfthscwqely';
-                            var gcse = document.createElement('script');
-                            gcse.type = 'text/javascript';
-                            gcse.async = true;
-                            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                            var s = document.getElementsByTagName('script')[0];
-                            s.parentNode.insertBefore(gcse, s);
-                        })();
-                    </script>
-                    <gcse:search></gcse:search>
+                    <input class="form-control" type="text" id="search-box">
+                    <button class="btn btn-primary form-control" id="search-btn">Search via Google</button>
 
 
                 </div>
@@ -177,7 +167,21 @@
         </div>
     </footer>
 
+<script>
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+$(window).keydown(function (e){
+    if(e.keyCode == 13){
+        $("#search-btn").click();
 
+    }
+});
+    $("#search-btn").click(function(){
+        window.location.href = "https://www.google.com/#safe=active&q=site:t485.org+" + encodeURIComponent($("#search-box").val()).replaceAll("%20", "+") + "&filter=0";
+    });
+</script>
 </body>
 
 </html>
