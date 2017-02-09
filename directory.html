@@ -102,9 +102,7 @@
                         <li><a href="/resources/troop-jobs.html">Troop Jobs</a></li>
                         <li><a href="/resources/ranks.html">Ranks</a></li>
                         <li><a href="/resources/forum.html">Forum</a></li>
-                        <li>
-                    <a href="app-download.html">Download App</a>
-                </li>
+                        <li><a href="/resources/app-download.html">Download App</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -331,19 +329,11 @@
 
 
         $('#search-btn').click(() => {
-            let userquery = $("#search-query").val();
-            if (userquery.toLowerCase() === "john cena") {
-
-                showEEIDModal("1WW4Q", "mVKvb", "JmIF6", "8GLu8");
-                showSearchResults(userquery);
-
-
-
-            }
-            else {
-                updateURLQuery("?type=list&query=" + encodeURIComponent(userquery));
-                showSearchResults(userquery);
-            }
+            window.userquery = $("#search-query").val();
+            
+                updateURLQuery("?type=list&query=" + encodeURIComponent(window.userquery));
+                showSearchResults(window.userquery);
+            
         });
 
         if (getQuery("type") === "list" && getQuery("query") !== null && getQuery("query") !== "") {
@@ -507,7 +497,7 @@
             }
             $('#results').hide();
             $('#detail').show().html('').append(`
-                <a onclick="$('#results').show();$('#detail').hide();">Back to search results</a><br><br>
+                <a onclick="$('#results').show(); $('#detail').hide(); updateURLQuery("?type=list&query=" + encodeURIComponent(window.userquery));">Back to search results</a><br><br>
                 Name:                               ${window.globalData[id]['Scout\'s Full Name (last name first):']}<br>
                 Email: <a href="mailto:             ${window.globalData[id]['Scout\'s E-mail:']}">     ${window.globalData[id]['Scout\'s E-mail:']}</a><br>
                 Cell Phone: <a href="tel:           ${window.globalData[id]['Scout\'s Cell Phone']}">  ${window.globalData[id]['Scout\'s Cell Phone']}</a><br>
