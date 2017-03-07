@@ -313,10 +313,18 @@
         auth(undefined, () => window.location.href = 'login.html?redir=' + encodeURIComponent(window.location.pathname));
 
         function openModal(_this, url) {
+            var editurl;
+            var editregex = /(https:\/\/docs\.google\.com\/document\/d\/.+\/)edit/g.exec(url);
+            if(editregex !== null) {
+                editurl = editregex[0] + "edit"
+            } else {
+                editurl = url
+            }
             title = $(_this).html();
             $('#myModalLabel').html(title);
             $('#ifr').attr('src', url);
-            $('#mdlk').attr('href', url);
+            
+            $('#mdlk').attr('href', editurl);
             $('#myModal').modal('show');
         }
 
