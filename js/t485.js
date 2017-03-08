@@ -14,15 +14,18 @@ redirect:
     onle use if this is the website loaded from the normal repository, and is LOADED, but does not work(not live, etc.)
     data should contain a string with an url to redirect to.
 */
+console.log(1);
 if (mode === "redirect") {
     $("#alertBox").html('<div class="alert alert-warning">' + 
 '  <strong>Warning!</strong> You are being redirected to a mirror of t485.org because the main site is undergoing mantiance. If you are not automatically redirected in a few seconds, go to this URL: <a href="' + data + '">' + data + '</a>' +  
 '</div>');
-    window.location.href = data;
+    window.location.href = data + window.location.pathname;
 } else if (mode === "mirror") {
+    console.log(2);
     $("#alertBox").html('<div class="alert alert-warning">' + 
 '  <strong>Warning!</strong> You are currently viewing mirror ' + data + ' of t485.org. If you got redirected here by typing in t485.org, then the t485.org main site is undergoing mantiance. This mirror is a fully functional version of the main site, except it may be outdated.' + 
 '</div>');
+    console.log(3);
 } else {
     //assume mode is normal, don't do anything
 }
