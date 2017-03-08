@@ -124,7 +124,8 @@
         </div>
     </div>
 </nav>
-
+<div id="alertBox"></div>
+<div id="alertBox"></div>
     <a id="toTop" onclick="window.location.hash='#'"></a>
 
     <div class="container">
@@ -141,12 +142,17 @@
                         <button class="btn btn-default" onclick="window.location.href = 'logout.html?redir=meeting-minutes.html'">Log out</button>
                     </p>
                     <p>
+                        <a onclick="openModal(this, 'https://docs.google.com/document/d/10kfQKMtf4grqz1r7bveeUNaQ7dS27czRxgfPiJ5HdKo/moiblebasic')">Troop Meeting Headcounts 2/20/2017</a><br>
                         <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1zFwKPGARFbVPxOO5U4CKolL_8qZPDTZgyVuO1K6ev8Q/')">PLC Headcounts 8/24/2015 - 4/25/2016</a><br>
                         <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1EF8Bbf0o9GymAdh7kVYLkfuXKHQLaGV-hgs1fIDlM7Y/')">PLC Headcounts 4/25/2016 - Current</a><br>
                         <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1YO--SYuKL2BRyKjyS3ucLOvIfr2JLRgWZSEQLst_Ruc/')">Troop Meeting Headcounts 8/3/2015 - 12/5/2017</a><br>
-                        <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1jTW0rk3aguf-27bOCQxeSFtFBYXWrt5EyVQl8B4SUos/')">Troop and PLC Headcounts 1/2/2017 - Current</a><br>
+                        <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1jTW0rk3aguf-27bOCQxeSFtFBYXWrt5EyVQl8B4SUos/')">Troop and PLC Headcounts 1/2/2017 - 2/6/2017</a><br>
                     </p>
                     <ul id="meeting-minute-list">
+                        <li>3/6 <a onclick="openModal(this, 'https://docs.google.com/document/d/10kfQKMtf4grqz1r7bveeUNaQ7dS27czRxgfPiJ5HdKo/mobilebasic')">Troop Meeting Minutes</a>, 
+                        <a onclick="openModal(this, 'https://docs.google.com/document/d/1MV1bDywW38p0WlkTxx4dyMF0JqrU_zoeOpO_gX6zxtY/mobilebasic')">PLC Meeting Minutes</a>,
+                        <a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1YquvLyixSrZ5TmFOTfixx3nWBU6OgkNRpaihCLnafbg/edit')">Headcounts</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/10QY9JSkUGXaMdW5i-1qUs9lJyeCihbJjn1tQi5XLvTQ/mobilebasic')">Troop Meeting Minutes 2/20/2017</a></li>
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1wdDGZ5BXRk11NQK_Ye_456wB8SSQPPSaOItqoKlBOYI/mobilebasic')">Troop Meeting Minutes 2/6/2017</a></li>
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1PJxbz7_WWGMdECdhPdi9acR_Rm7EP6JMe05CT_7ryRE/mobilebasic')">Troop and PLC Meeting Minutes 1/23/2017</a></li>
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1w-WbEG4EfZS7wG7ktVt45Qe72MfrjHZ5aYVaVjBosXc/mobilebasic')">Troop and PLC Meeting Minutes 1/2/2017</a></li>
@@ -308,10 +314,18 @@
         auth(undefined, () => window.location.href = 'login.html?redir=' + encodeURIComponent(window.location.pathname));
 
         function openModal(_this, url) {
+            var editurl;
+            var editregex = /(https:\/\/docs\.google\.com\/document\/d\/.+\/)edit/g.exec(url);
+            if(editregex !== null) {
+                editurl = editregex[0] + "edit"
+            } else {
+                editurl = url
+            }
             title = $(_this).html();
             $('#myModalLabel').html(title);
             $('#ifr').attr('src', url);
-            $('#mdlk').attr('href', url);
+            
+            $('#mdlk').attr('href', editurl);
             $('#myModal').modal('show');
         }
 

@@ -1,4 +1,32 @@
-
+//========================================================= DANGER ZONE BELOW ===========================================
+var mode = "redirect";// normal", "mirror", "redirect"
+var data = "mirror1.t485.org";//specific to above mode, see below
+/* Modes:
+normal:
+    normal, site should be loaded from github.com/t485/t485
+    data variable is ignored and should be null
+mirror:
+    this is a mirror site, and should be loaded from the approiate mirror repo on github(if more than one exist)
+    data should contain the mirror number(as a integer data type)
+    the mirror number will be displayed in an alert
+    
+redirect:
+    onle use if this is the website loaded from the normal repository, and is LOADED, but does not work(not live, etc.)
+    data should contain a string with an url to redirect to.
+*/
+if (mode === "redirect") {
+    $("#alertBox").html('<div class="alert alert-warning">' + 
+'  <strong>Warning!</strong> You are being redirected to a mirror of t485.org because the main site is undergoing mantiance. If you are not automatically redirected in a few seconds, go to this URL: <a href="' + data + '">' + data + '</a>' +  
+'</div>');
+    window.location.href = data;
+} else if (mode === "mirror") {
+    $("#alertBox").html('<div class="alert alert-warning">' + 
+'  <strong>Warning!</strong> You are currently viewing mirror ' + data + ' of t485.org. If you got redirected here by typing in t485.org, then the t485.org main site is undergoing mantiance. This mirror is a fully functional version of the main site, except it may be outdated.' + 
+'</div>');
+} else {
+    //assume mode is normal, don't do anything
+}
+// ====================================================== END DANGER ZONE - DANGER ZONE ABOVE ===========================
 (() => {
     // remove leading slash
     let page = window.location.pathname.substr(1);
@@ -104,4 +132,9 @@ function getQuery(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new R
 
 // Code from https://gist.github.com/andrei-m/982927#file-levenshtein-js
 function compare(t,n){if(0==t.length)return n.length;if(0==n.length)return t.length;var r,e=[];for(r=0;r<=n.length;r++)e[r]=[r];var h;for(h=0;h<=t.length;h++)e[0][h]=h;for(r=1;r<=n.length;r++)for(h=1;h<=t.length;h++)n.charAt(r-1)==t.charAt(h-1)?e[r][h]=e[r-1][h-1]:e[r][h]=Math.min(e[r-1][h-1]+1,Math.min(e[r][h-1]+1,e[r-1][h]+1));return e[n.length][t.length];}
+
+
+
+
+
 
