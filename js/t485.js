@@ -14,7 +14,7 @@ redirect:
     onle use if this is the website loaded from the normal repository, and is LOADED, but does not work(not live, etc.)
     data should contain a string with an url to redirect to.
 */
-console.log(1);
+$(document).load(function(){console.log(1);
 if (mode === "redirect") {
     $("#alertBox").html('<div class="alert alert-warning">' + 
 '  <strong>Warning!</strong> You are being redirected to a mirror of t485.org because the main site is undergoing mantiance. If you are not automatically redirected in a few seconds, go to this URL: <a href="' + data + '">' + data + '</a>' +  
@@ -29,6 +29,7 @@ if (mode === "redirect") {
 } else {
     //assume mode is normal, don't do anything
 }
+});
 // ====================================================== END DANGER ZONE - DANGER ZONE ABOVE ===========================
 (() => {
     // remove leading slash
