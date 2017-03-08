@@ -16,7 +16,7 @@ redirect:
 */
 console.log(1);
 if (mode === "redirect") {
-    $(document).load(function() {
+    $(document).ready(function() {
         $("#alertBox").html('<div class="alert alert-warning">' +
             '  <strong>Warning!</strong> You are being redirected to a mirror of t485.org because the main site is undergoing mantiance. If you are not automatically redirected in a few seconds, go to this URL: <a href="' + data + '">' + data + '</a>' +
             '</div>');
@@ -24,7 +24,7 @@ if (mode === "redirect") {
     window.location.href = data + window.location.pathname;
 }
 else if (mode === "mirror") {
-    $(document).load(function() {
+    $(document).ready(function() {
         console.log(2);
         $("#alertBox").html('<div class="alert alert-warning">' +
             '  <strong>Warning!</strong> You are currently viewing mirror ' + data + ' of t485.org. If you got redirected here by typing in t485.org, then the t485.org main site is undergoing mantiance. This mirror is a fully functional version of the main site, except it may be outdated.' +
