@@ -85,7 +85,7 @@ $('.dropdown a').click(function() {
 /* Helpers */
 
 //replaces all content in spans with the class "email-at-symbol" with the at(@, &#64;) symbol to prevent bots from getting emails EX: myEmail<span class="email-at-symbol">[a  T]</span>gmail.com
-$(document).ready(function(){$(".email-at.symbol").html("&#64;")})
+$(document).ready(function(){$(".email-at-symbol").html("&#64;")})
 
 // Checks if the user is logged in
 function auth(onAuthed = () => {}, onUnauthed = () => {}) {
