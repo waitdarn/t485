@@ -145,15 +145,15 @@
 
 
                     <div id="main">
-  <input class="search" placeholder="Search" />
-  <button class="sort" data-sort="type">
+  <input class="search form-control" placeholder="Search" />
+  <button class="sort btn btn-primary" data-sort="type">
     Sort by type
   </button>
-  <button class="sort" data-sort="date">
+  <button class="sort btn btn-primary" data-sort="date">
     Sort by date
   </button>
 
-  <div class="list list-group"></div>
+  <div class="list list-group" style="background:none;border:none;box-shadow:none;" ></div>
 
 </div>
 
@@ -376,7 +376,7 @@ var options = {
     { data: ["year", "month"] },
     { attr: "href", name: "link" },
   ],
-    item: '<a href="" data-year="" data-month="" class="list-group-item"><span class="date"></span> - <span class="type"></span></a>'
+    item: '<a href="" data-year="" data-month="" style="background:none;border:none;box-shadow:none;" class="list-group-item"><span class="date"></span> - <span class="type"></span></a>'
 
 };
 var values = null
