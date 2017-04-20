@@ -379,7 +379,12 @@ var options = {
     item: '<a href="" data-year="" data-month="" class="list-group-item"><span class="date"></span> - <span class="type"></span></a>'
 
 };
-var values = [{
+var values = null
+;
+
+var userList = new List('main', options, values);
+
+userList.add([{
     date: '4/4/2017',
     year: "2017",
     month:"March",
@@ -392,14 +397,7 @@ var values = [{
     month:"March",
 
     type: "PLC Meeting Minutes"
-  }];
-
-var userList = new List('main', options, values);
-
-userList.add({
-  name: "Gustaf Lindqvist",
-  born: 1983
-});
+  }]);
     </script>
 
 </body>

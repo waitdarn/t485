@@ -469,9 +469,11 @@ fieldset[disabled] .btn-google.active {
 }
 
 
+/* used below
 .no-fancy-links a {
     border: none !important;
 }
+*/
 
 .no-fancy-navbar>li>a {
     margin: 0px 0px 0px 2px !important;
@@ -479,7 +481,7 @@ fieldset[disabled] .btn-google.active {
     border: none !important;
 }
 
-a, a:visited {
+a:not(.no-fancy-links), a:visited:not(.no-fancy-links) {
     border-bottom: 1px solid transparent;
     -webkit-transition: border .5s ease-out;
     -moz-transition: border .5s ease-out;
@@ -488,7 +490,7 @@ a, a:visited {
     text-decoration: none;
 }
 
-a:hover {
+a:hover:not(.no-fancy-links) {
     border-color: #5c5c5c;
     outline: 0;
     -webkit-transition: border 0s ease-out;
@@ -498,7 +500,7 @@ a:hover {
     text-decoration: none;
 }
 
-a:focus {
+a:focus:not(.no-fancy-links) {
     text-decoration: none;
 }
 
