@@ -165,7 +165,7 @@
                     <h2 class="intro-text text-center">Meeting Minutes</h2>
                     <hr>
                 </div>
-                <div class="col-md-12">
+                <div class="col-lg-12">
                     <p>
                         <button class="btn btn-default" onclick="window.location.href = 'logout.html?redir=meeting-minutes.html'">Log out</button>
                     </p>
@@ -173,7 +173,7 @@
 
 
                     <div id="main">
-                        <input class="search form-control" placeholder="Search" />
+                        <input class="fuzzy-search form-control" placeholder="Search" />
                         <button class="sort btn btn-primary" data-sort="type">
     Sort by type
   </button>
@@ -374,30 +374,37 @@
             valueNames: [
                 "date",
                 "type", {
-                    data: ["year", "month"]
-                }, {
-                    attr: "href",
-                    name: "link"
-                },
+                    data: ["year", "month", "link"]
+                }
             ],
-            item: '<li><a href="" data-year="" data-month=""><span class="date"></span> - <span class="type"></span></a></li>'
+            item: '<li><a data-link="" data-year="" data-month="" onclick=\'openModal(this, $(this).attr("data-href"));\'><span class="date"></span> - <span class="type"></span></a></li>'
 
         };
-        var values = [{
-            date: '4/4/2017',
+        var values = [
+        {
+            date: '4/17/2017',
             year: "2017",
             month: "March",
-            link: "https://google.com/",
+            link: "https://docs.google.com/document/d/1HW_SsJ3BblqeuHMSTefc9tx2-v0945x1Ivrd7gNNpfc/edit",
             type: "Troop Meeting Minutes"
-        }, {
-            date: '4/5/2017',
+        },
+        {
+            date: '4/17/2017',
             year: "2017",
             month: "March",
-            link: "https://google.com/",
+            link: "https://docs.google.com/document/d/1P9KyfMVtUjLms9_vwNjBIT01_QYIPcTQ3FSOyLvqzOg/edit",
             type: "PLC Meeting Minutes"
+        },
+        {
+            date: '4/17/2017',
+            year: "2017",
+            month: "March",
+            link: "https://docs.google.com/spreadsheets/d/1qiNsrInjRAtxI4VOnCu7T6_P0QtS9T-ZFpvozJCdRB8/edit#gid=0",
+            type: "Headcounts"
         }];
 
         var userList = new List('main', options, values);
+
     </script>
 
 </body>
