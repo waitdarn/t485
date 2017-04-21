@@ -377,34 +377,34 @@
                     data: ["year", "month", "link"]
                 }
             ],
-            item: '<li><a data-link="" data-year="" data-month="" onclick=\'openModal(this, $(this).attr("data-href"));\'><span class="date"></span> - <span class="type"></span></a></li>'
+            item: '<li><a data-link="" data-year="" data-month="" onclick=\'openModal(this, $(this).attr("data-link"));\'><span class="date"></span> - <span class="type"></span></a></li>'
 
         };
-        var values = [
-        {
-            date: '4/17/2017',
-            year: "2017",
-            month: "March",
-            link: "https://docs.google.com/document/d/1HW_SsJ3BblqeuHMSTefc9tx2-v0945x1Ivrd7gNNpfc/edit",
-            type: "Troop Meeting Minutes"
-        },
-        {
-            date: '4/17/2017',
-            year: "2017",
-            month: "March",
-            link: "https://docs.google.com/document/d/1P9KyfMVtUjLms9_vwNjBIT01_QYIPcTQ3FSOyLvqzOg/edit",
-            type: "PLC Meeting Minutes"
-        },
-        {
-            date: '4/17/2017',
-            year: "2017",
-            month: "March",
-            link: "https://docs.google.com/spreadsheets/d/1qiNsrInjRAtxI4VOnCu7T6_P0QtS9T-ZFpvozJCdRB8/edit#gid=0",
-            type: "Headcounts"
+        //these starter values must be used without firebase for listjs to work
+        var values = [{
+            "date": "4/17/2017",
+            "year": "2017",
+            "month": "March",
+            "link": "https://docs.google.com/document/d/1HW_SsJ3BblqeuHMSTefc9tx2-v0945x1Ivrd7gNNpfc/moiblebasic",
+            "type": "Troop Meeting Minutes"
+        }, {
+            "date": "4/17/2017",
+            "year": "2017",
+            "month": "March",
+            "link": "https://docs.google.com/document/d/1P9KyfMVtUjLms9_vwNjBIT01_QYIPcTQ3FSOyLvqzOg/moiblebasic",
+            "type": "PLC Meeting Minutes"
+        }, {
+            "date": "4/17/2017",
+            "year": "2017",
+            "month": "March",
+            "link": "https://docs.google.com/spreadsheets/d/1qiNsrInjRAtxI4VOnCu7T6_P0QtS9T-ZFpvozJCdRB8/edit#gid=0",
+            "type": "Headcounts"
         }];
 
         var userList = new List('main', options, values);
-
+        firebase.database().ref("/meetingminutes/").on("child_added", function(snapshot) {
+            userList.add(snapshot.val());
+        });
     </script>
 
 </body>
