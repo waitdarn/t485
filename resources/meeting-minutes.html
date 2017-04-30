@@ -19,8 +19,12 @@
             messagingSenderId: "510743665020"
         };
         firebase.initializeApp(config);
+        
     </script>
     <script src="../js/t485.js"></script>
+    <!--authentication checkpoint -->
+    <script>auth(undefined, () => window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname));</script>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/t485.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
@@ -326,8 +330,7 @@
 
     <script src="/js/list.min.js"></script>
     <script>
-        auth(undefined, () => window.location.href = 'login.html?redir=' + encodeURIComponent(window.location.pathname));
-
+        
         function openModal(_this, url) {
             var editurl;
             var editregex = /(https:\/\/docs\.google\.com\/document\/d\/.+\/)edit/g.exec(url);
