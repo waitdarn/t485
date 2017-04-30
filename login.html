@@ -2,185 +2,127 @@
 <html>
 
 <head>
-
-
-
-    <title>Log In - Troop 485</title>
-
-<script src="js/combined.min.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
-    authDomain: "t485.firebaseapp.com",
-    databaseURL: "https://t485.firebaseio.com",
-    storageBucket: "project-2556333409340273878.appspot.com",
-    messagingSenderId: "510743665020"
-  };
-  firebase.initializeApp(config);
-</script>
-
-<script src="js/t485.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/t485.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
-<meta name="apple-mobile-web-app-capable" content="yes">
-
-<meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
-
-<!-- Favicons -->
-<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
-
-<link rel="manifest" href="/manifest.json">
-
-<script>
-    try {
-        localStorage.setItem('foo', 'bar');
-    } catch (e) {
-        if (e.message === 'The quota has been exceeded.') {
-            // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
-            // firebase will throw error, so better to alert user now
-            alert('Private browsing is not supported!');
+    <style>
+        .spinner {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            margin: 100px auto;
         }
-        throw '';
-    }
-</script>
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-
+        
+        .double-bounce1,
+        .double-bounce2 {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #333;
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+            animation: sk-bounce 2.0s infinite ease-in-out;
+        }
+        
+        .double-bounce2 {
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+        
+        @-webkit-keyframes sk-bounce {
+            0%,
+            100% {
+                -webkit-transform: scale(0.0)
+            }
+            50% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+        
+        @keyframes sk-bounce {
+            0%,
+            100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            }
+            50% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+        }
+        
+        .spinner {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+        body {
+            background-color:#2c3e50;
+        }
+        h1 {
+            text-align: center;
+            font-family: Arial;
+        }
+    </style>
 </head>
 
-<body><img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
-
-<!-- Navigation -->
-<nav class="navbar navbar-default">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <a class="navbar-brand" href="home.html">T485</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/calendar.html">Calendar</a>
-                </li>
-                <li>
-                    <a href="/directory.html">Directory </a>
-                </li>
-                <li>
-                    <a href="/files.html">Files</a>
-                </li>
-                <li>
-                    <a href="/new-scout.html">New Scouts</a>
-                </li>
-                <li>
-                    <a href="/search.html">Search</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Resources <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/resources/meeting-minutes.html">Meeting Minutes</a></li>
-                        <li><a href="/resources/pictures.html">Pictures</a></li>
-                        <li><a href="/resources/troop-jobs.html">Troop Jobs</a></li>
-                        <li><a href="/resources/ranks.html">Ranks</a></li>
-                        <li><a href="/resources/forum.html">Forum</a></li>
-                        <li><a href="/resources/app-download.html">Download App</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        About <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/about/faq.html">FAQ</a></li>
-                        <li><a href="/about/merit-badges.html">Merit Badges</a></li>
-                        <li><a href="/about/eagle.html">Path to Eagle</a></li>
-                        <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
-                        <li><a href="/about/plc.html">PLC</a></li>
-                        <li><a href="/about/troop-info.html">Troop Information</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+<body>
+    <h1>Initalizing login</h1>
+    <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
     </div>
-</nav>
-<div id="alertBox"></div>
 
-<a id="toTop" onclick="window.location.hash='#'"></a>
-
-<div class="container">
-
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Log In</h2>
-                    <hr>
-                </div>
-                <div class="col-md-12">
-                    <img src="img/google_sign_in.png" onclick="btnClicked()" style="width: 191px; heigth: 46px;"></img>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    
-<script src="//static.getclicky.com/js" type="text/javascript"></script>
-<script type="text/javascript">try{ clicky.init(101023955); }catch(e){}</script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101023955ns.gif" /></p></noscript>
-
-    </div>
-    <!-- /.container -->
-<footer>
-    <div class="container">
-        <div class="box">
-            <div class="col-lg-12 text-center">
-                <p>Copyright &copy; 2006-2017 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
-
-            </div>
-        </div>
-    </div>
-</footer>
-
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
+            authDomain: "t485.firebaseapp.com",
+            databaseURL: "https://t485.firebaseio.com",
+            storageBucket: "project-2556333409340273878.appspot.com",
+            messagingSenderId: "510743665020"
+        };
+        firebase.initializeApp(config);
+    </script>
 
 
     <script>
-        function btnClicked() {
-            let redirectUrl = getQuery('redir') || 'home.html';
-            let provider = new firebase.auth.GoogleAuthProvider();
-            provider.addScope('https://www.googleapis.com/auth/userinfo.email');
+        // http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+        function getQuery(e) {
+            e = e.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var c = new RegExp("[\\?&]" + e + "=([^&#]*)"),
+                n = c.exec(location.search);
+            return null === n ? "" : decodeURIComponent(n[1].replace(/\+/g, " "))
+        }
 
-            firebase.auth().signInWithPopup(provider).then(result => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                let token = result.credential.accessToken;
-                // The signed-in user info.
-                let user = result.user;
+        let redirectUrl = getQuery('redir') || 'index.html';
+        let provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/userinfo.email');
 
-                let email = user.providerData[0].email;
+        firebase.auth().getRedirectResult().then(result => {
+            console.log(result);
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            let token = result.credential.accessToken;
+            // The signed-in user info.
+            let user = result.user;
 
-                $.get('members', response => {
-                    if (response) {
+            let email = user.providerData[0].email;
+
+            var request = new XMLHttpRequest();
+            request.open('GET', 'members', true);
+
+            request.onreadystatechange = function() {
+                if (this.readyState === 4) {
+                    if (this.status >= 200 && this.status < 400) {
+                        // Success!
+                        var response = this.responseText;
                         let members = response.split('\n');
 
                         // Check if email is on approved list
@@ -188,27 +130,33 @@
                             window.location.href = redirectUrl;
                         }
                         else {
-                            alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake.');
+                            alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake. You will be redirected back to the home page after closing this popup.');
                             // reload page
-                            window.location.reload();
+                            window.location.href = "/index.html";
                         }
                     }
-                });
-                // ...
-            }).catch(error => {
-                // Handle Errors here.
-                let errorCode = error.code;
-                let errorMessage = error.message;
-                // The email of the user's account used.
-                let email = error.email;
-                // The firebase.auth.AuthCredential type that was used.
-                let credential = error.credential;
-                console.log(error);
+                    else {
+                        console.log("error")
+                    }
+                }
+            };
 
-                // reload page
-                window.location.href = window.location.pathname;
-            });
-        }
+            request.send();
+            request = null;
+
+            // ...
+        }).catch(error => {
+            // Handle Errors here.
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            // The email of the user's account used.
+            let email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            let credential = error.credential;
+            console.log(error);
+            firebase.auth().signInWithRedirect(provider);
+
+        });
     </script>
 
 </body>
