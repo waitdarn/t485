@@ -22,8 +22,6 @@
         
     </script>
     <script src="../js/t485.js"></script>
-    <!--authentication checkpoint -->
-    <script>auth(undefined, () => window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname));</script>
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/t485.css">
@@ -132,7 +130,22 @@
     <div id="alertBox"></div>
     <a id="toTop" onclick="window.location.hash='#'"></a>
 
-    <div class="container">
+    <div class="container hidden" id="login">
+
+        <div class="row">
+            <div class="box col-xs-12">
+                <hr>
+                <h2 class="intro-text text-center">Login to continue</h2>
+                <hr>
+                <p>
+                    <a class="btn btn-block btn-social btn-google no-fancy-link" onclick="window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname)">
+                        <span class="fa fa-google"></span> Sign in with Google
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container hidden" id="content">
 
 
         <div class="row">
@@ -329,6 +342,11 @@
     </div>
 
     <script src="/js/list.min.js"></script>
+    <!--authentication checkpoint -->
+    <script>
+        $("#loading").addClass("hidden");
+        auth(() => $("#content").removeClass("hidden"), () => $("#login").removeClass("hidden"));
+    </script>
     <script>
         
         function openModal(_this, url) {

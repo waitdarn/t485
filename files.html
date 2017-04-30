@@ -131,7 +131,23 @@
 <div id="alertBox"></div>
 
     <a id="toTop" onclick="window.location.hash='#'"></a>
+<p id="loading2">Loading...</p>
+    <div class="container hidden" id="login">
 
+        <div class="row" id="search">
+            <div class="box col-xs-12">
+                <hr>
+                <h2 class="intro-text text-center">Login to continue</h2>
+                <hr>
+                <p>
+                    <a class="btn btn-block btn-social btn-google no-fancy-link" onclick="window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname)">
+                        <span class="fa fa-google"></span> Sign in with Google
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
     <div class="container hidden" id="loading">
         <div class="row">
             <div class="box col-md-12">
@@ -145,7 +161,7 @@
             </div>
         </div>
     </div>
-    <div class="container" id="main">
+    <div class="container hidden" id="main">
 
         <div class="row">
             <div class="box col-md-6">
@@ -290,7 +306,11 @@
         <!-- /.modal-dialog -->
     </div>
 
-
+<!--authentication checkpoint -->
+    <script>
+        $("#loading2").addClass("hidden");
+        auth(() => $("#main").removeClass("hidden"), () => $("#login").removeClass("hidden"));
+    </script>
     <script>
         /* global firebase $ auth */
 

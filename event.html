@@ -7,60 +7,61 @@
 
     <title>Event - Troop 485</title>
 
-<script src="js/combined.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
-    authDomain: "t485.firebaseapp.com",
-    databaseURL: "https://t485.firebaseio.com",
-    storageBucket: "project-2556333409340273878.appspot.com",
-    messagingSenderId: "510743665020"
-  };
-  firebase.initializeApp(config);
-</script>
-<script src="js/t485.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/t485.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+    <script src="js/combined.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
+            authDomain: "t485.firebaseapp.com",
+            databaseURL: "https://t485.firebaseio.com",
+            storageBucket: "project-2556333409340273878.appspot.com",
+            messagingSenderId: "510743665020"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="js/t485.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/t485.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
-<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-<meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
 
-<!-- Favicons -->
-<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
 
-<link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json">
 
-<script>
-    try {
-        localStorage.setItem('foo', 'bar');
-    } catch (e) {
-        if (e.message === 'The quota has been exceeded.') {
-            // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
-            // firebase will throw error, so better to alert user now
-            alert('Private browsing is not supported!');
+    <script>
+        try {
+            localStorage.setItem('foo', 'bar');
         }
-        throw '';
-    }
-</script>
+        catch (e) {
+            if (e.message === 'The quota has been exceeded.') {
+                // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
+                // firebase will throw error, so better to alert user now
+                alert('Private browsing is not supported!');
+            }
+            throw '';
+        }
+    </script>
     <style>
         .hidden {
             display: none;
         }
-
+        
         .print {
             display: none;
         }
-
+        
         @media print {
             * {
                 visibility: hidden;
@@ -74,7 +75,7 @@
                 display: block;
             }
         }
-
+        
         #export-description {
             resize: vertical;
             /* user can resize vertically, but width is fixed */
@@ -83,73 +84,73 @@
 </head>
 
 <body>
-<img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
-<!-- Navigation -->
-<nav class="navbar navbar-default">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <a class="navbar-brand" href="home.html">T485</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/calendar.html">Calendar</a>
-                </li>
-                <li>
-                    <a href="/directory.html">Directory </a>
-                </li>
-                <li>
-                    <a href="/files.html">Files</a>
-                </li>
-                <li>
-                    <a href="/new-scout.html">New Scouts</a>
-                </li>
-                <li>
-                    <a href="/search.html">Search</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="home.html">T485</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/calendar.html">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="/directory.html">Directory </a>
+                    </li>
+                    <li>
+                        <a href="/files.html">Files</a>
+                    </li>
+                    <li>
+                        <a href="/new-scout.html">New Scouts</a>
+                    </li>
+                    <li>
+                        <a href="/search.html">Search</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Resources <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/resources/meeting-minutes.html">Meeting Minutes</a></li>
-                        <li><a href="/resources/pictures.html">Pictures</a></li>
-                        <li><a href="/resources/troop-jobs.html">Troop Jobs</a></li>
-                        <li><a href="/resources/ranks.html">Ranks</a></li>
-                        <li><a href="/resources/forum.html">Forum</a></li>
-                        <li><a href="/resources/app-download.html">Download App</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <ul class="dropdown-menu">
+                            <li><a href="/resources/meeting-minutes.html">Meeting Minutes</a></li>
+                            <li><a href="/resources/pictures.html">Pictures</a></li>
+                            <li><a href="/resources/troop-jobs.html">Troop Jobs</a></li>
+                            <li><a href="/resources/ranks.html">Ranks</a></li>
+                            <li><a href="/resources/forum.html">Forum</a></li>
+                            <li><a href="/resources/app-download.html">Download App</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         About <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/about/faq.html">FAQ</a></li>
-                        <li><a href="/about/merit-badges.html">Merit Badges</a></li>
-                        <li><a href="/about/eagle.html">Path to Eagle</a></li>
-                        <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
-                        <li><a href="/about/plc.html">PLC</a></li>
-                        <li><a href="/about/troop-info.html">Troop Information</a></li>
-                    </ul>
-                </li>
-            </ul>
+                        <ul class="dropdown-menu">
+                            <li><a href="/about/faq.html">FAQ</a></li>
+                            <li><a href="/about/merit-badges.html">Merit Badges</a></li>
+                            <li><a href="/about/eagle.html">Path to Eagle</a></li>
+                            <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
+                            <li><a href="/about/plc.html">PLC</a></li>
+                            <li><a href="/about/troop-info.html">Troop Information</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-<div id="alertBox"></div>
+    </nav>
+    <div id="alertBox"></div>
     <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert" id="edit-alert-box">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.<a id="export" class="alert-link">Export or Send this page
@@ -158,7 +159,23 @@
 
     </div>
     </p>
-    <div class="container">
+    <p id="loading">Loading...</p>
+    <div class="container hidden" id="login">
+
+        <div class="row">
+            <div class="box col-xs-12">
+                <hr>
+                <h2 class="intro-text text-center">Login to continue</h2>
+                <hr>
+                <p>
+                    <a class="btn btn-block btn-social btn-google no-fancy-link" onclick="window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname)">
+                        <span class="fa fa-google"></span> Sign in with Google
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container hidden" id="content">
         <div class="print col-lg-12" id="print">
             <h2 class="text-center event-title">Loading...</h2>
             <hr>
@@ -186,25 +203,35 @@
         </div>
 
         <script src="https://static.getclicky.com/js"></script>
-        <script>try {clicky.init(100869133)}catch (e) {}</script>
+        <script>
+            try {
+                clicky.init(100869133)
+            }
+            catch (e) {}
+        </script>
         <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
 
     </div>
     <!-- /.container -->
-<footer>
-    <div class="container">
-        <div class="box">
-            <div class="col-lg-12 text-center">
-                <p>Copyright &copy; 2006-2017 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
+    <footer>
+        <div class="container">
+            <div class="box">
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; 2006-2017 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
 
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
     <script src="js/jspdf.min.js"></script>
     <script src="js/printthis.js"></script>
+    <!--authentication checkpoint -->
+    <script>
+        $("#loading").addClass("hidden");
+        auth(() => $("#content").removeClass("hidden"), () => $("#login").removeClass("hidden"));
+    </script>
     <script>
         /* global firebase $ getQuery tinymce btoa auth jsPDF*/
 
@@ -213,8 +240,10 @@
         if (getQuery("event") === null || getQuery("event") === "") {
             window.location.href = "/resources.html";
         }
-        firebase.database().ref('/events/' + encodeURIComponent(getQuery("event"))/*URL is url safe anyways, this is to trigger the data = null 404
-        when the event contains non URL safe charcters*/).once('value').then(snapshot => {
+        firebase.database().ref('/events/' + encodeURIComponent(getQuery("event"))
+            /*URL is url safe anyways, this is to trigger the data = null 404
+                    when the event contains non URL safe charcters*/
+        ).once('value').then(snapshot => {
             let data = snapshot.val();
             if (data === null || data === 0) {
                 $("#event-title").html("Error 404: Event Not Found");
@@ -235,316 +264,317 @@
 
         });
 
-       function main() {
+        function main() {
             if (getQuery("password") !== null) {
-            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', snapshot => {
+                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', snapshot => {
 
 
-                if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
+                    if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
 
-                    $("#edit-alert-box").removeClass("hidden");
-                    $("#edit").click(() => {
-                        $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
-                        $("#view").click(() => {
-                            reloadPage();
-                        });
-                        tinymce.init({
-                            selector: "#event-title", //'h2.editable',
-                            inline: true,
-                            plugins: [
-                                "textcolor colorpicker link"
-                            ],
-                            toolbar: "undo redo | forecolor backcolor | link | save",
-                            menubar: false,
-                            setup: editor => {
-                                editor.addButton("save", {
-                                    text: "Save Changes",
-                                    icon: false,
-                                    onclick: () => {
-                                        console.log(editor.getContent());
-                                        console.log(editor.id);
-                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
-                                    }
-                                });
-                            }
-                        });
+                        $("#edit-alert-box").removeClass("hidden");
+                        $("#edit").click(() => {
+                            $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
+                            $("#view").click(() => {
+                                reloadPage();
+                            });
+                            tinymce.init({
+                                selector: "#event-title", //'h2.editable',
+                                inline: true,
+                                plugins: [
+                                    "textcolor colorpicker link"
+                                ],
+                                toolbar: "undo redo | forecolor backcolor | link | save",
+                                menubar: false,
+                                setup: editor => {
+                                    editor.addButton("save", {
+                                        text: "Save Changes",
+                                        icon: false,
+                                        onclick: () => {
+                                            console.log(editor.getContent());
+                                            console.log(editor.id);
+                                            firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                        }
+                                    });
+                                }
+                            });
 
-                        tinymce.init({
-                            selector: "#event-description", //'div.editable',
-                            inline: true,
-                            plugins: [
-                                "advlist autolink lists link image charmap print preview",
-                                "searchreplace visualblocks fullscreen textcolor colorpicker",
-                                "insertdatetime media table contextmenu paste imagetools"
-                            ],
-                            link_assume_external_targets: true,
-                            removed_menuitems: "newdocument",
-                            setup: editor => {
-                                editor.addButton("save", {
-                                    text: "Save Changes",
-                                    icon: false,
-                                    onclick: () => {
-                                        console.log(editor.getContent());
-                                        console.log(editor.id);
-                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
-                                    }
-                                });
-                            },
-                            toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save"
-                        });
+                            tinymce.init({
+                                selector: "#event-description", //'div.editable',
+                                inline: true,
+                                plugins: [
+                                    "advlist autolink lists link image charmap print preview",
+                                    "searchreplace visualblocks fullscreen textcolor colorpicker",
+                                    "insertdatetime media table contextmenu paste imagetools"
+                                ],
+                                link_assume_external_targets: true,
+                                removed_menuitems: "newdocument",
+                                setup: editor => {
+                                    editor.addButton("save", {
+                                        text: "Save Changes",
+                                        icon: false,
+                                        onclick: () => {
+                                            console.log(editor.getContent());
+                                            console.log(editor.id);
+                                            firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                        }
+                                    });
+                                },
+                                toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save"
+                            });
 
-                    });
-
-                }
-            });
-        }
-
-        function generateRandomStr() {
-            let text = "";
-            let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+={}[]|?/>.<,";
-
-            Array(40).fill(0).forEach(() => {
-                text += possible.charAt(Math.floor(Math.random() * possible.length));
-            });
-
-            return encodeURIComponent(btoa(text));
-        }
-
-
-        firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
-            let data = snapshot.val();
-
-            $("#event-title").html(data.title);
-            $("#event-description").html(data.description);
-
-        });
-
-        function deleteLink(id) {
-            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
-            $("#share-modal").modal("hide");
-
-
-        }
-        auth(user => {
-            firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
-                let uid = snapshot.val().owner;
-                if (uid === user.uid) {
-
-                    $("#edit-alert-box").removeClass("hidden");
-                    $("#share").removeClass("hidden");
-                    $("#delete").removeClass("hidden");
-
-
-
-
-                    $("#delete").click(() => {
-                        $("#confirm-delete").modal("show");
-                        $("#confirm-enter-name").keyup(() => {
-                            if (($("#confirm-enter-name").val().toLowerCase() === snapshot.val().title.toLowerCase()) && getQuery("event") !== null) {
-                                $("#confirm-delete-button").removeClass("disabled");
-                                $("#confirm-delete-button").on("click", () => {
-                                    firebase.database().ref('/events/' + getQuery("event")).set(null);
-                                    $("#confirm-delete").modal("hide");
-                                    window.location.href = "resources.html";
-                                });
-                            }
-                            else {
-                                $("#confirm-delete-button").addClass("disabled");
-                                $("#confirm-delete-button").off("click");
-                            }
                         });
 
-                    });
-                    $("#share").click(() => {
-
-                        $("#share-modal").modal("show");
-                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", data => {
-
-                            console.log(data.val());
-                            console.log(data.key);
-                            $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
-                        });
-
-
-                    });
-
-
-                    $("#new-access-link").click(() => {
-                        let id = generateRandomStr();
-                        firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
-
-                    });
-                    $("#edit").click(() => {
-                        $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
-                        $("#view").click(() => {
-                            reloadPage();
-                        });
-                        tinymce.init({
-                            selector: "#event-title", //'h2.editable',
-                            inline: true,
-                            plugins: [
-                                "textcolor colorpicker link"
-                            ],
-                            toolbar: "undo redo | forecolor backcolor | link | save",
-                            menubar: false,
-                            setup: editor => {
-                                editor.addButton("save", {
-                                    text: "Save Changes",
-                                    icon: false,
-                                    onclick: () => {
-                                        console.log(editor.getContent());
-                                        console.log(editor.id);
-                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
-                                    }
-                                });
-                            }
-                        });
-
-                        tinymce.init({
-                            selector: "#event-description", //'div.editable',
-                            inline: true,
-                            plugins: [
-                                "advlist autolink lists link image charmap print preview",
-                                "searchreplace visualblocks fullscreen textcolor colorpicker",
-                                "insertdatetime media table contextmenu paste imagetools"
-                            ],
-                            link_assume_external_targets: true,
-                            removed_menuitems: "newdocument",
-                            setup: editor => {
-                                editor.addButton("save", {
-                                    text: "Save Changes",
-                                    icon: false,
-                                    onclick: () => {
-                                        console.log(editor.getContent());
-                                        console.log(editor.id);
-                                        firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
-                                    }
-                                });
-                            },
-                            toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save"
-                        });
-
-
-                    });
-                }
-
-            });
-
-            function getFirebaseDataThen(callback, requireDescription) {
-                firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
-                    let data = snapshot.val();
-
-                    if (data !== null) {
-                        if ($("#export-description").val().replace(" ", "") === "" && requireDescription !== false) {
-                            alert("You must write a description. (You can just copy/paste from the event page. Note links and formatting will be removed)");
-                        }
-                        else {
-                            let text = $("#export-description").val() + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
-                            callback(data.title, text, "https://t485.org/event.html?event=" + getQuery("event"), data.description);
-                        }
-
-                    }
-                    else {
-                       // alert("Unknown error occured. Please try again or notify the webmaster.", "https://t485.org/event.html?event=" + getQuery("event"));
                     }
                 });
             }
-            $("#export-slack").click(() => {
 
-                getFirebaseDataThen((title, text, url) => {
-                    $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
-                            "text": "Event Page shared:",
-                            "attachments": [{
-                                "fallback": "A event page was shared: <" + title + "|https://t485.org/event.html?event=" + url + ">.",
-                                "title": title,
-                                "title_link": url,
-                                "text": text,
-                                "footer": "This is a T485 event page automated message"
-                            }]
-                        }),
-                        data => {
-                            window.location.href = url;
+            function generateRandomStr() {
+                let text = "";
+                let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_-+={}[]|?/>.<,";
+
+                Array(40).fill(0).forEach(() => {
+                    text += possible.charAt(Math.floor(Math.random() * possible.length));
+                });
+
+                return encodeURIComponent(btoa(text));
+            }
+
+
+            firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
+                let data = snapshot.val();
+
+                $("#event-title").html(data.title);
+                $("#event-description").html(data.description);
+
+            });
+
+            function deleteLink(id) {
+                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
+                $("#share-modal").modal("hide");
+
+
+            }
+            auth(user => {
+                firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
+                    let uid = snapshot.val().owner;
+                    if (uid === user.uid) {
+
+                        $("#edit-alert-box").removeClass("hidden");
+                        $("#share").removeClass("hidden");
+                        $("#delete").removeClass("hidden");
+
+
+
+
+                        $("#delete").click(() => {
+                            $("#confirm-delete").modal("show");
+                            $("#confirm-enter-name").keyup(() => {
+                                if (($("#confirm-enter-name").val().toLowerCase() === snapshot.val().title.toLowerCase()) && getQuery("event") !== null) {
+                                    $("#confirm-delete-button").removeClass("disabled");
+                                    $("#confirm-delete-button").on("click", () => {
+                                        firebase.database().ref('/events/' + getQuery("event")).set(null);
+                                        $("#confirm-delete").modal("hide");
+                                        window.location.href = "resources.html";
+                                    });
+                                }
+                                else {
+                                    $("#confirm-delete-button").addClass("disabled");
+                                    $("#confirm-delete-button").off("click");
+                                }
+                            });
+
+                        });
+                        $("#share").click(() => {
+
+                            $("#share-modal").modal("show");
+                            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", data => {
+
+                                console.log(data.val());
+                                console.log(data.key);
+                                $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
+                            });
+
+
+                        });
+
+
+                        $("#new-access-link").click(() => {
+                            let id = generateRandomStr();
+                            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(id);
+
+                        });
+                        $("#edit").click(() => {
+                            $("#edit-alert").html("Click on some text to edit it. After you edit some text, click save changes on the toolbar that pops up. This will save the text only on the paragraph you selected. Or <a id='view' class='alert-link'>View this page</a>.");
+                            $("#view").click(() => {
+                                reloadPage();
+                            });
+                            tinymce.init({
+                                selector: "#event-title", //'h2.editable',
+                                inline: true,
+                                plugins: [
+                                    "textcolor colorpicker link"
+                                ],
+                                toolbar: "undo redo | forecolor backcolor | link | save",
+                                menubar: false,
+                                setup: editor => {
+                                    editor.addButton("save", {
+                                        text: "Save Changes",
+                                        icon: false,
+                                        onclick: () => {
+                                            console.log(editor.getContent());
+                                            console.log(editor.id);
+                                            firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                        }
+                                    });
+                                }
+                            });
+
+                            tinymce.init({
+                                selector: "#event-description", //'div.editable',
+                                inline: true,
+                                plugins: [
+                                    "advlist autolink lists link image charmap print preview",
+                                    "searchreplace visualblocks fullscreen textcolor colorpicker",
+                                    "insertdatetime media table contextmenu paste imagetools"
+                                ],
+                                link_assume_external_targets: true,
+                                removed_menuitems: "newdocument",
+                                setup: editor => {
+                                    editor.addButton("save", {
+                                        text: "Save Changes",
+                                        icon: false,
+                                        onclick: () => {
+                                            console.log(editor.getContent());
+                                            console.log(editor.id);
+                                            firebase.database().ref("/events/" + getQuery("event") + "/" + editor.id.replace("event-", "") + "/").set(editor.getContent());
+                                        }
+                                    });
+                                },
+                                toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | save"
+                            });
+
+
+                        });
+                    }
+
+                });
+
+                function getFirebaseDataThen(callback, requireDescription) {
+                    firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
+                        let data = snapshot.val();
+
+                        if (data !== null) {
+                            if ($("#export-description").val().replace(" ", "") === "" && requireDescription !== false) {
+                                alert("You must write a description. (You can just copy/paste from the event page. Note links and formatting will be removed)");
+                            }
+                            else {
+                                let text = $("#export-description").val() + "\n --- \n Read more at the event page: https://t485.org/event.html?event=" + getQuery("event");
+                                callback(data.title, text, "https://t485.org/event.html?event=" + getQuery("event"), data.description);
+                            }
+
                         }
-                    );
-                    $("#export-slack").html("Exported to slack - Export again");
-                });
-
-            });
-            $("#export-gmail").click(() => {
-                getFirebaseDataThen((title, text, url) => {
-                    window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&tf=1&su=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
-                    $("export-modal").modal("hide");
-                });
-            });
-            $("#export-yahoo").click(() => {
-                getFirebaseDataThen((title, text, url) => {
-                    window.location.href = "http://compose.mail.yahoo.com/?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
-                    $("export-modal").modal("hide");
-                });
-            });
-            $("#export-hotmail").click(() => {
-                getFirebaseDataThen((title, text, url) => {
-                    window.location.href = "https://dub130.mail.live.com/default.aspx?rru=compose&subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text) + "#page=Compose";
-                    $("export-modal").modal("hide");
-                });
-            });
-            $("#export-aol").click(() => {
-                getFirebaseDataThen((title, text, url) => {
-                    window.location.href = "http://webmail.aol.com/Mail/ComposeMessage.aspx?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
-                    $("export-modal").modal("hide");
-
-                });
-            });
-            $("#export-email").click(() => {
-                getFirebaseDataThen((title, text, url) => {
-                    window.location.href = "mailto:?Subject=" + encodeURIComponent(title) + "&Body=" + encodeURIComponent(text);
-                    $("export-modal").modal("hide");
-                });
-            });
-            $("#export-pdf").click(() => {
-                getFirebaseDataThen((title, text, url) => {
-                    let doc = new jsPDF();
-                    let specialElementHandlers = {
-                        '#editor': (element, renderer) => {
-                            return true;
+                        else {
+                            // alert("Unknown error occured. Please try again or notify the webmaster.", "https://t485.org/event.html?event=" + getQuery("event"));
                         }
-                    };
-
-
-                    doc.fromHTML($('#print').html(), 15, 15, {
-                        'width': 170,
-                        'elementHandlers': specialElementHandlers
                     });
-                    doc.save(title + '.pdf');
+                }
+                $("#export-slack").click(() => {
 
-                    $("export-modal").modal("hide");
+                    getFirebaseDataThen((title, text, url) => {
+                        $.post("https://hooks.slack.com/services/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", "payload=" + JSON.stringify({
+                                "text": "Event Page shared:",
+                                "attachments": [{
+                                    "fallback": "A event page was shared: <" + title + "|https://t485.org/event.html?event=" + url + ">.",
+                                    "title": title,
+                                    "title_link": url,
+                                    "text": text,
+                                    "footer": "This is a T485 event page automated message"
+                                }]
+                            }),
+                            data => {
+                                window.location.href = url;
+                            }
+                        );
+                        $("#export-slack").html("Exported to slack - Export again");
+                    });
+
+                });
+                $("#export-gmail").click(() => {
+                    getFirebaseDataThen((title, text, url) => {
+                        window.location.href = "https://mail.google.com/mail/?view=cm&fs=1&tf=1&su=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                        $("export-modal").modal("hide");
+                    });
+                });
+                $("#export-yahoo").click(() => {
+                    getFirebaseDataThen((title, text, url) => {
+                        window.location.href = "http://compose.mail.yahoo.com/?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                        $("export-modal").modal("hide");
+                    });
+                });
+                $("#export-hotmail").click(() => {
+                    getFirebaseDataThen((title, text, url) => {
+                        window.location.href = "https://dub130.mail.live.com/default.aspx?rru=compose&subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text) + "#page=Compose";
+                        $("export-modal").modal("hide");
+                    });
+                });
+                $("#export-aol").click(() => {
+                    getFirebaseDataThen((title, text, url) => {
+                        window.location.href = "http://webmail.aol.com/Mail/ComposeMessage.aspx?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(text);
+                        $("export-modal").modal("hide");
+
+                    });
+                });
+                $("#export-email").click(() => {
+                    getFirebaseDataThen((title, text, url) => {
+                        window.location.href = "mailto:?Subject=" + encodeURIComponent(title) + "&Body=" + encodeURIComponent(text);
+                        $("export-modal").modal("hide");
+                    });
+                });
+                $("#export-pdf").click(() => {
+                    getFirebaseDataThen((title, text, url) => {
+                        let doc = new jsPDF();
+                        let specialElementHandlers = {
+                            '#editor': (element, renderer) => {
+                                return true;
+                            }
+                        };
+
+
+                        doc.fromHTML($('#print').html(), 15, 15, {
+                            'width': 170,
+                            'elementHandlers': specialElementHandlers
+                        });
+                        doc.save(title + '.pdf');
+
+                        $("export-modal").modal("hide");
+                    });
+
+                });
+                getFirebaseDataThen((title, text, url, realtext) => {
+                    $("#export-html").attr("href", "data:text/html,<html><head></head><body><h1>" + title + "</h1><div>" + realtext + "</div><br><br><br><hr><p>Read more at the <a href='" + url + "'>event page</a>.</p></body></html>");
+                    $("#export-html").attr("download", title + ".html");
+                }, false);
+
+
+
+                $("#export-print").click(() => {
+                    console.log(1);
+                    getFirebaseDataThen((title, text, url) => {
+                        console.log(2);
+                        $("#print").printThis();
+
+                    }, false);
                 });
 
+                $("#export").click(() => {
+                    $("#export-modal").modal("show");
+                });
+
+            }, () => {
+                //somthing should have already happened
+                //window.location.href = 'login.html?redir=event.html' + encodeURIComponent(window.location.search);
             });
-            getFirebaseDataThen((title, text, url, realtext) => {
-                $("#export-html").attr("href", "data:text/html,<html><head></head><body><h1>" + title + "</h1><div>" + realtext + "</div><br><br><br><hr><p>Read more at the <a href='" + url + "'>event page</a>.</p></body></html>");
-                $("#export-html").attr("download", title + ".html");
-            }, false);
-
-
-
-            $("#export-print").click(() => {
-                console.log(1);
-                getFirebaseDataThen((title, text, url) => {
-                    console.log(2);
-                    $("#print").printThis();
-
-                }, false);
-            });
-
-            $("#export").click(() => {
-                $("#export-modal").modal("show");
-            });
-
-        }, () => {
-            window.location.href = 'login.html?redir=event.html' + encodeURIComponent(window.location.search);
-        });
-       }
+        }
 
         function reloadPage() {
             window.location.href = window.location.pathname + window.location.search + window.location.hash;

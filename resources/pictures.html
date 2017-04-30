@@ -8,7 +8,7 @@
     <title>Pictures - Troop 485</title>
 
     <script src="../js/combined.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
     <script>
         // Initialize Firebase
         var config = {
@@ -21,13 +21,15 @@
         firebase.initializeApp(config);
     </script>
     <script src="../js/t485.js"></script>
-        <!--authentication checkpoint -->
+    <!--authentication checkpoint -->
     <script>
         auth(() => {
-                    $('#content').removeClass("hidden");
-                }, () => {
-                    window.location.href = 'login.html?redir=' + encodeURIComponent(window.location.pathname)});
-    </script>    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+            $('#content').removeClass("hidden");
+        }, () => {
+            window.location.href = 'login.html?redir=' + encodeURIComponent(window.location.pathname)
+        });
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/t485.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
@@ -64,78 +66,93 @@
 
 <body><img src="../img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
 
-<!-- Navigation -->
-<nav class="navbar navbar-default">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <a class="navbar-brand" href="home.html">T485</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/calendar.html">Calendar</a>
-                </li>
-                <li>
-                    <a href="/directory.html">Directory </a>
-                </li>
-                <li>
-                    <a href="/files.html">Files</a>
-                </li>
-                <li>
-                    <a href="/new-scout.html">New Scouts</a>
-                </li>
-                <li>
-                    <a href="/search.html">Search</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="home.html">T485</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/calendar.html">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="/directory.html">Directory </a>
+                    </li>
+                    <li>
+                        <a href="/files.html">Files</a>
+                    </li>
+                    <li>
+                        <a href="/new-scout.html">New Scouts</a>
+                    </li>
+                    <li>
+                        <a href="/search.html">Search</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Resources <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/resources/meeting-minutes.html">Meeting Minutes</a></li>
-                        <li><a href="/resources/pictures.html">Pictures</a></li>
-                        <li><a href="/resources/troop-jobs.html">Troop Jobs</a></li>
-                        <li><a href="/resources/ranks.html">Ranks</a></li>
-                        <li><a href="/resources/forum.html">Forum</a></li>
-                        <li><a href="/resources/app-download.html">Download App</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <ul class="dropdown-menu">
+                            <li><a href="/resources/meeting-minutes.html">Meeting Minutes</a></li>
+                            <li><a href="/resources/pictures.html">Pictures</a></li>
+                            <li><a href="/resources/troop-jobs.html">Troop Jobs</a></li>
+                            <li><a href="/resources/ranks.html">Ranks</a></li>
+                            <li><a href="/resources/forum.html">Forum</a></li>
+                            <li><a href="/resources/app-download.html">Download App</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         About <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/about/faq.html">FAQ</a></li>
-                        <li><a href="/about/merit-badges.html">Merit Badges</a></li>
-                        <li><a href="/about/eagle.html">Path to Eagle</a></li>
-                        <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
-                        <li><a href="/about/plc.html">PLC</a></li>
-                        <li><a href="/about/troop-info.html">Troop Information</a></li>
-                    </ul>
-                </li>
-            </ul>
+                        <ul class="dropdown-menu">
+                            <li><a href="/about/faq.html">FAQ</a></li>
+                            <li><a href="/about/merit-badges.html">Merit Badges</a></li>
+                            <li><a href="/about/eagle.html">Path to Eagle</a></li>
+                            <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
+                            <li><a href="/about/plc.html">PLC</a></li>
+                            <li><a href="/about/troop-info.html">Troop Information</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-<div id="alertBox"></div>
+    </nav>
+    <div id="alertBox"></div>
 
     <a id="toTop" onclick="window.location.hash='#'"></a>
 
-    <div class="container">
+    <div class="container hidden" id="login">
 
-        <div class="row" id="content" class="hidden">
+        <div class="row">
+            <div class="box col-xs-12">
+                <hr>
+                <h2 class="intro-text text-center">Login to continue</h2>
+                <hr>
+                <p>
+                    <a class="btn btn-block btn-social btn-google no-fancy-link" onclick="window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname)">
+                        <span class="fa fa-google"></span> Sign in with Google
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container hidden" id="content">
+
+        <div class="row" class="hidden">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
@@ -193,7 +210,11 @@
         </div>
     </footer>
 
-
+    <!--authentication checkpoint -->
+    <script>
+        $("#loading").addClass("hidden");
+        auth(() => $("#content").removeClass("hidden"), () => $("#login").removeClass("hidden"));
+    </script>
 
 
 </body>
