@@ -45,19 +45,37 @@
 
                     let email = user.providerData[0].email;
 
-                    $.get('members', response => {
-                        if (response) {
-                            let members = response.split('\n');
+                    var request = new XMLHttpRequest();
+                    request.open('GET', 'members', true);
 
-                            // Check if email is on approved list
-                            if (members.indexOf(email) > -1) {
-                                window.location.href = redirectUrl;
+                    request.onreadystatechange = function() {
+                        if (this.readyState === 4) {
+                            if (this.status >= 200 && this.status < 400) {
+                                // Success!
+                                var response = JSON.parse(this.responseText);
+                                let members = response.split('\n');
+
+                                // Check if email is on approved list
+                                if (members.indexOf(email) > -1) {
+                                    window.location.href = redirectUrl;
+                                }
+                                else {
+                                    alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake. You will be redirected back to the home page after closing this popup.');
+                                    // reload page
+                                    window.location.href = "/index.html";
+                                }
                             }
                             else {
-                                alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake. You will be redirected back to the home page after closing this popup.');
-                                // reload page
-                                window.location.href = "/index.html";
+                                console.log("error")
                             }
+                        }
+                    };
+
+                    request.send();
+                    request = null;
+                    $.get('members', response => {
+                        if (response) {
+
                         }
                     });
                     // ...
