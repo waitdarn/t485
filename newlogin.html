@@ -65,12 +65,10 @@ function getQuery(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new R
                 let credential = error.credential;
                 console.log(error);
 
-                // use popup login page
-                alert("An error occured. Using legacy login.")
-                window.location.href ="/popuplogin.html";
+                 firebase.auth().signInWithRedirect(provider);
             });
             
-            firebase.auth().signInWithRedirect(provider);
+           
         
     </script>
 
