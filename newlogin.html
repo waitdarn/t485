@@ -35,8 +35,6 @@
         let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.email');
 
-        firebase.auth().onAuthStateChanged(function(user) {
-            if (user) {
                 firebase.auth().getRedirectResult().then(result => {
                     console.log(result);
                     // This gives you a Google Access Token. You can use it to access the Google API.
@@ -74,11 +72,7 @@
 
                     request.send();
                     request = null;
-                    $.get('members', response => {
-                        if (response) {
-
-                        }
-                    });
+                  
                     // ...
                 }).catch(error => {
                     // Handle Errors here.
@@ -89,13 +83,10 @@
                     // The firebase.auth.AuthCredential type that was used.
                     let credential = error.credential;
                     console.log(error);
+                firebase.auth().signInWithRedirect(provider);
 
                 });
-            }
-            else {
-                firebase.auth().signInWithRedirect(provider);
-            }
-        });
+            
     </script>
 
 </body>
