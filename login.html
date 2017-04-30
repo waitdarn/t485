@@ -110,6 +110,7 @@
         provider.addScope('https://www.googleapis.com/auth/userinfo.email');
 
         firebase.auth().getRedirectResult().then(result => {
+            localStorage.setItem("signin-in-progress", "false");
             console.log(result);
             // This gives you a Google Access Token. You can use it to access the Google API.
             let token = result.credential.accessToken;
@@ -133,7 +134,12 @@
                             window.location.href = redirectUrl;
                         }
                         else {
-                            alert('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake. You will be redirected back to the home page after closing this popup.');
+                            if (confirm('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)')){
+                                localStorage.setItem("signin-in-progress", "true");
+            firebase.auth().signInWithRedirect(provider);
+                            } else {
+                                window.location.href = "/index.html"
+                            }
                             // reload page
                             window.location.href = "/index.html";
                         }
@@ -157,8 +163,17 @@
             // The firebase.auth.AuthCredential type that was used.
             let credential = error.credential;
             console.log(error);
+            if (localStorage.getItem("signin-in-progress") !== "true") {
+                localStorage.setItem("signin-in-progress", "true");
             firebase.auth().signInWithRedirect(provider);
-
+} else {
+    if (alert("Authentication failed with message:" + error.message + "(Code: " + error.code + ") Please contact the webmaster if this was not expected. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)")) {
+        localStorage.setItem("signin-in-progress", "true");
+            firebase.auth().signInWithRedirect(provider);
+    } else {
+        window.location.href = "/index.html"
+    }
+}
         });
     </script>
 
