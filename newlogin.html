@@ -22,6 +22,10 @@ Initalizing login...
 
 
     <script>
+    
+// http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getQuery(e){e=e.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");var c=new RegExp("[\\?&]"+e+"=([^&#]*)"),n=c.exec(location.search);return null===n?"":decodeURIComponent(n[1].replace(/\+/g," "))}
+
             let redirectUrl = getQuery('redir') || 'index.html';
             let provider = new firebase.auth.GoogleAuthProvider();
             provider.addScope('https://www.googleapis.com/auth/userinfo.email');
