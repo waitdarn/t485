@@ -366,6 +366,7 @@
 
 
         function openModal(e, url, name) {
+            
             let title;
             if (name === undefined && e !== undefined) {
                 title = (e.tagName === 'A' ? title = e.innerHTML : e.attributes.alt.nodeValue);
@@ -373,7 +374,6 @@
             else {
                 title = name;
             }
-
             $('#myModalLabel').html(title);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/"));
