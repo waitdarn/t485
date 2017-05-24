@@ -114,6 +114,7 @@
             return null === n ? "" : decodeURIComponent(n[1].replace(/\+/g, " "))
         }
         if (window.location.hash = "#testing" || getQuery("testing") === null || getQuery("testing") === true) {
+            var el = document.getElementById("cancel");
             if (el.classList)
   el.classList.remove("hidden");
 else
