@@ -71,14 +71,21 @@
         p {
             font-family: Arial;
         }
+        
+        .hidden {
+            display:none;
+        }
     </style>
 </head>
 
 <body>
+    <noscript>
+        Javascrpt must be enabled to use the login feature of T485. Please whitelist javascript for this website or the content below will not work.
+    </noscript>
     <br>
     <br>
-    <h1>Initalizing login</h1>
-    <p>This may take up to 15 seconds with a normal internet connection. <a id="cancel">Click here to cancel and return to the main page</a>, or <a href="https://t485.org">Force cancel(if cancel link is broken)</a></p>
+    <h1>Initalizing login<span id="testing" class="hidden">(Testing Mode, will not redirect)</span></h1>
+    <p>This may take up to 15 seconds with a normal internet connection. <a id="cancel" class="btn btn-danger">Click here to cancel and return to the main page</a>, or <a href="https://t485.org" class="text-danger">Force cancel(if cancel link is broken)</a></p>
     <div class="spinner">
         <div class="double-bounce1"></div>
         <div class="double-bounce2"></div>
@@ -106,88 +113,92 @@
                 n = c.exec(location.search);
             return null === n ? "" : decodeURIComponent(n[1].replace(/\+/g, " "))
         }
-
-        let redirectUrl = getQuery('redir') || 'index.html';
-        let provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/userinfo.email');
-        $("#cancel").click(function() {
-            localStorage.setItem("signin-in-progress", "false");
-            firebase.auth().signOut().then(function() {
-                window.location.href = "/";
-            }).catch(function(error) {
-                // An error happened.
-                window.location.href = "/";
+        if (window.location.hash = "#testing" || getQuery("testing") === null || getQuery("testing") === true) {
+            $("#testing").removeClass("hidden");
+        }
+        else {
+            let redirectUrl = getQuery('redir') || 'index.html';
+            let provider = new firebase.auth.GoogleAuthProvider();
+            provider.addScope('https://www.googleapis.com/auth/userinfo.email');
+            $("#cancel").click(function() {
+                localStorage.setItem("signin-in-progress", "false");
+                firebase.auth().signOut().then(function() {
+                    window.location.href = "/";
+                }).catch(function(error) {
+                    // An error happened.
+                    window.location.href = "/";
+                });
             });
-        });
-        firebase.auth().getRedirectResult().then(result => {
-            localStorage.setItem("signin-in-progress", "false");
-            console.log(result);
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            let token = result.credential.accessToken;
-            // The signed-in user info.
-            let user = result.user;
+            firebase.auth().getRedirectResult().then(result => {
+                localStorage.setItem("signin-in-progress", "false");
+                console.log(result);
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                let token = result.credential.accessToken;
+                // The signed-in user info.
+                let user = result.user;
 
-            let email = user.providerData[0].email;
+                let email = user.providerData[0].email;
 
-            var request = new XMLHttpRequest();
-            request.open('GET', 'members', true);
+                var request = new XMLHttpRequest();
+                request.open('GET', 'members', true);
 
-            request.onreadystatechange = function() {
-                if (this.readyState === 4) {
-                    if (this.status >= 200 && this.status < 400) {
-                        // Success!
-                        var response = this.responseText;
-                        let members = response.split('\n');
+                request.onreadystatechange = function() {
+                    if (this.readyState === 4) {
+                        if (this.status >= 200 && this.status < 400) {
+                            // Success!
+                            var response = this.responseText;
+                            let members = response.split('\n');
 
-                        // Check if email is on approved list
-                        if (members.indexOf(email) > -1) {
-                            window.location.href = redirectUrl;
-                        }
-                        else {
-                            if (confirm('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)')) {
-                                localStorage.setItem("signin-in-progress", "true");
-                                firebase.auth().signInWithRedirect(provider);
+                            // Check if email is on approved list
+                            if (members.indexOf(email) > -1) {
+                                window.location.href = redirectUrl;
                             }
                             else {
-                                window.location.href = "/index.html"
+                                if (confirm('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)')) {
+                                    localStorage.setItem("signin-in-progress", "true");
+                                    firebase.auth().signInWithRedirect(provider);
+                                }
+                                else {
+                                    window.location.href = "/index.html"
+                                }
+                                // reload page
+                                window.location.href = "/index.html";
                             }
-                            // reload page
-                            window.location.href = "/index.html";
+                        }
+                        else {
+                            console.log("error")
                         }
                     }
-                    else {
-                        console.log("error")
-                    }
-                }
-            };
+                };
 
-            request.send();
-            request = null;
+                request.send();
+                request = null;
 
-            // ...
-        }).catch(error => {
-            // Handle Errors here.
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            // The email of the user's account used.
-            let email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            let credential = error.credential;
-            console.log(error);
-            if (localStorage.getItem("signin-in-progress") !== "true") {
-                localStorage.setItem("signin-in-progress", "true");
-                firebase.auth().signInWithRedirect(provider);
-            }
-            else {
-                if (alert("Authentication failed with message:" + error.message + "(Code: " + error.code + ") Please contact the webmaster if this was not expected. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)")) {
+                // ...
+            }).catch(error => {
+                // Handle Errors here.
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                // The email of the user's account used.
+                let email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                let credential = error.credential;
+                console.log(error);
+                if (localStorage.getItem("signin-in-progress") !== "true") {
                     localStorage.setItem("signin-in-progress", "true");
                     firebase.auth().signInWithRedirect(provider);
                 }
                 else {
-                    window.location.href = "/index.html"
+                    if (alert("Authentication failed with message:" + error.message + "(Code: " + error.code + ") Please contact the webmaster if this was not expected. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)")) {
+                        localStorage.setItem("signin-in-progress", "true");
+                        firebase.auth().signInWithRedirect(provider);
+                    }
+                    else {
+                        window.location.href = "/index.html"
+                    }
                 }
-            }
-        });
+            });
+        }
     </script>
 
 </body>
