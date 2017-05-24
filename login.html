@@ -114,13 +114,16 @@
             return null === n ? "" : decodeURIComponent(n[1].replace(/\+/g, " "))
         }
         if (window.location.hash = "#testing" || getQuery("testing") === null || getQuery("testing") === true) {
-            $("#testing").removeClass("hidden");
+            if (el.classList)
+  el.classList.remove("hidden");
+else
+  el.hidden = el.hidden.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
         }
         else {
             let redirectUrl = getQuery('redir') || 'index.html';
             let provider = new firebase.auth.GoogleAuthProvider();
             provider.addScope('https://www.googleapis.com/auth/userinfo.email');
-            $("#cancel").click(function() {
+            document.getElementById("cancel").addEventListener("click", function() {
                 localStorage.setItem("signin-in-progress", "false");
                 firebase.auth().signOut().then(function() {
                     window.location.href = "/";
