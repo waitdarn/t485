@@ -61,12 +61,14 @@
             right: 0;
             margin: auto;
         }
+        
         body {
-            background-color:#2c3e50;
-            
+            background-color: #2c3e50;
             text-align: center;
         }
-        h1, p {
+        
+        h1,
+        p {
             font-family: Arial;
         }
     </style>
@@ -76,7 +78,7 @@
     <br>
     <br>
     <h1>Initalizing login</h1>
-    <p>This may take up to 15 seconds with a normal internet connection. <a href="/">Click here to cancel and return to the main page</a></p>
+    <p>This may take up to 15 seconds with a normal internet connection. <a id="cancel">Click here to cancel and return to the main page</a>, or <a href="https://t485.org">Force cancel(if cancel link is broken)</a></p>
     <div class="spinner">
         <div class="double-bounce1"></div>
         <div class="double-bounce2"></div>
@@ -108,7 +110,15 @@
         let redirectUrl = getQuery('redir') || 'index.html';
         let provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/userinfo.email');
-
+        $("#cancel").click(function() {
+            localStorage.setItem("signin-in-progress", "false");
+            firebase.auth().signOut().then(function() {
+                window.location.href = "/";
+            }).catch(function(error) {
+                // An error happened.
+                window.location.href = "/";
+            });
+        });
         firebase.auth().getRedirectResult().then(result => {
             localStorage.setItem("signin-in-progress", "false");
             console.log(result);
@@ -134,10 +144,11 @@
                             window.location.href = redirectUrl;
                         }
                         else {
-                            if (confirm('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)')){
+                            if (confirm('Your email address is not a member of t485. Please try again with a diffrent email address, or contact the webmaster if you believen this is a mistake. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)')) {
                                 localStorage.setItem("signin-in-progress", "true");
-            firebase.auth().signInWithRedirect(provider);
-                            } else {
+                                firebase.auth().signInWithRedirect(provider);
+                            }
+                            else {
                                 window.location.href = "/index.html"
                             }
                             // reload page
@@ -165,15 +176,17 @@
             console.log(error);
             if (localStorage.getItem("signin-in-progress") !== "true") {
                 localStorage.setItem("signin-in-progress", "true");
-            firebase.auth().signInWithRedirect(provider);
-} else {
-    if (alert("Authentication failed with message:" + error.message + "(Code: " + error.code + ") Please contact the webmaster if this was not expected. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)")) {
-        localStorage.setItem("signin-in-progress", "true");
-            firebase.auth().signInWithRedirect(provider);
-    } else {
-        window.location.href = "/index.html"
-    }
-}
+                firebase.auth().signInWithRedirect(provider);
+            }
+            else {
+                if (alert("Authentication failed with message:" + error.message + "(Code: " + error.code + ") Please contact the webmaster if this was not expected. Do you want to try again?(OK for yes, Cancel to be redirected to the home page)")) {
+                    localStorage.setItem("signin-in-progress", "true");
+                    firebase.auth().signInWithRedirect(provider);
+                }
+                else {
+                    window.location.href = "/index.html"
+                }
+            }
         });
     </script>
 
