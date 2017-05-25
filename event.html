@@ -238,7 +238,7 @@
         $(".at").html("@");
         $(".event-page-url").html("https://t485.org/event.html?event=" + getQuery("event"));
         if (getQuery("event") === null || getQuery("event") === "") {
-            window.location.href = "/resources.html";
+            window.location.href = "/files.html";
         }
         firebase.database().ref('/events/' + encodeURIComponent(getQuery("event"))
             /*URL is url safe anyways, this is to trigger the data = null 404
