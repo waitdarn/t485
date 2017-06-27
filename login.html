@@ -85,6 +85,7 @@
         h1,
         p {
             font-family: Arial;
+            color:#000;
         }
         
         .hidden {
@@ -94,7 +95,7 @@
 </head>
 
 <body><noscript>Javascrpt must be enabled to use the login feature of T485. Please whitelist javascript for this website or the content below will not work. </noscript><br><br>
-    <h1>Initalizing login<span id="testing" class="hidden">(Testing Mode, will not redirect)</span></h1>
+    <h1>Initalizing login<span id="testing" class="hidden">(Testing Mode, will not redirect or authenticate)</span></h1>
     <p>This may take up to 15 seconds with a normal internet connection. <a id="cancel" class="btn btn-danger">Click here to cancel and return to the main page</a>, or <a href="https://t485.org" class="text-danger">Force cancel(if cancel link is broken)</a></p>
     <div
         class="spinner">
@@ -129,9 +130,18 @@
             }
 
             if (window.location.hash === "#testing" || getQuery("testing") === null || getQuery("testing") === true) {
-                var el = document.getElementById("cancel");
+                var el = document.getElementById("testing");
                 if (el.classList) el.classList.remove("hidden");
                 else el.hidden = el.hidden.replace(new RegExp('(^|\\b)' + "hidden".split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+                document.getElementById("cancel").addEventListener("click", function() {
+                    localStorage.setItem("signin-in-progress", "false");
+                    firebase.auth().signOut().then(function() {
+                        window.location.href = "/";
+                    }).catch(function(error) {
+                        // An error happened.
+                        window.location.href = "/";
+                    });
+                });
             }
 
             else {
