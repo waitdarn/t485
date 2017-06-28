@@ -145,7 +145,7 @@
             }
 
             else {
-                let redirectUrl = getQuery('redir') || 'index.html';
+                let redirectUrl = decodeURIComponent(getQuery('redir')) || 'index.html';
                 let provider = new firebase.auth.GoogleAuthProvider();
                 provider.addScope('https://www.googleapis.com/auth/userinfo.email');
                 document.getElementById("cancel").addEventListener("click", function() {
@@ -175,6 +175,7 @@
                                 let members = response.split('\n');
                                 // Check if email is on approved list
                                 if (members.indexOf(email) > -1) {
+
                                     window.location.href = redirectUrl;
                                 }
                                 else {

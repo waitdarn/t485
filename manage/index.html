@@ -9,7 +9,7 @@
 
 <script src="/js/combined.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-s<script>
+<script>
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
@@ -39,7 +39,11 @@ s<script>
 <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
 
 <link rel="manifest" href="/manifest.json">
-
+<style>
+    .hidden {
+        display:none;
+    }
+</style>
 <script>
     try {
         localStorage.setItem('foo', 'bar');
@@ -56,7 +60,7 @@ s<script>
 </head>
 
 <body>
-    <img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
+    <img src="/img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
     <!-- Navigation -->
 <nav class="navbar navbar-default">
     <div class="container">
@@ -123,36 +127,26 @@ s<script>
     </div>
 </nav>
 <div id="alertBox"></div>
-<!--UNCOMMENT IF USING AUTHENTICATION
-    <p id="loading">Loading...</p>
-    <div class="container hidden" id="login">
 
-        <div class="row">
-            <div class="box col-xs-12">
-                <hr>
-                <h2 class="intro-text text-center">Login to continue</h2>
-                <hr>
-                <p>
-                    <a class="btn btn-block btn-social btn-google no-fancy-link" onclick="window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname)">
-                        <span class="fa fa-google"></span> Sign in with Google
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    -->
-    <div class="container hidden" id="content">
+    <div class="container" id="content">
 
         <div class="row">
             <div class="box">
                 <div class="col-lg-12">
                     <hr>
-                    <h2 class="intro-text text-center">Work in Progress</h2>
+                    <h2 class="intro-text text-center">Manage Website</h2>
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>This page is work-in-progress. We apologize for any inconvenience this may cause.</p>
-
+                    <p id="authorizing">Authorizing...</p>
+                    <p id="not-logged-in" class="hidden">Please <a href="/login.html?redir=%2Fmanage%2F">login</a> to continue.</p>
+                    <p id="not-approved" class="hidden">Sorry, but you are not an approved manager of the website.</p>
+                    <p id="approved-conditional" class="hidden">You have been approved to manage <span id="approved-conditional-section">select parts</span> of the website. <span id="approved-conditional-link">Loading link...</span></p>
+                    <div id="approved-full" class="hidden"><p>You have been approved to manage the entire website. Choose a section to manage below:<br></p>
+                    <ul>
+                        <li><a href="/manage/meeting-minutes.html">Meeting Minutes & Headcounts</a></li>
+                    </ul>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -175,13 +169,22 @@ s<script>
         </div>
     </div>
 </footer>
-<!--authentication checkpoint --><!--UNCOMMENT IF USING AUTHENTICATION
+
     <script>
-        $("#loading").addClass("hidden");
-        auth(() => $("#content").removeClass("hidden"), () => $("#login").removeClass("hidden"));
+        firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    firebase.database().ref
+  } else {
+    // No user is signed in.
+    $("#authorizing").addClass("hidden");
+    $("#not-logged-in").removeClass("hidden");
+  }
+});
+        
+        
     </script>
-    -->
-    
+
 </body>
 
 </html>
