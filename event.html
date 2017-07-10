@@ -617,7 +617,6 @@
 
         function modalURLConverter(url, node, on_save, name) {
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
-            url = tinymce.convertURL(url)
             if (url.match(modalreg)) {
                 return "javascript:openModal(this, '" + url + "');";
             }
