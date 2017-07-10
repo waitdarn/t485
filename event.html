@@ -637,7 +637,7 @@
             console.log(name)
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
             if (url.match(modalreg)) {
-                return "javascript:openModal('" + url.replace("/edit", "/moiblebasic") + "', '" + node + "');";
+                return "javascript:openModal(this, '" + url.replace("/edit", "/moiblebasic") + "', '" + node + "');";
             }
             else {
                 return url;
@@ -647,8 +647,8 @@
 
         }
 
-        function openModal(url, name) {
-
+        function openModal(el, url, name) {
+            console.log($(el).html())
             $('#myModalLabel').html(name);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/edit"));
