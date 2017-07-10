@@ -634,10 +634,10 @@
 
         function modalURLConverter(url, node, on_save, name) {
             console.log(node);
-            console.log(name)
+            console.log(name);
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
             if (url.match(modalreg)) {
-                return "javascript:openModal(this, '" + url.replace("/edit", "/moiblebasic") + "', '" + node + "');";
+                return "javascript:openModal(this, '" + url.replace("/edit", "/moiblebasic") + "');";
             }
             else {
                 return url;
