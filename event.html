@@ -634,6 +634,7 @@
 
         function modalURLConverter(url, node, on_save, name) {
             console.log(node);
+            console.log(name)
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
             if (url.match(modalreg)) {
                 return "javascript:openModal('" + url.replace("/edit", "/moiblebasic") + "', '" + node + "');";
