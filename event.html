@@ -266,6 +266,7 @@
         });
 
         function main() {
+            /*
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
             $("#event-description a").each(function(i) {
                 console.log("ASDF213");
@@ -283,6 +284,7 @@
 
                 }
             });
+            */
             if (getQuery("password") !== null) {
                 firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', snapshot => {
 
@@ -295,8 +297,24 @@
                             $("#view").click(() => {
                                 reloadPage();
                             });
+
+                            function modalURLConverter(url, node, on_save, name) {
+                                var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
+                                url = tinymce.convertURL(url)
+                                if (url.match(modalreg)) {
+                                    return "javascript:openModal(this, '" + url + "');";
+                                }
+                                else {
+                                    return url;
+                                }
+
+
+
+                            }
+
                             tinymce.init({
                                 selector: "#event-title", //'h2.editable',
+
                                 inline: true,
                                 plugins: [
                                     "textcolor colorpicker link"
@@ -318,6 +336,7 @@
 
                             tinymce.init({
                                 selector: "#event-description", //'div.editable',
+                                urlconverter_callback: 'modalURLConverter',
                                 inline: true,
                                 plugins: [
                                     "advlist autolink lists link image charmap print preview",
@@ -451,6 +470,7 @@
                             tinymce.init({
                                 selector: "#event-description", //'div.editable',
                                 inline: true,
+                                urlconverter_callback: 'modalURLConverter',
                                 plugins: [
                                     "advlist autolink lists link image charmap print preview",
                                     "searchreplace visualblocks fullscreen textcolor colorpicker",
@@ -593,6 +613,20 @@
                 //somthing should have already happened
                 //window.location.href = 'login.html?redir=event.html' + encodeURIComponent(window.location.search);
             });
+        }
+
+        function modalURLConverter(url, node, on_save, name) {
+            var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
+            url = tinymce.convertURL(url)
+            if (url.match(modalreg)) {
+                return "javascript:openModal(this, '" + url + "');";
+            }
+            else {
+                return url;
+            }
+
+
+
         }
 
         function openModal(e, url, name) {
