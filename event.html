@@ -628,7 +628,7 @@
         function modalURLConverter(url, node, on_save, name) {
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
             if (url.match(modalreg)) {
-                return "javascript:openModal('" + url + "', '" + name + "');";
+                return "javascript:openModal('" + url.replace("/edit", "/moiblebasic") + "', '" + name + "');";
             }
             else {
                 return url;
@@ -640,10 +640,10 @@
 
         function openModal(url, name) {
 
-
+            console.log("url")
             $('#myModalLabel').html(name);
             $('#ifr').attr('src', url);
-            $('#mdlk').attr('href', url.replace("/mobilebasic", "/"));
+            $('#mdlk').attr('href', url.replace("/mobilebasic", "/edit"));
             $('#myModal').modal('show');
         }
 
