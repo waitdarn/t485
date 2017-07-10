@@ -63,7 +63,8 @@ $(window).scroll(function() {
     }
 });
 
-
+//email bot obfuscator sort of...
+$(".at").text("@")
 // Set LESS async to true to prevent warning on Chrome
 less = {async: true};
 
