@@ -266,7 +266,10 @@
                     if ($(this).attr("href").match(modalreg)){
                         console.log($(this).attr("href"));
                         console.log($(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"))
-                        $(this).attr("href", "javascript:" + $(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"));
+                        var attrtxt = $(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');");
+                        console.log("-")
+                        console.log(attrtxt)
+                        $(this).setAttribute("href", "javascript:" + attrtxt);
                         console.log($(this).attr("href"));
                         
                     }
