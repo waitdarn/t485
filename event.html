@@ -648,8 +648,8 @@
         }
 
         function openModal(el, url, name) {
-            console.log($(el).html())
-            $('#myModalLabel').html(name);
+            console.log(e.innerHTML)
+            $('#myModalLabel').html(e.innerHTML);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/edit"));
             $('#myModal').modal('show');
