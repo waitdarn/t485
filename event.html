@@ -266,9 +266,9 @@
                     if ($(this).attr("href").match(modalreg)){
                         console.log($(this).attr("href"));
                         console.log($(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"))
-                        $(this).attr("href", "javascript" + $(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"));
+                        $(this).attr("href", "javascript:" + $(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"));
                         console.log($(this).attr("href"));
-                        $(this).attr("href", null);
+                        
                     }
                 });
                 $("#print-url").html("<a href='" + "https://t485.org/event.html?event=" + getQuery("event") + "'>" + "https://t485.org/event.html?event=" + getQuery("event") + "</a>");
