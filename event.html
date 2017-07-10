@@ -259,7 +259,7 @@
                 $(".event-title").html(data.title);
                 $(".event-description").html(data.description);
                 var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf))$/;
-                $(".event-description a").each(function(i) {
+                $("#event-description a").each(function(i) {
                     if ($(this).attr("href").match(modalreg)){
                         $(this).attr("onclick", $(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"));
                         $(this).attr("href", null);
