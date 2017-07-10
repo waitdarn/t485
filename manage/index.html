@@ -73,7 +73,7 @@
                 <span class="icon-bar"></span>
             </button>
             <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <a class="navbar-brand" href="home.html">T485</a>
+            <a class="navbar-brand" href="/">T485</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -141,10 +141,18 @@
                     <p id="authorizing">Authorizing...</p>
                     <p id="not-logged-in" class="hidden">Please <a href="/login.html?redir=%2Fmanage%2F">login</a> to continue.</p>
                     <p id="not-approved" class="hidden">Sorry, but you are not an approved manager of the website.</p>
-                    <p id="approved-conditional" class="hidden">You have been approved to manage <span id="approved-conditional-section">select parts</span> of the website. <span id="approved-conditional-link">Loading link...</span></p>
+                    <div id="approved-conditional" class="hidden"><p>You have been approved to manage the part(s) of the website shown below. Choose a section to manage below:<br></p>
+                    <ul>
+                        <li><a href="/manage/meeting-minutes.html" class="hidden">Meeting Minutes & Headcounts</a></li>
+                        <li><a href="/manage/meeting-minutes.html" class="hidden">Test 1</a></li>
+                        <li><a href="/manage/meeting-minutes.html" class="hidden">Test 2</a></li>
+                    </ul>
+                    </div>
                     <div id="approved-full" class="hidden"><p>You have been approved to manage the entire website. Choose a section to manage below:<br></p>
                     <ul>
                         <li><a href="/manage/meeting-minutes.html">Meeting Minutes & Headcounts</a></li>
+                        <li><a href="/manage/meeting-minutes.html">Test 1</a></li>
+                        <li><a href="/manage/meeting-minutes.html">Test 2</a></li>
                     </ul>
                     </div>
                 </div>
@@ -174,7 +182,24 @@
         firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
-    firebase.database().ref
+    firebase.database().ref("/managers/" + user.uid).once("value").then(function(snapshot){
+        if (snapshot.val() === null || snapshot.val() === undefined) {
+            $("#authorizing").addClass("hidden");
+            $("#not-approved").removeClass("hidden");
+        } else if (snapshot.val() === "all") {
+            $("#authorizing").addClass("hidden");
+    $("#approved-full").removeClass("hidden");
+        } else {
+            console.log(snapshot.val())
+            var authorizations = snapshot.val().split(",");
+            for (var i = 0; i < authorizations.length; i ++) {
+                if ($("#" + authorizations).EXISTS) {
+                    
+                }
+            }
+        }
+        
+    });
   } else {
     // No user is signed in.
     $("#authorizing").addClass("hidden");
