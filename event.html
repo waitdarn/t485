@@ -233,7 +233,7 @@
         auth(() => $("#content").removeClass("hidden"), () => $("#login").removeClass("hidden"));
     </script>
     <script>
-        /* global firebase $ getQuery main*/
+        /* global firebase $ getQuery tinymce btoa auth jsPDF*/
 
         $(".at").html("@");
         $(".event-page-url").html("https://t485.org/event.html?event=" + getQuery("event"));
@@ -264,10 +264,25 @@
             }
 
         });
-    </script>
-    <script>
-        /* global firebase $ getQuery tinymce btoa auth jsPDF*/
+
         function main() {
+            var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
+            $("#event-description a").each(function(i) {
+                console.log("ASDF213");
+                console.log(i);
+                console.log($(this));
+                if ($(this).attr("href").match(modalreg)) {
+                    console.log($(this).attr("href"));
+                    console.log($(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"));
+                    var attrtxt = $(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');");
+                    console.log("---");
+                    console.log(attrtxt);
+                    $(this).attr("onclick", attrtxt);
+                    $(this).attr("href", null);
+                    console.log($(this).attr("href"));
+
+                }
+            });
             if (getQuery("password") !== null) {
                 firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', snapshot => {
 
@@ -617,27 +632,7 @@
             window.location.href = window.location.pathname + window.location.search + window.location.hash;
         }
     </script>
-    <script>
-        $(document).load(function() {
-            var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
-            $("#event-description a").each(function(i) {
-                console.log("ASDF213");
-                console.log(i);
-                console.log($(this));
-                if ($(this).attr("href").match(modalreg)) {
-                    console.log($(this).attr("href"));
-                    console.log($(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"))
-                    var attrtxt = $(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');");
-                    console.log("---")
-                    console.log(attrtxt)
-                    $(this).attr("onclick", attrtxt);
-                    $(this).attr("href", null);
-                    console.log($(this).attr("href"));
 
-                }
-            });
-        });
-    </script>
     <!-- Modal -->
     <div class="modal fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
