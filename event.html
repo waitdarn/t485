@@ -668,6 +668,9 @@
         function reloadPage() {
             window.location.href = window.location.pathname + window.location.search + window.location.hash;
         }
+        $(window).bind('beforeunload', function() {
+            return 'Warning: All unsaved changes will be lost(You must save the title and body text separately). Do you still want to leave?';
+        });
     </script>
 
     <!-- Modal -->
