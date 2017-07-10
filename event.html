@@ -233,7 +233,7 @@
         auth(() => $("#content").removeClass("hidden"), () => $("#login").removeClass("hidden"));
     </script>
     <script>
-        /* global firebase $ getQuery tinymce btoa auth jsPDF*/
+        /* global firebase $ getQuery main*/
 
         $(".at").html("@");
         $(".event-page-url").html("https://t485.org/event.html?event=" + getQuery("event"));
@@ -264,7 +264,8 @@
             }
 
         });
-
+</script><script>
+/* global firebase $ getQuery tinymce btoa auth jsPDF*/
         function main() {
             if (getQuery("password") !== null) {
                 firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', snapshot => {
