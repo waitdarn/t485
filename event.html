@@ -258,23 +258,7 @@
                 $("#event-description").html(data.description);
                 $(".event-title").html(data.title);
                 $(".event-description").html(data.description);
-                var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
-                $("#event-description a").each(function(i) {
-                    console.log("ASDF213");
-                    console.log(i);
-                    console.log($(this));
-                    if ($(this).attr("href").match(modalreg)){
-                        console.log($(this).attr("href"));
-                        console.log($(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"))
-                        var attrtxt = $(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');");
-                        console.log("---")
-                        console.log(attrtxt)
-                        $(this).attr("onclick", attrtxt);
-                        $(this).attr("href", null);
-                        console.log($(this).attr("href"));
-                        
-                    }
-                });
+                
                 $("#print-url").html("<a href='" + "https://t485.org/event.html?event=" + getQuery("event") + "'>" + "https://t485.org/event.html?event=" + getQuery("event") + "</a>");
                 main();
             }
@@ -627,6 +611,23 @@
         function reloadPage() {
             window.location.href = window.location.pathname + window.location.search + window.location.hash;
         }
+        var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
+                $("#event-description a").each(function(i) {
+                    console.log("ASDF213");
+                    console.log(i);
+                    console.log($(this));
+                    if ($(this).attr("href").match(modalreg)){
+                        console.log($(this).attr("href"));
+                        console.log($(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');"))
+                        var attrtxt = $(this).attr("href").replace(modalreg, "openModal(this, '" + $(this).attr("href") + "');");
+                        console.log("---")
+                        console.log(attrtxt)
+                        $(this).attr("onclick", attrtxt);
+                        $(this).attr("href", null);
+                        console.log($(this).attr("href"));
+                        
+                    }
+                });
     </script>
     <!-- Modal -->
     <div class="modal fade" id="share-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
