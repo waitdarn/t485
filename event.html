@@ -386,8 +386,18 @@
             });
 
             function deleteLink(id) {
+                console.log("deleting: " + id)
                 firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
-                $("#share-modal").modal("hide");
+                console.log("deleted: " + id)
+                $("#links").html("");
+
+                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", data => {
+
+                    console.log(data.val());
+                    console.log(data.key);
+
+                    $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
+                });
 
 
             }
@@ -630,7 +640,7 @@
 
         function openModal(url, name) {
 
-            
+
             $('#myModalLabel').html(title);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/"));
