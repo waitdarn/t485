@@ -234,7 +234,22 @@
     </script>
     <script>
         /* global firebase $ getQuery tinymce btoa auth jsPDF*/
+        function deleteLink(id) {
+            console.log("deleting: " + id)
+            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
+            console.log("deleted: " + id)
+            $("#links").html("");
 
+            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", data => {
+
+                console.log(data.val());
+                console.log(data.key);
+
+                $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
+            });
+
+
+        }
         $(".at").html("@");
         $(".event-page-url").html("https://t485.org/event.html?event=" + getQuery("event"));
         if (getQuery("event") === null || getQuery("event") === "") {
@@ -385,22 +400,7 @@
 
             });
 
-            function deleteLink(id) {
-                console.log("deleting: " + id)
-                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
-                console.log("deleted: " + id)
-                $("#links").html("");
 
-                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", data => {
-
-                    console.log(data.val());
-                    console.log(data.key);
-
-                    $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
-                });
-
-
-            }
             auth(user => {
                 firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
                     let uid = snapshot.val().owner;
