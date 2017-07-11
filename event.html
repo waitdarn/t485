@@ -650,6 +650,7 @@
         function openModal(el, url) {
             console.log(url);
             console.log(el);
+            //workaround to a bug in which the title is not shown
             el.setAttribute('id', "modallink" + Mcounter);
             $('#document-view-label').html(document.getElementById("modallink" + Mcounter).innerHTML);
             $('#ifr').attr('src', url);
