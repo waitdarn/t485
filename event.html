@@ -650,10 +650,10 @@
         function openModal(e, url, name) {
             console.log(e);
             console.log(e.innerHTML);
-            $('#myModalLabel').html(e.innerHTML);
+            $('#document-view-label').html(e.innerHTML);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/edit"));
-            $('#myModal').modal('show');
+            $('#document-view').modal('show');
         }
 
         function requestFullScreen() {
@@ -758,12 +758,12 @@
     </div>
     </div>
     <!-- Modal -->
-    <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+    <div aria-hidden="true" aria-labelledby="document-view-label" class="modal fade" id="document-view" role="dialog" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Content Unavaliable</h4>
+                    <h4 class="modal-title" id="document-view-label">Content Unavaliable</h4>
                 </div>
 
                 <div class="modal-body">
@@ -771,7 +771,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <a class="btn btn-primary" href="https://google.com" id="mdlk" target="_blank" type="button">Open in new tab</a>
+                    <a class="btn btn-primary" href="" id="mdlk" target="_blank" type="button">Open in new tab</a>
                     <button class="btn btn-primary" onclick="requestFullScreen();">Fullscreen mode</button>
                     <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
                 </div>
