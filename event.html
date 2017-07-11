@@ -646,20 +646,23 @@
 
 
         }*/
-        $("#event-description a").each(function(i) {
-            console.log(i);
-            var url = $(this).attr("href");
-            var html = $(this).html()
-            console.log(url);
-            console.log(html);
-            console.log($(this));
-           
-            var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
-            if (url.match(modalreg)) {
-                $(this).attr("onclick", "openModal('" + url + "', '" + html + "')");
-            }
-            
+        $(document).ready(function() {
+            $("#event-description a").each(function(i) {
+                console.log(i);
+                var url = $(this).attr("href");
+                var html = $(this).html()
+                console.log(url);
+                console.log(html);
+                console.log($(this));
+
+                var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
+                if (url.match(modalreg)) {
+                    $(this).attr("onclick", "openModal('" + url + "', '" + html + "')");
+                }
+
+            });
         });
+
 
         function openModal(url, name) {
 
