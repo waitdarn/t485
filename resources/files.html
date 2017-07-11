@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+
+    <title>Files - Troop 485</title>
+
+<script src="js/combined.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
+    authDomain: "t485.firebaseapp.com",
+    databaseURL: "https://t485.firebaseio.com",
+    storageBucket: "project-2556333409340273878.appspot.com",
+    messagingSenderId: "510743665020"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="js/t485.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/t485.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+
+<link rel="manifest" href="/manifest.json">
+
+<script>
+    try {
+        localStorage.setItem('foo', 'bar');
+    } catch (e) {
+        if (e.message === 'The quota has been exceeded.') {
+            // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
+            // firebase will throw error, so better to alert user now
+            alert('Private browsing is not supported!');
+        }
+        throw '';
+    }
+</script>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
+
+<!-- Navigation -->
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+            <a class="navbar-brand" href="/">T485</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/calendar.html">Calendar</a>
+                </li>
+                <li>
+                    <a href="/directory.html">Directory </a>
+                </li>
+                
+                <li>
+                    <a href="/new-scout.html">New Scouts</a>
+                </li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/resources/files.html">Files</a></li>
+                        <li><a href="/resources/event-pages.html">Event Pages</a></li>
+                        <li><a href="/resources/meeting-minutes.html">Meeting Minutes/Reflections</a></li>
+                        <li><a href="/resources/pictures.html">Pictures</a></li>
+                        <li><a href="/resources/app-download.html">Download App</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        About <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/about/faq.html">FAQ</a></li>
+                        <li><a href="/about/merit-badges.html">Merit Badges</a></li>
+                        <li><a href="/about/eagle.html">Path to Eagle</a></li>
+                        <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
+                        <li><a href="/about/plc.html">PLC</a></li>
+                        <li><a href="/about/troop-info.html">Troop Information</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="alertBox"></div>
+
+    <a id="toTop" onclick="window.location.hash='#'"></a>
+<p id="loading2">Loading...</p>
+    <div class="container hidden" id="login">
+
+        <div class="row" id="search">
+            <div class="box col-xs-12">
+                <hr>
+                <h2 class="intro-text text-center">Login to continue</h2>
+                <hr>
+                <p>
+                    <a class="btn btn-block btn-social btn-google no-fancy-link" onclick="window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname)">
+                        <span class="fa fa-google"></span> Sign in with Google
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container hidden" id="loading">
+        <div class="row">
+            <div class="box col-md-12">
+
+                <div>
+                    <hr>
+                    <h2 class="intro-text text-center">Loading. Please wait</h2>
+                    <hr>
+                    <p>Your event page is being created. A message is being posted on <a href="https://t485.slack.com/messages/general/" target="_blank">#general</a> on slack. Please wait. This usually takes around 15 seconds or less.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container hidden" id="main">
+
+        <div class="row">
+            
+            <div class="box col-md-12">
+                <div id="resource-list">
+                    <hr>
+                    <h2 class="intro-text text-center">Resources</h2>
+                    <hr>
+                    <button class="btn btn-default" onclick="window.location.href = 'logout.html?redir=files.html'">Log out</button>
+                    <ul>
+                        <li><a onclick="openModal(this, 'https://www.t485.org/resources/other-files/Camp-Makualla.pdf');">Summer Camp 2016: Camp Makulla</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic');">Council Resource</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1dtMPUhKv6eOfKaxk3iMwnRbovgu0yZt6J0mH8wPdBfY/mobilebasic');">Things to Remember</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1ssoNp8eQqNzkeJAefQdLk6aqu5bEMGarUHX9RvpV1BU/mobilebasic');">Resume Template</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1a56ZOlhhT1MT7QGXwLSzmsD5l1cahH44O6kUFNTAJ3I/mobilebasic');">Packing List</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/16ft2MS85ZYynyJC9lMIo6Kp8yaJQfcGmY62ayj97_uo/mobilebasic');">TLT2016 - Lecture Notes</a></li>
+                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FNew%20Boy%20Scout%20Requirements%202016%20Insert.pdf?alt=media&amp;token=3782b26b-c79c-49f3-bc35-a32f0ce0a7a9');">New Boy Scout Requirements 2016 Insert.pdf (343.8 KB)</a></li>
+                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FPatrol%20Leader%20Handbook.pdf?alt=media&amp;token=2c696c57-719e-4c23-9e70-d1154bd3f55e');">Patrol Leader Handbook.pdf (3.2 MB)</a></li>
+                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FBSA%20Fieldbook.pdf?alt=media&amp;token=06cf3993-def1-4e2d-b461-373ce77712a2');">BSA Fieldbook.pdf (69.8 MB)</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=1cqU9DQ0c4RXcm0GJ-gJJ8pRP8Ah3WsYApBlaLbrnRhw&amp;start=false&amp;loop=false');">Year End Party Presentation</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=16vDoqikgorGn4utl1sHBkMhXqbEbvwtGkJ5xMMfbm-o&amp;start=false&amp;loop=false');">2016 Advancement Update</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=15e_mFNG0x4JIhqbCOZ3CDkVm_nrmEnXYE1RFOEQKd-w&amp;start=false&amp;loop=false');">Advancement Presentation</a></li>
+                        <li><a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1fjrkSV_svlleL1ltqJGgozIvEafzmmiMPCe7xEqnngI/pubhtml?widget=true&headers=false');">Events</a></li>
+                        <li><a onclick="openModal(this, 'https://drive.google.com/embeddedfolderview?id=0BygadbpNuUSXUXhRMUlycW0yNGs#' + (window.innerWidth > 767 ? 'grid' : 'list'));">Event Cheatsheets</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        
+
+        <!--
+        <div class="row">
+            <div class="box col-md-12">
+                <hr>
+                <h2 class="intro-text text-center">Add <strong>Files</strong></h2>
+                <hr>
+                <p>
+                    You can upload your own resources. Be sure to provide a
+                    meaningful event name or title. Please note that the title
+                    of the file you upload is the name people see. If you want
+                    to delete a file, email the webmaster with your event
+                    name/title.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <label for="event-name">Event name/title:</label>
+                        <input type="text" class="form-control" id="event-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="files">File upload (you can select multiple)</label>
+                        <input type="file" id="files" name="files[]" multiple class="form-control-file" required>
+                    </div>
+                    <div id="upload-progress"></div>
+                    <div class="form-group">
+                        <label for="drive-urls">Google Docs or Google Slides url and file name (one per line)</label>
+                        <textarea class="form-control" id="drive-urls" rows="5" placeholder="https://docs.google.com/document/d/1W98GkzMbu3MhVX4bq981dyjifWLYr3Bat6ej-iE52Os/mobilebasic,This is a test file"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" id="submit" value="Submit" class="btn btn-default">
+                    </div>
+                </form>
+            </div>
+        </div>
+        -->
+
+        <script src="https://static.getclicky.com/js"></script>
+        <script>try{clicky.init(100869133)}catch(e){}</script>
+
+        <noscript><p><img alt="Clicky" width="1" height="1" src="https://in.getclicky.com/100869133ns.gif"></p></noscript>
+    </div>
+    <!-- /.container -->
+<footer>
+    <div class="container">
+        <div class="box">
+            <div class="col-lg-12 text-center">
+                <p>Copyright &copy; 2006-2017 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="myModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Content Unavaliable</h4>
+                </div>
+
+                <div class="modal-body">
+                    <iframe frameborder="0" height="90%" id="ifr" name="ifr" src="" width="90%">Unfortunately, this content is unavaliable at this time. Please give feedback for this bug, and view the document on your google drive.</iframe>
+                </div>
+
+                <div class="modal-footer">
+                    <a class="btn btn-primary" href="https://google.com" id="mdlk" target="_blank" type="button">Open in new tab</a>
+                    <button class="btn btn-primary" onclick="requestFullScreen();">Fullscreen mode</button>
+                    <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+<!--authentication checkpoint -->
+    <script>
+        $("#loading2").addClass("hidden");
+        auth(() => $("#main").removeClass("hidden"), () => $("#login").removeClass("hidden"));
+    </script>
+    <script>
+        /* global firebase $ auth */
+
+        String.prototype.replaceAll = (search, replacement) => {
+            let target = this;
+            return target.split(search).join(replacement);
+        };
+        
+        
+
+
+        function openModal(e, url, name) {
+            
+            let title;
+            if (name === undefined && e !== undefined) {
+                title = (e.tagName === 'A' ? title = e.innerHTML : e.attributes.alt.nodeValue);
+            }
+            else {
+                title = name;
+            }
+            $('#myModalLabel').html(title);
+            $('#ifr').attr('src', url);
+            $('#mdlk').attr('href', url.replace("/mobilebasic", "/"));
+            $('#myModal').modal('show');
+        }
+
+        function requestFullScreen() {
+            let el = document.getElementById("ifr");
+            // Supports most browsers and their versions.
+            let requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen;
+
+            if (requestMethod) {
+                requestMethod.call(el);
+                // Older IE.
+            }
+            else if (typeof window.ActiveXObject !== "undefined") {
+                let wscript = new ActiveXObject("WScript.Shell");
+
+                if (wscript !== null) {
+                    wscript.SendKeys("{F11}");
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -5,7 +5,7 @@
 
 
 
-    <title>Resource - Troop 485</title>
+    <title>Event Pages - Troop 485</title>
 
 <script src="js/combined.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
@@ -89,25 +89,20 @@
                 <li>
                     <a href="/directory.html">Directory </a>
                 </li>
-                <li>
-                    <a href="/files.html">Files</a>
-                </li>
+                
                 <li>
                     <a href="/new-scout.html">New Scouts</a>
                 </li>
-                <li>
-                    <a href="/search.html">Search</a>
-                </li>
+                
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Resources <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="/resources/meeting-minutes.html">Meeting Minutes</a></li>
+                        <li><a href="/resources/files.html">Files</a></li>
+                        <li><a href="/resources/event-pages.html">Event Pages</a></li>
+                        <li><a href="/resources/meeting-minutes.html">Meeting Minutes/Reflections</a></li>
                         <li><a href="/resources/pictures.html">Pictures</a></li>
-                        <li><a href="/resources/troop-jobs.html">Troop Jobs</a></li>
-                        <li><a href="/resources/ranks.html">Ranks</a></li>
-                        <li><a href="/resources/forum.html">Forum</a></li>
                         <li><a href="/resources/app-download.html">Download App</a></li>
                     </ul>
                 </li>
@@ -164,7 +159,7 @@
     <div class="container hidden" id="main">
 
         <div class="row">
-            <div class="box col-md-6">
+            <div class="box col-md-12">
 
                 <div id="event-list-box">
                     <hr>
@@ -184,31 +179,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="box col-md-6">
-                <div id="resource-list">
-                    <hr>
-                    <h2 class="intro-text text-center">Resources</h2>
-                    <hr>
-                    <button class="btn btn-default" onclick="window.location.href = 'logout.html?redir=files.html'">Log out</button>
-                    <ul>
-                        <li><a onclick="openModal(this, 'https://www.t485.org/resources/other-files/Camp-Makualla.pdf');">Summer Camp 2016: Camp Makulla</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic');">Council Resource</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1dtMPUhKv6eOfKaxk3iMwnRbovgu0yZt6J0mH8wPdBfY/mobilebasic');">Things to Remember</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1ssoNp8eQqNzkeJAefQdLk6aqu5bEMGarUHX9RvpV1BU/mobilebasic');">Resume Template</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1a56ZOlhhT1MT7QGXwLSzmsD5l1cahH44O6kUFNTAJ3I/mobilebasic');">Packing List</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/document/d/16ft2MS85ZYynyJC9lMIo6Kp8yaJQfcGmY62ayj97_uo/mobilebasic');">TLT2016 - Lecture Notes</a></li>
-                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FNew%20Boy%20Scout%20Requirements%202016%20Insert.pdf?alt=media&amp;token=3782b26b-c79c-49f3-bc35-a32f0ce0a7a9');">New Boy Scout Requirements 2016 Insert.pdf (343.8 KB)</a></li>
-                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FPatrol%20Leader%20Handbook.pdf?alt=media&amp;token=2c696c57-719e-4c23-9e70-d1154bd3f55e');">Patrol Leader Handbook.pdf (3.2 MB)</a></li>
-                        <li><a onclick="openModal(this, 'https://firebasestorage.googleapis.com/v0/b/project-2556333409340273878.appspot.com/o/resources%2FBSA%20Fieldbook.pdf?alt=media&amp;token=06cf3993-def1-4e2d-b461-373ce77712a2');">BSA Fieldbook.pdf (69.8 MB)</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=1cqU9DQ0c4RXcm0GJ-gJJ8pRP8Ah3WsYApBlaLbrnRhw&amp;start=false&amp;loop=false');">Year End Party Presentation</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=16vDoqikgorGn4utl1sHBkMhXqbEbvwtGkJ5xMMfbm-o&amp;start=false&amp;loop=false');">2016 Advancement Update</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/presentation/embed?id=15e_mFNG0x4JIhqbCOZ3CDkVm_nrmEnXYE1RFOEQKd-w&amp;start=false&amp;loop=false');">Advancement Presentation</a></li>
-                        <li><a onclick="openModal(this, 'https://docs.google.com/spreadsheets/d/1fjrkSV_svlleL1ltqJGgozIvEafzmmiMPCe7xEqnngI/pubhtml?widget=true&headers=false');">Events</a></li>
-                        <li><a onclick="openModal(this, 'https://drive.google.com/embeddedfolderview?id=0BygadbpNuUSXUXhRMUlycW0yNGs#' + (window.innerWidth > 767 ? 'grid' : 'list'));">Event Cheatsheets</a></li>
-                    </ul>
-                </div>
-            </div>
-
+            
 
         </div>
         <a name="event"></a>
@@ -230,40 +201,7 @@
             </div>
         </div>
 
-        <!--
-        <div class="row">
-            <div class="box col-md-12">
-                <hr>
-                <h2 class="intro-text text-center">Add <strong>Files</strong></h2>
-                <hr>
-                <p>
-                    You can upload your own resources. Be sure to provide a
-                    meaningful event name or title. Please note that the title
-                    of the file you upload is the name people see. If you want
-                    to delete a file, email the webmaster with your event
-                    name/title.
-                </p>
-                <form>
-                    <div class="form-group">
-                        <label for="event-name">Event name/title:</label>
-                        <input type="text" class="form-control" id="event-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="files">File upload (you can select multiple)</label>
-                        <input type="file" id="files" name="files[]" multiple class="form-control-file" required>
-                    </div>
-                    <div id="upload-progress"></div>
-                    <div class="form-group">
-                        <label for="drive-urls">Google Docs or Google Slides url and file name (one per line)</label>
-                        <textarea class="form-control" id="drive-urls" rows="5" placeholder="https://docs.google.com/document/d/1W98GkzMbu3MhVX4bq981dyjifWLYr3Bat6ej-iE52Os/mobilebasic,This is a test file"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" id="submit" value="Submit" class="btn btn-default">
-                    </div>
-                </form>
-            </div>
-        </div>
-        -->
+       
 
         <script src="https://static.getclicky.com/js"></script>
         <script>try{clicky.init(100869133)}catch(e){}</script>
@@ -365,38 +303,7 @@
 
 
 
-        function openModal(e, url, name) {
-            
-            let title;
-            if (name === undefined && e !== undefined) {
-                title = (e.tagName === 'A' ? title = e.innerHTML : e.attributes.alt.nodeValue);
-            }
-            else {
-                title = name;
-            }
-            $('#myModalLabel').html(title);
-            $('#ifr').attr('src', url);
-            $('#mdlk').attr('href', url.replace("/mobilebasic", "/"));
-            $('#myModal').modal('show');
-        }
-
-        function requestFullScreen() {
-            let el = document.getElementById("ifr");
-            // Supports most browsers and their versions.
-            let requestMethod = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen;
-
-            if (requestMethod) {
-                requestMethod.call(el);
-                // Older IE.
-            }
-            else if (typeof window.ActiveXObject !== "undefined") {
-                let wscript = new ActiveXObject("WScript.Shell");
-
-                if (wscript !== null) {
-                    wscript.SendKeys("{F11}");
-                }
-            }
-        }
+        
     </script>
 
 </body>

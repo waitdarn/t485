@@ -266,9 +266,9 @@
             let data = snapshot.val();
             if (data === null || data === 0) {
                 $("#event-title").html("Error 404: Event Not Found");
-                $("#event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
+                $("#event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources/event-pages.html'>event pages list</a> and clicking a link from there.");
                 $(".event-title").html("Error 404: Event Not Found");
-                $(".event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources.html'>resources page</a> and clicking a link from there.");
+                $(".event-description").html("The specified event <b>" + getQuery("event") + "</b> was not found. If you typed in a link to view this page, try going to the <a href='resources/event-pages.html'>event pages list</a> and clicking a link from there.");
 
 
             }
