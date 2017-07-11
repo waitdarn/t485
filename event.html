@@ -317,8 +317,10 @@
                 if (url.match(modalreg)) {
                     console.log("b")
                     $(el).attr("onclick", "openModal('" + url + "', '" + html + "')");
+                    console.log($(el).attr("onclick"))
                     console.log("c")
                     $(el).attr("href", null);
+                    console.log($(el).attr("href"))
                     console.log("d")
                 
                 }
