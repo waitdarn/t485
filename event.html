@@ -324,7 +324,6 @@
 
             });
             */
-            /*
             function forEachElement(selector, fn) {
                 var elements = document.querySelectorAll(selector);
                 for (var i = 0; i < elements.length; i++)
@@ -351,7 +350,7 @@
 
                 }
             });
-            */
+
             if (getQuery("password") !== null) {
                 firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', snapshot => {
 
