@@ -637,7 +637,7 @@
             console.log(name);
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
             if (url.match(modalreg)) {
-                return "javascript:openModal(this, '" + url.replace("/edit", "/moiblebasic") + "');";
+                return "javascript:openModal('" + url + "');";
             }
             else {
                 return url;
@@ -646,13 +646,9 @@
 
 
         }
-        var Mcounter;
-        function openModal(el, url) {
-            console.log(url);
-            console.log(el);
-            //workaround to a bug in which the title is not shown
-            el.setAttribute('id', "modallink" + Mcounter);
-            $('#document-view-label').html(document.getElementById("modallink" + Mcounter).innerHTML);
+
+        function openModal(url) {
+
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/edit"));
             $('#document-view').modal('show');
