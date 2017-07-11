@@ -651,17 +651,17 @@
 
         }*/
         $(document).ready(function() {
-            $("#event-description a").each(function(i) {
+            $("#event-description").find("a").each(function(i, el) {
                 console.log(i);
-                var url = $(this).attr("href");
-                var html = $(this).html()
+                var url = $(el).attr("href");
+                var html = $(el).html()
                 console.log(url);
                 console.log(html);
-                console.log($(this));
+                console.log($(el));
 
                 var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
                 if (url.match(modalreg)) {
-                    $(this).attr("onclick", "openModal('" + url + "', '" + html + "')");
+                    $(el).attr("onclick", "openModal('" + url + "', '" + html + "')");
                 }
 
             });
