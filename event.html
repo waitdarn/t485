@@ -355,7 +355,7 @@
 
                             tinymce.init({
                                 selector: "#event-description", //'div.editable',
-                                urlconverter_callback: 'modalURLConverter',
+                                //urlconverter_callback: 'modalURLConverter',
                                 inline: true,
                                 plugins: [
                                     "advlist autolink lists link image charmap print preview",
@@ -487,7 +487,7 @@
                             tinymce.init({
                                 selector: "#event-description", //'div.editable',
                                 inline: true,
-                                urlconverter_callback: 'modalURLConverter',
+                                //urlconverter_callback: 'modalURLConverter',
                                 plugins: [
                                     "advlist autolink lists link image charmap print preview",
                                     "searchreplace visualblocks fullscreen textcolor colorpicker",
@@ -632,7 +632,7 @@
             });
         }
 
-        function modalURLConverter(url, node, on_save, name) {
+        /*function modalURLConverter(url, node, on_save, name) {
             console.log(node);
             console.log(name);
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
@@ -645,12 +645,27 @@
 
 
 
-        }
+        }*/
+        $("#event-description a").each(function(i) {
+            var url = $(this).attr("href");
+            var html = $(this).html()
+             console.log(i);
+            console.log(url)
+            console.log(html)
+            console.log($(this));
+           
+            var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
+            if (url.match(modalreg)) {
+                $(this).attr("onclick", "openModal('" + url + "', '" + html + "')");
+            }
+            
+        });
 
-        function openModal(url) {
+        function openModal(url, name) {
 
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/edit"));
+            $("#document-view-label").html(name)
             $('#document-view').modal('show');
         }
 
