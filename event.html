@@ -312,11 +312,14 @@
                 console.log(url);
                 console.log(html);
                 console.log($(el));
-
+                console.log("a")
                 var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
                 if (url.match(modalreg)) {
+                    console.log("b")
                     $(el).attr("onclick", "openModal('" + url + "', '" + html + "')");
+                    console.log("c")
                     $(el).attr("href", null);
+                    console.log("d")
                 
                 }
 
