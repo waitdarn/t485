@@ -637,7 +637,7 @@
             console.log(name);
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
             if (url.match(modalreg)) {
-                return "javascript:openModal(this, '" + url.replace("/edit", "/moiblebasic") + "');";
+                return "javascript:openModal(this.innerHTML, '" + url.replace("/edit", "/moiblebasic") + "');";
             }
             else {
                 return url;
@@ -647,10 +647,10 @@
 
         }
 
-        function openModal(e, url, name) {
-            console.log(e);
-            console.log(e.innerHTML);
-            $('#document-view-label').html(e.innerHTML);
+        function openModal(url, name) {
+            console.log(url);
+            console.log(name);
+            $('#document-view-label').html(name);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/edit"));
             $('#document-view').modal('show');
