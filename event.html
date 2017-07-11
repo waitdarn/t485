@@ -80,9 +80,9 @@
             resize: vertical;
             /* user can resize vertically, but width is fixed */
         }
-        #main-inner-box { 
-            word-wrap: break-word; 
-            
+        
+        #main-inner-box {
+            word-wrap: break-word;
         }
     </style>
 </head>
@@ -304,6 +304,7 @@
                 }
             });
             */
+            /*
             console.log(7)
             $("#event-description a").each(function(i, el) {
                 console.log(i);
@@ -326,6 +327,33 @@
                 
                 }
 
+            });
+            */
+            function forEachElement(selector, fn) {
+                var elements = document.querySelectorAll(selector);
+                for (var i = 0; i < elements.length; i++)
+                    fn(elements[i], i);
+            }
+
+            forEachElement("#event-description a", function(el, i) {
+                console.log(i);
+                var url = el.getAttribute("href");
+                var html = el.innerHTML;
+                console.log(url);
+                console.log(html);
+                console.log(el);
+                console.log("a");
+                var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
+                if (url.match(modalreg)) {
+                    console.log("b");
+                    el.setAttribute("onclick", "openModal('" + url + "', '" + html + "')");
+                    console.log($(el).attr("onclick"));
+                    console.log("c");
+                    el.setAttribute("href", undefined);
+                    console.log(el.getAttribute("href"));
+                    console.log("d");
+
+                }
             });
 
             if (getQuery("password") !== null) {
@@ -674,7 +702,7 @@
 
 
         }*/
-        
+
 
         function openModal(url, name) {
 
