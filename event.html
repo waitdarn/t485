@@ -646,11 +646,12 @@
 
 
         }
-
+        var Mcounter;
         function openModal(el, url) {
             console.log(url);
             console.log(el);
-            $('#document-view-label').html(el);
+            el.setAttribute('id', "modallink" + Mcounter);
+            $('#document-view-label').html(document.getElementById("modallink" + Mcounter).innerHTML);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/edit"));
             $('#document-view').modal('show');
