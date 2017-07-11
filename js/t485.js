@@ -14,7 +14,6 @@ redirect:
     onle use if this is the website loaded from the normal repository, and is LOADED, but does not work(not live, etc.)
     data should contain a string with an url to redirect to. INCLUDE PROTOCOL, CURRENT PATH AUTOMATICALLY APPENDED, SO DO NOT INCLUDE TRAILING SLASH
 */
-console.log(1);
 if (mode === "redirect") {
     $(document).ready(function() {
         $("#alertBox").html('<div class="alert alert-warning">' +
