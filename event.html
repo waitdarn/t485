@@ -637,7 +637,7 @@
             console.log(name);
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
             if (url.match(modalreg)) {
-                return "javascript:openModal(this.innerHTML, '" + url.replace("/edit", "/moiblebasic") + "');";
+                return "javascript:openModal(this.innerText, '" + url.replace("/edit", "/moiblebasic") + "');";
             }
             else {
                 return url;
