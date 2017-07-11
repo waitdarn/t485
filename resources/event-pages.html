@@ -284,7 +284,7 @@
                         }]
                     }),
                     data => {
-                        window.location.href = "event.html?event=" + url;
+                        window.location.href = "/event.html?event=" + url;
                     }
                 );
 
@@ -298,7 +298,7 @@
         firebase.database().ref("/events/").on("child_added", data => {
 
             let name = data.val().title;
-            $("#event-list").prepend("<li><a class='name' href='event.html?event=" + data.key + "'>" + name + "</a></li>");
+            $("#event-list").prepend("<li><a class='name' href='/event.html?event=" + data.key + "'>" + name + "</a></li>");
         });
 
 

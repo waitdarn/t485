@@ -482,7 +482,7 @@
                                     $("#confirm-delete-button").on("click", () => {
                                         firebase.database().ref('/events/' + getQuery("event")).set(null);
                                         $("#confirm-delete").modal("hide");
-                                        window.location.href = "resources.html";
+                                        window.location.href = "resources/event-pages.html";
                                     });
                                 }
                                 else {
