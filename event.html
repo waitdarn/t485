@@ -637,7 +637,7 @@
             console.log(name);
             var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
             if (url.match(modalreg)) {
-                return "javascript:openModal(this.innerText, '" + url.replace("/edit", "/moiblebasic") + "');";
+                return "javascript:openModal(this, '" + url.replace("/edit", "/moiblebasic") + "');";
             }
             else {
                 return url;
@@ -647,10 +647,10 @@
 
         }
 
-        function openModal(name, url) {
+        function openModal(el, url) {
             console.log(url);
-            console.log(name);
-            $('#document-view-label').html(name);
+            console.log(el);
+            $('#document-view-label').html(el);
             $('#ifr').attr('src', url);
             $('#mdlk').attr('href', url.replace("/mobilebasic", "/edit"));
             $('#document-view').modal('show');
@@ -763,7 +763,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
-                    <h4 class="modal-title" id="document-view-label">Content Unavaliable</h4>
+                    <h4 class="modal-title" id="document-view-label">Document Viewer</h4>
                 </div>
 
                 <div class="modal-body">
