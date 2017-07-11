@@ -4,7 +4,7 @@ import sys
 find = '''</title>'''
 replace = '''</title>
 
-<script src="js/combined.min.js"></script>
+<script src="/js/combined.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
 <script>
   // Initialize Firebase
@@ -17,9 +17,9 @@ replace = '''</title>
   };
   firebase.initializeApp(config);
 </script>
-<script src="js/t485.js"></script>
+<script src="/js/t485.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/t485.css">
+<link rel="stylesheet" href="/css/t485.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">'''
 files = sys.argv[1:]
