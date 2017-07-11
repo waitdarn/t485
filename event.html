@@ -304,6 +304,24 @@
                 }
             });
             */
+            console.log(7)
+            $("#event-description a").each(function(i, el) {
+                console.log(i);
+                var url = $(el).attr("href");
+                var html = $(el).html()
+                console.log(url);
+                console.log(html);
+                console.log($(el));
+
+                var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
+                if (url.match(modalreg)) {
+                    $(el).attr("onclick", "openModal('" + url + "', '" + html + "')");
+                    $(el).attr("href", null);
+                
+                }
+
+            });
+
             if (getQuery("password") !== null) {
                 firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', snapshot => {
 
@@ -784,24 +802,4 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <script>
-            console.log(7)
-            $("#event-description").find("a").each(function(i, el) {
-                console.log(i);
-                var url = $(el).attr("href");
-                var html = $(el).html()
-                console.log(url);
-                console.log(html);
-                console.log($(el));
-
-                var modalreg = /^https?:\/\/((docs\.google\.com\/document\/d.*)|(.+\.pdf([?#].*)?))$/;
-                if (url.match(modalreg)) {
-                    $(el).attr("onclick", "openModal('" + url + "', '" + html + "')");
-                    $(el).attr("href", null);
-                
-                }
-
-            });
-
-    </script>
 </body>
