@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    
+    
+    <title>Ranks - Troop 485</title>
+
+<script src="../js/combined.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAvhRMDTAxHRqIM0-RpHxPjZtMn7S_H7K4",
+    authDomain: "t485.firebaseapp.com",
+    databaseURL: "https://t485.firebaseio.com",
+    storageBucket: "project-2556333409340273878.appspot.com",
+    messagingSenderId: "510743665020"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="../js/t485.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/t485.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="../favicons/favicon-16x16.png" sizes="16x16">
+
+<link rel="manifest" href="/manifest.json">
+
+<script>
+    try {
+        localStorage.setItem('foo', 'bar');
+    } catch (e) {
+        if (e.message === 'The quota has been exceeded.') {
+            // using Safari(desktop & iOS) or Chrome(iOS) w/ private, localStorage not supported
+            // firebase will throw error, so better to alert user now
+            alert('Private browsing is not supported!');
+        }
+        throw '';
+    }
+</script>
+    
+    <style media="screen">
+        h3 {
+            font-size: 132%;
+        }
+    </style>
+</head>
+
+<body>    <img src="../img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+            <a class="navbar-brand" href="/">T485</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/calendar.html">Calendar</a>
+                </li>
+                <li>
+                    <a href="/directory.html">Directory </a>
+                </li>
+                <li>
+                    <a href="/files.html">Files</a>
+                </li>
+                <li>
+                    <a href="/new-scout.html">New Scouts</a>
+                </li>
+                <li>
+                    <a href="/search.html">Search</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Resources <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/resources/meeting-minutes.html">Meeting Minutes</a></li>
+                        <li><a href="/resources/pictures.html">Pictures</a></li>
+                        <li><a href="/resources/troop-jobs.html">Troop Jobs</a></li>
+                        <li><a href="/resources/ranks.html">Ranks</a></li>
+                        <li><a href="/resources/forum.html">Forum</a></li>
+                        <li><a href="/resources/app-download.html">Download App</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        About <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/about/faq.html">FAQ</a></li>
+                        <li><a href="/about/merit-badges.html">Merit Badges</a></li>
+                        <li><a href="/about/eagle.html">Path to Eagle</a></li>
+                        <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
+                        <li><a href="/about/plc.html">PLC</a></li>
+                        <li><a href="/about/troop-info.html">Troop Information</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="alertBox"></div>
+    <div class="container">
+
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Boy Scout <strong>Ranks</strong></strong></h2>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <!--
+                    <p><b>Work in progress.</b></p>
+                    <p><b>You can find more information about transitioning to the new 2016 boy scout requirements <a href="http://www.scouting.org/filestore/program_update/pdf/Transitioning_New_Requirements_2016.pdf">here</a>.</b></p>
+                    -->
+                    <div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs no-fancy-navbar" role="tablist" id="rankstab">
+                            <li role="presentation" class="active"><a class="tab-link" href="#scout" aria-controls="scout" role="tab" data-toggle="tab">Scout(joining requirements)</a></li>
+                            <li role="presentation"><a class="tab-link" href="#tenderfoot" aria-controls="tenderfoot" role="tab" data-toggle="tab">Tenderfoot</a></li>
+                            <li role="presentation"><a class="tab-link" href="#secondclass" aria-controls="secondclass" role="tab" data-toggle="tab">Second Class</a></li>
+                            <li role="presentation"><a class="tab-link" href="#firstclass" aria-controls="firstclass" role="tab" data-toggle="tab">First Class</a></li>
+                            <li role="presentation"><a class="tab-link" href="#star" aria-controls="star" role="tab" data-toggle="tab">Star Scout</a></li>
+                            <li role="presentation"><a class="tab-link" href="#life" aria-controls="life" role="tab" data-toggle="tab">Life Scout</a></li>
+                            <li role="presentation"><a class="tab-link" href="#eagle" aria-controls="eagle" role="tab" data-toggle="tab">Eagle Scout</a></li>
+                            <li role="presentation"><a class="tab-link" href="#palms" aria-controls="palms" role="tab" data-toggle="tab">Eagle Palms</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active fade in" id="scout">
+                                <ol>
+                                    <li>Scouts
+                                        <dl>
+                                            <dd>1a. Repeat from memory the <a href="https://meritbadge.org/wiki/index.php/Scout_Oath" title="Scout Oath">Scout Oath</a>, <a href="https://meritbadge.org/wiki/index.php/Scout_Law" title="Scout Law">Scout Law</a>, <a href="https://meritbadge.org/wiki/index.php/Scout_motto" class="mw-redirect"
+                                                    title="Scout motto">Scout motto</a>, and <a href="https://meritbadge.org/wiki/index.php/Scout_slogan" class="mw-redirect" title="Scout slogan">Scout slogan</a>. In your own words, explain their meaning.
+                                            </dd>
+                                            <dd>1b. Explain what <a href="https://meritbadge.org/wiki/index.php/Scout_spirit" class="mw-redirect" title="Scout spirit">Scout spirit</a> is. Describe some ways you have shown Scout spirit by practicing the Scout Oath, Scout Law, Scout
+                                                motto, and Scout slogan.
+                                            </dd>
+                                            <dd>1c. Demonstrate the Boy Scout <a href="https://meritbadge.org/wiki/index.php/Boy_Scout_Sign" title="Boy Scout Sign">sign</a>, <a href="https://meritbadge.org/wiki/index.php/Scout_Salute" title="Scout Salute">salute</a>, and <a href="https://meritbadge.org/wiki/index.php/Scout_Handshake"
+                                                    title="Scout Handshake">handshake</a>. Explain when they should be used.
+                                            </dd>
+                                            <dd>1d. Describe the <a href="https://meritbadge.org/wiki/index.php/First_Class_Scout_badge" title="First Class Scout badge">First Class Scout badge</a> and tell what each part stands for. Explain the significance of the First Class
+                                                Scout badge.
+                                            </dd>
+                                            <dd>1e. Repeat from memory the <a href="https://meritbadge.org/wiki/index.php/Outdoor_Code" title="Outdoor Code">Outdoor Code</a>. In your own words, explain what the Outdoor Code means to you.
+                                            </dd>
+                                            <dd>1f. Repeat from memory the <a href="https://meritbadge.org/wiki/index.php/Pledge_of_Allegiance" title="Pledge of Allegiance">Pledge of Allegiance</a>. In your own words, explain its meaning.
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>After attending at least one Boy Scout troop<sup id="cite_ref-Varsity_0-2" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> meeting, do the following:
+                                        <dl>
+                                            <dd>2a. Describe how the Scouts in the troop<sup id="cite_ref-Varsity_0-3" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> provide its leadership.
+                                            </dd>
+                                            <dd>2b. Describe the <a href="https://meritbadge.org/wiki/index.php/Boy_Scout_advancement#Four_Steps_of_Advancement" title="Boy Scout advancement">four steps of Boy Scout advancement</a>.
+                                            </dd>
+                                            <dd>2c. Describe the <a href="https://meritbadge.org/wiki/index.php/Boy_Scout_Portal" title="Boy Scout Portal">Boy Scout ranks</a> and how they are earned.
+                                            </dd>
+                                            <dd>2d. Describe what <a href="https://meritbadge.org/wiki/index.php/Merit_Badges" title="Merit Badges">merit badges</a> are and how they are earned.
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>Patrol
+                                        <dl>
+                                            <dd>3a. Explain the <a href="https://meritbadge.org/wiki/index.php/Patrol_method#The_Patrol_Method" class="mw-redirect" title="Patrol method">patrol method</a>. Describe the types of patrols that are used in your troop.<sup id="cite_ref-Varsity_0-4"
+                                                    class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup>
+                                            </dd>
+                                            <dd>3b. Become familiar with your patrol name, emblem, flag, and yell. Explain how these items create patrol spirit.
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>Knots &amp; ropes
+                                        <dl>
+                                            <dd>4a. Show how to tie a <a href="https://meritbadge.org/wiki/index.php/Square_knot" title="Square knot">square knot</a>, <a href="https://meritbadge.org/wiki/index.php/Two_half-hitches" title="Two half-hitches">two half-hitches</a>, and a <a href="https://meritbadge.org/wiki/index.php/Taut-line_hitch"
+                                                    title="Taut-line hitch">taut-line hitch</a>. Explain how each knot is used.
+                                            </dd>
+                                            <dd>4b. Show the proper care of a rope by learning how to <a href="https://meritbadge.org/wiki/index.php/Whip#Whipping_and_Fusing_rope" class="mw-redirect" title="Whip">whip</a> and <a href="https://meritbadge.org/wiki/index.php/Whip#Whipping_and_Fusing_rope"
+                                                    class="mw-redirect" title="Whip">fuse</a> the ends of different kinds of rope.
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>Demonstrate your knowledge of <a href="https://meritbadge.org/wiki/index.php/Totin%27_Chip" title="Totin' Chip">pocketknife safety</a>.
+                                    </li>
+                                    <li>With your parent or guardian, complete the exercises in the pamphlet <a href="https://meritbadge.org/wiki/index.php/How_to_Protect_Your_Children_from_Child_Abuse" title="How to Protect Your Children from Child Abuse">How to Protect Your Children from Child Abuse</a>:
+                                        A Parent’s Guide and earn the <a href="https://meritbadge.org/wiki/index.php/Cyber_Chip_%28Grades_6-12%29" title="Cyber Chip (Grades 6-12)">Cyber Chip Award</a> for your grade.<sup id="cite_ref-1" class="reference"><a href="#cite_note-1" title="">[2]</a></sup>
+                                    </li>
+                                    <li>Since joining the troop<sup id="cite_ref-Varsity_0-5" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> and while working on Scout rank, participate in a Scoutmaster<sup id="cite_ref-Varsity_0-6"
+                                            class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> conference.
+                                    </li>
+                                </ol>
+                            </div>
+                            <!--
+######## ######## ##    ## ########  ######## ########  ########  #######   #######  ########
+   ##    ##       ###   ## ##     ## ##       ##     ## ##       ##     ## ##     ##    ##
+   ##    ##       ####  ## ##     ## ##       ##     ## ##       ##     ## ##     ##    ##
+   ##    ######   ## ## ## ##     ## ######   ########  ######   ##     ## ##     ##    ##
+   ##    ##       ##  #### ##     ## ##       ##   ##   ##       ##     ## ##     ##    ##
+   ##    ##       ##   ### ##     ## ##       ##    ##  ##       ##     ## ##     ##    ##
+   ##    ######## ##    ## ########  ######## ##     ## ##        #######   #######     ##
+ -->
+                            <div role="tabpanel" class="tab-pane fade " id="tenderfoot">
+                                <h3> <span class="mw-headline">Camping and Outdoor Ethics</span></h3>
+                                <dl>
+                                    <dd>1a. Present yourself to your leader, prepared for an overnight camping trip. Show the personal and camping gear you will use. Show the right way to pack and carry it.
+                                    </dd>
+                                    <dd>1b. Spend at least one night on a patrol or troop<sup id="cite_ref-Varsity_0-0" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> campout. Sleep in a tent you have helped pitch.
+                                    </dd>
+                                    <dd>1c. Tell how you practiced the Outdoor Code on a campout or outing
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Cooking</span></h3>
+                                <dl>
+                                    <dd>2a. On the campout, assist in preparing one of the meals. Tell why it is important for each patrol member to share in meal preparation and cleanup.
+                                    </dd>
+                                    <dd>2b. While on a campout, demonstrate an appropriate method of safely cleaning items used to prepare, serve, and eat a meal.
+                                    </dd>
+                                    <dd>2c. Explain the importance of eating together as a patrol.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Tools</span></h3>
+                                <dl>
+                                    <dd>3a. Demonstrate a practical use of the square knot.
+                                    </dd>
+                                    <dd>3b. Demonstrate a practical use of two half-hitches.
+                                    </dd>
+                                    <dd>3c. Demonstrate a practical use of the taut-line hitch.
+                                    </dd>
+                                    <dd>3d. Demonstrate proper care, sharpening, and use of the knife, saw, and ax.
+                                        <dl>
+                                            <dd>Describe when each should be used.
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">First Aid and Nature</span></h3>
+                                <dl>
+                                    <dd>4a. Show first aid for the following:
+                                        <dl>
+                                            <dd>
+                                                <ul>
+                                                    <li>Simple cuts and scrapes
+                                                    </li>
+                                                    <li>Blisters on the hand and foot
+                                                    </li>
+                                                    <li>Minor (thermal/heat) burns or scalds (superficial, or first-degree)
+                                                    </li>
+                                                    <li>Bites or stings of insects and ticks
+                                                    </li>
+                                                    <li>Venomous snakebite
+                                                    </li>
+                                                    <li>Nosebleed
+                                                    </li>
+                                                    <li>Frostbite and sunburn
+                                                    </li>
+                                                    <li>Choking
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                    <dd>4b. Describe common poisonous or hazardous plants; identify any that grow in your local area or campsite location. Tell how to treat for exposure to them.
+                                    </dd>
+                                    <dd>4c. Tell what you can do while on a campout or other outdoor activity to prevent or reduce the occurrence of injuries or exposure listed in Tenderfoot requirements 4a and 4b.
+                                    </dd>
+                                    <dd>4d. Assemble a personal first-aid kit to carry with you on future campouts and hikes. Tell how each item in the kit would be used.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Hiking</span></h3>
+                                <dl>
+                                    <dd>5a. Explain the importance of the buddy system as it relates to your personal safety on outings and in your neighborhood. Use the buddy system while on a troop<sup id="cite_ref-Varsity_0-1" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup>                                        or patrol outing.
+                                    </dd>
+                                    <dd>5b. Describe what to do if you become lost on a hike or campout.
+                                    </dd>
+                                    <dd>5c. Explain the rules of safe hiking, both on the highway and cross-country, during the day and at night.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Fitness</span></h3>
+                                <dl>
+                                    <dd>6a. Record your best in the following tests:
+                                        <dl>
+                                            <dd>
+                                                <ul>
+                                                    <li>Push-ups ________ (Record the number done correctly in 60 seconds.)
+                                                    </li>
+                                                    <li>Sit-ups or curl-ups ________ (Record the number done correctly in 60 seconds.)
+                                                    </li>
+                                                    <li>Back-saver sit-and-reach (Record the distance stretched.)
+                                                    </li>
+                                                    <li>1-mile walk/run _____________ (Record the time.)
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                    <dd>6b. Develop and describe a plan for improvement in each of the activities listed in Tenderfoot requirement 6a. Keep track of your activity for at least 30 days.
+                                    </dd>
+                                    <dd>6c. Show improvement (of any degree) in each activity listed in Tenderfoot requirement 6a after practicing for 30 days.
+                                        <dl>
+                                            <dd>
+                                                <ul>
+                                                    <li>Push-ups ________ (Record the number done correctly in 60 seconds.)
+                                                    </li>
+                                                    <li>Sit-ups or curl-ups ________ (Record the number done correctly in 60 seconds.)
+                                                    </li>
+                                                    <li>Back-saver sit-and-reach (Record the distance stretched.)
+                                                    </li>
+                                                    <li>1-mile walk/run _____________ (Record the time.)
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Citizenship</span></h3>
+                                <dl>
+                                    <dd>7a. Demonstrate how to display, raise, lower, and fold the U.S. flag.
+                                    </dd>
+                                    <dd>7b. Participate in a total of one hour of service in one or more service projects approved by your Scoutmaster<sup id="cite_ref-Varsity_0-2" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup>. Explain
+                                        how your service to others relates to the Scout slogan and Scout motto.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Leadership</span></h3>
+                                <dl>
+                                    <dd>8. Describe the steps in Scouting’s Teaching EDGE method. Use the Teaching EDGE method to teach another person how to tie the square knot.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline"><a href="https://meritbadge.org/wiki/index.php/Scout_Spirit" title="Scout Spirit">Scout Spirit</a></span></h3>
+                                <dl>
+                                    <dd>9. Demonstrate Scout spirit by living the Scout Oath and Scout Law. Tell how you have done your duty to God and how you have lived four different points of the Scout Law in your everyday life.
+                                    </dd>
+                                    <dd>10. While working toward the Tenderfoot rank, and after completing Scout rank requirement 7, participate in a Scoutmaster<sup id="cite_ref-Varsity_0-3" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup>                                        conference.
+                                    </dd>
+                                    <dd>11. Successfully complete your board of review for the Tenderfoot rank.
+                                    </dd>
+                                </dl>
+                            </div>
+                            <!--
+ ######  ########  ######   #######  ##    ## ########      ######  ##          ###     ######   ######
+##    ## ##       ##    ## ##     ## ###   ## ##     ##    ##    ## ##         ## ##   ##    ## ##    ##
+##       ##       ##       ##     ## ####  ## ##     ##    ##       ##        ##   ##  ##       ##
+ ######  ######   ##       ##     ## ## ## ## ##     ##    ##       ##       ##     ##  ######   ######
+      ## ##       ##       ##     ## ##  #### ##     ##    ##       ##       #########       ##       ##
+##    ## ##       ##    ## ##     ## ##   ### ##     ##    ##    ## ##       ##     ## ##    ## ##    ##
+ ######  ########  ######   #######  ##    ## ########      ######  ######## ##     ##  ######   ######
+-->
+                            <div role="tabpanel" class="tab-pane fade " id="secondclass">
+                                <h3> <span class="mw-headline">Camping and Outdoor Ethics</span></h3>
+                                <dl>
+                                    <dd>1a. Since joining, participate in five separate troop/patrol<sup id="cite_ref-Varsity_0-0" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> activities, three of which include overnight camping.
+                                        These five activities do not include troop<sup id="cite_ref-Varsity_0-1" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> or patrol meetings. On at least two of the three campouts, spend the
+                                        night in a tent that you pitch or other structure that you help erect (such as a lean-to, snow cave, or tepee).
+                                    </dd>
+                                    <dd>1b. Explain the seven principles of <a href="https://meritbadge.org/wiki/index.php/Leave_No_Trace" title="Leave No Trace">Leave No Trace</a> and tell how you practiced them on a campout or outing. This outing must be different from the one
+                                        used for "Tenderfoot requirement 1c".
+                                    </dd>
+                                    <dd>1c. On one of these campouts, select a location for your patrol site and recommend it to your patrol leader, senior patrol leader, or troop<sup id="cite_ref-Varsity_0-2" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup>                                        guide. Explain what factors you should consider when choosing a patrol site and where to pitch a tent.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Cooking and Tools</span></h3>
+                                <dl>
+                                    <dd>2a. Explain when it is appropriate to use a fire for cooking or other purposes and when it would not be appropriate to do so.
+                                    </dd>
+                                    <dd>2b. Use the tools listed in <a href="https://meritbadge.org/wiki/index.php/Tenderfoot#Tenderfoot_rank_requirements" class="mw-redirect" title="Tenderfoot">Tenderfoot requirement 3d</a> to prepare tinder, kindling, and fuel wood for a cooking
+                                        fire.
+                                    </dd>
+                                    <dd>2c. At an approved outdoor location and time, use the tinder, kindling, and fuel wood from "<a href="https://meritbadge.org/wiki/index.php/Totin%27_Chip" title="Totin' Chip">Second Class requirement 2b</a>" to demonstrate how to build a
+                                        fire. Unless prohibited by local fire restrictions, light the fire. After allowing the flames to burn safely for at least two minutes, safely extinguish the flames with minimal impact to the fire site.
+                                    </dd>
+                                    <dd>2d. Explain when it is appropriate to use a lightweight stove and when it is appropriate to use a propane stove. Set up a lightweight stove or propane stove. Light the stove, unless prohibited by local fire restrictions.
+                                        Describe the safety procedures for using these types of stoves.
+                                    </dd>
+                                    <dd>2e. On one campout, plan and cook one hot breakfast or lunch, selecting foods from MyPlate or the current USDA nutritional model. Explain the importance of good nutrition. Demonstrate how to transport, store, and prepare
+                                        the foods you selected.
+                                    </dd>
+                                    <dd>2f. Demonstrate tying the <a href="https://meritbadge.org/wiki/index.php/Sheet_bend" title="Sheet bend">sheet bend</a> knot. Describe a situation in which you would use this knot.
+                                    </dd>
+                                    <dd>2g. Demonstrate tying the <a href="https://meritbadge.org/wiki/index.php/Bowline" title="Bowline">bowline</a> knot. Describe a situation in which you would use this knot
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Navigation</span></h3>
+                                <dl>
+                                    <dd>3a. Demonstrate how a <a href="https://meritbadge.org/wiki/index.php/Navigation#Compass" title="Navigation">compass</a> works and how to orient a <a href="https://meritbadge.org/wiki/index.php/Navigation#Maps" title="Navigation">map</a>. Use a map to point out
+                                        and tell the meaning of five map symbols.
+                                    </dd>
+                                    <dd>3b. Using a compass and map together, take a 5-mile hike (or 10 miles by bike) approved by your adult leader and your parent or guardian.<sup id="cite_ref-disabled_1-0" class="reference"><a href="#cite_note-disabled-1" title="">[2]</a></sup>
+                                    </dd>
+                                    <dd>3c. Describe some hazards or injuries that you might encounter on your hike and what you can do to help prevent them.<sup id="cite_ref-disabled_1-1" class="reference"><a href="#cite_note-disabled-1" title="">[2]</a></sup>
+                                    </dd>
+                                    <dd>3d. Demonstrate how to find directions during the day and at night without using a compass or an electronic device.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Nature</span></h3>
+                                <dl>
+                                    <dd>4. Identify or show evidence of at least 10 kinds of wild animals (such as birds, mammals, reptiles, fish, or mollusks) found in your local area or camping location. You may show evidence by tracks, signs, or photographs
+                                        you have taken.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Aquatics</span></h3>
+                                <dl>
+                                    <dd>5a. Tell what precautions must be taken for a safe swim.
+                                    </dd>
+                                    <dd>5b. Demonstrate your ability to pass the BSA beginner test: Jump feetfirst into water over your head in depth, level off and swim 25 feet on the surface, stop, turn sharply, resume swimming, then return to your starting
+                                        place.
+                                    </dd>
+                                    <dd>5c. Demonstrate water rescue methods by reaching with your arm or leg, by reaching with a suitable object, and by throwing lines and objects.
+                                    </dd>
+                                    <dd>5d. Explain why swimming rescues should not be attempted when a reaching or throwing rescue is possible. Explain why and how a rescue swimmer should avoid contact with the victim
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">First Aid and Emergency Preparedness</span></h3>
+                                <dl>
+                                    <dd>6a. Demonstrate first aid for the following:
+                                        <dl>
+                                            <dd>
+                                                <ul>
+                                                    <li>Object in the eye
+                                                    </li>
+                                                    <li>Bite of a warm-blooded animal
+                                                    </li>
+                                                    <li>Puncture wounds from a splinter, nail, and fishhook
+                                                    </li>
+                                                    <li>Serious burns (partial thickness, or second-degree)
+                                                    </li>
+                                                    <li>Heat exhaustion
+                                                    </li>
+                                                    <li>Shock
+                                                    </li>
+                                                    <li>Heatstroke, dehydration, hypothermia, and hyperventilation
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </dd>
+                                    <dd>6b. Show what to do for “hurry” cases of stopped breathing, stroke, severe bleeding, and ingested poisoning.
+                                    </dd>
+                                    <dd>6c. Tell what you can do while on a campout or hike to prevent or reduce the occurrence of the injuries listed in Second Class requirements 6a and 6b.
+                                    </dd>
+                                    <dd>6d. Explain what to do in case of accidents that require emergency response in the home and backcountry. Explain what constitutes an emergency and what information you will need to provide to a responder.
+                                    </dd>
+                                    <dd>6e. Tell how you should respond if you come upon the scene of a vehicular accident.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Fitness</span></h3>
+                                <dl>
+                                    <dd>7a. After completing <a href="https://meritbadge.org/wiki/index.php/Tenderfoot#Tenderfoot_rank_requirements" class="mw-redirect" title="Tenderfoot">Tenderfoot requirement 6c</a>, be physically active at least 30 minutes each day for five
+                                        days a week for four weeks. Keep track of your activities.
+                                    </dd>
+                                    <dd>7b. Share your challenges and successes in completing Second Class requirement 7a. Set a goal for continuing to include physical activity as part of your daily life and develop a plan for doing so.
+                                    </dd>
+                                    <dd>7c. Participate in a school, community, or troop program on the dangers of using drugs, alcohol, and tobacco and other practices that could be harmful to your health. Discuss your participation in the program with your
+                                        family, and explain the dangers of substance addictions. Report to your Scoutmaster<sup id="cite_ref-Varsity_0-3" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> or other adult leader in
+                                        your troop about which parts of the Scout Oath and Scout Law relate to what you learned.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Citizenship</span></h3>
+                                <dl>
+                                    <dd>8a. Participate in a flag ceremony for your school, religious institution, chartered organization, community, or Scouting activity.
+                                    </dd>
+                                    <dd>8b. Explain what respect is due the flag of the United States.
+                                    </dd>
+                                    <dd>8c. With your parents or guardian, decide on an amount of money that you would like to earn, based on the cost of a specific item you would like to purchase. Develop a written plan to earn the amount agreed upon and
+                                        follow that plan; it is acceptable to make changes to your plan along the way. Discuss any changes made to your original plan and whether you met your goal.
+                                    </dd>
+                                    <dd>8d. At a minimum of three locations, compare the cost of the item for which you are saving to determine the best place to purchase it. After completing Second Class requirement 8c, decide if you will use the amount
+                                        that you earned as originally intended, save all or part of it, or use it for another purpose.
+                                    </dd>
+                                    <dd>8e. Participate in two hours of service through one or more service projects approved by your Scoutmaster.<sup id="cite_ref-Varsity_0-4" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> Tell how
+                                        your service to others relates to the Scout Oath.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Personal Safety Awareness</span></h3>
+                                <dl>
+                                    <dd>9a. Explain the <a href="https://meritbadge.org/wiki/index.php/Three_R%E2%80%99s" title="Three R’s">three R’s</a> of personal safety and protection.
+                                    </dd>
+                                    <dd>9b. Describe bullying; tell what the appropriate response is to someone who is bullying you or another person.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline"><a href="https://meritbadge.org/wiki/index.php/Scout_Spirit" title="Scout Spirit">Scout Spirit</a></span></h3>
+                                <dl>
+                                    <dd>10. Demonstrate Scout spirit by living the <a href="https://meritbadge.org/wiki/index.php/Scout_Oath" title="Scout Oath">Scout Oath</a> and <a href="https://meritbadge.org/wiki/index.php/Scout_Law" title="Scout Law">Scout Law</a>. Tell how you have done your
+                                        <a href="https://meritbadge.org/wiki/index.php?title=Duty_to_God&amp;action=edit" class="new" title="Duty to God">duty to God</a> and how you have lived four different points of the Scout Law (not to include those used for Tenderfoot
+                                        requirement 9) in your everyday life.
+                                    </dd>
+                                    <dd>11. While working toward the Second Class rank, and after completing Tenderfoot requirement 10, participate in a Scoutmaster<sup id="cite_ref-Varsity_0-5" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup>                                        conference.
+                                    </dd>
+                                    <dd>12. Successfully complete your board of review for the Second Class rank.
+                                    </dd>
+                                </dl>
+                            </div>
+                            <!--
+######## #### ########   ######  ########     ######  ##          ###     ######   ######
+##        ##  ##     ## ##    ##    ##       ##    ## ##         ## ##   ##    ## ##    ##
+##        ##  ##     ## ##          ##       ##       ##        ##   ##  ##       ##
+######    ##  ########   ######     ##       ##       ##       ##     ##  ######   ######
+##        ##  ##   ##         ##    ##       ##       ##       #########       ##       ##
+##        ##  ##    ##  ##    ##    ##       ##    ## ##       ##     ## ##    ## ##    ##
+##       #### ##     ##  ######     ##        ######  ######## ##     ##  ######   ######
+-->
+                            <div role="tabpanel" class="tab-pane fade " id="firstclass">
+                                <h3> <span class="mw-headline">Camping and Outdoor Ethics</span></h3>
+                                <dl>
+                                    <dd>1a. Since joining, participate in 10 separate troop/patrol<sup id="cite_ref-Varsity_0-0" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> activities, six of which include overnight camping. These
+                                        10 activities do not include troop<sup id="cite_ref-Varsity_0-1" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> or patrol meetings. On at least five of the six campouts, spend the night
+                                        in a tent that you pitch or other structure that you help erect (such as a lean-to, snow cave, or tepee).
+                                    </dd>
+                                    <dd>1b. Explain each of the principles of <a href="https://meritbadge.org/wiki/index.php/Tread_Lightly%21#Tread_Principles" title="Tread Lightly!">Tread Lightly!</a> and tell how you practiced them on a campout or outing. This outing must be
+                                        different from the ones used for Tenderfoot requirement 1c and Second Class requirement 1b.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Cooking</span></h3>
+                                <dl>
+                                    <dd>2a. Help plan a menu for one of the above campouts that includes at least one breakfast, one lunch, and one dinner, and that requires cooking at least two of the meals. Tell how the menu includes the foods from MyPlate
+                                        or the current USDA nutritional model and how it meets nutritional needs for the planned activity or campout.
+                                    </dd>
+                                    <dd>2b. Using the menu planned in First Class requirement 2a, make a list showing a budget and the food amounts needed to feed three or more boys. Secure the ingredients.
+                                    </dd>
+                                    <dd>2c. Show which pans, utensils, and other gear will be needed to cook and serve these meals.
+                                    </dd>
+                                    <dd>2d. Demonstrate the procedures to follow in the safe handling and storage of fresh meats, dairy products, eggs, vegetables, and other perishable food products. Show how to properly dispose of camp garbage, cans, plastic
+                                        containers, and other rubbish.
+                                    </dd>
+                                    <dd>2e. On one campout, serve as cook. Supervise your assistant(s) in using a stove or building a cooking fire. Prepare the breakfast, lunch, and dinner planned in First Class requirement 2a. Supervise the cleanup.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Tools</span></h3>
+                                <dl>
+                                    <dd>3a. Discuss when you should and should not use lashings.
+                                    </dd>
+                                    <dd>3b. Demonstrate tying the timber hitch and clove hitch.
+                                    </dd>
+                                    <dd>3c. Demonstrate tying the square, shear, and diagonal lashings by joining two or more poles or staves together.
+                                    </dd>
+                                    <dd>3d. Use lashings to make a useful camp gadget or structure.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Navigation</span></h3>
+                                <dl>
+                                    <dd>4a. Using a map and compass, complete an orienteering course that covers at least one mile and requires measuring the height and/or width of designated items (tree, tower, canyon, ditch, etc.).
+                                    </dd>
+                                    <dd>4b. Demonstrate how to use a handheld GPS unit, GPS app on a smartphone, or other electronic navigation system. Use GPS to find your current location, a destination of your choice, and the route you will take to get
+                                        there. Follow that route to arrive at your destination.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Nature</span></h3>
+                                <dl>
+                                    <dd>5a. Identify or show evidence of at least 10 kinds of native plants found in your local area or campsite location. You may show evidence by identifying fallen leaves or fallen fruit that you find in the field, or as
+                                        part of a collection you have made, or by photographs you have taken.
+                                    </dd>
+                                    <dd>5b. Identify two ways to obtain a weather forecast for an upcoming activity. Explain why weather forecasts are important when planning for an event.
+                                    </dd>
+                                    <dd>5c. Describe at least three natural indicators of impending hazardous weather, the potential dangerous events that might result from such weather conditions, and the appropriate actions to take.
+                                    </dd>
+                                    <dd>5d. Describe extreme weather conditions you might encounter in the outdoors in your local geographic area. Discuss how you would determine ahead of time the potential risk of these types of weather dangers, alternative
+                                        planning considerations to avoid such risks, and how you would prepare for and respond to those weather conditions.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Aquatics</span></h3>
+                                <dl>
+                                    <dd>6a. Successfully complete the <a href="https://meritbadge.org/wiki/index.php/BSA_swimmer_test" title="BSA swimmer test">BSA swimmer test</a>.<sup id="cite_ref-1" class="reference"><a href="#cite_note-1" title="">[2]</a></sup>
+                                    </dd>
+                                    <dd>6b. Tell what precautions must be taken for a safe trip afloat.
+                                    </dd>
+                                    <dd>6c. Identify the basic parts of a <a href="https://meritbadge.org/wiki/index.php/Canoeing" title="Canoeing">canoe</a>, <a href="https://meritbadge.org/wiki/index.php/Kayaking" title="Kayaking">kayak</a>, or other boat. Identify the parts of a paddle or an oar.
+                                    </dd>
+                                    <dd>6d. Describe proper body positioning in a watercraft, depending on the type and size of the vessel. Explain the importance of proper body position in the boat.
+                                    </dd>
+                                    <dd>6e. With a helper and a practice victim, show a <a href="https://meritbadge.org/wiki/index.php/Lifesaving" title="Lifesaving">line rescue</a> both as tender and as rescuer. (The practice victim should be approximately 30 feet from shore
+                                        in deep water.)
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">First Aid and Emergency Preparedness</span></h3>
+                                <dl>
+                                    <dd>7a. Demonstrate bandages for a sprained ankle and for injuries on the head, the upper arm, and the collarbone.
+                                    </dd>
+                                    <dd>7b. By yourself and with a partner, show how to:
+                                        <ul>
+                                            <li>Transport a person from a smoke-filled room.
+                                            </li>
+                                            <li>Transport for at least 25 yards a person with a sprained ankle.
+                                            </li>
+                                        </ul>
+                                    </dd>
+                                    <dd>7c. Tell the five most common signals of a heart attack. Explain the steps (procedures) in <a href="https://meritbadge.org/wiki/index.php/First_Aid_Skills#CPR" title="First Aid Skills">cardiopulmonary resuscitation (CPR)</a>.
+                                    </dd>
+                                    <dd>7d. Tell what utility services exist in your home or meeting place. Describe potential hazards associated with these utilities and tell how to respond in emergency situations.
+                                    </dd>
+                                    <dd>7e. Develop an emergency action plan for your home that includes what to do in case of fire, storm, power outage, and water outage.
+                                    </dd>
+                                    <dd>7f. Explain how to obtain potable water in an emergency.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Fitness</span></h3>
+                                <dl>
+                                    <dd>8a. After completing Second Class requirement 7a, be physically active at least 30 minutes each day for five days a week for four weeks. Keep track of your activities.
+                                    </dd>
+                                    <dd>8b. Share your challenges and successes in completing First Class requirement 8a. Set a goal for continuing to include physical activity as part of your daily life.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Citizenship</span></h3>
+                                <dl>
+                                    <dd>9a. Visit and discuss with a selected individual approved by your leader (for example, an elected official, judge, attorney, civil servant, principal, or teacher) the constitutional rights and obligations of a U.S.
+                                        citizen.
+                                    </dd>
+                                    <dd>9b. Investigate an environmental issue affecting your community. Share what you learned about that issue with your patrol or troop.<sup id="cite_ref-Varsity_0-2" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup>                                        Tell what, if anything, could be done by you or your community to address the concern.
+                                    </dd>
+                                    <dd>9c. On a Scouting or family outing, take note of the trash and garbage you produce. Before your next similar outing, decide how you can reduce, recycle, or repurpose what you take on that outing, and then put those
+                                        plans into action. Compare your results.
+                                    </dd>
+                                    <dd>9d. Participate in three hours of service through one or more service projects approved by your Scoutmaster.<sup id="cite_ref-Varsity_0-3" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> The
+                                        project(s) must not be the same service project(s) used for Tenderfoot requirement 7b and Second Class requirement 8e. Explain how your service to others relates to the Scout Law.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline">Leadership</span></h3>
+                                <dl>
+                                    <dd>10. Tell someone who is eligible to join Boy Scouts, or an inactive Boy Scout, about your Scouting activities. Invite him to an outing, activity, service project, or meeting. Tell him how to join, or encourage the inactive
+                                        Boy Scout to become active. Share your efforts with your Scoutmaster<sup id="cite_ref-Varsity_0-4" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup> or other adult leader.
+                                    </dd>
+                                </dl>
+                                <h3> <span class="mw-headline"><a href="https://meritbadge.org/wiki/index.php/Scout_Spirit" title="Scout Spirit">Scout Spirit</a></span></h3>
+                                <dl>
+                                    <dd>11. Demonstrate <a href="https://meritbadge.org/wiki/index.php/Scout_spirit" class="mw-redirect" title="Scout spirit">Scout spirit</a> by living the <a href="https://meritbadge.org/wiki/index.php/Scout_Oath" title="Scout Oath">Scout Oath</a> and <a href="https://meritbadge.org/wiki/index.php/Scout_Law"
+                                            title="Scout Law">Scout Law</a>. Tell how you have done your <a href="https://meritbadge.org/wiki/index.php?title=Duty_to_God&amp;action=edit" class="new" title="Duty to God">duty to God</a> and how you have lived four different points
+                                        of the Scout Law (different from those points used for previous ranks) in your everyday life.
+                                    </dd>
+                                    <dd>12. While working toward the First Class rank, and after completing Second Class requirement 11, participate in a Scoutmaster<sup id="cite_ref-Varsity_0-5" class="reference"><a href="#cite_note-Varsity-0" title="">[1]</a></sup>                                        conference.
+                                    </dd>
+                                    <dd>13. Successfully complete your board of review for the First Class rank.
+                                    </dd>
+                                </dl>
+                            </div>
+                            <!--
+ ######  ########    ###    ########
+##    ##    ##      ## ##   ##     ##
+##          ##     ##   ##  ##     ##
+ ######     ##    ##     ## ########
+      ##    ##    ######### ##   ##
+##    ##    ##    ##     ## ##    ##
+ ######     ##    ##     ## ##     ##
+-->
+                            <div role="tabpanel" class="tab-pane fade " id="star">
+                                <ol>
+                                    <li>Be <a href="https://meritbadge.org/wiki/index.php/Active" title="Active">active</a> in your troop<sup id="cite_ref-Other_0-0" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup> for at least four months as a <a href="https://meritbadge.org/wiki/index.php/First_Class_rank"
+                                            title="First Class rank">First Class Scout</a>.
+                                    </li>
+                                    <li>As a First Class Scout, demonstrate <a href="https://meritbadge.org/wiki/index.php/Scout_spirit" class="mw-redirect" title="Scout spirit">Scout spirit</a> by living the <a href="https://meritbadge.org/wiki/index.php/Scout_Oath" title="Scout Oath">Scout Oath</a>                                        and <a href="https://meritbadge.org/wiki/index.php/Scout_Law" title="Scout Law">Scout Law</a>. Tell how you have done your <a href="https://meritbadge.org/wiki/index.php?title=Duty_to_God&amp;action=edit" class="new" title="Duty to God">duty to God</a> and
+                                        how you have lived the Scout Oath and Scout Law in your everyday life.
+                                    </li>
+                                    <li>Earn six <a href="https://meritbadge.org/wiki/index.php/Merit_badges" class="mw-redirect" title="Merit badges">merit badges</a>, including any four from the required list for Eagle. You may choose any of the 17 merit badges on <a href="https://meritbadge.org/wiki/index.php/Merit_badges_required_for_the_Eagle_Scout_rank"
+                                            title="Merit badges required for the Eagle Scout rank">the required list for Eagle</a> to fulfill this requirement.
+                                        <dl>
+                                            <dd>
+                                                <table style="border-collapse:collapse;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th style="border:1px solid black;">Name of merit badge</th>
+                                                            <th style="border: 1px solid black;">Date Earned</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                            <td style="border: 1px solid black;">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>While a First Class Scout, participate in six hours of <a href="https://meritbadge.org/wiki/index.php/Service_projects" class="mw-redirect" title="Service projects">service</a> through one or more service projects approved by your <a href="https://meritbadge.org/wiki/index.php/Scoutmaster"
+                                            title="Scoutmaster">Scoutmaster</a><sup id="cite_ref-Other_0-1" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup>.
+                                    </li>
+                                    <li>While a First Class Scout, serve <a href="https://meritbadge.org/wiki/index.php/Active#Active_in_a_Position_of_Responsibility" title="Active">actively</a> in your troop<sup id="cite_ref-Other_0-2" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup>                                        for four months in one or more of the following <a href="https://meritbadge.org/wiki/index.php/Positions_of_responsibility" class="mw-redirect" title="Positions of responsibility">positions of responsibility</a> (or carry out a Scoutmaster
+                                        <sup id="cite_ref-Other_0-3" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup> approved leadership project to help the troop):
+                                        <ul>
+                                            <li>Boy Scout troop. Patrol leader, assistant senior patrol leader, senior patrol leader, troop guide, Order of the Arrow troop representative, den chief, scribe, librarian, historian, quartermaster, bugler, junior
+                                                assistant Scoutmaster, chaplain aide, instructor, webmaster, or outdoor ethics guide.
+                                            </li>
+                                            <li>Varsity Scout team. Captain, cocaptain, program manager, squad leader, team secretary, Order of the Arrow team representative, librarian, historian, quartermaster, chaplain aide, instructor, den chief, webmaster,
+                                                or outdoor ethics guide.<sup id="cite_ref-1" class="reference"><a href="#cite_note-1" title="">[2]</a></sup>
+                                            </li>
+                                            <li>Venturing crew/Sea Scout ship. President, vice president, secretary, treasurer, den chief, quartermaster, historian, guide, boatswain, boatswain’s mate, yeoman, purser, storekeeper, or webmaster.
+                                            </li>
+                                            <li>Lone Scout. Leadership responsibility in your school, religious organization, club, or elsewhere in your community.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>With your parent or guardian, complete the exercises in the pamphlet <a href="https://meritbadge.org/wiki/index.php/How_to_Protect_Your_Children_from_Child_Abuse" title="How to Protect Your Children from Child Abuse">How to Protect Your Children from Child Abuse</a>:
+                                        A Parent’s Guide and earn the <a href="https://meritbadge.org/wiki/index.php/Cyber_Chip_%28Grades_6-12%29" title="Cyber Chip (Grades 6-12)">Cyber Chip Award</a> for your grade.<sup id="cite_ref-2" class="reference"><a href="#cite_note-2" title="">[3]</a></sup>
+                                    </li>
+                                    <li>While a First Class Scout, participate in a Scoutmaster<sup id="cite_ref-Other_0-4" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup> conference.
+                                    </li>
+                                    <li>Successfully complete your board of review for the Star rank.<sup id="cite_ref-3" class="reference"><a href="#cite_note-3" title="">[4]</a></sup>
+                                    </li>
+                                </ol>
+                            </div>
+                            <!--
+##       #### ######## ########
+##        ##  ##       ##
+##        ##  ##       ##
+##        ##  ######   ######
+##        ##  ##       ##
+##        ##  ##       ##
+######## #### ##       ########
+-->
+                            <div role="tabpanel" class="tab-pane fade " id="life">
+                                <ol>
+                                    <li>Be <a href="https://meritbadge.org/wiki/index.php/Active" title="Active">active</a> in your troop<sup id="cite_ref-Other_0-0" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup> for at least six months as a <a href="https://meritbadge.org/wiki/index.php/Star_rank"
+                                            title="Star rank">Star Scout</a>.
+                                    </li>
+                                    <li>As a Star Scout, demonstrate <a href="https://meritbadge.org/wiki/index.php/Scout_spirit" class="mw-redirect" title="Scout spirit">Scout spirit</a> by living the <a href="https://meritbadge.org/wiki/index.php/Scout_Oath" title="Scout Oath">Scout Oath</a> and
+                                        <a href="https://meritbadge.org/wiki/index.php/Scout_Law" title="Scout Law">Scout Law</a>. Tell how you have done your <a href="https://meritbadge.org/wiki/index.php?title=Duty_to_God&amp;action=edit" class="new" title="Duty to God">duty to God</a> and how
+                                        you have lived the Scout Oath and Scout Law in your everyday life.
+                                    </li>
+                                    <li>Earn five more <a href="https://meritbadge.org/wiki/index.php/Merit_badges" class="mw-redirect" title="Merit badges">merit badges</a> (so that you have 11 in all), including any three additional merit badges from the required list for Eagle.
+                                        You may choose any of the 17 merit badges on <a href="https://meritbadge.org/wiki/index.php/Merit_badges_required_for_the_Eagle_Scout_rank" title="Merit badges required for the Eagle Scout rank">the required list for Eagle</a> to fulfill
+                                        this requirement.
+                                        <dl>
+                                            <dd>
+                                                <table style="border-collapse:collapse;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th style="border:1px solid black;">Name of merit badge</th>
+                                                            <th style="border: 1px solid black;">Date Earned</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                            <td style="border: 1px solid black;">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>While a Star Scout, participate in six hours of <a href="https://meritbadge.org/wiki/index.php/Service_projects" class="mw-redirect" title="Service projects">service</a> through one or more service projects approved by your <a href="https://meritbadge.org/wiki/index.php/Scoutmaster"
+                                            title="Scoutmaster">Scoutmaster</a><sup id="cite_ref-Other_0-1" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup>. At least three hours of this service must be conservation-related.
+                                    </li>
+                                    <li>While a Star Scout, serve <a href="https://meritbadge.org/wiki/index.php/Active#Active_in_a_Position_of_Responsibility" title="Active">actively</a> in your troop<sup id="cite_ref-Other_0-2" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup>                                        for six months in one or more of the following <a href="https://meritbadge.org/wiki/index.php/Positions_of_responsibility" class="mw-redirect" title="Positions of responsibility">positions of responsibility</a> (or carry out a Scoutmaster
+                                        <sup id="cite_ref-Other_0-3" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup> approved leadership project to help the troop):
+                                        <ul>
+                                            <li>Boy Scout troop. Patrol leader, assistant senior patrol leader, senior patrol leader, troop guide, Order of the Arrow troop representative, den chief, scribe, librarian, historian, quartermaster, bugler, junior
+                                                assistant Scoutmaster, chaplain aide, instructor, webmaster, or outdoor ethics guide.<sup id="cite_ref-1" class="reference"><a href="#cite_note-1" title="">[2]</a></sup>
+                                            </li>
+                                            <li>Varsity Scout team. Captain, cocaptain, program manager, squad leader, team secretary, Order of the Arrow team representative, librarian, historian, quartermaster, chaplain aide, instructor, den chief, webmaster,
+                                                or outdoor ethics guide.
+                                            </li>
+                                            <li>Venturing crew/Sea Scout ship. President, vice president, secretary, treasurer, den chief, quartermaster, historian, guide, boatswain, boatswain’s mate, yeoman, purser, storekeeper, or webmaster.
+                                            </li>
+                                            <li>Lone Scout. Leadership responsibility in your school, religious organization, club, or elsewhere in your community.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>While a Star Scout, use the Teaching <a href="https://meritbadge.org/wiki/index.php/EDGE" class="mw-redirect" title="EDGE">EDGE</a> method to teach another Scout (preferably younger than you) the skills from ONE of the following choices,
+                                        so that he is prepared to pass those requirements to his Scoutmaster’s<sup id="cite_ref-Other_0-4" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup> satisfaction.
+                                        <dl>
+                                            <dd>a. <a href="https://meritbadge.org/wiki/index.php/Tenderfoot#Tenderfoot_rank_requirements" class="mw-redirect" title="Tenderfoot">Tenderfoot 4a and 4b (first aid)</a>
+                                            </dd>
+                                            <dd>b. <a href="https://meritbadge.org/wiki/index.php/Second_Class#Second_Class_rank_requirements" class="mw-redirect" title="Second Class">Second Class 2b, 2c, and 2d (cooking/tools)</a>
+                                            </dd>
+                                            <dd>c. <a href="https://meritbadge.org/wiki/index.php/Second_Class#Second_Class_rank_requirements" class="mw-redirect" title="Second Class">Second Class 3a and 3d (navigation)</a>
+                                            </dd>
+                                            <dd>d. <a href="https://meritbadge.org/wiki/index.php/First_Class#First_Class_rank_requirements" class="mw-redirect" title="First Class">First Class 3a, 3b, 3c, and 3d (tools)</a>
+                                            </dd>
+                                            <dd>e. <a href="https://meritbadge.org/wiki/index.php/First_Class#First_Class_rank_requirements" class="mw-redirect" title="First Class">First Class 4a and 4b (navigation)</a>
+                                            </dd>
+                                            <dd>f. <a href="https://meritbadge.org/wiki/index.php/Second_Class#Second_Class_rank_requirements" class="mw-redirect" title="Second Class">Second Class 6a and 6b (first aid)</a>
+                                            </dd>
+                                            <dd>g. <a href="https://meritbadge.org/wiki/index.php/First_Class#First_Class_rank_requirements" class="mw-redirect" title="First Class">First Class 7a and 7b (first aid)</a>
+                                            </dd>
+                                            <dd>h. Three requirements from one of the <a href="https://meritbadge.org/wiki/index.php/Merit_badges_required_for_the_Eagle_Scout_rank" title="Merit badges required for the Eagle Scout rank">required Eagle merit badges</a>, as approved
+                                                by your Scoutmaster<sup id="cite_ref-Other_0-5" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>While a Star Scout, participate in a Scoutmaster<sup id="cite_ref-Other_0-6" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup> conference.
+                                    </li>
+                                    <li>Successfully complete your board of review for the Life rank.<sup id="cite_ref-2" class="reference"><a href="#cite_note-2" title="">[3]</a></sup>
+                                    </li>
+                                </ol>
+                            </div>
+                            <!--
+########    ###     ######   ##       ########
+##         ## ##   ##    ##  ##       ##
+##        ##   ##  ##        ##       ##
+######   ##     ## ##   #### ##       ######
+##       ######### ##    ##  ##       ##
+##       ##     ## ##    ##  ##       ##
+######## ##     ##  ######   ######## ########
+-->
+                            <div role="tabpanel" class="tab-pane fade " id="eagle">
+                                <ol>
+                                    <li>Be <a href="https://meritbadge.org/wiki/index.php/Active" title="Active">active</a> in your troop<sup id="cite_ref-Other_1-0" class="reference"><a href="#cite_note-Other-1" title="">[2]</a></sup> for at least six months as a <a href="https://meritbadge.org/wiki/index.php/Life_rank"
+                                            title="Life rank">Life Scout</a>.
+                                    </li>
+                                    <li>As a Life Scout, demonstrate <a href="https://meritbadge.org/wiki/index.php/Scout_spirit" class="mw-redirect" title="Scout spirit">Scout spirit</a> by living the Scout Oath and
+                                        <a href="https://meritbadge.org/wiki/index.php/Scout_Law" title="Scout Law">Scout Law</a>. Tell how you have done your <a href="https://meritbadge.org/wiki/index.php?title=Duty_to_God&amp;action=edit" class="new" title="Duty to God">duty to God</a> and how
+                                        you have lived the Scout Oath and Scout Law in your everyday life, and how your understanding of the Scout Oath and Scout Law will guide your life in the future. List on your Eagle Scout Rank Application the names
+                                        of individuals who know you personally and would be willing to provide a recommendation on your behalf, including parents/guardians, religious (if not affiliated with an organized religion, then the parent or guardian
+                                        provides this reference), educational, employer (if employed), and two other references.
+                                    </li>
+                                    <li>Earn a total of 21 merit badges (10 more than required for the Life rank), including these 13 merit badges: (a) [[First Aid], (b) <a href="https://meritbadge.org/wiki/index.php/Citizenship_in_the_Community" title="Citizenship in the Community">Citizenship in the Community</a>,
+                                        (c) <a href="https://meritbadge.org/wiki/index.php/Citizenship_in_the_Nation" title="Citizenship in the Nation">Citizenship in the Nation</a>, (d) <a href="https://meritbadge.org/wiki/index.php/Citizenship_in_the_World" title="Citizenship in the World">Citizenship in the World</a>,
+                                        (e) <a href="https://meritbadge.org/wiki/index.php/Communication" title="Communication">Communication</a>, (f) <a href="https://meritbadge.org/wiki/index.php/Cooking" title="Cooking">Cooking</a>, (g) <a href="https://meritbadge.org/wiki/index.php/Personal_Fitness" title="Personal Fitness">Personal Fitness</a>,
+                                        (h) <a href="https://meritbadge.org/wiki/index.php/Emergency_Preparedness" title="Emergency Preparedness">Emergency Preparedness</a> OR <a href="https://meritbadge.org/wiki/index.php/Lifesaving" title="Lifesaving">Lifesaving</a>, (i) <a href="https://meritbadge.org/wiki/index.php/Environmental_Science"
+                                            title="Environmental Science">Environmental Science</a> OR <a href="https://meritbadge.org/wiki/index.php/Sustainability" title="Sustainability">Sustainability</a>, (j) <a href="https://meritbadge.org/wiki/index.php/Personal_Management" title="Personal Management">Personal Management</a>,
+                                        (k) <a href="https://meritbadge.org/wiki/index.php/Swimming" title="Swimming">Swimming</a> OR <a href="https://meritbadge.org/wiki/index.php/Hiking" title="Hiking">Hiking</a> OR <a href="https://meritbadge.org/wiki/index.php/Cycling" title="Cycling">Cycling</a>, (l) <a href="https://meritbadge.org/wiki/index.php/Camping"
+                                            title="Camping">Camping</a>, and (m) <a href="https://meritbadge.org/wiki/index.php/Family_Life" title="Family Life">Family Life</a>.
+                                        <dl>
+                                            <dd>You must choose only one of the merit badges listed in categories h, i, and k. Any additional merit badge(s) earned in those categories may be counted as one of your eight optional merit badges used to make
+                                                your total of 21.
+                                            </dd>
+                                            <dd>
+                                                <table style="border-collapse:collapse;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th style="border:1px solid black;">Name of merit badge</th>
+                                                            <th style="border: 1px solid black;">Date Earned</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                            <td
+                                                                style="border: 1px solid black;">&nbsp;</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(Eagle required)</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>&nbsp;</td>
+                                                            <td style="border:1px solid black;"></td>
+                                                            <td style="border:1px solid black;"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>While a Life Scout, serve <a href="https://meritbadge.org/wiki/index.php/Active#Active_in_a_Position_of_Responsibility" title="Active">actively</a> in your troop<sup id="cite_ref-Other_1-1" class="reference"><a href="#cite_note-Other-1" title="">[2]</a></sup>                                        for six months in one or more of the following <a href="https://meritbadge.org/wiki/index.php/Positions_of_responsibility" class="mw-redirect" title="Positions of responsibility">positions of responsibility</a>:
+                                        <ul>
+                                            <li>Boy Scout troop. Patrol leader, assistant senior patrol leader, senior patrol leader, troop guide, Order of the Arrow troop representative, den chief, scribe, librarian, historian, quartermaster, junior assistant
+                                                Scoutmaster, chaplain aide, instructor, webmaster, or outdoor ethics guide.<sup id="cite_ref-2" class="reference"><a href="#cite_note-2" title="">[3]</a></sup>
+                                            </li>
+                                            <li>Varsity Scout team. Captain, cocaptain, program manager, squad leader, team secretary, Order of the Arrow team representative, librarian, historian, quartermaster, chaplain aide, instructor, den chief, webmaster,
+                                                or outdoor ethics guide.
+                                            </li>
+                                            <li>Venturing crew/Sea Scout ship. President, vice president, secretary, treasurer, den chief, quartermaster, historian, guide, boatswain, boatswain’s mate, yeoman, purser, storekeeper, or webmaster.
+                                            </li>
+                                            <li>Lone Scout. Leadership responsibility in your school, religious organization, club, or elsewhere in your community.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>While a Life Scout, plan, develop, and give leadership to others in a service project helpful to any religious institution, any school, or your community. (The project must benefit an organization other than Boy Scouting.)
+                                        A project proposal must be approved by the organization benefiting from the effort, your unit leader and unit committee, and the council or district before you start. You must use the <a href="http://www.scouting.org/scoutsource/BoyScouts/AdvancementandAwards/resources.aspx"
+                                            class="external text" title="http://www.scouting.org/scoutsource/BoyScouts/AdvancementandAwards/resources.aspx" rel="nofollow">Eagle Scout Service Project Workbook, BSA publication No. 512-927</a>, in meeting this
+                                        requirement. (To learn more about the Eagle Scout service project, see the Guide to Advancement, topics 9.0.2.0 through 9.0.2.15.)
+                                    </li>
+                                    <li>While a Life Scout, participate in a Scoutmaster<sup id="cite_ref-Other_1-2" class="reference"><a href="#cite_note-Other-1" title="">[2]</a></sup> conference.
+                                    </li>
+                                    <li>Successfully complete your board of review for the Eagle rank.<sup id="cite_ref-3" class="reference"><a href="#cite_note-3" title="">[4]</a></sup> In preparation for your board of review, prepare and attach to your
+                                        Eagle Scout Rank Application a statement of your ambitions and life purpose and a listing of positions held in your religious institution, school, camp, community, or other organizations, during which you demonstrated
+                                        leadership skills. Include honors and awards received during this service. (This requirement may be met after age 18, in accordance with Guide to Advancement topic 8.0.3.1.)<sup id="cite_ref-4" class="reference"><a href="#cite_note-4" title="">[5]</a></sup>
+                                    </li>
+                                </ol>
+                            </div>
+                            <!--
+########    ###     ######   ##       ########    ########     ###    ##       ##     ##  ######
+##         ## ##   ##    ##  ##       ##          ##     ##   ## ##   ##       ###   ### ##    ##
+##        ##   ##  ##        ##       ##          ##     ##  ##   ##  ##       #### #### ##
+######   ##     ## ##   #### ##       ######      ########  ##     ## ##       ## ### ##  ######
+##       ######### ##    ##  ##       ##          ##        ######### ##       ##     ##       ##
+##       ##     ## ##    ##  ##       ##          ##        ##     ## ##       ##     ## ##    ##
+######## ##     ##  ######   ######## ########    ##        ##     ## ######## ##     ##  ######
+-->
+                            <div role="tabpanel" class="tab-pane fade " id="palms">
+                                <ol>
+                                    <li>Be <a href="https://meritbadge.org/wiki/index.php/Active" title="Active">active</a> in your <a href="https://meritbadge.org/wiki/index.php/Troop" title="Troop">troop</a><sup id="cite_ref-Other_0-0" class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup>                                        and <a href="https://meritbadge.org/wiki/index.php/Patrol" title="Patrol">patrol</a> for at least three months after becoming an Eagle Scout or after award of last Palm.<sup id="cite_ref-1" class="reference"><a href="#cite_note-1" title="">[2]</a></sup>
+                                    </li>
+                                    <li>Since earning the Eagle Scout rank or your last Eagle Palm, demonstrate <a href="https://meritbadge.org/wiki/index.php/Scout_Spirit" title="Scout Spirit">Scout Spirit</a> by living the <a href="https://meritbadge.org/wiki/index.php/Scout_Oath" title="Scout Oath">Scout Oath</a>                                        and <a href="https://meritbadge.org/wiki/index.php/Scout_Law" title="Scout Law">Scout Law</a>. Tell how you have done your <a href="https://meritbadge.org/wiki/index.php?title=Duty_to_God&amp;action=edit" class="new" title="Duty to God">duty to God</a> and
+                                        how you have lived the Scout Oath and Scout Law in your everyday life.
+                                    </li>
+                                    <li>Make a satisfactory effort to develop and demonstrate leadership ability.
+                                    </li>
+                                    <li>Earn five additional merit badges beyond those required for Eagle or last Palm.<sup id="cite_ref-2" class="reference"><a href="#cite_note-2" title="">[3]</a></sup>
+                                    </li>
+                                    <li>While an Eagle Scout, or since your last Eagle Palm, participate in a <a href="https://meritbadge.org/wiki/index.php/Scoutmaster_conference" class="mw-redirect" title="Scoutmaster conference">Scoutmaster conference</a>.<sup id="cite_ref-Other_0-1"
+                                            class="reference"><a href="#cite_note-Other-0" title="">[1]</a></sup>
+                                    </li>
+                                    <li>Successfully complete your <a href="https://meritbadge.org/wiki/index.php/Board_of_review" class="mw-redirect" title="Board of review">board of review</a> for the Eagle Palm.
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+<footer>
+    <div class="container">
+        <div class="box">
+            <div class="col-lg-12 text-center">
+                <p>Copyright &copy; 2006-2017 Troop 485, Silicon Valley Monterey Bay Council, Boy Scouts of America.</p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(101023955); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101023955ns.gif" /></p></noscript>
+
+    <script>
+        $(window).on('hashchange', () => {
+            $(document).scrollTop(0);
+        });
+        //http://stackoverflow.com/questions/10523433/how-do-i-keep-the-current-tab-active-with-twitter-bootstrap-after-a-page-reload/10524697
+        $(() => {
+            // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
+            $('a[data-toggle="tab"]').on('shown.bs.tab', e => {
+                // save the latest tab
+                window.location.hash = $(this).attr('href');
+            });
+
+            // go to the latest tab, if it exists:
+            let lastTab = window.location.hash;
+            if (lastTab) {
+                $('[href="' + lastTab + '"]').tab('show');
+            } else {
+                window.location.hash = "scout";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
