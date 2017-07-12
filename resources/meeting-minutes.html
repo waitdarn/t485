@@ -396,9 +396,10 @@
         var options = {
             valueNames: [
                 "date",
-                "type", {
-                    data: ["year", "month", "link"]
-                }
+                "type",
+                { attr: 'data-year', name: 'year' },
+                { attr: 'data-month', name: 'month' },
+                { attr: 'data-link', name: 'link' }
             ],
             item: '<li><a data-link="" data-year="" data-month="" onclick=\'openModal(this, $(this).attr("data-link"));\'><span class="date"></span> - <span class="type"></span></a></li>'
 
