@@ -161,7 +161,7 @@
                     <input id="plcmm" type="text" class="form-control">
                     <label for="hc">Headcounts link:</label>
                     <input id="hc" type="text" class="form-control">
-                    <button id="add-mm-btn">Add Meeting Minutes</button>
+                    <button id="add-mm-btn" class="btn btn-primary form-control">Add Meeting Minutes</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -205,7 +205,7 @@
                             $("#add-mm-btn").click(function() {
 
                                 if ($("#tmm").val() !== "") {
-                                    firebase.database().ref().push({
+                                    firebase.database().ref("/meetingminutes/").push({
                                         "date": $("#date").val(),
                                         "year": $("#date").val().split("/")[2],
                                         "month": ["January", "February", "March", "April", "May", "June",
@@ -216,7 +216,7 @@
                                     });
                                 }
                                 if ($("#plcmm").val() !== "") {
-                                    firebase.database().ref().push({
+                                    firebase.database().ref("/meetingminutes/").push({
                                         "date": $("#date").val(),
                                         "year": $("#date").val().split("/")[2],
                                         "month": ["January", "February", "March", "April", "May", "June",
@@ -227,7 +227,7 @@
                                     });
                                 }
                                 if ($("#hc").val() !== "") {
-                                    firebase.database().ref().push({
+                                    firebase.database().ref("/meetingminutes/").push({
                                         "date": $("#date").val(),
                                         "year": $("#date").val().split("/")[2],
                                         "month": ["January", "February", "March", "April", "May", "June",
