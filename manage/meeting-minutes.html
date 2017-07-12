@@ -150,7 +150,18 @@
                     <hr>
                 </div>
                 <div class="col-md-12">
-                    <p>hi. WIP</p>
+                    <button class="btn btn-default" onclick="window.location.href = 'logout.html?redir=files.html'">Log out</button>
+
+                    <b>Add Meeting Minutes:</b>
+                    <label for="date">Date:</label>
+                    <input type="text" id="date" class="form-control"> $('#sandbox-container input').datepicker({ });
+                    <label for="tmm">Troop Meeting Minutes link:</label>
+                    <input id="tmm" type="text">
+                    <label for="plcmm">PLC Meeting Minutes link:</label>
+                    <input id="plcmm" type="text">
+                    <label for="hc">Headcounts link:</label>
+                    <input id="hc" type="text">
+                    <button id="add-mm-btn">Add Meeting Minutes</button>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -178,22 +189,43 @@
             </div>
         </div>
     </footer>
-
+    <script src="/js/bootstrap-datepicker.min.js"></script>
     <script>
+        /* global firebase $ */
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
                 // User is signed in.
                 firebase.database().ref("/managers/meeting-minutes/").once("value").then(function(snapshot) {
                     var data = snapshot.val();
-                    for (i = 0; i < data.length; i++) {
+                    for (var i = 0; i < data.length; i++) {
                         if (user.uid === data[i]) {
                             $("#authorizing-box").addClass("hidden");
-                            $("#manage").removeClass("hidden")
+                            $("#manage").removeClass("hidden");
+                            $('#date').datepicker();
+                            $("#add-mm").click(function() {
+                                //pushes three times, once for tmm, plcmm, and hc
+                                var doctypes = ["tmm", "plcmm", "hc"];
+                                    var doctypefull = ["Troop Meeting Minutes", "PLC Meeting Minutes", "Headcounts"];
+                                for (var doc = 0; doc < 3; doc++) {
+                                    
+                                    firebase.database().ref().push({
+                                        "date": $("#date").val(),
+                                        "year": $("#date").val().split("/")[2],
+                                        "month": ["January", "February", "March", "April", "May", "June",
+                                            "July", "August", "September", "October", "November", "December"
+                                        ][parseInt($("#date").val().split("/")[0], 10)],
+                                        "link": $("#" + doctypes[doc]).val(),
+                                        "type": doctypefull[doc]
+                                    });
+                                }
+                            });
+
+                            return;
                         }
                     }
                     $("#authorizing").addClass("hidden");
                     $("#not-approved").removeClass("hidden");
-                })
+                });
             }
             else {
                 // No user is signed in.
