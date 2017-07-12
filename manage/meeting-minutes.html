@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="/css/t485.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
-
+    <link rel="stylesheet" href="bootstrap-datepicker.min.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Join Troop 485 in Cupertino to experience an excellent Scouting experience">
@@ -154,13 +154,13 @@
 
                     <b>Add Meeting Minutes:</b>
                     <label for="date">Date:</label>
-                    <input type="text" id="date" class="form-control"> $('#sandbox-container input').datepicker({ });
+                    <input type="text" id="date" class="form-control">\
                     <label for="tmm">Troop Meeting Minutes link:</label>
-                    <input id="tmm" type="text">
+                    <input id="tmm" type="text" class="form-control">
                     <label for="plcmm">PLC Meeting Minutes link:</label>
-                    <input id="plcmm" type="text">
+                    <input id="plcmm" type="text" class="form-control">
                     <label for="hc">Headcounts link:</label>
-                    <input id="hc" type="text">
+                    <input id="hc" type="text" class="form-control">
                     <button id="add-mm-btn">Add Meeting Minutes</button>
                 </div>
                 <div class="clearfix"></div>
@@ -202,7 +202,7 @@
                             $("#authorizing-box").addClass("hidden");
                             $("#manage").removeClass("hidden");
                             $('#date').datepicker();
-                            $("#add-mm").click(function() {
+                            $("#add-mm-btn").click(function() {
                                 //pushes three times, once for tmm, plcmm, and hc
                                 var doctypes = ["tmm", "plcmm", "hc"];
                                     var doctypefull = ["Troop Meeting Minutes", "PLC Meeting Minutes", "Headcounts"];
