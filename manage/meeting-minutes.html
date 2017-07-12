@@ -203,21 +203,42 @@
                             $("#manage").removeClass("hidden");
                             $('#date').datepicker();
                             $("#add-mm-btn").click(function() {
-                                //pushes three times, once for tmm, plcmm, and hc
-                                var doctypes = ["tmm", "plcmm", "hc"];
-                                    var doctypefull = ["Troop Meeting Minutes", "PLC Meeting Minutes", "Headcounts"];
-                                for (var doc = 0; doc < 3; doc++) {
-                                    
+
+                                if ($("#tmm").val() !== "") {
                                     firebase.database().ref().push({
                                         "date": $("#date").val(),
                                         "year": $("#date").val().split("/")[2],
                                         "month": ["January", "February", "March", "April", "May", "June",
                                             "July", "August", "September", "October", "November", "December"
                                         ][parseInt($("#date").val().split("/")[0], 10)],
-                                        "link": $("#" + doctypes[doc]).val(),
-                                        "type": doctypefull[doc]
+                                        "link": $("#tmm").val(),
+                                        "type": "Troop Meeting Minutes"
                                     });
                                 }
+                                if ($("#plcmm").val() !== "") {
+                                    firebase.database().ref().push({
+                                        "date": $("#date").val(),
+                                        "year": $("#date").val().split("/")[2],
+                                        "month": ["January", "February", "March", "April", "May", "June",
+                                            "July", "August", "September", "October", "November", "December"
+                                        ][parseInt($("#date").val().split("/")[0], 10)],
+                                        "link": $("#plcmm").val(),
+                                        "type": "PLC Meeting Minutes"
+                                    });
+                                }
+                                if ($("#hc").val() !== "") {
+                                    firebase.database().ref().push({
+                                        "date": $("#date").val(),
+                                        "year": $("#date").val().split("/")[2],
+                                        "month": ["January", "February", "March", "April", "May", "June",
+                                            "July", "August", "September", "October", "November", "December"
+                                        ][parseInt($("#date").val().split("/")[0], 10)],
+                                        "link": $("#hc").val(),
+                                        "type": "Headcounts"
+                                    });
+                                }
+
+
                             });
 
                             return;
