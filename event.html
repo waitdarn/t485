@@ -89,71 +89,72 @@
 
 <body>
     <img src="/img/header.gif" id="header" alt="Troop 485 banner" width="990" height="151">
-<!-- Navigation -->
-<nav class="navbar navbar-default">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-            <a class="navbar-brand" href="/">T485</a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/calendar.html">Calendar</a>
-                </li>
-                <li>
-                    <a href="/directory.html">Directory </a>
-                </li>
-                
-                <li>
-                    <a href="/new-scout.html">New Scouts</a>
-                </li>
-                
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="/">T485</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/calendar.html">Calendar</a>
+                    </li>
+                    <li>
+                        <a href="/directory.html">Directory </a>
+                    </li>
+
+                    <li>
+                        <a href="/new-scout.html">New Scouts</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Resources <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/resources/files.html">Files</a></li>
-                        <li><a href="/resources/event-pages.html">Event Pages</a></li>
-                        <li><a href="/resources/meeting-minutes.html">Meeting Minutes/Reflections</a></li>
-                        <li><a href="/resources/pictures.html">Pictures</a></li>
-                        <li><a href="/resources/app-download.html">Download App</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <ul class="dropdown-menu">
+                            <li><a href="/resources/files.html">Files</a></li>
+                            <li><a href="/resources/event-pages.html">Event Pages</a></li>
+                            <li><a href="/resources/meeting-minutes.html">Meeting Minutes/Reflections</a></li>
+                            <li><a href="/resources/pictures.html">Pictures</a></li>
+                            <li><a href="/resources/app-download.html">Download App</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         About <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/about/faq.html">FAQ</a></li>
-                        <li><a href="/about/merit-badges.html">Merit Badges</a></li>
-                        <li><a href="/about/eagle.html">Path to Eagle</a></li>
-                        <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
-                        <li><a href="/about/plc.html">PLC</a></li>
-                        <li><a href="/about/troop-info.html">Troop Information</a></li>
-                    </ul>
-                </li>
-            </ul>
+                        <ul class="dropdown-menu">
+                            <li><a href="/about/faq.html">FAQ</a></li>
+                            <li><a href="/about/merit-badges.html">Merit Badges</a></li>
+                            <li><a href="/about/eagle.html">Path to Eagle</a></li>
+                            <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
+                            <li><a href="/about/plc.html">PLC</a></li>
+                            <li><a href="/about/troop-info.html">Troop Information</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
     <div id="alertBox"></div>
     <div class="alert alert-info alert-dismissible alert-visible hidden" role="alert" id="edit-alert-box">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <span id="edit-alert">You can <a id="edit" class="alert-link">edit this page</a>.<a id="export" class="alert-link">Export or Send this page
-        (slack, googlegroups, email, download).</a> <a id="share" class="hidden alert-link">Allow others to edit this page.</a><!--DONT WANT THEM TO DELETE EVENT PAGES. I WANT THEM TO KEEP IT FOR ARCHIVAL REASONS<a id="delete" class="hidden alert-link"> Delete this page.</a>--></span>
+        <span id="edit-alert">You <span id="role-owner" class="hidden">are the owner of</span><span id="role-editor" class="hidden">are using an access link for</span> this event page.<br> Options: <a id="edit" class="alert-link">edit</a> | <a id="export"
+            class="alert-link">Export/Send</a> | <a id="share" class="hidden alert-link">Allow others to edit this page.</a>
+        <!--DONT WANT THEM TO DELETE EVENT PAGES. I WANT THEM TO KEEP IT FOR ARCHIVAL REASONS<a id="delete" class="hidden alert-link"> Delete this page.</a>--></span>
     </div>
 
     </div>
@@ -353,11 +354,11 @@
             });
             */
             if (getQuery("password") !== null) {
-                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on('child_added', snapshot => {
+                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").once('value').then(function(snapshot) {
 
 
                     if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
-
+                        $("#role-editor").removeClass("hidden")
                         $("#edit-alert-box").removeClass("hidden");
                         $("#edit").click(() => {
                             $(window).on("beforeunload", function() {
@@ -461,7 +462,7 @@
                 firebase.database().ref('/events/' + getQuery("event")).once('value').then(snapshot => {
                     let uid = snapshot.val().owner;
                     if (uid === user.uid) {
-
+                        $("#role-owner").removeClass("hidden")
                         $("#edit-alert-box").removeClass("hidden");
                         $("#share").removeClass("hidden");
                         $("#delete").removeClass("hidden");
@@ -490,12 +491,17 @@
                         $("#share").click(() => {
                             $("#links").html("");
 
-                            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("child_added", data => {
+                            firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").on("value", function(snapshot) {
 
-                                console.log(data.val());
-                                console.log(data.key);
+                                var data = snapshot.val()
 
-                                $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data.val() + "</b> (<a onclick='deleteLink(\"" + data.val() + "\")'>Remove This Link</a>)</li><hr>");
+                                for (var key in data) {
+                                    if (data.hasOwnProperty(key)) {
+                                        console.log(key + " -> " + data[key]);
+                                        $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data[key] + "</b> (<a onclick='deleteLink(\"" + data[key] + "\")'>Remove This Link</a>)</li><hr>");
+                                    }
+                                }
+
                             });
                             $("#share-modal").modal("show");
 
@@ -740,7 +746,7 @@
                     <h4 class="modal-title" id="myModalLabel">Allow other users to edit this page.</h4>
                 </div>
                 <div class="modal-body col-lg-12">
-                    <p>Modify access links: Here you can create new edit links and also delete links. Only you and not other editors can change links.</p>
+                    <p>Modify access links: Here you can create new edit links and also delete links. Only you can change access links.</p>
                     <ul id="links">
 
                     </ul>
