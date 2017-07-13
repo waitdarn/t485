@@ -115,6 +115,8 @@
                         </ul>
                     </li>
                 </ul>
+                <p class="navbar-text navbar-right" id="nav-user-status">You are currently logged in<span id="nav-user-email"></span>.<a onclick="window.location.href = '/logout.html?redir=' + encodeURIComponent(window.location.pathname);">Logout</a></p>
+
             </div>
         </div>
     </nav>
@@ -166,8 +168,8 @@
 
 
     <script>
-        let redir = getQuery('redir') || 'home.html';
-        $("#logout").html('<a href="login.html?redir=' + redir + '">here</a>');
+        let redir = getQuery('redir');
+        $("#logout").html(redir !== null ? '<a href="login.html?redir=' + redir + '">here</a>' : '<a href="login.html">here</a>');
 
         firebase.auth().signOut().then(() => {
             // Sign-out successful.

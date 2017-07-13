@@ -54,6 +54,17 @@ else {
 
 /* Initializers */
 
+// Logout link in navbar
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    $("#nav-user-email").html(" as " + user.providerData[0].email);
+    $("#nav-user-status").removeClass("hidden");
+  } else {
+    // No user is signed in, do nothing. Individual login script is on each page.
+  }
+});
+
+ 
 // Back to top button animation
 $(window).scroll(function() {
     if ($(this).scrollTop() > 0) {
@@ -106,26 +117,28 @@ function auth(onAuthed, onUnauthed) {
 
 
 // Source: http://www.w3schools.com/js/js_cookies.asp
-function setCookie(e, o, i) {
-    if (null === i || '' === i || 'browser' === i || 0 === i) document.cookie = e + '=' + o + '; ';
-    else {
-        var t = new Date;
-        t.setTime(t.getTime() + 24 * i * 60 * 60 * 1e3);
-        var n = 'expires=' + t.toUTCString();
-        document.cookie = e + '=' + o + '; ' + n
-    }
+function setCookie(name, value, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
 
-function getCookie(t) {
-    for (var n = t + '=', r = document.cookie.split(';'), e = 0; e < r.length; e++) {
-        for (var i = r[e];
-            ' ' == i.charAt(0);) i = i.substring(1);
-        if (0 == i.indexOf(n)) return i.substring(n.length, i.length)
+function getCookie(name) {
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name + "=") == 0) {
+            return c.substring((name + "=").length, c.length);
+        }
     }
-    return ''
+    return "";
 }
-
 
 function getVarsFromUrl() {
     var vars = {};
@@ -134,19 +147,6 @@ function getVarsFromUrl() {
     });
     return vars;
 }
-
-function generateEEID(s1, s2, s3, s4, callback2 = () => {}, uid) {
-    firebase.database().ref("/ee/u/" + uid + "/ueeid/").once("value").then(function(snapshot) {
-        var data = snapshot.val();
-        if (data === null) {
-            callback2(".ERROR/User-Not-Registered");
-        }
-        else {
-            callback2(data[0] + s1 + "-" + data[1] + s2 + "-" + data[2] + s3 + "-" + data[3] + s4);
-        }
-    });
-}
-
 
 // Fisher-Yates shuffle
 function generateRandomNums(r) {
