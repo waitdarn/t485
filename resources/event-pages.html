@@ -298,8 +298,6 @@
 
 
             });
-        }, () => {
-            window.location.href = 'login.html?redir=files.html';
         });
         firebase.database().ref("/events/").on("child_added", data => {
 
