@@ -1847,7 +1847,7 @@
 </head>
 
 <body><noscript>Javascrpt must be enabled to use the login feature of T485. Please whitelist javascript for this website or the content below will not work. </noscript><br><br>
-    <div class="container col-lg-12">
+    
         <div id="login-main-box">
             <h1>Initalizing login<span id="testing" class="hidden">(Testing Mode, will not redirect or authenticate)</span></h1>
             <p>This may take up to 15 seconds with a normal internet connection. <a id="cancel" class="btn btn-danger">Click here to cancel and return to the main page</a>, or <a href="https://t485.org" class="text-danger">Force cancel(if cancel link is broken)</a></p>
@@ -1857,7 +1857,7 @@
             </div>
 
         </div>
-        <div id="not-member" class="hidden">
+        <div id="not-member" class="hidden col-lg-12">
             <h1>Error: Unauthorized Email Address</h1>
             <p>The Google account used to authenticate was not one recognized by the Troop 485 members list. If you believe this is a mistake, you can contact the webmaster.</p><br>
             <br> <a onclick="window.location.href = window.location.href;" class="btn btn-primary btn-block">Try again</a>
@@ -1865,7 +1865,6 @@
             <a href="/index.html" class="btn btn-danger btn-block">Return to home page</a>
 
 
-        </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
     <script>
