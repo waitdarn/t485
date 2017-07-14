@@ -57,7 +57,7 @@ else {
 // Logout link in navbar
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    $("#nav-user-email").html(" as " + user.providerData[0].email);
+    //$("#nav-user-email").html(" as " + user.providerData[0].email);
     $("#nav-user-status").removeClass("hidden");
   } else {
     // No user is signed in, do nothing. Individual login script is on each page.
