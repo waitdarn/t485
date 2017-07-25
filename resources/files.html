@@ -158,7 +158,7 @@
                     <h2 class="intro-text text-center">Files</h2>
                     <hr>
                     
-                    <ul>
+                    <ul id="files-box">
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic');">Council and District information</a></li>
                         <li><a onclick="openModal(this, 'https://docs.google.com/presentation/d/1b4NBkpJGCRQ0_BG5q9bl6lOuJQ7ksXqtNPFdNh24N4c/');">Resume Teaching Presentation</a></li>
                         <li><a onclick="openModal(this, 'https://drive.google.com/file/d/0B3UPeuI_E_bad0l0dkgwd2VQbmM/view');">Sample resume</a></li>
@@ -176,40 +176,25 @@
         </div>
 
 
-        <!--
+        
         <div class="row">
             <div class="box col-md-12">
                 <hr>
                 <h2 class="intro-text text-center">Add <strong>Files</strong></h2>
                 <hr>
                 <p>
-                    You can upload your own resources. Be sure to provide a
-                    meaningful event name or title. Please note that the title
-                    of the file you upload is the name people see. If you want
-                    to delete a file, email the webmaster with your event
-                    name/title.
+                    You can add your own file links below. To remove a file, email the webmaster.
                 </p>
                 <form>
-                    <div class="form-group">
-                        <label for="event-name">Event name/title:</label>
-                        <input type="text" class="form-control" id="event-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="files">File upload (you can select multiple)</label>
-                        <input type="file" id="files" name="files[]" multiple class="form-control-file" required>
-                    </div>
-                    <div id="upload-progress"></div>
-                    <div class="form-group">
-                        <label for="drive-urls">Google Docs or Google Slides url and file name (one per line)</label>
-                        <textarea class="form-control" id="drive-urls" rows="5" placeholder="https://docs.google.com/document/d/1W98GkzMbu3MhVX4bq981dyjifWLYr3Bat6ej-iE52Os/mobilebasic,This is a test file"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" id="submit" value="Submit" class="btn btn-default">
-                    </div>
+                    <label for="upload-file-name">File name:</label>
+                    <input class="form-control" id="upload-file-name" type="text">
+                    <label for="upload-file-url">File URL:</label>
+                    <input class="form-control" id="upload-file-url" type="text">
+                    <button id="upload-file-btn">Add file</button>
                 </form>
             </div>
         </div>
-        -->
+        
 
         <script src="https://static.getclicky.com/js"></script>
         <script>
@@ -306,6 +291,26 @@
                 }
             }
         }
+        $("#upload-file-btn").click(function(){
+            var url = $("#upload-file-url").val();
+            var name = $("#upload-file-name").val();
+            var el;
+            if(url.match(/^(https?:\/\/((docs\.google\.com\/(presentation|document)\/d\/.+\/.*)?)|(.+\..+.+\.pdf))$/g)){
+                el = "<a onclick=\'openModal(this, '" + url + "')\'>" + name + "</a>";
+            } else {
+                el = "<a href='" + url + "'>" + name + "</a>";
+            }
+            
+            firebase.database().ref("/files/").push(el);
+        });
+        firebase.database().ref("/files/").once("value").then(function(snapshot){
+            var data = snapshot.val();
+            for (var key in data) {
+    if (data.hasOwnProperty(key)) {
+        $("#files-box").append(data[key])
+    }
+}
+        })
     </script>
 
 </body>
