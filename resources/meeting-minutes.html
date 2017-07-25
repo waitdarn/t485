@@ -153,14 +153,14 @@
                     <hr>
                 </div>
                 <div class="col-lg-12">
-                    
+
 
 
 
                     <div id="main">
- 
 
-                        <ul class="list list-group">
+
+                        <ul class="list list-group" id="mm-list">
                             <li>5/1 <a onclick="openModal(this, 'https://docs.google.com/document/d/1EPYd4YIQwHOr162seNU4GgR_XB7r477ByOmszXoOgBc/edit')">Troop Meeting Minutes</a>,
                                 <a onclick="openModal(this, 'https://docs.google.com/document/d/125eIuDc-prx3VGL9aPXq8mC_siJGG4Jogu6ILEMJMZI/edit')">PLC Meeting Minutes</a>,
                                 <a href="https://docs.google.com/spreadsheets/d/1qiNsrInjRAtxI4VOnCu7T6_P0QtS9T-ZFpvozJCdRB8/edit#gid=0">Headcounts</a></li>
@@ -350,6 +350,16 @@
         auth(() => $("#content").removeClass("hidden"), () => $("#login").removeClass("hidden"));
     </script>
     <script>
+        firebase.database().ref("/meetingminutes/").once("value").then(function(snapshot) {
+            var data = snapshot.val();
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    var value = data[key];
+                    
+                }
+            }
+        });
+
         function openModal(_this, url) {
             var editurl;
             var editregex = /(https:\/\/docs\.google\.com\/document\/d\/.+\/)edit/g.exec(url);
