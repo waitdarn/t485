@@ -157,7 +157,7 @@
                     <hr>
                     <h2 class="intro-text text-center">Files</h2>
                     <hr>
-                    
+
                     <ul id="files-box">
                         <li><a onclick="openModal(this, 'https://docs.google.com/document/d/1IC1fttf7tEZhezKfNKs0ADtHOQjgyBcMSqjQ_75zUKk/mobilebasic');">Council and District information</a></li>
                         <li><a onclick="openModal(this, 'https://docs.google.com/presentation/d/1b4NBkpJGCRQ0_BG5q9bl6lOuJQ7ksXqtNPFdNh24N4c/present');">Resume Teaching Presentation</a></li>
@@ -176,7 +176,7 @@
         </div>
 
 
-        
+
         <div class="row">
             <div class="box col-md-12">
                 <hr>
@@ -185,16 +185,14 @@
                 <p>
                     You can add your own file links below. To remove a file, email the webmaster.
                 </p>
-                <form>
-                    <label for="upload-file-name">File name:</label>
-                    <input class="form-control" id="upload-file-name" type="text">
-                    <label for="upload-file-url">File URL:</label>
-                    <input class="form-control" id="upload-file-url" type="text">
-                    <button id="upload-file-btn" class="form-control btn btn-primary">Add file</button>
-                </form>
+                <label for="upload-file-name">File name:</label>
+                <input class="form-control" id="upload-file-name" type="text">
+                <label for="upload-file-url">File URL:</label>
+                <input class="form-control" id="upload-file-url" type="text">
+                <button id="upload-file-btn" class="form-control btn btn-primary">Add file</button>
             </div>
         </div>
-        
+
 
         <script src="https://static.getclicky.com/js"></script>
         <script>
@@ -291,25 +289,26 @@
                 }
             }
         }
-        $("#upload-file-btn").click(function(){
+        $("#upload-file-btn").click(function() {
             var url = $("#upload-file-url").val();
             var name = $("#upload-file-name").val();
             var el;
-            if(url.match(/^(https?:\/\/((docs\.google\.com\/document\/d\/.+\/.*)?)|(.+\..+.+\.pdf))$/g)){
+            if (url.match(/^(https?:\/\/((docs\.google\.com\/document\/d\/.+\/.*)?)|(.+\..+.+\.pdf))$/g)) {
                 el = "<a onclick=\'openModal(this, '" + url.replace("/edit", "/moiblebasic") + "')\'>" + name + "</a>";
-            } else {
+            }
+            else {
                 el = "<a href='" + url + "'>" + name + "</a>";
             }
-            
+
             firebase.database().ref("/files/").push(el);
         });
-        firebase.database().ref("/files/").once("value").then(function(snapshot){
+        firebase.database().ref("/files/").once("value").then(function(snapshot) {
             var data = snapshot.val();
             for (var key in data) {
-    if (data.hasOwnProperty(key)) {
-        $("#files-box").append(data[key])
-    }
-}
+                if (data.hasOwnProperty(key)) {
+                    $("#files-box").append(data[key])
+                }
+            }
         })
     </script>
 
