@@ -9,7 +9,7 @@
 
     <script src="../js/combined.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
-    s
+    
     <script>
         // Initialize Firebase
         var config = {
@@ -21,9 +21,9 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="../js/t485.js"></script>
+    <script src="/js/t485.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/t485.css">
+    <link rel="stylesheet" href="/css/t485.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic">
 
@@ -35,9 +35,9 @@
     <meta name="google-signin-client_id" content="154157170484-81ud6v3rfber96pekq75q86igmf1fsif.apps.googleusercontent.com">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="152x152" href="../favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="../favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
 
     <link rel="manifest" href="/manifest.json">
 
@@ -114,6 +114,7 @@
                             <li><a href="/about/smc.html">SMC &amp; BOR</a></li>
                             <li><a href="/about/plc.html">PLC</a></li>
                             <li><a href="/about/troop-info.html">Troop Information</a></li>
+                            <li><a href="/about/troop-jobs.html">Troop Jobs</a></li>
                         </ul>
                     </li>
                     <li id="nav-user-status"><a onclick="window.location.href = '/logout.html?redir=' + encodeURIComponent(window.location.pathname);">Logout</a></li>
@@ -172,17 +173,7 @@
     </footer>
 
 
-    <script>
-        let crawlerHide = document.getElementsByClassName('crawler-hide');
-        console.log(crawlerHide);
 
-        crawlerHide.forEach(curCrawlerHide => {
-            console.log(curCrawlerHide);
-            let hideName = curCrawlerHide.dataset.crawlerHide;
-
-            curCrawlerHide.innerHTML = hideName;
-        });
-    </script>
 
 </body>
 
