@@ -297,7 +297,7 @@
                 el = encodeURIComponent('<a onclick="openModal(this, &#39;' + url.replace("/edit", "/moiblebasic") + '&#39;)">' + name + '</a>');
             }
             else {
-                el = encodeURIComponent("<a href='" + url + "'>" + name + "</a>");
+                el = encodeURIComponent('<a href="' + url + '">' + name + "</a>");
             }
 
             firebase.database().ref("/files/").push(el);
@@ -307,6 +307,7 @@
             var data = snapshot.val();
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
+                    console.log(data[key]);
                     $("#files-box").append(decodeURIComponent(data[key]))
                 }
             }
