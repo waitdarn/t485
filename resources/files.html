@@ -183,10 +183,12 @@
                 <h2 class="intro-text text-center">Add <strong>Files</strong></h2>
                 <hr>
                 <p>
-                    You can add your own file links below. To remove a file, email the webmaster.
+                    You can add your own file links below. To remove a file, email the webmaster.<br>
+                    Google documents and PDF's with the protocol https only(for security reasons) will be opened in a popup automatically.
                 </p>
                 <label for="upload-file-name">File name:</label>
                 <input class="form-control" id="upload-file-name" type="text">
+                
                 <label for="upload-file-url">File URL:</label>
                 <input class="form-control" id="upload-file-url" type="text">
                 <button id="upload-file-btn" class="form-control btn btn-primary">Add file</button>
@@ -293,7 +295,7 @@
             var url = $("#upload-file-url").val();
             var name = $("#upload-file-name").val();
             var el;
-            if (url.match(/^(https?:\/\/((docs\.google\.com\/document\/d\/.+\/.*)?)|(.+\..+.+\.pdf))$/g)) {
+            if (url.match(/^(https:\/\/((docs\.google\.com\/document\/d\/.+\/.*)?)|(.+\..+.+\.pdf))$/g)) {
                 el = encodeURIComponent('<a onclick="openModal(this, ' + "'" + url.replace("/edit", "/moiblebasic") + "'" + ')">' + name + '</a>');
             }
             else {
