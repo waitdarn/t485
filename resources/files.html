@@ -294,10 +294,10 @@
             var name = $("#upload-file-name").val();
             var el;
             if (url.match(/^(https?:\/\/((docs\.google\.com\/document\/d\/.+\/.*)?)|(.+\..+.+\.pdf))$/g)) {
-                el = "<a onclick='openModal(this, &quot;" + url.replace("/edit", "/moiblebasic") + "&quot;)'>" + name + "</a>";
+                el = encodeURIComponent('<a onclick="openModal(this, &#39;' + url.replace("/edit", "/moiblebasic") + '&#39;)">' + name + '</a>');
             }
             else {
-                el = "<a href='" + url + "'>" + name + "</a>";
+                el = encodeURIComponent("<a href='" + url + "'>" + name + "</a>");
             }
 
             firebase.database().ref("/files/").push(el);
@@ -307,7 +307,7 @@
             var data = snapshot.val();
             for (var key in data) {
                 if (data.hasOwnProperty(key)) {
-                    $("#files-box").append(data[key])
+                    $("#files-box").append(decodeURIComponent(data[key]))
                 }
             }
         })
