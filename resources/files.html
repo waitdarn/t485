@@ -294,7 +294,7 @@
             var name = $("#upload-file-name").val();
             var el;
             if (url.match(/^(https?:\/\/((docs\.google\.com\/document\/d\/.+\/.*)?)|(.+\..+.+\.pdf))$/g)) {
-                el = encodeURIComponent('<a onclick="openModal(this, &#39;' + url.replace("/edit", "/moiblebasic") + '&#39;)">' + name + '</a>');
+                el = encodeURIComponent('<a onclick="openModal(this, ' + "'" + url.replace("/edit", "/moiblebasic") + "'" + ')">' + name + '</a>');
             }
             else {
                 el = encodeURIComponent('<a href="' + url + '">' + name + "</a>");
