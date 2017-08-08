@@ -296,10 +296,10 @@
             var name = $("#upload-file-name").val();
             var el;
             if (url.match(/^(https:\/\/((docs\.google\.com\/document\/d\/.+\/.*)?)|(.+\..+.+\.pdf))$/g)) {
-                el = encodeURIComponent('<a onclick="openModal(this, ' + "'" + url.replace("/edit", "/moiblebasic") + "'" + ')">' + name + '</a>');
+                el = encodeURIComponent('<li><a onclick="openModal(this, ' + "'" + url.replace("/edit", "/moiblebasic") + "'" + ')">' + name + '</a></li>');
             }
             else {
-                el = encodeURIComponent('<a href="' + url + '">' + name + "</a>");
+                el = encodeURIComponent('<li><a href="' + url + '">' + name + "</a></li>");
             }
 
             firebase.database().ref("/files/").push(el);
