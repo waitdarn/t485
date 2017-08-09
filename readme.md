@@ -3,7 +3,7 @@
 The official Troop 485 website.
 
 
-*Note for webmaster*
+**Note for webmaster**:
 You should be updating [t485/mirror1](https://github.com/t485/mirror1/) about every two weeks, 
 and after major revisions that are bug free.
 
