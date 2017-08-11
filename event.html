@@ -360,10 +360,15 @@
             if (getQuery("token") !== null) {
                 firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + getQuery("token")).once('value').then(function(snapshot) {
 
-
+                    console.log(getQuery("token"));
+                    console.log(snapshot.val());
+                    console.log(snapshot.val() === getQuery("token"));
+                    
                     if (snapshot.val() === getQuery("token")) {
-                        $("#role-editor").removeClass("hidden")
+                        console.log(1);
+                        $("#role-editor").removeClass("hidden");
                         $("#edit-alert-box").removeClass("hidden");
+                        console.log(2);
                         $("#edit").click(() => {
                             $(window).on("beforeunload", function() {
                                 return 'Changes you made may not be saved';
