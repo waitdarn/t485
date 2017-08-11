@@ -257,7 +257,7 @@
         $(".at").html("@");
         $(".event-page-url").html("https://t485.org/event.html?event=" + getQuery("event"));
         if (getQuery("event") === null || getQuery("event") === "") {
-            window.location.href = "/files.html";
+            window.location.href = "/resources/event-pages.html";
         }
         firebase.database().ref('/events/' + encodeURIComponent(getQuery("event"))
             /*URL is url safe anyways, this is to trigger the data = null 404
@@ -357,11 +357,11 @@
                 }
             });
             */
-            if (getQuery("password") !== null) {
+            if (getQuery("token") !== null) {
                 firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").once('value').then(function(snapshot) {
 
 
-                    if (snapshot.val() === encodeURIComponent(getQuery("token"))) {
+                    if (snapshot.val() === decodeURIComponent(getQuery("token"))) {
                         $("#role-editor").removeClass("hidden")
                         $("#edit-alert-box").removeClass("hidden");
                         $("#edit").click(() => {
