@@ -358,8 +358,8 @@
             });
             */
             if (getQuery("token") !== null) {
-                console.log('/events/' + getQuery("event") + "/editlinks/" + getQuery("token"));
-                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + getQuery("token")).once('value').then(function(snapshot) {
+                console.log('/events/' + getQuery("event") + "/editlinks/" + encodeURIComponent(getQuery("token")));
+                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + encodeURIComponent(getQuery("token"))).once('value').then(function(snapshot) {
 
                     console.log(encodeURIComponent(getQuery("token")));
                     console.log(snapshot.val());
