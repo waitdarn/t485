@@ -35,7 +35,7 @@ redirect:
     else {
         //assume mode is normal, don't do anything, this is here just as a reminder.
     }
-}
+
 // ====================================================== END DANGER ZONE - DANGER ZONE ABOVE ===========================
 (() => {
     // remove leading slash
