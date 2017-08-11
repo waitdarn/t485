@@ -358,10 +358,10 @@
             });
             */
             if (getQuery("token") !== null) {
-                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/").once('value').then(function(snapshot) {
+                firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + getQuery("token")).once('value').then(function(snapshot) {
 
 
-                    if (snapshot.val() === decodeURIComponent(getQuery("token"))) {
+                    if (snapshot.val() === getQuery("token")) {
                         $("#role-editor").removeClass("hidden")
                         $("#edit-alert-box").removeClass("hidden");
                         $("#edit").click(() => {
