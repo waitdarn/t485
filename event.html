@@ -357,7 +357,7 @@
                 }
             });
             */
-            if (getQuery("token") !== null) {
+            if (getQuery("token") !== null) { 
                 console.log('/events/' + getQuery("event") + "/editlinks/" + encodeURIComponent(getQuery("token")));
                 firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + encodeURIComponent(getQuery("token"))).once('value').then(function(snapshot) {
 
