@@ -1,6 +1,6 @@
-// Updated 7/12/17; 241 members
-// Regex: [^$\n]+$
-// to use Regex: Find regex and replace with nothing, then find and replace commas with nothing
+// Updated 8/11/12; 260 members
+// Regex: ,[^$\n]+$
+// to use Regex: Find regex and replace with nothing
 
 12345ryanwang@gmail.com
 168casey@gmail.com
@@ -78,6 +78,7 @@ hagenzhang2015@gmail.com
 haimingt@yahoo.com
 harvey.yang.1126@gmail.com
 helenhon@gmail.com
+hewlettry@gmail.com
 hjacobho@gmail.com
 hnie71@gmail.com
 hong.chen@gmail.com
@@ -98,7 +99,6 @@ jefferyouke@gmail.com
 jeffjiayangli@gmail.com
 jeffkmeng@gmail.com
 jeffmeng7@gmail.com
-jennystd@yahoo.com
 jennywang100@gmail.com
 jeremiahlb7@yahoo.com
 jerry_zhang@bd.com
@@ -113,7 +113,6 @@ jinyudoudou@hotmail.com
 jjustinx@gmail.com
 jlai95014@yahoo.com
 jody1020@aol.com
-joekuo99@gmail.com
 johnny@chenhome.org
 johnson_kou@yahoo.com
 jonathan.ty.lu@gmail.com
@@ -138,6 +137,7 @@ lechun_chen@yahoo.com
 lee.jayson.jayson@gmail.com
 leonlau313@gmail.com
 leowxy@yahoo.com
+lesacc@qq.com
 lg9393@gmail.com
 ligaoping93@gmail.com
 lili_yi@yahoo.com
@@ -149,7 +149,6 @@ liyuchen2000@yahoo.com
 lniu001@gmail.com
 lo.jeremiah9@gmail.com
 lo_chien@yahoo.com
-loveneverfails.kuo@gmail.com
 loyoloy402@gmail.com
 lsun2011@gmail.com
 lw2354@163.com
@@ -220,6 +219,7 @@ timothyl201@gmail.com
 timothywu2014@gmail.com
 tj03101@gmail.com
 tjzhoupj@gmail.com
+torreyvac@gmail.com
 tracey.meng@gmail.com
 twisterphantom212@gmail.com
 twong_@yahoo.com
@@ -252,6 +252,7 @@ yayperry@gmail.com
 yijiehuang77@gmail.com
 yinghailu@gmail.com
 yjie.liu10@yahoo.com
+yongpingcd04@yahoo.com
 yoweiliu@gmail.com
 yuanwen@gmail.com
 yuhua_c2000@yahoo.com
