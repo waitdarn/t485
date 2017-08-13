@@ -231,13 +231,18 @@
     <script src="/js/tinymce/tinymce.min.js"></script>
     <script src="/js/jspdf.min.js"></script>
     <script src="/js/printthis.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
     <!--authentication checkpoint -->
     <script>
         $("#loading").addClass("hidden");
         auth(() => $("#content").removeClass("hidden"), () => $("#login").removeClass("hidden"));
     </script>
     <script>
-        /* global firebase $ getQuery tinymce btoa auth jsPDF*/
+        
+        /* global firebase $ getQuery tinymce btoa auth jsPDF Clipboard*/
+        
+        new Clipboard('.clipboard');
         function deleteLink(id) {
             console.log("deleting: " + id)
             firebase.database().ref('/events/' + getQuery("event") + "/editlinks/" + id).set(null);
@@ -508,7 +513,7 @@
                                 for (var key in data) {
                                     if (data.hasOwnProperty(key)) {
                                         console.log(key + " -> " + data[key]);
-                                        $("#links").append("<li><b>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data[key] + "</b> (<a onclick='deleteLink(\"" + data[key] + "\")'>Remove This Link</a>)</li><hr>");
+                                        $("#links").append("<li><b id='el-" + encodeURIComponent(data[key]) + "'>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data[key] + "</b> (<a onclick='deleteLink(\"" + data[key] + "\")'>Remove This Link</a> | <a class='clipboard' data-clipboard-target='el-" + encodeURIComponent(data[key]) + ">Copy to clipboard</a>)</li><hr>");
                                     }
                                 }
 
