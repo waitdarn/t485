@@ -1909,7 +1909,7 @@
         }
 
         else {
-            let redirectUrl = decodeURIComponent(getQuery('redir')) || 'index.html';
+            let redirectUrl = "https://t485.org" + decodeURIComponent(getQuery('redir')) || 'index.html';
             let provider = new firebase.auth.GoogleAuthProvider();
             provider.addScope('https://www.googleapis.com/auth/userinfo.email');
             document.getElementById("cancel").addEventListener("click", function() {
