@@ -137,7 +137,7 @@
                 <h2 class="intro-text text-center">Login to continue</h2>
                 <hr>
                 <p>
-                    <a class="btn btn-block btn-social btn-google no-fancy-link" onclick="window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname)">
+                    <a class="btn btn-block btn-social btn-google no-fancy-link" onclick="window.location.href = '/login.html?redir=' + encodeURIComponent(window.location.pathname + window.location.search + window.location.href)">
                         <span class="fa fa-google"></span> Sign in with Google
                     </a>
                 </p>
