@@ -513,7 +513,7 @@
                                 for (var key in data) {
                                     if (data.hasOwnProperty(key)) {
                                         console.log(key + " -> " + data[key]);
-                                        $("#links").append("<li><b id='el-" + encodeURIComponent(data[key]) + "'>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data[key] + "</b> (<a onclick='deleteLink(\"" + data[key] + "\")'>Remove This Link</a> | <a class='clipboard' data-clipboard-target='el-" + encodeURIComponent(data[key]) + ">Copy to clipboard</a>)</li><hr>");
+                                        $("#links").append("<li><b id='el-" + encodeURIComponent(data[key]) + "'>https://t485.org/event.html?event=" + getQuery("event") + "&token=" + data[key] + "</b> (<a onclick='deleteLink(\"" + data[key] + "\")'>Remove This Link</a> | <a class='clipboard' data-clipboard-target='el-" + encodeURIComponent(data[key]) + "'>Copy to clipboard</a>)</li><hr>");
                                     }
                                 }
 
