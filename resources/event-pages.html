@@ -176,10 +176,10 @@
                         <button class="viewmore btn btn-default" data-toggle="collapse" href="#collapse" onclick="if(this.innerHTML === 'Show Archived Event Pages') {this.innerHTML = 'Hide Archived Event Pages'} else {this.innerHTML = 'Show Archived Event Pages'}">Show Archived Event Pages</button>
                         <div id="collapse" class="accordion-body collapse">
                             <div class="accordion-inner">
-                                <p><b>Archived Event Pages:</b><br>These are no longer mantained, and may be outdated. They are kept only for historical reasons. If you are a SIC, this may be helpful to you.<br></p>
+                                <p><b>Archived Event Pages:</b><br>These are no longer mantained, and may be outdated. They are kept only for historical reasons. If you are a SIC, however, this may be helpful to you.<br></p>
                                 <ul id="archived-event-list">
-                                    
-                                    
+
+
                                 </ul>
                             </div>
                         </div>
@@ -187,8 +187,8 @@
                     </div>
 
                 </div>
-                </div>
             </div>
+
 
 
         </div>
@@ -313,11 +313,12 @@
             let name = data.val().title;
             var id;
             if (data.val().archived === true) {
-                id= "#archived-event-list"
-            } else {
+                id = "#archived-event-list"
+            }
+            else {
                 id = "#event-list"
             }
-            
+
             $(id).prepend("<li><a class='name' href='/event.html?event=" + data.key + "'>" + name + "</a></li>");
         });
     </script>
