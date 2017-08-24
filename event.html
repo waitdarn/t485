@@ -376,7 +376,7 @@
                     //console.log(encodeURIComponent(getQuery("token")));
                     //console.log(snapshot.val());
                     //console.log(snapshot.val() === encodeURIComponent(getQuery("token")));
-                    $("#edit-alert-box").removeClass("hidden");
+                    
                     if (snapshot.val().editlinks[encodeURIComponent(getQuery("token"))] === encodeURIComponent(getQuery("token")) && snapshot.val().archived === true) {
                     
                         $("#archived-page-access").removeClass("hidden");
