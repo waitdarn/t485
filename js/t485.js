@@ -74,6 +74,9 @@ $(window).scroll(function() {
         $('#toTop').fadeOut();
     }
 });
+function topFunction() {
+    document.body.scrollTop = 0; // For Chrome, Safari and Opera 
+}
 
 //email bot obfuscator sort of...
 $(".at").text("@")
